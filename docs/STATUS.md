@@ -40,3 +40,13 @@ These are focused desktop Chromium observations. They do not establish physical-
 - Orbital theme, dataset reset and native exact-data disclosure exercised with no observed console errors.
 - These observations cover the current browser, not Safari/Firefox, forced-colors rendering or screen-reader behavior. Progressive fallback rules are supplied but were not exercised in an older engine.
 - Documentation workbench: compact padding and large button size observed; locked native dialog resisted Escape, then a live policy change enabled Escape and restored focus to the opener. Search reduced the reference to one matching chart entry. A stale cached behavior module initially caused errors; a fresh reload used the updated helper and completed these flows.
+
+## Argument-driven Storybook refinement
+
+- Consolidated repetitive snapshots into configurable playgrounds with categorized descriptions, defaults and conditional controls.
+- Chart playground exposes data, plot type and scales; an invalid scale shows an explanation, and zero-area inputs matched six zero values in the data table. The second-series control appears for stacked bars.
+- Dynamic Code source reflected changed dialog size classes. Styled wide dialog measured 760px at desktop size; restricted native dismissal resisted Escape. Confirming closed the modal and restored focus to the opener.
+- The unstyled comparison had no dialog/header classes and retained native modality. Styling remains explicitly class-based.
+- Main Storybook had no measured horizontal overflow at 1440×900 and 1366×768. Final focused browser passes had no console errors.
+- An initial build used a metadata factory directly as the default CSF export; Storybook rejected indexing it. Object-literal exports with static title/tags resolved that issue; the final build succeeded.
+- This remains focused desktop Chromium evidence; cross-browser, assistive-technology and physical-controller support are not certified.

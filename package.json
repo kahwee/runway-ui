@@ -23,7 +23,8 @@
     },
     "./native.css": "./styles/native.css",
     "./bundle.css": "./dist/runway-ui.css",
-    "./charts.css": "./styles/charts.css"
+    "./charts.css": "./styles/charts.css",
+    "./dialog.css": "./styles/dialog.css"
   },
   "files": [
     "index.css",

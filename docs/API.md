@@ -13,3 +13,5 @@ Use the [interactive reference](index.html#reference) for component option table
 `bindNavigation(root, options)` exposes `refresh()`, `move(direction)`, `activate()` and `destroy()`. Refresh after DOM changes. Hidden, inert, disabled and aria-disabled candidates are skipped; editing controls keep their native arrow behavior. Destroy restores managed tabindex values, including candidates removed before a refresh. Column count must be a positive integer.
 
 `createInventory(root, options)` owns the root's contents while mounted; use a dedicated empty root. Fixed row heights and column counts must agree with CSS. See exported declarations and [interaction guide](INTERACTIONS.md) for the complete contracts. Replacing data while focused keeps focus in the grid; filtering from an outside input keeps focus there.
+
+Dialogs use opt-in `g-dialog` styling and BEM-style structure and modifiers. See [dialog classes](DIALOG.md) for sizes, tone, scrollable body and action layout.

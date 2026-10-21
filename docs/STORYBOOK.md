@@ -1,39 +1,42 @@
-# HTML Storybook
+# Argument-driven HTML Storybook
 
-[Open the live explorer](https://kahwee.github.io/runway-ui/storybook/).
+[Open the explorer](https://kahwee.github.io/runway-ui/storybook/). It uses Storybook 10's HTML renderer: ordinary HTML/CSS rather than framework component wrappers. Storybook and its manager are development tools, not library runtime dependencies.
 
-Storybook uses `@storybook/html-vite`, not a component framework. Stories render ordinary HTML strings or DOM elements using the same CSS shipped to consumers. The manager and documentation tooling use JavaScript; none of that is required to consume the stylesheet.
+## Fewer stories, useful controls
 
-## Collection
+Each visual playground exposes the values it actually renders. Descriptions, grouped control categories, explicit defaults and conditional fields make those options reviewable. For example, color appears only after enabling custom chart color; a cancel label appears only when a dialog has a cancel action.
 
-- Start here: purpose, adoption and links to full compositions.
-- Charts: columns, stacks, diverging bars, area, legacy table bars and zero values. Plot height and grid controls are available.
-- Foundations: button controls and states, panels, badges, native forms, progress, disclosure, native dialog and the opt-in native form skin.
-- Game patterns: resource HUD, equipment slots, objectives, choices, action dock, production ledger and composable layout.
-- Behaviors: roving keyboard focus and a 10,000-item virtual inventory. These explicitly demonstrate optional JavaScript.
-- Compositions: production and economy panels assembled from the public workshop.
+| Playground                         | Important arguments                                                                                                                                                     |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CSS charts                         | Plot type, sample/custom/zero/boundary data, labels, both series, maximum, units, height, width, grid, table state and custom color                                     |
+| Dialog                             | Content, class-based size/tone/footer, native dismissal policy, safe focus target, action labels, close/cancel visibility, disabled confirmation and styling comparison |
+| Button                             | Content, variant, size, disabled, full width, pressed, busy and shortcut hint                                                                                           |
+| Input                              | Type, content, placeholder, disabled, readonly, required, validation text, width and native skin                                                                        |
+| Panel, badge, progress, disclosure | Content, surface/layout or meaningful native state                                                                                                                      |
+| Game patterns                      | Real data arrays and selection/completion/disabled states, rather than fixed sample variants                                                                            |
+| Optional behaviors                 | Navigation items, skip/wrap/column configuration; inventory count, columns, row height and overscan                                                                     |
+| Composition                        | Heading, columns, visible panels and explanatory content                                                                                                                |
 
-Use the toolbar to select Studio, Orbital or Parchment and comfortable or compact density. The Docs entries show source and copyable markup. Button controls expose label, variant, size, disabled and full width. Static examples intentionally do not fabricate game logic: CSS does not spend credits or select equipment on its own.
+Theme and density are global toolbar settings. They are not duplicated as unrelated per-component args. Control changes rerender the story; changing a dialog argument resets its native open state, so open it again after changing options. Copy current HTML from the Code panel or Docs source view. Native controls can also be edited directly in the preview; that interaction is separate from the story's initial args.
 
-## HTML before JavaScript
+Chart data is validated before rendering. Values, labels, CSS inputs and exact-data tables share the same source values. Maximums must be positive, stacks must fit the declared maximum, negative observations need diverging bars and the area primitive requires six equally spaced points. Invalid data produces an explanation, never silent truncation or a misleading chart.
 
-Use native input, select, progress, meter, details/summary and form reset behavior. The dialog story uses `commandfor`, `command="show-modal"`, `closedby` and `form method="dialog"`. These need current browser support. For older engines without invoker commands, the optional dialog helper provides `showModal()` opening and a dismissal policy.
+## Native HTML and class-based CSS
 
-CSS computes all chart geometry. Only the chart workbench controls update values and attributes. Aggregation, scale selection and missing-data handling belong to the application; see [chart contracts](CHARTS.md).
+Styled dialogs use `g-dialog` and documented child/modifier classes; see the [dialog class contract](DIALOG.md). Native invoker commands and dialog forms provide opening/closing without an application event handler. Native inputs, progress and details/summary preserve browser behavior. Older browsers may need the optional dialog helper.
 
-## Develop
+Selection in a visual equipment/choice/dock story is controlled through args; these previews do not fabricate simulation logic. The two behavior stories explicitly demonstrate optional JavaScript. Their documentation-only lifecycle hosts install a helper on connection and dispose it on disconnection. No custom elements are required by Runway UI.
+
+## Develop and deploy
 
 ```sh
 npm ci
 npm run storybook
-```
-
-Story sources live in `stories/`; toolbar defaults and shared CSS live in `.storybook/`. Keep theme-independent markup and real text values. Add stories for meaningful states, not every CSS declaration. Lifecycle hosts in behavior stories are documentation-only custom elements: they install one helper on connection and dispose it on disconnection.
-
-```sh
 npm run build-site
 ```
 
-This builds the CSS bundle, Storybook and an allowlisted public `.site/` directory. Markdown guides become HTML at build time. No client-side Markdown renderer is shipped. `main` pushes deploy that output through GitHub Actions. Generated output, local evidence and node_modules are not committed.
+Story files are in `stories/`; shared argument metadata and escaping are in `stories/helpers.js`. Keep default CSF exports as object literals with a statically readable title and tags. Storybook's indexer does not execute metadata factory calls. The helper supplies runtime argument descriptions and defaults inside that object.
 
-This is desktop-oriented UI. Validate actual desktop canvases and compositions. Browser checks remain scoped observations, not accessibility or cross-browser certification.
+The Pages build writes only allowlisted public files to `.site/`, places Storybook under `/storybook/`, and renders Markdown guides to static HTML at build time. `main` pushes deploy through GitHub Actions. Generated output and local evidence are ignored.
+
+Desktop browser observations remain scoped evidence, not cross-browser or accessibility certification.

@@ -1,6 +1,13 @@
 # Changelog
 
-## Unreleased — chart and documentation refinement
+## Unreleased — argument-driven Storybook
+
+- Consolidate repetitive snapshots into focused playgrounds with documented, categorized arguments and conditional controls.
+- Add data validation and editable series to the chart playground.
+- Add class-styled native dialog structure, compact/wide/danger modifiers and action layouts.
+- Keep all component rendering HTML/CSS-first; JavaScript remains optional.
+
+## Chart and documentation refinement
 
 - Add a dedicated CSS charts module: columns, stacked bars, diverging bars and six-point area plots, plus the preserved horizontal table API.
 - Add chart lab, exact-data disclosures, fixed-scale datasets, theme/height/grid controls and copyable recipes.

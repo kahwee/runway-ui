@@ -1,6 +1,6 @@
 /*! Runway UI | MIT License | https://github.com/kahwee/runway-ui */
 /* Import all modules, or select individual styles. No global reset. */
-@layer game-ui.tokens, game-ui.primitives, game-ui.meters, game-ui.patterns, game-ui.simulation, game-ui.charts, game-ui.themes;
+@layer game-ui.tokens, game-ui.primitives, game-ui.meters, game-ui.patterns, game-ui.simulation, game-ui.charts, game-ui.dialog, game-ui.themes;
 @layer game-ui.tokens {
   :where(.g-ui) {
     --g-bg:#f0efe7; --g-surface:#fffdf6; --g-raised:#f7f6ed;
@@ -163,6 +163,90 @@
   .g-figure[data-grid=off] .g-columns,.g-figure[data-grid=off] .g-area { background:none; }
   @container g-chart (inline-size < 380px) { .g-columns { column-gap:8px; }.g-series-list>li { grid-template-columns:70px minmax(0,1fr) 45px; gap:8px; }.g-figure figcaption { flex-wrap:wrap; }.g-series-list + .g-chart-scale { margin-inline:78px 53px; } }
   @media(forced-colors:active) { .g-column-mark,.g-stack-mark,.g-diverging-mark,.g-area::before,.g-chart__plot { background:Highlight; forced-color-adjust:none; }.g-stack-mark { border:1px solid Canvas; }.g-diverging-track { border-inline:1px solid CanvasText; }.g-diverging-track::after { content:''; position:absolute; inset-block:0; inset-inline-start:50%; border-inline-start:1px solid CanvasText; } }
+}
+
+/* Optional structure and modifiers for native <dialog class="g-dialog">.
+   The existing base surface remains in primitives.css for compatibility. */
+@layer game-ui.dialog {
+  .g-dialog--compact {
+    --g-dialog-width: 380px;
+  }
+  .g-dialog--wide {
+    --g-dialog-width: 760px;
+  }
+  .g-dialog--danger {
+    border-color: color-mix(in oklch, var(--g-danger) 50%, var(--g-line));
+  }
+  .g-dialog__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 24px;
+    margin-block-end: 20px;
+  }
+  .g-dialog__eyebrow {
+    margin: 0 0 8px;
+    color: var(--g-muted);
+    font: 700 10px/1.5 var(--g-font);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .g-dialog--danger .g-dialog__eyebrow {
+    color: var(--g-danger);
+  }
+  .g-dialog__title {
+    margin: 0;
+    color: var(--g-ink);
+    font: 550 24px/1.25 var(--g-font);
+    letter-spacing: -0.035em;
+    overflow-wrap: anywhere;
+  }
+  .g-dialog__body {
+    max-block-size: 50dvh;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    overflow-wrap: anywhere;
+    white-space: pre-line;
+  }
+  .g-dialog__body p {
+    margin: 0;
+  }
+  .g-dialog__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    gap: 10px;
+    margin: 24px 0 0;
+    padding-block-start: 20px;
+    border-block-start: 1px solid var(--g-line);
+  }
+  .g-dialog__footer--split {
+    justify-content: space-between;
+  }
+  .g-dialog__footer--stacked {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .g-dialog__close {
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    flex: none;
+    inline-size: 32px;
+    block-size: 32px;
+    padding: 0;
+    border: 1px solid var(--g-line);
+    border-radius: var(--g-radius);
+    background: var(--g-raised);
+    color: var(--g-ink);
+    font: 20px/1 var(--g-font);
+    cursor: pointer;
+  }
+  .g-dialog__close:focus-visible {
+    outline: 3px solid var(--g-focus);
+    outline-offset: 3px;
+  }
 }
 
 @layer game-ui.themes {

@@ -1,13 +1,56 @@
-body { margin:0; }
-.story-surface { box-sizing:border-box; min-block-size:100dvh; padding:40px; background:var(--g-bg); color:var(--g-ink); font:14px/1.6 var(--g-font); }
-.story-surface h1,.story-surface h2,.story-surface h3 { margin-block:0 16px; letter-spacing:-.035em; font-weight:550; }
-.story-surface p { margin-block:0 18px; }
-.story-surface a { color:var(--g-accent); }
-.story-surface .g-figure { max-inline-size:850px; }
-.story-surface .story-width { max-inline-size:850px; }
-.story-surface .story-samples { display:flex; flex-wrap:wrap; gap:16px; align-items:center; }
-.story-surface .story-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; max-inline-size:1100px; }
-.story-surface .g-input { max-inline-size:100%; }
-.story-surface code { font:12px/1.6 ui-monospace,monospace; }
-.story-surface pre { padding:20px; background:var(--g-raised); white-space:pre-wrap; overflow-wrap:anywhere; border:1px solid var(--g-line); border-radius:var(--g-radius); }
-
+body {
+  margin: 0;
+}
+.story-surface {
+  box-sizing: border-box;
+  min-block-size: 100dvh;
+  padding: 40px;
+  background: var(--g-bg);
+  color: var(--g-ink);
+  font: 14px/1.6 var(--g-font);
+}
+.story-surface :where(h1, h2, h3):not(:where(.g-dialog *)) {
+  margin-block: 0 16px;
+  letter-spacing: -0.035em;
+  font-weight: 550;
+}
+.story-surface p:not(:where(.g-dialog *)) {
+  margin-block: 0 18px;
+}
+.story-surface a {
+  color: var(--g-accent);
+}
+.story-surface .g-figure {
+  max-inline-size: 850px;
+}
+.story-surface .story-width {
+  max-inline-size: 850px;
+}
+.story-surface .story-samples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+.story-surface .story-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  max-inline-size: 1100px;
+}
+.story-surface .g-input {
+  max-inline-size: 100%;
+}
+.story-surface code {
+  font:
+    12px/1.6 ui-monospace,
+    monospace;
+}
+.story-surface pre {
+  padding: 20px;
+  background: var(--g-raised);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  border: 1px solid var(--g-line);
+  border-radius: var(--g-radius);
+}

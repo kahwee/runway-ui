@@ -27,6 +27,9 @@ export const catalog = [
   ], snippet:'<div class="g-meter">\n  <div class="g-meter__label"><span>Readiness</span><span>68%</span></div>\n  <div class="g-meter__track" role="progressbar" aria-label="Readiness"\n    aria-valuenow="68" aria-valuemin="0" aria-valuemax="100">\n    <div class="g-meter__fill" style="--g-value:68%"></div>\n  </div>\n</div>' },
   { id:'dialog', name:'Dialog', description:'A native modal with an optional dismissal-policy adapter.', options:[
     ['--g-dialog-width','CSS length','Default: 520px, bounded by the viewport.'],
+    ['g-dialog--compact / --wide','CSS classes','380px / 760px preferred width.'],
+    ['g-dialog--danger','CSS class','Danger border and eyebrow; pair with a danger action.'],
+    ['g-dialog__header / __body / __footer','CSS classes','Explicit content structure, scrollable body and action layout.'],
     ['canDismiss','() => boolean','Default: true. Read on every request; refresh() updates closedby.'],
     ['open()','method','Uses showModal(); calling again refreshes policy without reopening.'],
     ['refresh()','method','Updates the native closedby attribute after application policy changes.'],

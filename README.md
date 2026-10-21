@@ -9,7 +9,7 @@ Resource HUDs, production ledgers, economy charts, equipment grids, objectives a
 ## Explore the library
 
 - [Live workshop](https://kahwee.github.io/runway-ui/)
-- [HTML Storybook](https://kahwee.github.io/runway-ui/storybook/) — components, states, CSS charts and optional behaviors.
+- [HTML Storybook](https://kahwee.github.io/runway-ui/storybook/) — focused argument-driven playgrounds, CSS charts and optional behaviors.
 - [CSS chart lab](https://kahwee.github.io/runway-ui/docs/charts.html)
 - [Component options](https://kahwee.github.io/runway-ui/docs/)
 
@@ -117,3 +117,5 @@ Early-stage API: improvements should keep markup predictable, effects modest and
 See the [Storybook guide](docs/STORYBOOK.md). Run `npm ci`, then `npm run storybook` for the HTML component explorer. `npm run build-site` creates the public allowlisted `.site/` folder with Storybook under `/storybook/`. GitHub Actions deploys it to GitHub Pages on pushes to `main`. npm package publication is separate.
 
 Native dialog stories use HTML invoker commands (`commandfor`, `command="show-modal"`) and `form method="dialog"`. Older browsers can use the optional dialog helper. Native disclosures and form controls need no event handlers.
+
+Dialog styling is opt-in with `g-dialog`, structured `g-dialog__header`, `__body` and `__footer` classes, plus compact/wide/danger modifiers. See the [dialog class guide](docs/DIALOG.md) and [dialog playground](https://kahwee.github.io/runway-ui/storybook/?path=/story/foundations-dialog--playground).

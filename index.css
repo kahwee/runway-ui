@@ -1,9 +1,10 @@
 /* Import all modules, or select individual styles. No global reset. */
-@layer game-ui.tokens, game-ui.primitives, game-ui.meters, game-ui.patterns, game-ui.simulation, game-ui.charts, game-ui.themes;
+@layer game-ui.tokens, game-ui.primitives, game-ui.meters, game-ui.patterns, game-ui.simulation, game-ui.charts, game-ui.dialog, game-ui.themes;
 @import url('./styles/tokens.css');
 @import url('./styles/primitives.css');
 @import url('./styles/meters.css');
 @import url('./styles/patterns.css');
 @import url('./styles/simulation.css');
 @import url('./styles/charts.css');
+@import url('./styles/dialog.css');
 @import url('./styles/themes.css');
