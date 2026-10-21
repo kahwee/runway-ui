@@ -147,8 +147,9 @@ export function createInventory(root, {
     activate,
     setItems(next) {
       if (destroyed) return;
+      const preserveFocus = root.contains(document.activeElement);
       data = [...next]; active = 0; selected = -1; root.scrollTop = 0;
-      render(true);
+      render(true, preserveFocus);
     },
     destroy() {
       if (destroyed) return;

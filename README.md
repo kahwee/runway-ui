@@ -6,6 +6,15 @@ Resource HUDs, production ledgers, economy charts, equipment grids, objectives a
 
 **MIT licensed. Free for personal and commercial projects, including closed-source games.** Keep the license notice in redistributed copies. No attribution in your interface is required. See [LICENSE](LICENSE).
 
+## Explore the library
+
+- [Live workshop](https://kahwee.github.io/runway-ui/)
+- [HTML Storybook](https://kahwee.github.io/runway-ui/storybook/) — components, states, CSS charts and optional behaviors.
+- [CSS chart lab](https://kahwee.github.io/runway-ui/docs/charts.html)
+- [Component options](https://kahwee.github.io/runway-ui/docs/)
+
+Storybook is development tooling only. Consuming the CSS library requires no JavaScript or framework.
+
 ## Start with one stylesheet
 
 Download this repository and link the self-contained bundle:
@@ -39,7 +48,7 @@ This project is available on GitHub; **it has not been published to the npm regi
 python3 -m http.server 4320 --bind 127.0.0.1
 ```
 
-Open `http://127.0.0.1:4320/` for the component workshop. Other examples:
+Open **`http://127.0.0.1:4320/docs/charts.html`** for the CSS chart lab, or `http://127.0.0.1:4320/docs/` for searchable component options. The root page is the component workshop. Other examples:
 
 - `examples/colony.html`: production, reserve history and a searchable 10,000-item synthetic inventory.
 - `examples/drop-in.html`: opt-in styling for existing native form controls.
@@ -53,7 +62,8 @@ The examples target desktop windows at least 1100 × 640. The CSS library itself
 | Foundations | Theme tokens, cascade layers, surfaces, typography, focus and state colors |
 | Primitives | Buttons, panels, badges, inputs, disclosures, native dialog styling |
 | Game patterns | Resource HUD, equipment slots, objectives, choices, action dock |
-| Simulation | Subgrid production ledger, HTML-table bar chart, container-aware panels |
+| CSS charts | Columns, stacked bars, diverging bars, six-point areas, legacy HTML-table bars; [API and scale rules](docs/CHARTS.md) |
+| Simulation | Subgrid production ledger and container-aware panels |
 | Themes | Warm Studio, dark Orbital and Parchment; identical markup |
 | Optional behaviors | Native dialog dismissal policy, roving keyboard focus, standard controller adapter, fixed-height virtual inventory |
 
@@ -96,3 +106,14 @@ npm pack --dry-run
 There are no third-party runtime dependencies and no font or asset downloads. The CSS bundle is generated from `index.css` and `styles/`; edit source modules and rebuild the bundle. Type declarations accompany every optional behavior.
 
 Early-stage API: improvements should keep markup predictable, effects modest and boundaries explicit. Suggestions and small, focused contributions are welcome.
+
+## Documentation
+
+- [CSS charts](docs/CHARTS.md) — numeric inputs, scales, accessibility and fallbacks.
+- [Options API](docs/API.md), [theming](docs/THEMING.md), [compatibility contract](docs/STABILITY.md) and [unreleased changes](docs/CHANGELOG.md).
+
+## Documentation development and hosting
+
+See the [Storybook guide](docs/STORYBOOK.md). Run `npm ci`, then `npm run storybook` for the HTML component explorer. `npm run build-site` creates the public allowlisted `.site/` folder with Storybook under `/storybook/`. GitHub Actions deploys it to GitHub Pages on pushes to `main`. npm package publication is separate.
+
+Native dialog stories use HTML invoker commands (`commandfor`, `command="show-modal"`) and `form method="dialog"`. Older browsers can use the optional dialog helper. Native disclosures and form controls need no event handlers.

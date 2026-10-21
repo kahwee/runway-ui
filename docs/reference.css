@@ -1,0 +1,5 @@
+.reference-page { max-inline-size:1100px; margin-inline:auto; padding:48px; }
+.reference-nav { display:flex; gap:24px; margin-block-end:40px; font-size:12px; }
+.reference-page h1 { margin-block:20px 28px; }.reference-page h2 { margin-block:36px 18px; }.reference-page h3 { margin-block:28px 12px; }
+.reference-page ul,.reference-page ol { padding-inline-start:24px; }.reference-page li { margin-block:8px; }
+.reference-page table { inline-size:100%; border-collapse:collapse; font-size:12px; margin-block:24px; }.reference-page th,.reference-page td { text-align:start; vertical-align:top; padding:12px; border:1px solid var(--g-line); }.reference-page th { background:var(--g-soft); }

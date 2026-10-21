@@ -1,0 +1,46 @@
+/* Original CSS plots. Numeric values and labels remain application-owned HTML. */
+@layer game-ui.charts {
+  .g-chart { width:100%; border-collapse:collapse; font-size:12px; font-variant-numeric:tabular-nums; }
+  .g-chart caption { text-align:start; font-weight:600; padding-block-end:14px; }
+  .g-chart th,.g-chart td { text-align:start; padding:9px 8px; border-block-end:1px solid var(--g-line); }
+  .g-chart td:last-child { text-align:end; }
+  .g-chart__plot { display:block; block-size:12px; inline-size:clamp(0%,var(--g-value,0%),100%); background:var(--g-chart-color,var(--g-accent)); border-radius:2px; }
+  .g-chart [data-series=expense] { --g-chart-color:var(--g-gold); }
+  .g-chart__axis { inline-size:60%; }
+  .g-figure { --g-chart-height:180px; --g-chart-max:100; --g-chart-color:var(--g-accent); container:g-chart / inline-size; margin:0; min-inline-size:0; font-size:12px; font-variant-numeric:tabular-nums; }
+  .g-figure figcaption { display:flex; justify-content:space-between; gap:16px; align-items:baseline; margin-block-end:20px; font-weight:600; }
+  .g-figure figcaption small { color:var(--g-muted); font-weight:400; }
+  .g-chart-scale { display:flex; justify-content:space-between; color:var(--g-muted); font-size:10px; margin-block:8px; }
+  .g-columns { display:grid; grid-auto-columns:minmax(0,1fr); grid-auto-flow:column; grid-template-rows:var(--g-chart-height) auto auto; column-gap:16px; row-gap:8px; padding:0; margin:0; list-style:none; background:repeating-linear-gradient(to top,var(--g-line) 0 1px,transparent 1px 25%) top / 100% var(--g-chart-height) no-repeat; }
+  .g-columns>li { display:grid; grid-template-rows:subgrid; grid-row:1/4; min-inline-size:0; text-align:center; }
+  .g-column-track { display:flex; align-items:end; justify-content:center; border-block-end:1px solid var(--g-line); }
+  .g-column-mark { display:block; inline-size:min(100%,48px); block-size:clamp(0%,calc(var(--g-amount,0) / var(--g-chart-max) * 100%),100%); background:var(--g-chart-color); border-radius:3px 3px 0 0; }
+  .g-columns strong { font-size:12px; }.g-columns .g-category { font-size:10px; color:var(--g-muted); overflow-wrap:anywhere; }
+  .g-series-list { display:grid; gap:16px; margin:0; padding:0; list-style:none; }
+  .g-series-list>li { display:grid; grid-template-columns:100px minmax(0,1fr) 55px; gap:12px; align-items:center; }
+  .g-series-list strong { text-align:end; font-size:11px; }
+  .g-stack-track { display:flex; block-size:24px; background:var(--g-soft); overflow:hidden; border-radius:2px; }
+  .g-stack-mark { display:block; flex:none; inline-size:clamp(0%,calc(var(--g-amount,0) / var(--g-chart-max) * 100%),100%); background:var(--g-chart-color); }
+  [data-series=secondary] { --g-chart-color:var(--g-gold); }
+  [data-series=tertiary] { --g-chart-color:var(--g-muted); }
+  .g-legend { display:flex; flex-wrap:wrap; gap:16px; margin-block:18px 0; font-size:10px; }
+  .g-legend span { display:flex; align-items:center; gap:7px; }.g-legend i { inline-size:9px; block-size:9px; background:var(--g-chart-color); border-radius:2px; }
+  .g-diverging-track { position:relative; block-size:24px; background:linear-gradient(to right,transparent calc(50% - .5px),var(--g-muted) 0 calc(50% + .5px),transparent 0),var(--g-soft); }
+  .g-series-list + .g-chart-scale { margin-inline:112px 67px; }
+  .g-diverging-mark { display:block; position:absolute; inset-block:4px; inset-inline-start:50%; inline-size:clamp(0%,calc(var(--g-amount,0) / var(--g-chart-max) * 50%),50%); background:var(--g-chart-color); }
+  .g-diverging-mark[data-negative] { inset-inline-start:auto; inset-inline-end:50%; inline-size:clamp(0%,calc(var(--g-amount,0) / var(--g-chart-max) * -50%),50%); background:var(--g-gold); }
+  .g-area { --g-y0:100%; --g-y1:100%; --g-y2:100%; --g-y3:100%; --g-y4:100%; --g-y5:100%; block-size:var(--g-chart-height); position:relative; background:repeating-linear-gradient(to top,var(--g-line) 0 1px,transparent 1px 25%); border-block-end:1px solid var(--g-line); }
+  .g-area::before { content:''; position:absolute; inset:0; background:linear-gradient(to top,color-mix(in oklch,var(--g-chart-color) 12%,transparent),color-mix(in oklch,var(--g-chart-color) 70%,transparent)); clip-path:polygon(0% 100%,0% var(--g-y0),20% var(--g-y1),40% var(--g-y2),60% var(--g-y3),80% var(--g-y4),100% var(--g-y5),100% 100%); }
+  @supports (clip-path:shape(from 0% 100%,line to 100% 0%,close)) {
+    .g-area::before { clip-path:shape(from 0% 100%,line to 0% var(--g-y0),line to 20% var(--g-y1),line to 40% var(--g-y2),line to 60% var(--g-y3),line to 80% var(--g-y4),line to 100% var(--g-y5),line to 100% 100%,close); }
+  }
+  /* attr() resolves on the mark itself, never on its parent. Inline numeric
+     custom properties remain the fallback for engines without typed attr(). */
+  @supports (width:calc(attr(data-value type(<number>),0) * 1px)) {
+    .g-column-mark[data-value],.g-stack-mark[data-value],.g-diverging-mark[data-value] { --g-amount:attr(data-value type(<number>),0); }
+  }
+  .g-chart-data { margin-block-start:20px; font-size:11px; }.g-chart-data summary { cursor:pointer; color:var(--g-accent); }.g-chart-data table { inline-size:100%; border-collapse:collapse; margin-block-start:10px; }.g-chart-data th,.g-chart-data td { text-align:start; padding:7px; border-block-end:1px solid var(--g-line); }
+  .g-figure[data-grid=off] .g-columns,.g-figure[data-grid=off] .g-area { background:none; }
+  @container g-chart (inline-size < 380px) { .g-columns { column-gap:8px; }.g-series-list>li { grid-template-columns:70px minmax(0,1fr) 45px; gap:8px; }.g-figure figcaption { flex-wrap:wrap; }.g-series-list + .g-chart-scale { margin-inline:78px 53px; } }
+  @media(forced-colors:active) { .g-column-mark,.g-stack-mark,.g-diverging-mark,.g-area::before,.g-chart__plot { background:Highlight; forced-color-adjust:none; }.g-stack-mark { border:1px solid Canvas; }.g-diverging-track { border-inline:1px solid CanvasText; }.g-diverging-track::after { content:''; position:absolute; inset-block:0; inset-inline-start:50%; border-inline-start:1px solid CanvasText; } }
+}

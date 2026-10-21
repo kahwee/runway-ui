@@ -6,6 +6,13 @@
     --g-gold:#8a6326; --g-danger:#a34f3f; --g-focus:#bb662e;
     --g-radius:10px; --g-shadow:0 6px 0 #263e3b0a,0 16px 40px #263e3b0b;
     --g-font:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --g-control-font:11px; --g-control-block:11px; --g-control-inline:15px;
+    --g-control-gap:15px; --g-panel-padding:22px; --g-field-padding:10px;
+    --g-space:14px; --g-choice-padding:15px;
     color:var(--g-ink); font-family:var(--g-font); color-scheme:light;
+  }
+  :where(.g-ui)[data-density=compact] {
+    --g-control-block:8px; --g-control-inline:12px; --g-control-gap:10px;
+    --g-panel-padding:16px; --g-field-padding:8px; --g-space:10px; --g-choice-padding:11px;
   }
 }

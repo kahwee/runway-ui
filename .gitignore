@@ -2,3 +2,5 @@ node_modules/
 .local/
 *.tgz
 .DS_Store
+storybook-static/
+.site/

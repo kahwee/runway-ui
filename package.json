@@ -22,7 +22,8 @@
       "default": "./behaviors/inventory.js"
     },
     "./native.css": "./styles/native.css",
-    "./bundle.css": "./dist/runway-ui.css"
+    "./bundle.css": "./dist/runway-ui.css",
+    "./charts.css": "./styles/charts.css"
   },
   "files": [
     "index.css",
@@ -42,7 +43,7 @@
     "type": "git",
     "url": "git+https://github.com/kahwee/runway-ui.git"
   },
-  "homepage": "https://github.com/kahwee/runway-ui#readme",
+  "homepage": "https://kahwee.github.io/runway-ui/",
   "bugs": {
     "url": "https://github.com/kahwee/runway-ui/issues"
   },
@@ -58,9 +59,19 @@
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "storybook": "storybook dev -p 6006 --no-open",
+    "build-storybook": "storybook build --disable-telemetry",
+    "build-site": "npm run build && npm run build-storybook && node scripts/build-site.mjs"
   },
   "engines": {
     "node": ">=22"
+  },
+  "devDependencies": {
+    "@storybook/addon-docs": "10.6.3",
+    "@storybook/html-vite": "10.6.3",
+    "marked": "18.1.1",
+    "storybook": "10.6.3",
+    "vite": "8.3.5"
   }
 }

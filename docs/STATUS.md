@@ -17,7 +17,7 @@ Version 0.2.0 is early-stage source available on GitHub. It is not yet published
 - Off-screen virtual items are omitted from the DOM. Search and logical keyboard navigation help access items, but screen-reader browse-mode behavior requires further work.
 - A 10,000-item synthetic catalog demonstrates bounded DOM rendering, not a population simulation or frame-rate guarantee.
 - The CSS is namespaced but host styles can still override it. There is no Shadow DOM boundary.
-- Charts currently supply simple positive horizontal bars. There is no chart engine, game loop, renderer, networking or persistence layer.
+- Charts supply small HTML/CSS plots: columns, stacked and diverging bars, six-point areas and legacy horizontal bars. Arbitrary-length time series, automatic ticks and interactive chart-engine features are outside the current scope.
 
 Current browser observations and packaging results are recorded here after each focused development pass. They do not imply certification across all supported browsers.
 
@@ -31,3 +31,12 @@ Current browser observations and packaging results are recorded here after each 
 - Package dry run included the full MIT license and single-file CSS bundle.
 
 These are focused desktop Chromium observations. They do not establish physical-controller support, screen-reader conformance or cross-browser certification.
+
+## Local chart refinement
+
+- CSS chart lab checked at 1440 × 900 and 1366 × 768 with no measured horizontal overflow.
+- Native typed attr() and shape() paths active in this desktop Chromium browser; columns computed subgrid tracks.
+- Zero datasets produced zero-sized marks. Boundary datasets filled the column scale and exactly half the symmetric diverging track.
+- Orbital theme, dataset reset and native exact-data disclosure exercised with no observed console errors.
+- These observations cover the current browser, not Safari/Firefox, forced-colors rendering or screen-reader behavior. Progressive fallback rules are supplied but were not exercised in an older engine.
+- Documentation workbench: compact padding and large button size observed; locked native dialog resisted Escape, then a live policy change enabled Escape and restored focus to the opener. Search reduced the reference to one matching chart entry. A stale cached behavior module initially caused errors; a fresh reload used the updated helper and completed these flows.

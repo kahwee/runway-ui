@@ -79,7 +79,7 @@ The parent owns four shared columns; each row uses `grid-template-columns: subgr
 </table>
 ```
 
-The host maps quantities to a declared scale; actual values remain readable HTML. Use an established SVG/Canvas chart engine for dense histories, zoom, negative values, mixed axes or large time series. This module currently supplies horizontal bars only.
+The host maps quantities to a declared scale; actual values remain readable HTML. For columns, stacked and diverging bars and six-point areas, see the dedicated [CSS charts guide](CHARTS.md) and [chart lab](charts.html). Use a plotting engine for dense histories, zoom, mixed axes or large time series.
 
 ## Native dialog
 
