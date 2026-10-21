@@ -1,0 +1,66 @@
+{
+  "name": "runway-ui",
+  "version": "0.2.0",
+  "description": "Modern HTML/CSS interface primitives for simulation and management games",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": "./index.css",
+    "./styles/*": "./styles/*",
+    "./dialog": {
+      "types": "./behaviors/dialog.d.ts",
+      "default": "./behaviors/dialog.js"
+    },
+    "./navigation": {
+      "types": "./behaviors/navigation.d.ts",
+      "default": "./behaviors/navigation.js"
+    },
+    "./inventory": {
+      "types": "./behaviors/inventory.d.ts",
+      "default": "./behaviors/inventory.js"
+    },
+    "./native.css": "./styles/native.css",
+    "./bundle.css": "./dist/runway-ui.css"
+  },
+  "files": [
+    "index.css",
+    "styles",
+    "behaviors",
+    "dist",
+    "LICENSE",
+    "README.md",
+    "docs",
+    "examples",
+    "scripts"
+  ],
+  "style": "index.css",
+  "license": "MIT",
+  "author": "KahWee Teng",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kahwee/runway-ui.git"
+  },
+  "homepage": "https://github.com/kahwee/runway-ui#readme",
+  "bugs": {
+    "url": "https://github.com/kahwee/runway-ui/issues"
+  },
+  "keywords": [
+    "css",
+    "html",
+    "game-ui",
+    "simulation",
+    "management",
+    "subgrid",
+    "dialog",
+    "inventory"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepack": "npm run build"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

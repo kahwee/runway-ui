@@ -1,0 +1,14 @@
+@layer game-ui.themes {
+  .g-ui[data-theme=orbital] {
+    --g-bg:#0d1722; --g-surface:#142331; --g-raised:#1b2d3c; --g-ink:#e4f1f3;
+    --g-muted:#a1b9c5; --g-line:#345064; --g-accent:#76d5cc; --g-on-accent:#102b2d;
+    --g-soft:#243e4e; --g-gold:#e9bc76; --g-danger:#ff9c8d; --g-focus:#e9bc76;
+    --g-radius:3px; --g-shadow:0 10px 35px #0003; color-scheme:dark;
+  }
+  .g-ui[data-theme=parchment] {
+    --g-bg:#ded1b4; --g-surface:#f7edd4; --g-raised:#eee0bd; --g-ink:#44341e;
+    --g-muted:#77613f; --g-line:#c9ad79; --g-accent:#715430; --g-on-accent:#fff3d7;
+    --g-soft:#e7d5ab; --g-gold:#896010; --g-danger:#a0412e; --g-focus:#a0412e;
+    --g-radius:2px; --g-shadow:3px 3px 0 #72573524; --g-font:Georgia,serif;
+  }
+}

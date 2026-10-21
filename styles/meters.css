@@ -1,0 +1,13 @@
+@layer game-ui.meters {
+  .g-meter { margin-top:9px; }
+  .g-meter__label { display:flex; justify-content:space-between; gap:12px; font-size:10px; color:var(--g-muted); margin-bottom:5px; }
+  .g-meter__track { height:var(--g-meter-height,6px); border-radius:4px; background:var(--g-soft); overflow:hidden; }
+  .g-meter__fill { height:100%; width:clamp(0%,var(--g-value,0%),100%); border-radius:inherit; background:var(--g-meter-color,var(--g-accent)); transition:width .4s; }
+  .g-meter[data-tone=warning] { --g-meter-color:var(--g-gold); }
+  .g-meter[data-tone=danger] { --g-meter-color:var(--g-danger); }
+  .g-meter[data-tone=design] { --g-meter-color:#9577af; }
+  .g-meter[data-tone=pm] { --g-meter-color:#a58748; }
+  .g-meter[data-tone=energy] { --g-meter-color:var(--g-gold); }
+  .g-meter[data-tone=morale] { --g-meter-color:#638c74; }
+  @media(prefers-reduced-motion:reduce) { .g-meter__fill { transition:none; } }
+}

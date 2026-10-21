@@ -1,0 +1,11 @@
+@layer game-ui.tokens {
+  :where(.g-ui) {
+    --g-bg:#f0efe7; --g-surface:#fffdf6; --g-raised:#f7f6ed;
+    --g-ink:#263e3b; --g-muted:#586b60; --g-line:#d8ddce;
+    --g-accent:#355c4b; --g-on-accent:#fffdf6; --g-soft:#edf0e4;
+    --g-gold:#8a6326; --g-danger:#a34f3f; --g-focus:#bb662e;
+    --g-radius:10px; --g-shadow:0 6px 0 #263e3b0a,0 16px 40px #263e3b0b;
+    --g-font:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--g-ink); font-family:var(--g-font); color-scheme:light;
+  }
+}
