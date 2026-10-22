@@ -224,3 +224,18 @@ export const Select = {
 };
 for (const story of [Button, Panel, Badge, Input, Select, Progress, Disclosure])
   story.argTypes = withDefaults(story.args, story.argTypes);
+
+export const FunPicker = {
+  args: { direction: "ltr", width: 460, disabled: false },
+  argTypes: {
+    direction: select(["ltr", "rtl"], "Text direction.", "HTML"),
+    width: range(240, 700, 10, "Field width."),
+    disabled: flag("Native disabled control."),
+  },
+  parameters: { docs: { description: { story: "Customizable select (appearance: base-select): rich options, selectedcontent mirror, staggered entry with sibling-index(), spring checkmark and typed attr() colour dots. Chrome 135+ today; other browsers keep the native select." } } },
+  render: (a) => {
+    const id = uniqueId("fun");
+    const opt = (icon, name, desc, color, sel) => `<option value="${name.toLowerCase().replace(/\W+/g, "-")}" data-color="${color}"${sel ? " selected" : ""}><span class="rw-option__icon" aria-hidden="true">${icon}</span><span><strong>${e(name)}</strong><small>${e(desc)}</small></span></option>`;
+    return `<div class="rw-stack" dir="${e(a.direction)}" style="max-inline-size:${bounded(a.width, 240, 700)}px"><label for="${id}">Which team are you joining?</label><select class="rw-input" id="${id}" data-picker="enhanced"${a.disabled ? " disabled" : ""}><button><selectedcontent></selectedcontent></button>${opt("🚀", "Rocket crew", "Ships things at suspicious speed", "#6a4cff", true)}${opt("🧁", "Cupcake lab", "Prototypes, sprinkles and spreadsheets", "#ff6b9d")}${opt("🛰️", "Signal desk", "Listens to the whole internet", "#1fb58f")}${opt("🎲", "Chaos garden", "Breaks things on purpose, kindly", "#ffb000")}${opt("🪴", "Calm corner", "Quiet focus and good lighting", "#3aa0ff")}</select><small class="rw-muted">Open it and hover the options.</small></div>`;
+  },
+};

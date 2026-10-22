@@ -67,3 +67,17 @@ Primary references: [MDN subgrid](https://developer.mozilla.org/en-US/docs/Web/C
 
 - **Dialog** uses `@starting-style` with `allow-discrete` transitions for `display` and `overlay`, so the dialog and its `::backdrop` fade and spring in from the top layer. Browsers without these features open and close it instantly.
 - **Customizable select** (`data-picker="enhanced"`) uses `appearance:base-select`, an anchored `::picker(select)` sized with `anchor-size()`, a styled `option::checkmark` and an entry animation. Unsupported browsers keep the padded native select. The picker has no exit animation because minifiers reject state pseudo-classes after `::picker()`.
+
+### Playful customizable select
+
+With `data-picker="enhanced"`, a `<button><selectedcontent></selectedcontent></button>` first child and rich `<option>` content, the picker gets:
+
+| Feature | CSS | Without it |
+| --- | --- | --- |
+| Rich options and closed-state mirror | `appearance:base-select`, `selectedcontent` | Native select shows plain option text |
+| Spring check badge | `option::checkmark` + `@starting-style` | Native selection indicator |
+| Staggered entry | `transition-delay` from `sibling-index()` | Options appear together |
+| Colour dots from data | typed `attr(data-color type(<color>))` | No dot; option still works |
+| Bouncy arrow, hover boop | `::picker-icon`, keyframes | Static |
+
+Currently Chrome 135+ for base-select (`sibling-index()` and typed `attr()` arrive later in some engines). Every layer is behind `@supports`, motion is off under `prefers-reduced-motion`, and the same markup stays a working native select elsewhere. Keep the description inside a `small` so the closed state can hide it.

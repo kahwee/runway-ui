@@ -2,6 +2,8 @@
 
 ## Unreleased — cuter defaults
 
+- Playful customizable select: rich options with `selectedcontent`, staggered `sibling-index()` entry, spring checkmark, typed-`attr()` colour dots and a Foundations / Controls / Fun picker story.
+
 - **Breaking: the `g-` prefix is now `rw-`.** Classes (`.g-button` → `.rw-button`), custom properties (`--g-accent` → `--rw-accent`), keyframes, container names and cascade layers (`game-ui.*` → `runway-ui.*`) all change; the root class is `.rw-ui`. Rename with `s/(?<![\w-])g-(?=[a-z])/rw-/` and `s/--g-/--rw-/` on your own markup and CSS.
 
 - Add native-form skins: springy `rw-switch`, `rw-range` slider with optional `runway-ui/forms` output binding, `rw-check`, option cards, input groups, fieldsets and field-sizing textareas; add the Foundations / Forms story.

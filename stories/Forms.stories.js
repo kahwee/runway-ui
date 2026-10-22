@@ -12,7 +12,7 @@ export default {
     columns: range(1, 3, 1, 'Option card columns.'),
     direction: select(['ltr', 'rtl'], 'Text direction; switch thumbs and inputs use logical properties.'),
   },
-  parameters: { docs: { description: { component: 'Native switch, slider, checkbox, radio, option cards, input groups and fields. Every control is a real form element; classes add the skin. Optional `bindRanges` mirrors slider values into an <output>.' } } },
+  parameters: { docs: { description: { component: 'Native switch, slider, checkbox, radio, option cards, input groups and fields. Every control is a real form element; classes add the skin. Optional `bindRanges` mirrors slider values into an `<output>`.' } } },
 };
 export const Settings = {
   render: a => {

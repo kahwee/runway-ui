@@ -100,7 +100,35 @@
     :where(select.rw-input,.rw-native select)[data-picker=enhanced] option:not(:checked)::checkmark { content:""; }
     :where(select.rw-input,.rw-native select)[data-picker=enhanced] option:focus-visible { outline:2px solid var(--rw-focus); outline-offset:-2px; }
   }
-  @media (prefers-reduced-motion:reduce) { :where(select.rw-input,.rw-native select)::picker-icon,:where(select.rw-input,.rw-native select)::picker(select) { transition:none; } }
+  /* Playful customizable select: rich options, selectedcontent mirror, staggered entry, spring checkmark.
+     Needs appearance:base-select; each sub-feature degrades on its own (stagger needs sibling-index(), color dots need typed attr()). */
+  @supports (appearance:base-select) {
+    @keyframes rw-boop { 30% { rotate:-12deg; scale:1.15; } 60% { rotate:8deg; scale:1.08; } to { rotate:0deg; scale:1; } }
+    :where(select.rw-input,.rw-native select)[data-picker=enhanced]::picker-icon { transition:rotate .4s var(--rw-spring,ease); }
+    :where(select.rw-input,.rw-native select)[data-picker=enhanced]::picker(select) { padding:8px; max-block-size:min(22rem,60dvb); scrollbar-width:thin; scrollbar-color:var(--rw-line) transparent; box-shadow:var(--rw-shadow); }
+    :where(select.rw-input,.rw-native select)[data-picker=enhanced] selectedcontent { display:flex; align-items:center; gap:.7em; min-inline-size:0; }
+    :where(select.rw-input,.rw-native select)[data-picker=enhanced] selectedcontent small { display:none; }
+    :where(select.rw-input,.rw-native select)[data-picker=enhanced] button { all:unset; display:flex; align-items:center; justify-content:space-between; inline-size:100%; cursor:inherit; }
+    :where(select.rw-input,.rw-native select)[data-picker=enhanced] option { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; column-gap:12px; transition:opacity .25s,translate .45s var(--rw-spring,ease),background-color .12s; }
+    :where(select.rw-input,.rw-native select)[data-picker=enhanced] option > span:not(.rw-option__icon) { display:grid; min-inline-size:0; }
+    :where(select.rw-input,.rw-native select)[data-picker=enhanced] option small { color:var(--rw-muted); font-size:.82em; font-weight:400; }
+    :where(select.rw-input,.rw-native select)[data-picker=enhanced] option:hover:not(:checked) { translate:4px 0; background:color-mix(in oklch,var(--rw-soft) 70%,transparent); }
+    :where(select.rw-input,.rw-native select)[data-picker=enhanced] option:checked { background:linear-gradient(100deg,color-mix(in oklch,var(--rw-accent) 16%,var(--rw-surface)),var(--rw-soft)); }
+    :where(select.rw-input,.rw-native select)[data-picker=enhanced] option:hover .rw-option__icon { animation:rw-boop .45s var(--rw-spring,ease); }
+    :where(select.rw-input,.rw-native select)[data-picker=enhanced] option::checkmark { content:"✓"; display:grid; place-items:center; inline-size:1.6em; block-size:1.6em; border-radius:50%; background:var(--rw-accent); color:var(--rw-on-accent); font-size:.8em; transition:scale .35s var(--rw-spring,ease); }
+    @starting-style { :where(select.rw-input,.rw-native select)[data-picker=enhanced] option::checkmark { scale:0; } }
+    :where(select.rw-input,.rw-native select)[data-picker=enhanced] .rw-option__icon { display:grid; place-items:center; inline-size:2.1em; block-size:2.1em; border-radius:.7em; background:var(--rw-soft); font-size:1.05em; line-height:1; box-shadow:inset 0 1px var(--rw-highlight); }
+    :where(select.rw-input,.rw-native select)[data-picker=enhanced] selectedcontent .rw-option__icon { inline-size:1.8em; block-size:1.8em; }
+    @starting-style { :where(select.rw-input,.rw-native select)[data-picker=enhanced] option { opacity:0; translate:-16px 0; } }
+    @supports (transition-delay:calc(1ms * sibling-index())) {
+      :where(select.rw-input,.rw-native select)[data-picker=enhanced] option { transition:opacity .25s calc(35ms * (sibling-index() - 1)),translate .5s var(--rw-spring,ease) calc(35ms * (sibling-index() - 1)),background-color .12s 0s; }
+    }
+    @supports (color:attr(data-color type(<color>),red)) {
+      :where(select.rw-input,.rw-native select)[data-picker=enhanced] option[data-color]::before { content:""; order:-1; inline-size:.7em; block-size:.7em; border-radius:50%; background:attr(data-color type(<color>),var(--rw-accent)); box-shadow:0 0 0 3px color-mix(in oklch,attr(data-color type(<color>),var(--rw-accent)) 22%,transparent); }
+      :where(select.rw-input,.rw-native select)[data-picker=enhanced] option[data-color] { grid-template-columns:auto auto minmax(0,1fr) auto; }
+    }
+  }
+  @media (prefers-reduced-motion:reduce) { :where(select.rw-input,.rw-native select)::picker-icon,:where(select.rw-input,.rw-native select)::picker(select),:where(select.rw-input,.rw-native select)[data-picker=enhanced] option { transition:none!important; } :where(select.rw-input,.rw-native select)[data-picker=enhanced] option:hover .rw-option__icon { animation:none; } }
   @media (forced-colors:active) {
     :where(.rw-input,.rw-native input,.rw-native select,.rw-native textarea) { box-shadow:none; }
     :where(select.rw-input,.rw-native select):not([multiple]):is(:not([size]),[size="1"]) { appearance:auto; background-image:none; padding-inline-end:var(--rw-field-padding); }
