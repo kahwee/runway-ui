@@ -90,12 +90,15 @@
     "check": "biome check --error-on-warnings .",
     "check-fix": "biome check --write .",
     "format": "biome format --write .",
-    "lint": "biome lint --error-on-warnings ."
+    "lint": "biome lint --error-on-warnings .",
+    "check-boundaries": "node scripts/check-boundaries.mjs",
+    "test-boundaries": "node --test tests/boundaries.test.mjs"
   },
   "engines": {
     "node": ">=22"
   },
   "devDependencies": {
+    "@babel/parser": "^7.29.9",
     "@biomejs/biome": "2.6.2",
     "@fontsource-variable/fredoka": "^5.3.0",
     "@fontsource-variable/nunito": "^5.3.0",
@@ -103,6 +106,8 @@
     "@storybook/addon-docs": "10.6.3",
     "@storybook/html-vite": "10.6.3",
     "marked": "18.1.1",
+    "parse5": "^8.0.1",
+    "postcss": "^8.5.31",
     "storybook": "10.6.3",
     "vite": "8.3.5"
   },
