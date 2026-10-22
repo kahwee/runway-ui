@@ -77,10 +77,10 @@ By default, with a `<button><selectedcontent></selectedcontent></button>` first 
 | Feature                              | CSS                                         | Without it                            |
 | ------------------------------------ | ------------------------------------------- | ------------------------------------- |
 | Rich options and closed-state mirror | `appearance:base-select`, `selectedcontent` | Native select shows plain option text |
-| Spring check badge                   | `option::checkmark` + `@starting-style`     | Native selection indicator            |
-| Staggered entry                      | `transition-delay` from `sibling-index()`   | Options appear together               |
+| Selection checkmark                  | `option::checkmark`                         | Native selection indicator            |
+| Stable option layout                 | Native option flow                          | Native option flow                    |
 | Colour dots from data                | typed `attr(data-color type(<color>))`      | No dot; option still works            |
-| Bouncy arrow, hover boop             | `::picker-icon`, keyframes                  | Static                                |
+| Rotating CSS caret                   | `::picker-icon`                             | Padded native dropdown                |
 
 Detect each capability rather than assuming a browser version provides the whole recipe. Every layer is behind `@supports`, motion is off under `prefers-reduced-motion`, and the same markup stays a working native select elsewhere. Keep the description inside a `small` so the closed state can hide it.
 
@@ -91,3 +91,17 @@ Detect each capability rather than assuming a browser version provides the whole
 ## Illustrated navigation
 
 The illustrated workspace navigation uses ordinary flex layout with intrinsic labels, logical sizing and native links/buttons. It introduces no new browser capability. Reduced motion disables hover translation/rotation, and forced colors preserve an explicit selected border and underline. See [the markup contract](COMPONENTS.md#illustrated-workspace-navigation).
+
+### Native select refinement
+
+Every `select.rw-input` and `.rw-native select` uses `appearance: base-select` when supported, including the native `::picker(select)`, `::picker-icon` and option `::checkmark`. Plain text and rich options share readable spacing, wrapping, disabled states and keyboard focus; options do not move or stagger while navigating. Checkmarks and the CSS caret do not require the icon bundle. The picker is viewport-bounded and scrollable, with anchor sizing where supported. Native selection, form submission, typeahead, Escape and focus remain browser-owned; there is no replacement listbox or picker JavaScript.
+
+`data-picker="native"` opts out. Unsupported browsers retain a native dropdown with an arrow gutter. `multiple` and `size` greater than one retain native list selection and are excluded from customizable-picker recipes. Rich option content and selectedcontent require supporting browsers; plain-text option labels remain the portable baseline. Reduced motion removes caret transitions; forced colors preserve native system colors and selection contrast. Use `examples/studio.html` to inspect plain, grouped, disabled, long-label, fallback and list variants together.
+
+### Paper workspace and pacing
+
+`rw-paper-command`, `rw-paper-nav`, `rw-paper-panel` (optional `data-accent`), `rw-paper-console` and `rw-paper-sheet` opt into warm paper, forest ink and walnut edges. Compose them with existing command-bar, folio-tab, panel and sheet primitives. They do not position a game HUD in the viewport.
+
+`rw-season-cover`, `rw-season-cover__copy`, `rw-season-cover__art` and `rw-season-facts` compose a semantic illustrated season summary. Hosts supply headings, definition-list values and image URLs; artwork is decorative (`alt=""`). The example illustration is included in `examples/assets/studio/season-trophy.webp`. No private product content is required. Copy determines minimum height; container queries stack unusually narrow covers and long values wrap.
+
+`rw-segmented[data-variant="pace"]` gives native buttons stable, equally sized targets, optional `small` descriptions and a high-contrast selected face. Use `role="group"` and one `aria-pressed="true"`; application code owns state. Unlike a toolbar, it needs no custom arrow-key model. Warm and disabled states, keyboard focus, reduced motion and forced colors are supported. The original pill variant remains available.

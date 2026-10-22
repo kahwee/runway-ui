@@ -57,7 +57,7 @@ Set data attributes on the `select`; the markup stays a plain native select. Eve
 | `data-density`   | `comfortable` (default), `compact`, `roomy`      | Option spacing                                  |
 | `data-columns`   | `2`, `3`                                         | Lay options out in columns                      |
 | `data-checkmark` | `off`                                            | Hide the selected badge                         |
-| `data-stagger`   | `off`                                            | Skip the `sibling-index()` entry animation      |
+| `data-stagger`   | `off`                                            | Compatibility flag; options now appear together |
 
 Option content: wrap an icon in `.rw-option__icon`, or initials in `.rw-option__avatar`, add a `<small>` description, and set `data-color` for a dot (typed `attr()`). Put `<legend>` inside an `optgroup` for a group heading, `<hr>` for a separator, and use `disabled` options normally. Add `<button><selectedcontent></selectedcontent></button>` first inside the select to mirror the chosen option (without its description) in the closed state. The Foundations / Controls / Select story exposes all of these as arguments.
 

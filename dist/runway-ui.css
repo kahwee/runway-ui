@@ -262,7 +262,7 @@
   :where(select.rw-input, .rw-native select):disabled {
     cursor: not-allowed;
   }
-  /* Customizable picker is the default wherever appearance:base-select exists; add data-picker="native" to opt out. Unsupported browsers keep the padded native dropdown above. */
+  /* Native customizable single-select. Lists and multiple selects retain OS behavior. */
   @supports (appearance: base-select) {
     :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
         :not([size]),
@@ -280,237 +280,237 @@
       ) {
       background-image: none;
       padding-inline-end: var(--rw-select-inset);
-      justify-content: space-between;
+      display: inline-flex;
       align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-block-size: 38px;
+      white-space: normal;
+      text-align: start;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])::picker-icon {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )::picker-icon {
       content: "";
-      inline-size: 1.15em;
-      block-size: 1.15em;
-      background: currentColor;
-      mask: var(--rw-icon-caret-down) center / contain no-repeat;
+      flex: 0 0 7px;
+      inline-size: 7px;
+      block-size: 7px;
+      border-inline-end: 1.5px solid currentColor;
+      border-block-end: 1.5px solid currentColor;
+      rotate: 45deg;
+      margin: -4px 3px 0 8px;
       color: var(--rw-muted);
-      margin-inline-start: 18px;
-      transition: rotate 0.16s;
+      transition: rotate 120ms;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]):open::picker-icon {
-      rotate: 180deg;
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      ):open::picker-icon {
+      rotate: 225deg;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])::picker(select) {
-      background: var(--rw-surface);
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )::picker(select) {
       color: var(--rw-ink);
+      background: var(--rw-surface);
       border: 1px solid var(--rw-line);
       border-radius: var(--rw-radius);
-      padding: 6px;
-      box-shadow: var(--rw-shadow);
-    }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option {
-      padding: 10px 12px;
-      border-radius: calc(var(--rw-radius) * 0.6);
-    }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option:hover {
-      background: var(--rw-soft);
-    }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option:checked {
-      background: var(--rw-soft);
-      font-weight: 650;
-    }
-    /* Newer customizable-select parts: anchored picker, check mark, animated open. */
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])::picker(select) {
-      margin-block: 6px;
+      padding: 5px;
+      margin-block: 5px;
       min-inline-size: anchor-size(inline);
-      transform-origin: top;
-      transition:
-        opacity 0.18s,
-        translate 0.24s var(--rw-spring, ease),
-        scale 0.24s var(--rw-spring, ease),
-        overlay 0.24s allow-discrete,
-        display 0.24s allow-discrete;
+      max-inline-size: min(40rem, calc(100dvi - 24px));
+      max-block-size: min(24rem, 60dvb);
+      overflow: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: var(--rw-line) transparent;
+      box-shadow: 0 8px 24px color-mix(in oklch, var(--rw-ink) 18%, transparent);
     }
-    @starting-style {
-      :where(select.rw-input, .rw-native select):not([data-picker="native"])::picker(select) {
-        opacity: 0;
-        translate: 0 -6px;
-        scale: 0.97;
-      }
-    }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option {
       display: flex;
       align-items: center;
       gap: 10px;
+      min-block-size: 38px;
+      box-sizing: border-box;
+      padding: 9px 12px;
+      border-radius: max(3px, calc(var(--rw-radius) - 3px));
+      white-space: normal;
+      overflow-wrap: anywhere;
+      text-align: start;
       cursor: pointer;
-      transition: background-color 0.12s;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option::checkmark {
-      order: 2;
-      margin-inline-start: auto;
-      color: var(--rw-accent);
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option:hover:not(:disabled),
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option:focus-visible {
+      background: var(--rw-soft);
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])
-      option:not(:checked)::checkmark {
-      content: "";
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option:checked {
+      background: color-mix(in oklch, var(--rw-accent) 12%, var(--rw-surface));
+      color: var(--rw-ink);
+      font-weight: 650;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option:focus-visible {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option:focus-visible {
       outline: 2px solid var(--rw-focus);
       outline-offset: -2px;
     }
-  }
-  /* Playful customizable select: rich options, selectedcontent mirror, staggered entry, spring checkmark.
-     Needs appearance:base-select; each sub-feature degrades on its own (stagger needs sibling-index(), color dots need typed attr()). */
-  @supports (appearance: base-select) {
-    @keyframes rw-boop {
-      30% {
-        rotate: -12deg;
-        scale: 1.15;
-      }
-      60% {
-        rotate: 8deg;
-        scale: 1.08;
-      }
-      to {
-        rotate: 0deg;
-        scale: 1;
-      }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])::picker-icon {
-      transition: rotate 0.4s var(--rw-spring, ease);
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option::checkmark {
+      content: "✓";
+      order: 2;
+      margin-inline-start: auto;
+      padding-inline-start: 12px;
+      color: var(--rw-accent);
+      font-weight: 800;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])::picker(select) {
-      padding: 8px;
-      max-block-size: min(22rem, 60dvb);
-      scrollbar-width: thin;
-      scrollbar-color: var(--rw-line) transparent;
-      box-shadow: var(--rw-shadow);
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      optgroup
+      > legend {
+      padding: 10px 12px 6px;
+      color: var(--rw-muted);
+      font-size: 0.85em;
+      font-weight: 700;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) selectedcontent {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      selectedcontent {
       display: flex;
       align-items: center;
-      gap: 0.7em;
+      gap: 8px;
       min-inline-size: 0;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) selectedcontent small {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      selectedcontent
+      small {
       display: none;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) button {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      > button {
       all: unset;
       display: flex;
       align-items: center;
-      justify-content: space-between;
       inline-size: 100%;
       cursor: inherit;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option {
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
-      align-items: center;
-      column-gap: 12px;
-      transition:
-        opacity 0.25s,
-        translate 0.45s var(--rw-spring, ease),
-        background-color 0.12s;
-    }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
       option
       > span:not(.rw-option__icon) {
       display: grid;
       min-inline-size: 0;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option small {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option
+      small {
       color: var(--rw-muted);
       font-size: 0.82em;
       font-weight: 400;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])
-      option:hover:not(:checked) {
-      translate: 4px 0;
-      background: color-mix(in oklch, var(--rw-soft) 70%, transparent);
-    }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option:checked {
-      background: linear-gradient(
-        100deg,
-        color-mix(in oklch, var(--rw-accent) 16%, var(--rw-surface)),
-        var(--rw-soft)
-      );
-    }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])
-      option:hover
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
       .rw-option__icon {
-      animation: rw-boop 0.45s var(--rw-spring, ease);
-    }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option::checkmark {
-      content: "";
-      inline-size: 1.5em;
-      block-size: 1.5em;
-      background: var(--rw-accent);
-      mask: var(--rw-icon-check-circle-fill) center / contain no-repeat;
-      transition: scale 0.35s var(--rw-spring, ease);
-    }
-    @starting-style {
-      :where(select.rw-input, .rw-native select):not([data-picker="native"]) option::checkmark {
-        scale: 0;
-      }
-    }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) .rw-option__icon {
       display: grid;
       place-items: center;
-      inline-size: 2.1em;
-      block-size: 2.1em;
-      border-radius: 0.7em;
+      flex: 0 0 2em;
+      inline-size: 2em;
+      block-size: 2em;
+      border-radius: 5px;
       background: var(--rw-soft);
-      font-size: 1.05em;
-      line-height: 1;
-      box-shadow: inset 0 1px var(--rw-highlight);
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
       selectedcontent
       .rw-option__icon {
-      inline-size: 1.45em;
-      block-size: 1.45em;
-      font-size: 0.9em;
-      border-radius: 0.55em;
-    }
-    @starting-style {
-      :where(select.rw-input, .rw-native select):not([data-picker="native"]) option {
-        opacity: 0;
-        translate: -16px 0;
-      }
-    }
-    @supports (transition-delay: calc(1ms * sibling-index())) {
-      :where(select.rw-input, .rw-native select):not([data-picker="native"]) option {
-        transition:
-          opacity 0.25s calc(35ms * (sibling-index() - 1)),
-          translate 0.5s var(--rw-spring, ease) calc(35ms * (sibling-index() - 1)),
-          background-color 0.12s 0s;
-      }
+      inline-size: 1.4em;
+      block-size: 1.4em;
+      flex-basis: 1.4em;
     }
     @supports (color: attr(data-color type(<color>), red)) {
-      :where(select.rw-input, .rw-native select):not([data-picker="native"])
+      :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+          :not([size]),
+          [size="1"]
+        )
         option[data-color]::before {
         content: "";
-        order: -1;
+        flex: 0 0 0.7em;
         inline-size: 0.7em;
         block-size: 0.7em;
         border-radius: 50%;
         background: attr(data-color type(<color>), var(--rw-accent));
-        box-shadow: 0 0 0 3px
-          color-mix(in oklch, attr(data-color type(<color>), var(--rw-accent)) 22%, transparent);
-      }
-      :where(select.rw-input, .rw-native select):not([data-picker="native"]) option[data-color] {
-        grid-template-columns: auto auto minmax(0, 1fr) auto;
       }
     }
   }
   /* Select variants: set data-* on the select. Sizes, shapes, looks and tones only change tokens and radii, so every variant keeps the same markup. */
   @supports (appearance: base-select) {
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-size="sm"] {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-size="sm"] {
       --rw-field-padding: 6px;
       font-size: 12px;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-size="lg"] {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-size="lg"] {
       --rw-field-padding: 15px;
       font-size: 16px;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-shape="pill"] {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-shape="pill"] {
       border-radius: 999px;
       padding-inline: 1.3em;
     }
@@ -519,11 +519,17 @@
       )[data-shape="pill"]::picker(select) {
       border-radius: 28px;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-shape="pill"]
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-shape="pill"]
       option {
       border-radius: 999px;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-shape="square"] {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-shape="square"] {
       border-radius: 4px;
     }
     :where(select.rw-input, .rw-native select):not(
@@ -531,11 +537,17 @@
       )[data-shape="square"]::picker(select) {
       border-radius: 4px;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-shape="square"]
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-shape="square"]
       option {
       border-radius: 3px;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-variant="filled"] {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-variant="filled"] {
       background: var(--rw-accent);
       color: var(--rw-on-accent);
       border-color: var(--rw-accent);
@@ -546,16 +558,25 @@
       )[data-variant="filled"]::picker-icon {
       color: inherit;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-variant="filled"]
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-variant="filled"]
       .rw-option__icon {
       background: color-mix(in oklch, var(--rw-on-accent) 22%, transparent);
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-variant="outline"] {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-variant="outline"] {
       background: transparent;
       border: 2px solid var(--rw-accent);
       box-shadow: none;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-variant="ghost"] {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-variant="ghost"] {
       background: transparent;
       border-color: transparent;
       box-shadow: none;
@@ -565,22 +586,34 @@
       )[data-variant="ghost"]:hover:not(:disabled) {
       background: var(--rw-soft);
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-tone="coral"] {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-tone="coral"] {
       --rw-accent: #e5533a;
       --rw-soft: #ffe6df;
       --rw-on-accent: #fff;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-tone="mint"] {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-tone="mint"] {
       --rw-accent: #139878;
       --rw-soft: #dcf6ee;
       --rw-on-accent: #fff;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-tone="sky"] {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-tone="sky"] {
       --rw-accent: #2f6fe0;
       --rw-soft: #e0ecff;
       --rw-on-accent: #fff;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-tone="sun"] {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-tone="sun"] {
       --rw-accent: #b86e00;
       --rw-soft: #fff0cc;
       --rw-on-accent: #fff;
@@ -590,34 +623,55 @@
       )[data-density="compact"]::picker(select) {
       padding: 4px;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-density="compact"]
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-density="compact"]
       option {
       padding: 6px 10px;
       column-gap: 9px;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-density="roomy"]
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-density="roomy"]
       option {
       padding: 14px 14px;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-checkmark="off"]
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-checkmark="off"]
       option::checkmark {
       display: none;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-stagger="off"]
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-stagger="off"]
       option {
       transition: background-color 0.12s;
     }
     @starting-style {
-      :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-stagger="off"]
+      :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+          :not([size]),
+          [size="1"]
+        )[data-stagger="off"]
         option {
         opacity: 1;
         translate: none;
       }
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-columns="2"] {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-columns="2"] {
       --rw-picker-columns: 2;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-columns="3"] {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-columns="3"] {
       --rw-picker-columns: 3;
     }
     :where(select.rw-input, .rw-native select):not(
@@ -628,10 +682,19 @@
       gap: 4px;
       min-inline-size: max(anchor-size(inline), calc(var(--rw-picker-columns, 1) * 14rem));
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) optgroup {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      optgroup {
       display: contents;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) optgroup > legend {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      optgroup
+      > legend {
       grid-column: 1 / -1;
       padding: 12px 12px 4px;
       font: 700 0.68em / 1.2 var(--rw-font);
@@ -639,18 +702,30 @@
       text-transform: uppercase;
       color: var(--rw-muted);
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) hr {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      hr {
       grid-column: 1 / -1;
       inline-size: 100%;
       margin: 6px 8px;
       border: 0;
       border-block-start: 1px solid var(--rw-line);
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option:disabled {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option:disabled {
       opacity: 0.45;
       cursor: not-allowed;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) .rw-option__avatar {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      .rw-option__avatar {
       display: grid;
       place-items: center;
       inline-size: 2.1em;
@@ -660,7 +735,10 @@
       color: #fff;
       background: var(--rw-accent);
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
       selectedcontent
       .rw-option__avatar {
       inline-size: 1.6em;
@@ -671,10 +749,17 @@
   @media (prefers-reduced-motion: reduce) {
     :where(select.rw-input, .rw-native select)::picker-icon,
     :where(select.rw-input, .rw-native select)::picker(select),
-    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option {
       transition: none !important;
     }
-    :where(select.rw-input, .rw-native select):not([data-picker="native"])
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
       option:hover
       .rw-option__icon {
       animation: none;
@@ -688,6 +773,16 @@
       appearance: auto;
       background-image: none;
       padding-inline-end: var(--rw-field-padding);
+    }
+    :where(select.rw-input, .rw-native select)::picker(select) {
+      appearance: auto;
+      background: Canvas;
+      color: CanvasText;
+      border-color: CanvasText;
+    }
+    :where(select.rw-input, .rw-native select) option:checked {
+      background: Highlight;
+      color: HighlightText;
     }
   }
 }
@@ -2401,6 +2496,76 @@
   }
 }
 
+/* Calm, legible pacing variant: persistent selection, equal targets, no layout motion. */
+@layer runway-ui.patterns {
+  .rw-segmented[data-variant="pace"] {
+    margin: 0;
+    min-inline-size: 0;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 7px;
+    background: var(--rw-soft);
+    box-shadow: none;
+    & .rw-segment {
+      display: grid;
+      align-content: center;
+      gap: 3px;
+      background: transparent;
+      box-shadow: none;
+      min-inline-size: 72px;
+      min-block-size: 42px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      color: var(--rw-ink);
+      font: 650 12px / 1.2 var(--rw-font);
+      translate: none;
+      scale: none;
+      animation: none;
+      transition:
+        background-color 120ms,
+        color 120ms,
+        border-color 120ms;
+      & small {
+        font: 400 10px / 1.2 var(--rw-font);
+        color: inherit;
+      }
+      &:hover:not(:disabled, [aria-pressed="true"]) {
+        background: var(--rw-surface);
+        border-color: var(--rw-line);
+      }
+      &[aria-pressed="true"] {
+        background: var(--rw-accent);
+        color: var(--rw-on-accent);
+        border-color: var(--rw-accent);
+        box-shadow: inset 0 -3px color-mix(in oklch, var(--rw-on-accent) 35%, transparent);
+      }
+      &[data-tone="warm"][aria-pressed="true"] {
+        background: color-mix(in oklch, var(--rw-gold) 35%, var(--rw-surface));
+        color: var(--rw-ink);
+        border-color: var(--rw-gold);
+        box-shadow: inset 0 -3px var(--rw-gold);
+      }
+      &:disabled {
+        opacity: 0.5;
+      }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rw-segmented[data-variant="pace"] .rw-segment {
+      transition: none;
+    }
+  }
+  @media (forced-colors: active) {
+    .rw-segmented[data-variant="pace"] .rw-segment[aria-pressed="true"] {
+      background: Highlight;
+      color: HighlightText;
+      border-color: Highlight;
+      outline: 2px solid Highlight;
+      outline-offset: -3px;
+    }
+  }
+}
+
 /* Composable desktop workspaces. The host owns viewport placement and imagery. */
 @layer runway-ui.patterns {
   .rw-command-bar {
@@ -2568,6 +2733,286 @@
     }
     .rw-folio-tabs > .rw-folio-tab[aria-current="page"] {
       border-inline-start-color: Highlight;
+    }
+  }
+}
+
+/* Opt-in paper workspace components. Host owns placement, content and imagery. */
+@layer runway-ui.patterns {
+  /* Warm paper, walnut edges and forest ink echo the illustrated office. */
+  .rw-paper-command {
+    background: #fcf7e9;
+    color: #243f35;
+    border: 1px solid #b9ad8f;
+    border-block-end: 3px solid #8b7050;
+    border-radius: 7px;
+    box-shadow: 0 4px 14px #40372320;
+    backdrop-filter: none;
+  }
+  .rw-paper-command .rw-command-bar__identity {
+    max-width: 330px;
+  }
+  .rw-paper-command .rw-command-bar__identity > small {
+    color: #706344;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+  .rw-paper-command .rw-command-bar__identity > button {
+    color: #243f35;
+    font-size: 25px;
+  }
+  .rw-paper-command .rw-command-stat {
+    border-inline-start: 1px solid #d9cfb8;
+    gap: 2px;
+    padding-inline-start: 22px;
+  }
+  .rw-paper-command .rw-command-stat > span,
+  .rw-paper-command .rw-command-stat > small {
+    color: #655f4d;
+  }
+  .rw-paper-command .rw-command-stat > span {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+  .rw-paper-command .rw-command-stat > strong {
+    color: #243f35;
+    font-size: 23px;
+    font-variant-numeric: tabular-nums;
+  }
+  .rw-paper-command .rw-command-action {
+    background: #f1ead8;
+    border-color: #c7b999;
+    color: #304b3e;
+    border-radius: 5px;
+  }
+  .rw-paper-command .rw-command-action:hover {
+    background: #e4dbc4;
+  }
+  .rw-paper-command .rw-command-action img {
+    filter: none;
+  }
+  .rw-paper-nav {
+    padding: 4px;
+    gap: 2px;
+    background: #fcf7e9;
+    border: 1px solid #b9ad8f;
+    border-radius: 7px;
+    box-shadow:
+      0 3px 0 #8b7050,
+      0 6px 14px #40372318;
+  }
+  .rw-paper-nav .rw-folio-tab {
+    border-radius: 4px;
+    min-inline-size: 100px;
+    color: #405044;
+  }
+  .rw-paper-nav .rw-folio-tab[aria-current="page"] {
+    background: #2d4d3e;
+    color: #fff7df;
+    box-shadow: inset 0 -2px #bd995b;
+  }
+  .rw-paper-nav .rw-folio-tab:hover:not([aria-current="page"]) {
+    background: #ede4cf;
+  }
+  .rw-paper-panel {
+    background: #fcf7e9;
+    border: 1px solid #c6b99a;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px #40372318;
+    backdrop-filter: none;
+  }
+  .rw-paper-panel[data-accent] {
+    border-block-start: 3px solid #a88449;
+  }
+  .rw-paper-panel .rw-kicker {
+    color: #76613d;
+    font-size: 9px;
+  }
+  .rw-paper-panel p,
+  .rw-paper-panel .rw-paper-panel__meta,
+  .rw-paper-panel > small {
+    color: #5e6554;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .rw-paper-panel > strong {
+    color: #294536;
+  }
+  .rw-paper-console {
+    background: #fcf7e9;
+    border: 1px solid #b9ad8f;
+    border-radius: 7px;
+    box-shadow:
+      0 3px 0 #8b7050,
+      0 6px 16px #40372318;
+  }
+  .rw-paper-sheet {
+    background: #faf5e7;
+    --rw-sheet-accent: #8a7040;
+  }
+  .rw-paper-sheet .rw-paper-sheet__header {
+    padding-block: 14px;
+    border-block-end: 1px solid #c8b999;
+    background: #faf5e7;
+  }
+  .rw-paper-sheet .rw-paper-sheet__header h1 {
+    font-size: 27px;
+  }
+  .rw-season-cover {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    min-block-size: 220px;
+    overflow: hidden;
+    border: 1px solid #d4c5a6;
+    border-radius: 6px;
+    background: #f2e7d1;
+    margin-block-end: 24px;
+  }
+  .rw-season-cover__copy {
+    padding: 16px 28px;
+    align-self: center;
+  }
+  .rw-season-cover .rw-kicker {
+    color: #75603b;
+    font-size: 10px;
+  }
+  .rw-season-cover h2 {
+    font:
+      500 28px / 1.08 Georgia,
+      serif;
+    letter-spacing: -0.035em;
+    color: #294536;
+    margin: 8px 0;
+  }
+  .rw-season-cover p {
+    color: #655e4d;
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 48ch;
+    margin: 8px 0;
+  }
+  .rw-season-cover__art {
+    inline-size: 100%;
+    block-size: 100%;
+    min-block-size: 0;
+    max-block-size: 260px;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  .rw-season-facts {
+    display: flex;
+    gap: 28px;
+    padding-block-start: 8px;
+    margin: 8px 0 0;
+    border-block-start: 1px solid #cdbd9b;
+  }
+  .rw-season-facts dt {
+    color: #655e4d;
+    font-size: 11px;
+  }
+  .rw-season-facts dd {
+    margin: 5px 0 0;
+    color: #294536;
+    font:
+      500 24px Georgia,
+      serif;
+  }
+  .rw-season-facts dd span {
+    font-size: 14px;
+    color: #655e4d;
+  }
+  .rw-paper-sheet .rw-leaderboard caption {
+    text-align: left;
+    font-size: 24px;
+    color: #294536;
+  }
+  .rw-paper-sheet .rw-leaderboard caption span {
+    display: block;
+    font: 10px / 2 var(--rw-font);
+    letter-spacing: 0.1em;
+    color: #76613d;
+  }
+  .rw-paper-sheet .rw-leaderboard tbody tr[data-you] {
+    background: #e5ecdd;
+    box-shadow: inset 3px 0 #3c634b;
+  }
+  .rw-paper-sheet .rw-leaderboard td,
+  .rw-paper-sheet .rw-leaderboard tbody th {
+    padding-block: 15px;
+  }
+  .rw-paper-sheet .rw-paper-sheet__note {
+    color: #655e4d;
+    line-height: 1.7;
+    margin-block: 18px 28px;
+  }
+  @media (width < 1280px) {
+    .rw-paper-command .rw-command-bar__identity {
+      max-width: 240px;
+    }
+    .rw-paper-command .rw-command-stat {
+      padding-inline-start: 14px;
+    }
+    .rw-paper-command .rw-command-stat > strong {
+      font-size: 20px;
+    }
+    .rw-season-cover__copy {
+      padding: 16px 22px;
+    }
+    .rw-season-facts {
+      gap: 18px;
+    }
+  }
+  @media (forced-colors: active) {
+    .rw-paper-command,
+    .rw-paper-nav,
+    .rw-paper-panel[data-accent],
+    .rw-paper-panel,
+    .rw-paper-console,
+    .rw-season-cover {
+      background: Canvas;
+      color: CanvasText;
+      border-color: CanvasText;
+    }
+    .rw-paper-command .rw-command-bar__identity > button,
+    .rw-paper-command .rw-command-bar__identity > small,
+    .rw-paper-command .rw-command-stat > strong,
+    .rw-paper-command .rw-command-stat > span,
+    .rw-paper-command .rw-command-stat > small {
+      color: CanvasText;
+    }
+  }
+}
+@layer runway-ui.patterns {
+  .rw-season-cover {
+    container-type: inline-size;
+  }
+  .rw-season-cover:not(:has(.rw-season-cover__art)) {
+    grid-template-columns: 1fr;
+  }
+  .rw-season-cover__copy {
+    min-inline-size: 0;
+  }
+  .rw-season-facts {
+    flex-wrap: wrap;
+  }
+  .rw-season-facts dd {
+    overflow-wrap: anywhere;
+  }
+  .rw-paper-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .rw-paper-nav .rw-folio-tab {
+    flex-direction: row;
+    min-block-size: 44px;
+  }
+  @container (width < 480px) {
+    .rw-season-cover__copy {
+      grid-column: 1 / -1;
+    }
+    .rw-season-cover__art {
+      grid-column: 1 / -1;
+      max-block-size: 200px;
     }
   }
 }

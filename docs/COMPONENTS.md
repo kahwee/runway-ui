@@ -225,3 +225,11 @@ A native table with a caption, `th scope` attributes, medal ranks (`.rw-rank[dat
   </tbody>
 </table>
 ```
+
+## Paper studio surfaces and pacing
+
+[Open the paper studio example](../examples/studio.html) · [Storybook playground](../storybook/?path=/story/game-patterns-paper-studio--playground).
+
+Compose `rw-paper-command`, `rw-paper-nav`, `rw-paper-panel`, `rw-paper-console` and `rw-paper-sheet` with the existing workspace primitives. The opt-in classes supply paper surfaces, forest ink, walnut edges and restrained brass accents; the host controls layout and placement. Use `rw-season-cover` with `rw-season-cover__copy`, optional `rw-season-cover__art`, and a `dl.rw-season-facts` for illustrated standings. Images and live values are host-owned.
+
+Add `data-variant="pace"` to `rw-segmented` for stable rectangular targets, optional descriptions in `small`, high-contrast selected faces and an amber warm state. Use a labelled fieldset or toggle group and native buttons with `aria-pressed`; keep focus when updating application state. All forms continue to use native selects, including opt-out system pickers and multiple/size list controls.

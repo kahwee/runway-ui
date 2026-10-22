@@ -431,3 +431,73 @@
     }
   }
 }
+
+/* Calm, legible pacing variant: persistent selection, equal targets, no layout motion. */
+@layer runway-ui.patterns {
+  .rw-segmented[data-variant="pace"] {
+    margin: 0;
+    min-inline-size: 0;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 7px;
+    background: var(--rw-soft);
+    box-shadow: none;
+    & .rw-segment {
+      display: grid;
+      align-content: center;
+      gap: 3px;
+      background: transparent;
+      box-shadow: none;
+      min-inline-size: 72px;
+      min-block-size: 42px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      color: var(--rw-ink);
+      font: 650 12px / 1.2 var(--rw-font);
+      translate: none;
+      scale: none;
+      animation: none;
+      transition:
+        background-color 120ms,
+        color 120ms,
+        border-color 120ms;
+      & small {
+        font: 400 10px / 1.2 var(--rw-font);
+        color: inherit;
+      }
+      &:hover:not(:disabled, [aria-pressed="true"]) {
+        background: var(--rw-surface);
+        border-color: var(--rw-line);
+      }
+      &[aria-pressed="true"] {
+        background: var(--rw-accent);
+        color: var(--rw-on-accent);
+        border-color: var(--rw-accent);
+        box-shadow: inset 0 -3px color-mix(in oklch, var(--rw-on-accent) 35%, transparent);
+      }
+      &[data-tone="warm"][aria-pressed="true"] {
+        background: color-mix(in oklch, var(--rw-gold) 35%, var(--rw-surface));
+        color: var(--rw-ink);
+        border-color: var(--rw-gold);
+        box-shadow: inset 0 -3px var(--rw-gold);
+      }
+      &:disabled {
+        opacity: 0.5;
+      }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rw-segmented[data-variant="pace"] .rw-segment {
+      transition: none;
+    }
+  }
+  @media (forced-colors: active) {
+    .rw-segmented[data-variant="pace"] .rw-segment[aria-pressed="true"] {
+      background: Highlight;
+      color: HighlightText;
+      border-color: Highlight;
+      outline: 2px solid Highlight;
+      outline-offset: -3px;
+    }
+  }
+}

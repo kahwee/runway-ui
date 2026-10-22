@@ -207,7 +207,7 @@ export const Select = {
     disabledOptions: 0,
     placeholder: "",
     checkmark: true,
-    stagger: true,
+    stagger: false,
     arrowInset: 16,
     direction: "ltr",
     disabled: false,
@@ -257,7 +257,7 @@ export const Select = {
     pickerColumns: range(1, 3, 1, "Lay options out in columns. Sets data-columns.", "Look"),
     checkmark: flag("Show the selected check badge. Sets data-checkmark=off when false.", "Motion"),
     stagger: flag(
-      "Stagger options in with sibling-index(). Sets data-stagger=off when false.",
+      "Legacy compatibility flag. Options now appear together with stable keyboard navigation.",
       "Motion",
     ),
     width: range(180, 700, 10, "Field width; try long labels at 180px.", "Layout"),

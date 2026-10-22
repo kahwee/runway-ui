@@ -46,7 +46,8 @@
     "./icons.css": "./styles/icons.css",
     "./instruments.css": "./styles/instruments.css",
     "./workspace.css": "./styles/workspace.css",
-    "./quiet.css": "./styles/quiet.css"
+    "./quiet.css": "./styles/quiet.css",
+    "./studio.css": "./styles/studio.css"
   },
   "files": [
     "index.css",

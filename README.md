@@ -123,3 +123,7 @@ Native dialog stories use HTML invoker commands (`commandfor`, `command="show-mo
 Dialog styling is opt-in with `rw-dialog`, structured `rw-dialog__header`, `__body` and `__footer` classes, plus compact/wide/danger modifiers. See the [dialog class guide](docs/DIALOG.md) and [dialog playground](https://kahwee.github.io/runway-ui/storybook/?path=/story/foundations-dialog--playground).
 
 For restrained surfaces and controls, see [Quiet appearance](docs/QUIET.md).
+
+### Paper studio
+
+See [the paper workspace example](examples/studio.html) for reusable warm-paper HUD surfaces, an illustrated season cover, native selects and pace buttons. Import the full bundle or `runway-ui/studio.css` alongside the base tokens and workspace primitives. The Storybook **Game patterns / Paper studio** playground exposes season, rank, artwork and pace controls.

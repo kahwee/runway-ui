@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Paper studio · Runway UI</title>
+    <link rel="stylesheet" href="../dist/runway-ui.css">
+    <style>
+    body {
+      margin: 0;
+      padding: 28px;
+      background: #e6dcc4;
+    }
+    main {
+      max-width: 1280px;
+      margin: auto;
+      display: grid;
+      gap: 22px;
+    }
+    .example-fields {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+    label {
+      display: grid;
+      gap: 8px;
+    }
+    .rw-paper-sheet {
+      padding: 24px;
+    }
+    .rw-paper-console {
+      padding: 12px;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .rw-paper-nav {
+      flex-direction: row;
+    }
+    .rw-paper-nav .rw-folio-tab {
+      flex-direction: row;
+      min-block-size: 44px;
+    }
+    .rw-command-bar__identity button {
+      border: 0;
+      background: none;
+      display: block;
+      font-family: Georgia, serif;
+    }
+    .rw-command-bar__identity small {
+      display: block;
+    }
+    </style>
+  </head>
+  <body class="rw-ui rw-native" data-theme="ledger">
+    <main>
+      <header class="rw-command-bar rw-paper-command">
+        <div class="rw-command-bar__identity">
+          <small>YOUR STUDIO</small><button type="button">Northwind Works ⌄</button>
+        </div>
+        <div class="rw-command-bar__metrics">
+          <div class="rw-command-stat">
+            <span>Cash</span><strong>$250,000</strong><small>116 days of runway</small>
+          </div>
+          <div class="rw-command-stat"><span>Revenue / day</span><strong>$1,420</strong></div>
+          <div class="rw-command-stat"><span>Team</span><strong>12</strong></div>
+        </div>
+      </header>
+      <nav class="rw-folio-tabs rw-paper-nav" aria-label="Sections">
+        <button class="rw-folio-tab" type="button">Studio</button
+        ><button class="rw-folio-tab" type="button" aria-current="page">Standings</button
+        ><button class="rw-folio-tab" type="button">People</button>
+      </nav>
+      <section class="rw-paper-sheet rw-sheet">
+        <section class="rw-season-cover">
+          <div class="rw-season-cover__copy">
+            <span class="rw-kicker">THE STUDIO LEAGUE · SEASON 3</span>
+            <h2>Small beginnings.<br>Great company.</h2>
+            <p>Meet the neighboring studios growing alongside you.</p>
+            <dl class="rw-season-facts">
+              <div>
+                <dt>Your standing</dt>
+                <dd>#3 <span>/ 12</span></dd>
+              </div>
+              <div>
+                <dt>League</dt>
+                <dd>Neighborhood</dd>
+              </div>
+              <div>
+                <dt>Podium finishes</dt>
+                <dd>2</dd>
+              </div>
+            </dl>
+          </div>
+          <img
+            class="rw-season-cover__art"
+            src="assets/studio/season-trophy.webp"
+            width="960"
+            height="640"
+            alt=""
+          >
+        </section>
+        <table class="rw-leaderboard">
+          <caption>
+            The company standings <span>SIMULATED STUDIOS · COMPANY VALUE</span>
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Rank</th>
+              <th scope="col">Company</th>
+              <th scope="col" data-numeric>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Lantern Works</td>
+              <td data-numeric>$4.2m</td>
+            </tr>
+            <tr data-you>
+              <th scope="row">3</th>
+              <td>Northwind Works · You</td>
+              <td data-numeric>$3.1m</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="rw-paper-panel rw-panel">
+        <h2>Native selects</h2>
+        <div class="example-fields">
+          <label
+            >Team focus<select id="focus">
+              <option>Delivery</option>
+              <option>People & wellbeing</option>
+              <option>Quality & reliability</option>
+              <option disabled>Expansion · unlock next season</option>
+            </select></label
+          >
+          <label
+            >Office<select id="office">
+              <optgroup label="Available">
+                <option>Garden studio</option>
+                <option>
+                  A very long office name that should remain readable in the native picker
+                </option>
+              </optgroup>
+              <optgroup label="Unavailable">
+                <option disabled>Campus · not yet unlocked</option>
+              </optgroup>
+            </select></label
+          >
+          <label
+            >Unavailable<select disabled>
+              <option>No open roles</option>
+            </select></label
+          >
+          <label
+            >System picker fallback<select data-picker="native">
+              <option>Default</option>
+              <option>Alternate</option>
+            </select></label
+          >
+          <label
+            >Visible list<select size="3">
+              <option>Engineering</option>
+              <option>Design</option>
+              <option>Operations</option>
+            </select></label
+          >
+          <label
+            >Multiple teams<select multiple size="3">
+              <option selected>Engineering</option>
+              <option>Design</option>
+              <option>Operations</option>
+            </select></label
+          >
+        </div>
+      </section>
+      <footer class="rw-paper-console">
+        <fieldset class="rw-segmented" data-variant="pace" aria-label="Work pace">
+          <span class="rw-segmented__label">Pace</span
+          ><button type="button" class="rw-segment" aria-pressed="false">
+            Care<small>Less fatigue</small>
+          </button><button type="button" class="rw-segment" aria-pressed="true">
+            Steady<small>Balanced</small>
+          </button><button type="button" class="rw-segment" data-tone="warm" aria-pressed="false">
+            Push<small>More output</small>
+          </button>
+        </fieldset>
+        <span>Day 12 · Paused</span>
+      </footer>
+    </main>
+    <script type="module" src="./studio.js"></script>
+  </body>
+</html>
