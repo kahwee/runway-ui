@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Dialog stacked actions now follow DOM order instead of reversing it; place
+  controls in the intended reading and keyboard order. Long-content typography,
+  paragraph spacing and close targets are tightened. Add compact, long-content
+  and required-decision stories and document validation before explicit close.
+- Replace the workshop home mark's font-dependent arrow with the shared icon.
+
 - **Breaking dialog migration:** import `dialog.css` with tokens when selecting
   individual modules; `primitives.css` and `simulation.css` no longer supply the
   dialog surface or motion. The full entry and bundle already include it.

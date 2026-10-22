@@ -119,8 +119,8 @@ Dialogs use native `:open`, `@starting-style` and discrete `display`/`overlay`
 transitions. Reduced motion disables both surface and backdrop transitions and
 close-button transforms. The dialog is an inline-size container: below 400px of
 content width, header spacing shrinks and footer actions stack without changing
-DOM or keyboard order. Explicit stacked footers retain their reverse visual
-order. `text-wrap: balance` improves headings and `text-wrap: pretty` improves body
+DOM or keyboard order. Explicit stacked footers also preserve DOM order, matching visual and keyboard
+progression. `text-wrap: balance` improves headings and `text-wrap: pretty` improves body
 copy; engines without those text enhancements use ordinary wrapping. Container
 queries and `:open` are the modern baseline; no JavaScript layout fallback is
 provided. Scroll containment prevents a long dialog from chaining to its page.

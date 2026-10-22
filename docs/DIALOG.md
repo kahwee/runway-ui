@@ -48,10 +48,10 @@ Use native HTML with explicit CSS classes. The library never styles every `dialo
 | `rw-dialog__header`          | Heading group and optional close action                                     |
 | `rw-dialog__eyebrow`         | Context label                                                               |
 | `rw-dialog__title`           | Dialog heading typography                                                   |
-| `rw-dialog__body`            | Scrollable long-form content, at most 50dvh                                 |
+| `rw-dialog__body`            | Scrollable long-form content, at most 50dvb                                 |
 | `rw-dialog__footer`          | Wrapping action row, aligned to the inline end                              |
 | `rw-dialog__footer--split`   | Actions at opposite ends                                                    |
-| `rw-dialog__footer--stacked` | Vertically stacked actions, primary above cancel                            |
+| `rw-dialog__footer--stacked` | Vertically stacked actions in DOM and keyboard order                        |
 | `rw-dialog__close`           | Focus-visible native close button                                           |
 
 Use one size modifier and one footer modifier at a time. Set `--rw-dialog-width` in your own CSS to customize a size. Theme and density live on `rw-ui`; a nested dialog root must receive the application's chosen theme and density too.
@@ -67,3 +67,29 @@ The complete `index.css` or bundle includes this component. The `runway-ui/dialo
 - Put autofocus on a safe initial choice. Do not focus a disabled or absent control.
 
 Invoker commands and `closedby` need current browser support. The optional `bindDialog` helper manages opening and dismissal policy and requires native `HTMLDialogElement.requestClose()` and `closedBy`; it uses `closedby="any"` for native light dismiss and `none` for required decisions, without synthetic backdrop click handling. Cancel listeners can still veto a request, and `canDismiss` protects required decisions. Styling uses the same classes in either case. The class API adds no JavaScript dependency.
+
+
+## Action order and safe decisions
+
+Use one primary action with a specific verb; give the safe alternative an equally
+clear label. `rw-dialog__footer--stacked` now preserves DOM order. Put actions in
+the order they should be read and tabbed through; do not use CSS reversal or
+positive `tabindex` to move the primary action above the safe alternative.
+Below 400px of dialog content width, ordinary footers also stack in DOM order.
+
+Use paragraphs for distinct ideas, associated labels for inputs, and short
+`aria-describedby` content. Avoid attaching an entire long document as the dialog's
+accessible description. Long content scrolls inside the body; test that actions
+remain reachable at your smallest supported desktop height and when zoomed.
+
+For a required decision, use `closedby="none"`, omit the generic close button,
+and keep an enabled explicit outcome. A dismissal guard does not validate a
+purchase or form: the host validates before explicitly closing the dialog. Do not
+use `form method="dialog"` for an asynchronous operation that may fail; submit to
+your handler, show a meaningful error in the dialog, then close only on success.
+The helper's `canDismiss` gates close requests, not direct `close()` calls or
+`method="dialog"` submissions.
+
+Try **Compact actions**, **Long content** and **Required decision** in the Dialog
+Storybook group. The default story keeps focus on the safe alternative. See the
+[design and usage review](DESIGN-REVIEW.md) for composition rules and validation scope.
