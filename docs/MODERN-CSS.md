@@ -105,3 +105,10 @@ Every `select.rw-input` and `.rw-native select` uses `appearance: base-select` w
 `rw-season-cover`, `rw-season-cover__copy`, `rw-season-cover__art` and `rw-season-facts` compose a semantic illustrated season summary. Hosts supply headings, definition-list values and image URLs; artwork is decorative (`alt=""`). The example illustration is included in `examples/assets/studio/season-trophy.webp`. No private product content is required. Copy determines minimum height; container queries stack unusually narrow covers and long values wrap.
 
 `rw-segmented[data-variant="pace"]` gives native buttons stable, equally sized targets, optional `small` descriptions and a high-contrast selected face. Use `role="group"` and one `aria-pressed="true"`; application code owns state. Unlike a toolbar, it needs no custom arrow-key model. Warm and disabled states, keyboard focus, reduced motion and forced colors are supported. The original pill variant remains available.
+
+
+### Quiet history and line plots
+
+`renderHistory({ plot: "line" })` draws straight SVG segments through actual observations, with a subtle fill to zero. Null values break both line and fill; a single observation stays a point. The default remains `columns`. Native note buttons and the exact-values disclosure remain available for either plot. SVG is decorative: the semantic observation list and table retain the full dataset without SVG support. No animation or interpolation is applied. Forced colors use CanvasText strokes with no fill.
+
+The opt-in `styles/quiet.css` appearance removes instrument hardware decoration and defines `--rw-type-caption`, `--rw-type-body`, `--rw-type-heading`, and `--rw-type-value`. Hosts can override these type tokens without duplicating chart styles. Charts retain a zero-inclusive scale; a line does not imply observations between checkpoints.

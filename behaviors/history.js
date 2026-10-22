@@ -19,6 +19,7 @@ export function renderHistory({
   exactFormat = format,
   tableOpen = false,
   detail = "auto",
+  plot = "columns",
 } = {}) {
   if (
     !Number.isFinite(minimum) ||
@@ -49,6 +50,8 @@ export function renderHistory({
     annotations.some((a) => !Number.isInteger(a.index) || a.index < 0 || a.index >= values.length)
   )
     throw new RangeError("Annotation indexes must refer to visible observations.");
+  if (!["columns", "line"].includes(plot))
+    throw new TypeError("Choose columns or line for the history plot.");
   const id = `rw-history-${++sequence}`,
     range = maximum - minimum,
     plotHeight = Number.isFinite(height) ? Math.min(320, Math.max(100, height)) : 150;
@@ -60,11 +63,36 @@ export function renderHistory({
     if (!grouped.has(a.index)) grouped.set(a.index, []);
     grouped.get(a.index).push(a);
   }
+  // Straight segments join adjacent observations only; missing data always breaks the path.
+  const segments = [];
+  let segment = [];
+  values.forEach((value, index) => {
+    if (value === null) {
+      if (segment.length) segments.push(segment);
+      segment = [];
+    } else {
+      segment.push([
+        ((index + 0.5) / values.length) * 1000,
+        ((maximum - value) / range) * plotHeight,
+      ]);
+    }
+  });
+  if (segment.length) segments.push(segment);
+  const baseline = (maximum / range) * plotHeight;
+  const line =
+    plot === "line"
+      ? `<svg class="rw-history__line" viewBox="0 0 1000 ${plotHeight}" preserveAspectRatio="none" aria-hidden="true">${segments
+          .map((points) => {
+            const path = points.map(([x, y], index) => `${index ? "L" : "M"}${x},${y}`).join(" ");
+            return `<path class="rw-history__area" d="${path} L${points.at(-1)[0]},${baseline} L${points[0][0]},${baseline} Z"/><path class="rw-history__stroke" d="${path}"/>`;
+          })
+          .join("")}</svg>`
+      : "";
   const popovers = [...grouped]
     .map(
       ([i, items]) =>
         `<aside id="${id}-note-${i}" class="rw-context" popover="auto" tabindex="0" aria-label="${esc(labels[i])} notes"><strong>${esc(labels[i])} · ${items.length} ${items.length === 1 ? "note" : "notes"}</strong>${items.map((a) => `<p><b>${esc(a.title)}</b><br>${esc(a.description)}</p>`).join("")}</aside>`,
     )
     .join("");
-  return `<figure class="rw-history rw-history--range" data-detail="${dense ? "compact" : "full"}" style="--rw-chart-min:${minimum};--rw-chart-max:${maximum};--rw-chart-range:${range};--rw-chart-height:${plotHeight}px" aria-labelledby="${id}-title"><figcaption class="rw-instrument__heading"><div><h3 id="${id}-title">${esc(title)}</h3><span>${esc(unit)} · ${values.length} ${values.length === 1 ? "observation" : "observations"}</span></div><strong class="rw-instrument__readout">${esc(last)}</strong></figcaption>${!values.length ? '<p class="rw-instrument__empty">No observations yet. History is never invented.</p>' : `<div class="rw-history__frame"><div class="rw-history__axis" aria-hidden="true"><span>${esc(axisFormat(maximum))}</span><span>${esc(axisFormat((maximum + minimum) / 2))}</span><span>${esc(axisFormat(minimum))}</span></div><div class="rw-history__plot"><ol class="rw-columns" role="list">${values.map((v, i) => `<li${v === null ? " data-missing" : ""} aria-label="${esc(labels[i])}: ${v === null ? "Missing" : esc(format(v))}"><span class="rw-column-track">${v === null ? "" : `<i class="rw-column-mark" data-value="${v}" style="--rw-amount:${Math.abs(v)}"${v < 0 ? " data-negative" : ""} aria-hidden="true"></i>`}${grouped.has(i) ? `<button type="button" class="rw-history__event" popovertarget="${id}-note-${i}" aria-label="${esc(labels[i])}: ${grouped.get(i).length} recorded notes">${grouped.get(i).length > 1 ? grouped.get(i).length : '<span class="rw-icon" data-icon="sparkle" data-weight="fill" aria-hidden="true"></span>'}</button>` : ""}</span><strong${dense ? " hidden" : ""}>${v === null ? "—" : esc(format(v))}</strong><span class="rw-category"${dense && ![0, Math.floor((values.length - 1) / 2), values.length - 1].includes(i) ? ' style="visibility:hidden"' : ""}>${esc(labels[i])}</span></li>`).join("")}</ol><div class="rw-history__zero" aria-hidden="true"></div></div></div>`}<details class="rw-chart-data rw-disclosure"${tableOpen ? " open" : ""}><summary>Exact observations & notes</summary><table><caption>${esc(title)} · ${esc(unit)} · scale ${esc(axisFormat(minimum))} to ${esc(axisFormat(maximum))}</caption><thead><tr><th scope="col">Observation</th><th scope="col">Value</th><th scope="col">Recorded notes</th></tr></thead><tbody>${values.map((v, i) => `<tr><th scope="row">${esc(labels[i])}</th><td>${v === null ? "Missing" : `<data value="${v}">${esc(exactFormat(v))}</data>`}</td><td>${(grouped.get(i) ?? []).map((a) => `${esc(a.title)}: ${esc(a.description)}`).join("<br>") || "—"}</td></tr>`).join("")}</tbody></table></details>${popovers}</figure>`;
+  return `<figure class="rw-history rw-history--range" data-plot="${plot}" data-detail="${dense ? "compact" : "full"}" style="--rw-chart-min:${minimum};--rw-chart-max:${maximum};--rw-chart-range:${range};--rw-chart-height:${plotHeight}px" aria-labelledby="${id}-title"><figcaption class="rw-instrument__heading"><div><h3 id="${id}-title">${esc(title)}</h3><span>${esc(unit)} · ${values.length} ${values.length === 1 ? "observation" : "observations"}</span></div><strong class="rw-instrument__readout">${esc(last)}</strong></figcaption>${!values.length ? '<p class="rw-instrument__empty">No observations yet. History is never invented.</p>' : `<div class="rw-history__frame"><div class="rw-history__axis" aria-hidden="true"><span>${esc(axisFormat(maximum))}</span><span>${esc(axisFormat((maximum + minimum) / 2))}</span><span>${esc(axisFormat(minimum))}</span></div><div class="rw-history__plot">${line}<ol class="rw-columns" role="list">${values.map((v, i) => `<li${v === null ? " data-missing" : ""} aria-label="${esc(labels[i])}: ${v === null ? "Missing" : esc(format(v))}"><span class="rw-column-track">${v === null ? "" : `<i class="rw-column-mark" data-value="${v}" style="--rw-amount:${Math.abs(v)};--rw-point-y:${((maximum - v) / range) * 100}%"${v < 0 ? " data-negative" : ""} aria-hidden="true"></i>`}${grouped.has(i) ? `<button type="button" class="rw-history__event" popovertarget="${id}-note-${i}" aria-label="${esc(labels[i])}: ${grouped.get(i).length} recorded notes">${grouped.get(i).length > 1 ? grouped.get(i).length : '<span class="rw-icon" data-icon="sparkle" data-weight="fill" aria-hidden="true"></span>'}</button>` : ""}</span><strong${dense ? " hidden" : ""}>${v === null ? "—" : esc(format(v))}</strong><span class="rw-category"${dense && ![0, Math.floor((values.length - 1) / 2), values.length - 1].includes(i) ? ' style="visibility:hidden"' : ""}>${esc(labels[i])}</span></li>`).join("")}</ol><div class="rw-history__zero" aria-hidden="true"></div></div></div>`}<details class="rw-chart-data rw-disclosure"${tableOpen ? " open" : ""}><summary>Exact observations & notes</summary><table><caption>${esc(title)} · ${esc(unit)} · scale ${esc(axisFormat(minimum))} to ${esc(axisFormat(maximum))}</caption><thead><tr><th scope="col">Observation</th><th scope="col">Value</th><th scope="col">Recorded notes</th></tr></thead><tbody>${values.map((v, i) => `<tr><th scope="row">${esc(labels[i])}</th><td>${v === null ? "Missing" : `<data value="${v}">${esc(exactFormat(v))}</data>`}</td><td>${(grouped.get(i) ?? []).map((a) => `${esc(a.title)}: ${esc(a.description)}`).join("<br>") || "—"}</td></tr>`).join("")}</tbody></table></details>${popovers}</figure>`;
 }

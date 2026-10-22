@@ -16,6 +16,7 @@ export interface HistoryOptions {
   axisFormat?: (value: number) => string;
   exactFormat?: (value: number) => string;
   tableOpen?: boolean;
+  plot?: "columns" | "line";
   detail?: "auto" | "compact" | "full";
 }
 /** Escaped semantic HTML; zero-span, nonfinite and out-of-scale inputs are rejected. */

@@ -5012,6 +5012,52 @@
   }
 }
 
+@layer runway-ui.observatory {
+  .rw-history__line {
+    position: absolute;
+    inset: 0 0 auto;
+    inline-size: 100%;
+    block-size: var(--rw-chart-height);
+    overflow: visible;
+    pointer-events: none;
+  }
+  .rw-history__area {
+    fill: var(--rw-chart-color, var(--rw-accent));
+    opacity: 0.08;
+  }
+  .rw-history__stroke {
+    fill: none;
+    stroke: var(--rw-chart-color, var(--rw-accent));
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+  .rw-history[data-plot="line"] .rw-column-mark {
+    inset-block: var(--rw-point-y) auto;
+    inline-size: 7px;
+    block-size: 7px;
+    border: 2px solid var(--rw-surface);
+    border-radius: 50%;
+    background: var(--rw-chart-color, var(--rw-accent));
+    box-shadow: 0 0 0 1px var(--rw-chart-color, var(--rw-accent));
+    translate: 0 -50%;
+    box-sizing: border-box;
+  }
+  @media (forced-colors: active) {
+    .rw-history__stroke {
+      stroke: CanvasText;
+    }
+    .rw-history__area {
+      fill: none;
+    }
+    .rw-history[data-plot="line"] .rw-column-mark {
+      background: CanvasText;
+      border-color: CanvasText;
+    }
+  }
+}
+
 /* Optional structure and modifiers for native <dialog class="rw-dialog">.
    The existing base surface remains in primitives.css for compatibility. */
 @layer runway-ui.dialog {
@@ -5275,6 +5321,86 @@
   --rw-focus: #267e69;
   --rw-display-font: var(--rw-font);
   --rw-shadow: none;
+  --rw-type-caption: 11px;
+  --rw-type-body: 13px;
+  --rw-type-heading: 20px;
+  --rw-type-value: 30px;
+  font-size: var(--rw-type-body);
+  line-height: 1.5;
+
+  & .rw-command-bar {
+    line-height: 1.2;
+  }
+
+  & :is(.rw-stat__value, .rw-command-stat strong, .rw-instrument__readout) {
+    font-variant-numeric: lining-nums tabular-nums;
+    letter-spacing: -0.035em;
+  }
+  & :is(.rw-stat__label, .rw-command-stat small) {
+    font-size: var(--rw-type-caption);
+  }
+  & .rw-instrument {
+    padding: 24px;
+    border: 1px solid var(--rw-line);
+    border-radius: 10px;
+    background: var(--rw-surface);
+    box-shadow: none;
+    &::after {
+      content: none;
+    }
+  }
+  & .rw-instrument__heading {
+    align-items: center;
+    margin-block-end: 26px;
+  }
+  & .rw-instrument__heading h3 {
+    font: 600 var(--rw-type-heading) / 1.3 var(--rw-font);
+    letter-spacing: -0.025em;
+  }
+  & .rw-instrument__heading span {
+    font-size: var(--rw-type-caption);
+  }
+  & .rw-instrument__readout {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--rw-ink);
+    box-shadow: none;
+    font: 600 var(--rw-type-value) / 1.15 var(--rw-font);
+  }
+  & .rw-instrument__note {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  & .rw-history__axis {
+    font-size: var(--rw-type-caption);
+  }
+  & .rw-history .rw-columns {
+    background:
+      repeating-linear-gradient(
+        to top,
+        color-mix(in oklch, var(--rw-line) 55%, transparent) 0 1px,
+        transparent 1px 50%
+      )
+      top / 100% var(--rw-chart-height) no-repeat;
+  }
+  & .rw-history .rw-category {
+    font-size: var(--rw-type-caption);
+  }
+  & .rw-chart-data {
+    margin-block-start: 20px;
+    border: 0;
+    border-block-start: 1px solid var(--rw-line);
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+  & .rw-chart-data > summary {
+    padding: 12px 0 0;
+    background: none;
+    font-size: var(--rw-type-caption);
+    font-weight: 500;
+  }
 
   & :is(.rw-panel, .rw-card, .rw-sheet, .rw-dossier) {
     background: var(--rw-panel-bg);
@@ -5343,4 +5469,33 @@
       border: 1px solid CanvasText;
     }
   }
+}
+
+/* Native pace buttons share their selected and warm states across hosts. */
+.rw-ui[data-appearance="quiet"] .rw-segmented[data-variant="pace"] {
+  background: var(--rw-soft);
+  border-color: var(--rw-line);
+  padding: 4px;
+  gap: 3px;
+}
+.rw-ui[data-appearance="quiet"] .rw-segmented[data-variant="pace"] .rw-segment {
+  min-block-size: 44px;
+  padding-inline: 14px;
+  border-radius: 4px;
+}
+.rw-ui[data-appearance="quiet"] .rw-segmented[data-variant="pace"] .rw-segment small {
+  margin-block-start: 4px;
+  font-size: 10px;
+}
+.rw-ui[data-appearance="quiet"]
+  .rw-segmented[data-variant="pace"]
+  .rw-segment[aria-pressed="true"] {
+  background: var(--rw-accent);
+  color: var(--rw-on-accent);
+  box-shadow: 0 1px 3px #17392d26;
+}
+.rw-ui[data-appearance="quiet"]
+  .rw-segmented[data-variant="pace"]
+  .rw-segment[data-tone="warm"][aria-pressed="true"] {
+  background: var(--rw-gold);
 }

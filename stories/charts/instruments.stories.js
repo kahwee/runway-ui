@@ -12,6 +12,7 @@ const args = {
   maximum: 100,
   height: 180,
   detail: "auto",
+  plot: "columns",
   annotations: true,
   eventTitle: "The second workbench opened",
   eventText: "A decision was recorded here. Later readings include other activity too.",
@@ -58,6 +59,11 @@ export default {
       "Data",
     ),
     height: range(100, 320, 10, "CSS plot height."),
+    plot: select(
+      ["columns", "line"],
+      "Straight observed segments; missing values break the line.",
+      "Chart",
+    ),
     detail: select(
       ["auto", "compact", "full"],
       "Auto suppresses dense numeric labels after 18 points. Exact table stays available.",
@@ -136,6 +142,7 @@ export const Playground = {
           maximum,
           height,
           detail: "compact",
+          plot: a.plot,
           tableOpen,
           values,
           labels,
@@ -149,4 +156,9 @@ export const Playground = {
       return `<p role="alert">${String(error.message).replaceAll("<", "&lt;")}</p>`;
     }
   },
+};
+
+export const LineHistory = {
+  ...Playground,
+  args: { count: 30, plot: "line", preset: "missing", showImpact: false },
 };

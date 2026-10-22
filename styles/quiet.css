@@ -10,6 +10,86 @@
   --rw-focus: #267e69;
   --rw-display-font: var(--rw-font);
   --rw-shadow: none;
+  --rw-type-caption: 11px;
+  --rw-type-body: 13px;
+  --rw-type-heading: 20px;
+  --rw-type-value: 30px;
+  font-size: var(--rw-type-body);
+  line-height: 1.5;
+
+  & .rw-command-bar {
+    line-height: 1.2;
+  }
+
+  & :is(.rw-stat__value, .rw-command-stat strong, .rw-instrument__readout) {
+    font-variant-numeric: lining-nums tabular-nums;
+    letter-spacing: -0.035em;
+  }
+  & :is(.rw-stat__label, .rw-command-stat small) {
+    font-size: var(--rw-type-caption);
+  }
+  & .rw-instrument {
+    padding: 24px;
+    border: 1px solid var(--rw-line);
+    border-radius: 10px;
+    background: var(--rw-surface);
+    box-shadow: none;
+    &::after {
+      content: none;
+    }
+  }
+  & .rw-instrument__heading {
+    align-items: center;
+    margin-block-end: 26px;
+  }
+  & .rw-instrument__heading h3 {
+    font: 600 var(--rw-type-heading) / 1.3 var(--rw-font);
+    letter-spacing: -0.025em;
+  }
+  & .rw-instrument__heading span {
+    font-size: var(--rw-type-caption);
+  }
+  & .rw-instrument__readout {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--rw-ink);
+    box-shadow: none;
+    font: 600 var(--rw-type-value) / 1.15 var(--rw-font);
+  }
+  & .rw-instrument__note {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  & .rw-history__axis {
+    font-size: var(--rw-type-caption);
+  }
+  & .rw-history .rw-columns {
+    background:
+      repeating-linear-gradient(
+        to top,
+        color-mix(in oklch, var(--rw-line) 55%, transparent) 0 1px,
+        transparent 1px 50%
+      )
+      top / 100% var(--rw-chart-height) no-repeat;
+  }
+  & .rw-history .rw-category {
+    font-size: var(--rw-type-caption);
+  }
+  & .rw-chart-data {
+    margin-block-start: 20px;
+    border: 0;
+    border-block-start: 1px solid var(--rw-line);
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+  & .rw-chart-data > summary {
+    padding: 12px 0 0;
+    background: none;
+    font-size: var(--rw-type-caption);
+    font-weight: 500;
+  }
 
   & :is(.rw-panel, .rw-card, .rw-sheet, .rw-dossier) {
     background: var(--rw-panel-bg);
@@ -78,4 +158,33 @@
       border: 1px solid CanvasText;
     }
   }
+}
+
+/* Native pace buttons share their selected and warm states across hosts. */
+.rw-ui[data-appearance="quiet"] .rw-segmented[data-variant="pace"] {
+  background: var(--rw-soft);
+  border-color: var(--rw-line);
+  padding: 4px;
+  gap: 3px;
+}
+.rw-ui[data-appearance="quiet"] .rw-segmented[data-variant="pace"] .rw-segment {
+  min-block-size: 44px;
+  padding-inline: 14px;
+  border-radius: 4px;
+}
+.rw-ui[data-appearance="quiet"] .rw-segmented[data-variant="pace"] .rw-segment small {
+  margin-block-start: 4px;
+  font-size: 10px;
+}
+.rw-ui[data-appearance="quiet"]
+  .rw-segmented[data-variant="pace"]
+  .rw-segment[aria-pressed="true"] {
+  background: var(--rw-accent);
+  color: var(--rw-on-accent);
+  box-shadow: 0 1px 3px #17392d26;
+}
+.rw-ui[data-appearance="quiet"]
+  .rw-segmented[data-variant="pace"]
+  .rw-segment[data-tone="warm"][aria-pressed="true"] {
+  background: var(--rw-gold);
 }
