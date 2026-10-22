@@ -123,15 +123,71 @@
   }
   .rw-dock {
     display: flex;
-    gap: 7px;
-    background: var(--rw-surface);
+    flex-wrap: wrap;
+    gap: 8px;
+    inline-size: fit-content;
+    max-inline-size: 100%;
+    background: linear-gradient(
+      to bottom,
+      var(--rw-surface),
+      color-mix(in oklch, var(--rw-surface) 90%, var(--rw-soft))
+    );
     border: 1px solid var(--rw-line);
     padding: 8px;
-    border-radius: calc(var(--rw-radius) + 5px);
+    border-radius: calc(var(--rw-radius) + 14px);
     box-shadow: var(--rw-shadow);
   }
   .rw-dock .rw-button {
     min-inline-size: 85px;
+    border-radius: var(--rw-pill);
+    padding-inline: calc(var(--rw-control-inline) + 4px);
+    transition:
+      translate 0.35s var(--rw-spring),
+      scale 0.35s var(--rw-spring),
+      background-color 0.2s,
+      box-shadow 0.14s;
+    &:hover:not(:disabled, [aria-pressed="true"]) {
+      translate: 0 -3px;
+      scale: 1.04;
+    }
+    &:active:not(:disabled) {
+      scale: 1.06 0.9;
+    }
+    &[aria-pressed="true"] {
+      animation: rw-dock-pop 0.6s var(--rw-spring);
+    }
+    &[aria-pressed="true"] .rw-shortcut {
+      animation: rw-dock-key 0.6s var(--rw-spring) 0.05s backwards;
+    }
+  }
+  /* Squash, stretch and land when an action becomes the selected one. */
+  @keyframes rw-dock-pop {
+    0% {
+      scale: 0.9 1.08;
+      translate: 0 4px;
+    }
+    35% {
+      scale: 1.1 0.9;
+      translate: 0 -8px;
+    }
+    65% {
+      scale: 0.97 1.04;
+      translate: 0 1px;
+    }
+    100% {
+      scale: 1;
+      translate: 0 0;
+    }
+  }
+  @keyframes rw-dock-key {
+    0% {
+      rotate: -18deg;
+      scale: 0.6;
+    }
+    100% {
+      rotate: 0deg;
+      scale: 1;
+    }
   }
   .rw-button[aria-pressed="true"] {
     --rw-button-bg: var(--rw-accent);
@@ -139,13 +195,26 @@
     --rw-button-border: var(--rw-accent);
   }
   .rw-shortcut {
-    font: 10px var(--rw-font);
-    border: 1px solid currentColor;
-    border-radius: 6px;
-    padding: 2px 4px;
-    opacity: 0.7;
+    display: inline-grid;
+    place-items: center;
+    min-inline-size: 1.7em;
+    padding: 1px 5px 2px;
+    border: 1px solid color-mix(in oklch, currentColor 45%, transparent);
+    border-radius: 7px;
+    background: color-mix(in oklch, currentColor 12%, transparent);
+    box-shadow: 0 2px 0 color-mix(in oklch, currentColor 30%, transparent);
+    font: 700 10px / 1.4 var(--rw-font);
+    opacity: 0.85;
   }
   @media (prefers-reduced-motion: reduce) {
+    .rw-dock .rw-button,
+    .rw-dock .rw-shortcut {
+      transition: none;
+      animation: none !important;
+    }
+    .rw-dock .rw-button:is(:hover, :active):not(:disabled) {
+      scale: none;
+    }
     .rw-slot {
       transition: none;
     }
@@ -161,7 +230,13 @@
     display: flex;
     align-items: stretch;
     gap: var(--rw-view-gap, 6px);
+    inline-size: fit-content;
+    max-inline-size: 100%;
     min-inline-size: 0;
+    padding: 6px;
+    border-radius: calc(var(--rw-radius) + 8px);
+    background: color-mix(in oklch, var(--rw-raised) 70%, transparent);
+    box-shadow: inset 0 2px 5px color-mix(in oklch, var(--rw-ink) 7%, transparent);
   }
   .rw-view-tab {
     position: relative;
@@ -172,43 +247,63 @@
     gap: 4px;
     min-inline-size: var(--rw-view-min, 72px);
     max-inline-size: 140px;
-    padding: 8px 12px 12px;
+    padding: 8px 12px 16px;
     border: 1px solid transparent;
-    border-radius: var(--rw-radius);
+    border-radius: calc(var(--rw-radius) + 4px);
     background: transparent;
     color: var(--rw-muted);
-    font: 650 12px / 1.3 var(--rw-font);
+    font: 700 12px / 1.3 var(--rw-display-font);
     text-align: center;
     text-decoration: none;
     cursor: pointer;
     transition:
-      translate 0.2s var(--rw-spring),
+      translate 0.3s var(--rw-spring),
+      scale 0.2s var(--rw-spring),
       background-color 0.2s,
-      box-shadow 0.2s;
+      box-shadow 0.2s,
+      color 0.2s;
     & > :last-child {
       overflow-wrap: anywhere;
     }
     &:hover:not(:disabled) {
-      translate: 0 -2px;
-      background: var(--rw-surface);
-      border-color: var(--rw-line);
+      translate: 0 -3px;
+      background: color-mix(in oklch, var(--rw-surface) 75%, transparent);
+      color: var(--rw-ink);
+    }
+    &:active:not(:disabled) {
+      translate: 0 2px;
+      scale: 1.06 0.9;
     }
     &:is([aria-current="page"], [aria-pressed="true"]) {
-      background: var(--rw-soft);
+      animation: rw-view-tab-pop 0.55s var(--rw-spring);
+      background: var(--rw-surface);
       color: var(--rw-accent);
       border-color: var(--rw-line);
       box-shadow:
         inset 0 1px var(--rw-highlight),
-        0 3px 0 var(--rw-line);
+        0 3px 0 var(--rw-line),
+        0 10px 18px color-mix(in oklch, var(--rw-ink) 9%, transparent);
     }
-    &:is([aria-current="page"], [aria-pressed="true"])::after {
+    /* A little pill that pops in under the current place. */
+    &::after {
       content: "";
       position: absolute;
-      inset-block-end: 4px;
-      inline-size: 18px;
-      block-size: 3px;
-      border-radius: 3px;
+      inset-block-end: 5px;
+      inline-size: 6px;
+      block-size: 6px;
+      border-radius: var(--rw-pill);
       background: currentColor;
+      opacity: 0;
+      scale: 0.3;
+      transition:
+        scale 0.35s var(--rw-spring),
+        inline-size 0.35s var(--rw-spring),
+        opacity 0.2s;
+    }
+    &:is([aria-current="page"], [aria-pressed="true"])::after {
+      opacity: 1;
+      scale: 1;
+      inline-size: 20px;
     }
     &:focus-visible {
       outline: 3px solid var(--rw-focus);
@@ -225,27 +320,82 @@
     inline-size: var(--rw-view-art, 48px);
     block-size: var(--rw-view-art, 48px);
     object-fit: contain;
-    transition: rotate 0.25s var(--rw-spring);
+    transition:
+      rotate 0.35s var(--rw-spring),
+      scale 0.35s var(--rw-spring);
   }
   .rw-view-tab:hover:not(:disabled) .rw-view-tab__art {
-    rotate: -5deg;
+    rotate: -6deg;
+    scale: 1.1;
+  }
+  .rw-view-tab:is([aria-current="page"], [aria-pressed="true"]) .rw-view-tab__art {
+    animation:
+      rw-view-tab-hop 0.6s var(--rw-spring) 0.08s backwards,
+      rw-view-tab-bob 3.2s ease-in-out 0.7s infinite;
   }
   .rw-view-tabs[data-layout="inline"] .rw-view-tab {
     flex-direction: row;
     gap: 10px;
     max-inline-size: none;
-    padding-block: 8px;
+    padding-block: 8px 14px;
+  }
+  /* Squash, stretch, land: plays when a tab becomes the current one. */
+  @keyframes rw-view-tab-pop {
+    0% {
+      scale: 0.88 1.1;
+      translate: 0 6px;
+    }
+    35% {
+      scale: 1.1 0.9;
+      translate: 0 -10px;
+    }
+    60% {
+      scale: 0.96 1.05;
+      translate: 0 2px;
+    }
+    100% {
+      scale: 1;
+      translate: 0 0;
+    }
+  }
+  @keyframes rw-view-tab-hop {
+    0% {
+      translate: 0 0;
+      rotate: -12deg;
+    }
+    40% {
+      translate: 0 -8px;
+      rotate: 8deg;
+    }
+    100% {
+      translate: 0 0;
+      rotate: 0deg;
+    }
+  }
+  @keyframes rw-view-tab-bob {
+    50% {
+      translate: 0 -3px;
+      rotate: 2deg;
+    }
   }
   @media (prefers-reduced-motion: reduce) {
     .rw-view-tab,
+    .rw-view-tab::after,
     .rw-view-tab__art {
       transition: none;
     }
-    .rw-view-tab:hover:not(:disabled) {
+    .rw-view-tab,
+    .rw-view-tab__art {
+      animation: none !important;
+    }
+    .rw-view-tab:hover:not(:disabled),
+    .rw-view-tab:active:not(:disabled) {
       translate: none;
+      scale: none;
     }
     .rw-view-tab:hover:not(:disabled) .rw-view-tab__art {
       rotate: none;
+      scale: none;
     }
   }
   @media (forced-colors: active) {

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Make `rw-view-tabs` and `rw-dock` bouncier: a tray for illustrated tabs, squash-and-stretch pop when a tab or dock action becomes selected, hopping artwork, pill buttons and keycap-style `rw-shortcut` hints. All motion is disabled under `prefers-reduced-motion`.
+
 - Add `rw-section-tabs`, a sticky row of toggle buttons for switching sibling views, with a Storybook playground.
 
 - Add illustrated workspace navigation, a generic daily-places example with six original SVG miniatures, and an argument-driven Storybook playground.
