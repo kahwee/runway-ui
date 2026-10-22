@@ -9,19 +9,25 @@ Set `data-skin="play"` on a `rw-ui` root for deeper panel edges, raised primary 
 ## Shared history renderer
 
 ```js
-import { renderHistory } from 'runway-ui/history';
+import { renderHistory } from "runway-ui/history";
 container.innerHTML = renderHistory({
-  title: 'Supply balance', unit: 'units / cycle',
+  title: "Supply balance",
+  unit: "units / cycle",
   values: [12, 24, null, -18, 30, 42],
-  labels: ['01', '02', '03', '04', '05', '06'],
-  minimum: -100, maximum: 100,
-  annotations: [{ index: 3, title: 'A recorded decision',
-    description: 'A change was observed here; this is not causal attribution.' }],
+  labels: ["01", "02", "03", "04", "05", "06"],
+  minimum: -100,
+  maximum: 100,
+  annotations: [
+    {
+      index: 3,
+      title: "A recorded decision",
+      description: "A change was observed here; this is not causal attribution.",
+    },
+  ],
 });
 ```
 
 This optional ES module returns escaped semantic HTML. It performs validation and prepares CSS inputs, never drawing or measuring chart geometry. The full stylesheet includes the necessary modules; selective consumers need tokens, primitives, charts, history, observatory (native context popovers) and instruments. `runway-ui/instruments.css` is a style-only alias. It does not pull prerequisites in automatically. No event controller is needed for the chart, disclosures or native popovers.
-
 - Accepts zero to 366 observations, one label per value, finite signed in-scale numbers and explicit `null` gaps. An empty series shows an empty state. Supply equally spaced observations; insert nulls for absent slots rather than compressing time.
 - A finite declared minimum/maximum must span zero and have positive range. Inputs outside it are rejected, never silently clipped. The host owns scale selection, missing-data meaning and any aggregation.
 - `format` supplies the current/visible value labels; `axisFormat` supplies axis labels; `exactFormat` supplies the native exact-data table. Each numeric table cell also retains its raw value in a native `data[value]` element. Formatters must not imply precision absent from the source.
@@ -35,8 +41,14 @@ This optional ES module returns escaped semantic HTML. It performs validation an
 The direct renderer accepts up to 366 observations and thins axis labels for dense windows. For daily or longer time series use the optional `mountHistoryWindow` behavior:
 
 ```js
-import { mountHistoryWindow } from 'runway-ui/timeseries';
-const view = mountHistoryWindow(element, { values, labels, minimum: -100, maximum: 100, windowSize: 30 });
+import { mountHistoryWindow } from "runway-ui/timeseries";
+const view = mountHistoryWindow(element, {
+  values,
+  labels,
+  minimum: -100,
+  maximum: 100,
+  windowSize: 30,
+});
 // later
 view.destroy();
 ```

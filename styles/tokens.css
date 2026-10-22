@@ -1,23 +1,50 @@
 @layer runway-ui.tokens {
   :where(.rw-ui) {
-    --rw-bg:#e9eadc; --rw-surface:#fffbee; --rw-raised:#f5f0df;
-    --rw-ink:#2d4640; --rw-muted:#5d6e5c; --rw-line:#cdd2b9;
-    --rw-accent:#355c4b; --rw-on-accent:#fffdf6; --rw-soft:#edf0e4;
-    --rw-gold:#8a6326; --rw-danger:#a34f3f; --rw-focus:#bb662e;
-    --rw-radius:16px; --rw-pill:999px; --rw-spring:cubic-bezier(.34,1.56,.64,1);
-    --rw-highlight:color-mix(in oklch,var(--rw-surface) 65%,white);
-    --rw-control-edge:color-mix(in oklch,var(--rw-line) 82%,var(--rw-ink));
-    --rw-control-depth:3px; --rw-select-inset:16px;
-    --rw-shadow:inset 0 1px var(--rw-highlight),0 3px 0 color-mix(in oklch,var(--rw-line) 80%,transparent),0 12px 28px color-mix(in oklch,var(--rw-ink) 8%,transparent);
-    --rw-font:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    --rw-display-font:ui-rounded,"Avenir Next",var(--rw-font);
-    --rw-control-font:13px; --rw-control-block:11px; --rw-control-inline:15px;
-    --rw-control-gap:15px; --rw-panel-padding:22px; --rw-field-padding:10px;
-    --rw-content-gap:10px; --rw-space:14px; --rw-choice-padding:15px;
-    color:var(--rw-ink); font-family:var(--rw-font); color-scheme:light;
+    --rw-bg: #e9eadc;
+    --rw-surface: #fffbee;
+    --rw-raised: #f5f0df;
+    --rw-ink: #2d4640;
+    --rw-muted: #5d6e5c;
+    --rw-line: #cdd2b9;
+    --rw-accent: #355c4b;
+    --rw-on-accent: #fffdf6;
+    --rw-soft: #edf0e4;
+    --rw-gold: #8a6326;
+    --rw-danger: #a34f3f;
+    --rw-focus: #bb662e;
+    --rw-radius: 16px;
+    --rw-pill: 999px;
+    --rw-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --rw-highlight: color-mix(in oklch, var(--rw-surface) 65%, white);
+    --rw-control-edge: color-mix(in oklch, var(--rw-line) 82%, var(--rw-ink));
+    --rw-control-depth: 3px;
+    --rw-select-inset: 16px;
+    --rw-shadow:
+      inset 0 1px var(--rw-highlight), 0 3px 0 color-mix(in oklch, var(--rw-line) 80%, transparent),
+      0 12px 28px color-mix(in oklch, var(--rw-ink) 8%, transparent);
+    --rw-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --rw-display-font: ui-rounded, "Avenir Next", var(--rw-font);
+    --rw-control-font: 13px;
+    --rw-control-block: 11px;
+    --rw-control-inline: 15px;
+    --rw-control-gap: 15px;
+    --rw-panel-padding: 22px;
+    --rw-field-padding: 10px;
+    --rw-content-gap: 10px;
+    --rw-space: 14px;
+    --rw-choice-padding: 15px;
+    color: var(--rw-ink);
+    font-family: var(--rw-font);
+    color-scheme: light;
   }
-  :where(.rw-ui)[data-density=compact] {
-    --rw-control-block:8px; --rw-control-inline:12px; --rw-control-gap:10px;
-    --rw-panel-padding:16px; --rw-field-padding:8px; --rw-content-gap:8px; --rw-space:10px; --rw-choice-padding:11px;
+  :where(.rw-ui)[data-density="compact"] {
+    --rw-control-block: 8px;
+    --rw-control-inline: 12px;
+    --rw-control-gap: 10px;
+    --rw-panel-padding: 16px;
+    --rw-field-padding: 8px;
+    --rw-content-gap: 8px;
+    --rw-space: 10px;
+    --rw-choice-padding: 11px;
   }
 }

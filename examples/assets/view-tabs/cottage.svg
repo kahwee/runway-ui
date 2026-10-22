@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><title>A tiny pink cottage</title><ellipse cx="48" cy="80" rx="28" ry="5" fill="#39554b" opacity=".12"/><circle cx="48" cy="45" r="34" fill="#f4c2b9" opacity=".45"/><path d="M23 47 48 24 73 47" fill="#c47b70"/><rect x="28" y="45" width="40" height="30" rx="8" fill="#f4d9b5"/><rect x="43" y="56" width="12" height="19" rx="5" fill="#8ba5ab"/><path d="M61 29V18h8v19" fill="#c47b70"/><circle cx="34" cy="56" r="3" fill="#fff7dc"/><circle cx="19" cy="30" r="3" fill="#f4c2b9"/><path d="m77 20 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z" fill="#f4c2b9"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <title>A tiny pink cottage</title>
+  <ellipse cx="48" cy="80" rx="28" ry="5" fill="#39554b" opacity=".12" />
+  <circle cx="48" cy="45" r="34" fill="#f4c2b9" opacity=".45" />
+  <path d="M23 47 48 24 73 47" fill="#c47b70" />
+  <rect x="28" y="45" width="40" height="30" rx="8" fill="#f4d9b5" />
+  <rect x="43" y="56" width="12" height="19" rx="5" fill="#8ba5ab" />
+  <path d="M61 29V18h8v19" fill="#c47b70" />
+  <circle cx="34" cy="56" r="3" fill="#fff7dc" />
+  <circle cx="19" cy="30" r="3" fill="#f4c2b9" />
+  <path d="m77 20 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z" fill="#f4c2b9" />
+</svg>

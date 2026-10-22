@@ -4,9 +4,12 @@ import "../index.css";
 import "../styles/native.css";
 import "./preview.css";
 export default {
-  initialGlobals: { theme: "whimsy", density: "comfortable", depth:"raised", skin:"play" },
+  initialGlobals: { theme: "whimsy", density: "comfortable", depth: "raised", skin: "play" },
   globalTypes: {
-    skin:{description:"Interface material",toolbar:{icon:"circlehollow",items:["classic","play"],dynamicTitle:true}},
+    skin: {
+      description: "Interface material",
+      toolbar: { icon: "circlehollow", items: ["classic", "play"], dynamicTitle: true },
+    },
     theme: {
       description: "Art direction",
       toolbar: {
@@ -15,7 +18,10 @@ export default {
         dynamicTitle: true,
       },
     },
-    depth:{description:"Control depth",toolbar:{icon:"circlehollow",items:["raised","flat"],dynamicTitle:true}},
+    depth: {
+      description: "Control depth",
+      toolbar: { icon: "circlehollow", items: ["raised", "flat"], dynamicTitle: true },
+    },
     density: {
       description: "Control spacing",
       toolbar: {

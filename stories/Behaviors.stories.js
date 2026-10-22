@@ -1,14 +1,7 @@
-import { bindNavigation } from "../behaviors/navigation.js";
 import { createInventory } from "../behaviors/inventory.js";
-import {
-  escapeHTML as e,
-  bounded,
-  text,
-  flag,
-  range,
-  object,
-  withDefaults,
-} from "./helpers.js";
+import { bindNavigation } from "../behaviors/navigation.js";
+import { bounded, escapeHTML as e, flag, object, range, text, withDefaults } from "./helpers.js";
+
 // Documentation-only host; the library requires no custom elements.
 if (!customElements.get("runway-story-host"))
   customElements.define(
@@ -47,23 +40,9 @@ export const KeyboardNavigation = {
   argTypes: {
     label: text("Accessible toolbar name."),
     items: object("Array of action labels."),
-    disabledIndex: range(
-      -1,
-      12,
-      1,
-      "Disabled action index; -1 disables none.",
-      "State",
-    ),
-    columns: range(
-      1,
-      4,
-      1,
-      "Logical movement columns; up/down move this many eligible actions.",
-    ),
-    wrap: flag(
-      "Wrap movement at the ends of the eligible-action list.",
-      "Navigation",
-    ),
+    disabledIndex: range(-1, 12, 1, "Disabled action index; -1 disables none.", "State"),
+    columns: range(1, 4, 1, "Logical movement columns; up/down move this many eligible actions."),
+    wrap: flag("Wrap movement at the ends of the eligible-action list.", "Navigation"),
   },
   render: (a) => {
     const root = document.createElement("runway-story-host");
@@ -80,8 +59,7 @@ export const KeyboardNavigation = {
       const select = (event) => {
         const button = event.target.closest("button");
         if (button)
-          root.querySelector("[role=status]").textContent =
-            `${button.textContent} selected.`;
+          root.querySelector("[role=status]").textContent = `${button.textContent} selected.`;
       };
       root.addEventListener("click", select);
       return () => {
@@ -106,18 +84,8 @@ export const VirtualInventory = {
     prefix: text("Label prefix for synthetic records."),
     count: range(1, 10000, 1, "Number of synthetic items.", "Data"),
     columns: range(1, 12, 1, "Fixed number of columns."),
-    rowHeight: range(
-      48,
-      128,
-      4,
-      "Fixed row height; helper synchronizes CSS sizing.",
-    ),
-    overscan: range(
-      0,
-      4,
-      1,
-      "Extra mounted rows above and below the viewport.",
-    ),
+    rowHeight: range(48, 128, 4, "Fixed row height; helper synchronizes CSS sizing."),
+    overscan: range(0, 4, 1, "Extra mounted rows above and below the viewport."),
   },
   render: (a) => {
     const root = document.createElement("runway-story-host");
@@ -126,16 +94,15 @@ export const VirtualInventory = {
     root.innerHTML = `<h2>${e(a.title)}</h2><p>End reaches the final item; Enter selects it. Changing arguments remounts this optional behavior.</p><div class="rw-virtual" tabindex="0" aria-label="${e(a.title)}"></div><p role="status">No item selected.</p>`;
     root.setup = () => {
       const inventory = createInventory(root.querySelector(".rw-virtual"), {
-        items: Array.from(
-          { length: Math.round(bounded(a.count, 1, 10000)) },
-          (_, i) => ({ label: `${a.prefix} ${i + 1}`, icon: "coins" }),
-        ),
+        items: Array.from({ length: Math.round(bounded(a.count, 1, 10000)) }, (_, i) => ({
+          label: `${a.prefix} ${i + 1}`,
+          icon: "coins",
+        })),
         columns: Math.round(bounded(a.columns, 1, 12)),
         rowHeight: bounded(a.rowHeight, 48, 128),
         overscan: Math.round(bounded(a.overscan, 0, 4)),
         onSelect: (item) => {
-          root.querySelector("[role=status]").textContent =
-            `${item.label} selected.`;
+          root.querySelector("[role=status]").textContent = `${item.label} selected.`;
         },
       });
       return () => inventory.destroy();

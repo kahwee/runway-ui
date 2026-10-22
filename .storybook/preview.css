@@ -5,24 +5,35 @@ body {
   box-sizing: border-box;
   min-block-size: 100dvh;
   padding: 40px;
-  background: radial-gradient(circle at 1px 1px, color-mix(in oklch, var(--rw-accent) 14%, transparent) 1.5px, transparent 0) 0 0 / 22px 22px, var(--rw-bg);
+  background:
+    radial-gradient(
+      circle at 1px 1px,
+      color-mix(in oklch, var(--rw-accent) 14%, transparent) 1.5px,
+      transparent 0
+    )
+    0 0 / 22px 22px,
+    var(--rw-bg);
   color: var(--rw-ink);
-  font: 14px/1.6 var(--rw-font);
+  font: 14px / 1.6 var(--rw-font);
 }
-.story-surface :where(h1, h2, h3):not(:where(.rw-dialog *,.rw-card *,.rw-field *,.rw-observatory *,.rw-instrument *)) {
+.story-surface
+  :where(h1, h2, h3):not(
+    :where(.rw-dialog *, .rw-card *, .rw-field *, .rw-observatory *, .rw-instrument *)
+  ) {
   margin-block: 0 16px;
   letter-spacing: -0.035em;
   font-weight: 700;
   font-family: var(--rw-display-font, var(--rw-font));
   text-wrap: balance;
 }
-.story-surface p:not(:where(.rw-dialog *,.rw-card *,.rw-field *,.rw-observatory *,.rw-instrument *)) {
+.story-surface
+  p:not(:where(.rw-dialog *, .rw-card *, .rw-field *, .rw-observatory *, .rw-instrument *)) {
   margin-block: 0 18px;
 }
 .story-surface a {
   color: var(--rw-accent);
 }
-.story-surface .rw-figure:not(:where(.rw-observatory *,.rw-instrument *)) {
+.story-surface .rw-figure:not(:where(.rw-observatory *, .rw-instrument *)) {
   max-inline-size: 850px;
 }
 .story-surface .story-width {
@@ -45,7 +56,7 @@ body {
 }
 .story-surface code {
   font:
-    12px/1.6 ui-monospace,
+    12px / 1.6 ui-monospace,
     monospace;
 }
 .story-surface pre {

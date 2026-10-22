@@ -1,5 +1,5 @@
 import workshop from "../index.html?raw";
-import { escapeHTML as e, text, flag, select, meta } from "./helpers.js";
+import { escapeHTML as e, flag, meta, select, text } from "./helpers.js";
 export default {
   title: "Compositions/Game interface",
   tags: ["autodocs"],
@@ -16,10 +16,7 @@ export default {
     {
       title: text("Page heading."),
       columns: select(["one", "two"], "Composition column count."),
-      showProduction: flag(
-        "Include the shared-track production ledger.",
-        "Content",
-      ),
+      showProduction: flag("Include the shared-track production ledger.", "Content"),
       showEconomy: flag("Include the HTML-table economy chart.", "Content"),
       showDescriptions: flag("Display panel explanations.", "Content"),
     },
@@ -34,12 +31,10 @@ export const OperationsRoom = {
     root.innerHTML = `<p class="rw-kicker">Management / operations room</p><h1>${e(a.title)}</h1>`;
     const grid = document.createElement("div");
     grid.className = "story-grid";
-    grid.style.gridTemplateColumns =
-      a.columns === "one" ? "1fr" : "repeat(2,minmax(0,1fr))";
+    grid.style.gridTemplateColumns = a.columns === "one" ? "1fr" : "repeat(2,minmax(0,1fr))";
     const panels = [...source.querySelectorAll("#simulation .rw-panel")];
     panels.forEach((panel, index) => {
-      if ((index === 0 && !a.showProduction) || (index === 1 && !a.showEconomy))
-        return;
+      if ((index === 0 && !a.showProduction) || (index === 1 && !a.showEconomy)) return;
       const copy = panel.cloneNode(true);
       if (!a.showDescriptions) copy.querySelector("p")?.remove();
       grid.append(copy);

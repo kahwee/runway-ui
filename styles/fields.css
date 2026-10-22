@@ -1,111 +1,498 @@
 /* Native form behavior, with a comfortable and direction-aware arrow gutter. */
 @layer runway-ui.primitives {
-  :where(.rw-input,.rw-native input:not([type=button],[type=submit],[type=checkbox],[type=radio],[type=range]),.rw-native select,.rw-native textarea) {
-    box-sizing:border-box; min-inline-size:0; max-inline-size:100%;
-    color:var(--rw-ink); background-color:var(--rw-raised); border:1px solid var(--rw-line);
-    border-radius:var(--rw-radius); padding:var(--rw-field-padding); font:inherit; line-height:1.4;
-    box-shadow:inset 0 2px 3px color-mix(in oklch,var(--rw-ink) 5%,transparent),0 1px var(--rw-highlight);
+  :where(
+    .rw-input,
+    .rw-native
+      input:not(
+        [type="button"],
+        [type="submit"],
+        [type="checkbox"],
+        [type="radio"],
+        [type="range"]
+      ),
+    .rw-native select,
+    .rw-native textarea
+  ) {
+    box-sizing: border-box;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    color: var(--rw-ink);
+    background-color: var(--rw-raised);
+    border: 1px solid var(--rw-line);
+    border-radius: var(--rw-radius);
+    padding: var(--rw-field-padding);
+    font: inherit;
+    line-height: 1.4;
+    box-shadow:
+      inset 0 2px 3px color-mix(in oklch, var(--rw-ink) 5%, transparent),
+      0 1px var(--rw-highlight);
   }
-  :where(.rw-input,.rw-native input,.rw-native select,.rw-native textarea):focus-visible { outline:3px solid var(--rw-focus); outline-offset:3px; }
-  :where(.rw-input,.rw-native input,.rw-native select,.rw-native textarea):disabled { opacity:.55; cursor:not-allowed; }
-  :where(.rw-input,.rw-native input,.rw-native textarea)[readonly] { background-color:var(--rw-soft); }
-  :where(.rw-input,.rw-native input,.rw-native select,.rw-native textarea):is([aria-invalid=true],:user-invalid) { border-color:var(--rw-danger); }
-  :where(select.rw-input,.rw-native select):not([multiple]):is(:not([size]),[size="1"]) {
-    appearance:none; padding-inline-end:calc(var(--rw-select-inset) + 24px);
-    background-image:linear-gradient(45deg,transparent 50%,var(--rw-muted) 50%),linear-gradient(135deg,var(--rw-muted) 50%,transparent 50%);
-    background-position:right calc(var(--rw-select-inset) + 5px) center,right var(--rw-select-inset) center;
-    background-size:5px 5px; background-repeat:no-repeat;
-    text-overflow:ellipsis; white-space:nowrap; cursor:pointer;
+  :where(.rw-input, .rw-native input, .rw-native select, .rw-native textarea):focus-visible {
+    outline: 3px solid var(--rw-focus);
+    outline-offset: 3px;
   }
-  :where(select.rw-input,.rw-native select):not([multiple]):is(:not([size]),[size="1"]):dir(rtl) {
-    background-position:left var(--rw-select-inset) center,left calc(var(--rw-select-inset) + 5px) center;
+  :where(.rw-input, .rw-native input, .rw-native select, .rw-native textarea):disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
   }
-  :where(select.rw-input,.rw-native select):disabled { cursor:not-allowed; }
+  :where(.rw-input, .rw-native input, .rw-native textarea)[readonly] {
+    background-color: var(--rw-soft);
+  }
+  :where(.rw-input, .rw-native input, .rw-native select, .rw-native textarea):is(
+    [aria-invalid="true"],
+    :user-invalid
+  ) {
+    border-color: var(--rw-danger);
+  }
+  :where(select.rw-input, .rw-native select):not([multiple]):is(:not([size]), [size="1"]) {
+    appearance: none;
+    padding-inline-end: calc(var(--rw-select-inset) + 24px);
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--rw-muted) 50%),
+      linear-gradient(135deg, var(--rw-muted) 50%, transparent 50%);
+    background-position:
+      right calc(var(--rw-select-inset) + 5px) center,
+      right var(--rw-select-inset) center;
+    background-size: 5px 5px;
+    background-repeat: no-repeat;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  :where(select.rw-input, .rw-native select):not([multiple]):is(:not([size]), [size="1"]):dir(rtl) {
+    background-position:
+      left var(--rw-select-inset) center,
+      left calc(var(--rw-select-inset) + 5px) center;
+  }
+  :where(select.rw-input, .rw-native select):disabled {
+    cursor: not-allowed;
+  }
   /* Customizable picker is the default wherever appearance:base-select exists; add data-picker="native" to opt out. Unsupported browsers keep the padded native dropdown above. */
-  @supports (appearance:base-select) {
-    :where(select.rw-input,.rw-native select):not([data-picker=native]):not([multiple]):is(:not([size]),[size="1"]),
-    :where(select.rw-input,.rw-native select):not([data-picker=native]):not([multiple]):is(:not([size]),[size="1"])::picker(select) { appearance:base-select; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]):not([multiple]):is(:not([size]),[size="1"]) { background-image:none; padding-inline-end:var(--rw-select-inset); justify-content:space-between; align-items:center; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])::picker-icon { content:""; inline-size:1.15em; block-size:1.15em; background:currentColor; mask:var(--rw-icon-caret-down) center / contain no-repeat; color:var(--rw-muted); margin-inline-start:18px; transition:rotate .16s; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]):open::picker-icon { rotate:180deg; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])::picker(select) { background:var(--rw-surface); color:var(--rw-ink); border:1px solid var(--rw-line); border-radius:var(--rw-radius); padding:6px; box-shadow:var(--rw-shadow); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) option { padding:10px 12px; border-radius:calc(var(--rw-radius) * .6); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) option:hover { background:var(--rw-soft); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) option:checked { background:var(--rw-soft); font-weight:650; }
+  @supports (appearance: base-select) {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      ),
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )::picker(select) {
+      appearance: base-select;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      ) {
+      background-image: none;
+      padding-inline-end: var(--rw-select-inset);
+      justify-content: space-between;
+      align-items: center;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])::picker-icon {
+      content: "";
+      inline-size: 1.15em;
+      block-size: 1.15em;
+      background: currentColor;
+      mask: var(--rw-icon-caret-down) center / contain no-repeat;
+      color: var(--rw-muted);
+      margin-inline-start: 18px;
+      transition: rotate 0.16s;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):open::picker-icon {
+      rotate: 180deg;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])::picker(select) {
+      background: var(--rw-surface);
+      color: var(--rw-ink);
+      border: 1px solid var(--rw-line);
+      border-radius: var(--rw-radius);
+      padding: 6px;
+      box-shadow: var(--rw-shadow);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option {
+      padding: 10px 12px;
+      border-radius: calc(var(--rw-radius) * 0.6);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option:hover {
+      background: var(--rw-soft);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option:checked {
+      background: var(--rw-soft);
+      font-weight: 650;
+    }
     /* Newer customizable-select parts: anchored picker, check mark, animated open. */
-    :where(select.rw-input,.rw-native select):not([data-picker=native])::picker(select) { margin-block:6px; min-inline-size:anchor-size(inline); transform-origin:top; transition:opacity .18s,translate .24s var(--rw-spring,ease),scale .24s var(--rw-spring,ease),overlay .24s allow-discrete,display .24s allow-discrete; }
-    @starting-style { :where(select.rw-input,.rw-native select):not([data-picker=native])::picker(select) { opacity:0; translate:0 -6px; scale:.97; } }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) option { display:flex; align-items:center; gap:10px; cursor:pointer; transition:background-color .12s; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) option::checkmark { order:2; margin-inline-start:auto; color:var(--rw-accent); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) option:not(:checked)::checkmark { content:""; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) option:focus-visible { outline:2px solid var(--rw-focus); outline-offset:-2px; }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])::picker(select) {
+      margin-block: 6px;
+      min-inline-size: anchor-size(inline);
+      transform-origin: top;
+      transition:
+        opacity 0.18s,
+        translate 0.24s var(--rw-spring, ease),
+        scale 0.24s var(--rw-spring, ease),
+        overlay 0.24s allow-discrete,
+        display 0.24s allow-discrete;
+    }
+    @starting-style {
+      :where(select.rw-input, .rw-native select):not([data-picker="native"])::picker(select) {
+        opacity: 0;
+        translate: 0 -6px;
+        scale: 0.97;
+      }
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: background-color 0.12s;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option::checkmark {
+      order: 2;
+      margin-inline-start: auto;
+      color: var(--rw-accent);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])
+      option:not(:checked)::checkmark {
+      content: "";
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option:focus-visible {
+      outline: 2px solid var(--rw-focus);
+      outline-offset: -2px;
+    }
   }
   /* Playful customizable select: rich options, selectedcontent mirror, staggered entry, spring checkmark.
      Needs appearance:base-select; each sub-feature degrades on its own (stagger needs sibling-index(), color dots need typed attr()). */
-  @supports (appearance:base-select) {
-    @keyframes rw-boop { 30% { rotate:-12deg; scale:1.15; } 60% { rotate:8deg; scale:1.08; } to { rotate:0deg; scale:1; } }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])::picker-icon { transition:rotate .4s var(--rw-spring,ease); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])::picker(select) { padding:8px; max-block-size:min(22rem,60dvb); scrollbar-width:thin; scrollbar-color:var(--rw-line) transparent; box-shadow:var(--rw-shadow); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) selectedcontent { display:flex; align-items:center; gap:.7em; min-inline-size:0; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) selectedcontent small { display:none; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) button { all:unset; display:flex; align-items:center; justify-content:space-between; inline-size:100%; cursor:inherit; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) option { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; column-gap:12px; transition:opacity .25s,translate .45s var(--rw-spring,ease),background-color .12s; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) option > span:not(.rw-option__icon) { display:grid; min-inline-size:0; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) option small { color:var(--rw-muted); font-size:.82em; font-weight:400; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) option:hover:not(:checked) { translate:4px 0; background:color-mix(in oklch,var(--rw-soft) 70%,transparent); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) option:checked { background:linear-gradient(100deg,color-mix(in oklch,var(--rw-accent) 16%,var(--rw-surface)),var(--rw-soft)); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) option:hover .rw-option__icon { animation:rw-boop .45s var(--rw-spring,ease); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) option::checkmark { content:""; inline-size:1.5em; block-size:1.5em; background:var(--rw-accent); mask:var(--rw-icon-check-circle-fill) center / contain no-repeat; transition:scale .35s var(--rw-spring,ease); }
-    @starting-style { :where(select.rw-input,.rw-native select):not([data-picker=native]) option::checkmark { scale:0; } }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) .rw-option__icon { display:grid; place-items:center; inline-size:2.1em; block-size:2.1em; border-radius:.7em; background:var(--rw-soft); font-size:1.05em; line-height:1; box-shadow:inset 0 1px var(--rw-highlight); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) selectedcontent .rw-option__icon { inline-size:1.45em; block-size:1.45em; font-size:.9em; border-radius:.55em; }
-    @starting-style { :where(select.rw-input,.rw-native select):not([data-picker=native]) option { opacity:0; translate:-16px 0; } }
-    @supports (transition-delay:calc(1ms * sibling-index())) {
-      :where(select.rw-input,.rw-native select):not([data-picker=native]) option { transition:opacity .25s calc(35ms * (sibling-index() - 1)),translate .5s var(--rw-spring,ease) calc(35ms * (sibling-index() - 1)),background-color .12s 0s; }
+  @supports (appearance: base-select) {
+    @keyframes rw-boop {
+      30% {
+        rotate: -12deg;
+        scale: 1.15;
+      }
+      60% {
+        rotate: 8deg;
+        scale: 1.08;
+      }
+      to {
+        rotate: 0deg;
+        scale: 1;
+      }
     }
-    @supports (color:attr(data-color type(<color>),red)) {
-      :where(select.rw-input,.rw-native select):not([data-picker=native]) option[data-color]::before { content:""; order:-1; inline-size:.7em; block-size:.7em; border-radius:50%; background:attr(data-color type(<color>),var(--rw-accent)); box-shadow:0 0 0 3px color-mix(in oklch,attr(data-color type(<color>),var(--rw-accent)) 22%,transparent); }
-      :where(select.rw-input,.rw-native select):not([data-picker=native]) option[data-color] { grid-template-columns:auto auto minmax(0,1fr) auto; }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])::picker-icon {
+      transition: rotate 0.4s var(--rw-spring, ease);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])::picker(select) {
+      padding: 8px;
+      max-block-size: min(22rem, 60dvb);
+      scrollbar-width: thin;
+      scrollbar-color: var(--rw-line) transparent;
+      box-shadow: var(--rw-shadow);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) selectedcontent {
+      display: flex;
+      align-items: center;
+      gap: 0.7em;
+      min-inline-size: 0;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) selectedcontent small {
+      display: none;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) button {
+      all: unset;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      inline-size: 100%;
+      cursor: inherit;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      column-gap: 12px;
+      transition:
+        opacity 0.25s,
+        translate 0.45s var(--rw-spring, ease),
+        background-color 0.12s;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])
+      option
+      > span:not(.rw-option__icon) {
+      display: grid;
+      min-inline-size: 0;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option small {
+      color: var(--rw-muted);
+      font-size: 0.82em;
+      font-weight: 400;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])
+      option:hover:not(:checked) {
+      translate: 4px 0;
+      background: color-mix(in oklch, var(--rw-soft) 70%, transparent);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option:checked {
+      background: linear-gradient(
+        100deg,
+        color-mix(in oklch, var(--rw-accent) 16%, var(--rw-surface)),
+        var(--rw-soft)
+      );
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])
+      option:hover
+      .rw-option__icon {
+      animation: rw-boop 0.45s var(--rw-spring, ease);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option::checkmark {
+      content: "";
+      inline-size: 1.5em;
+      block-size: 1.5em;
+      background: var(--rw-accent);
+      mask: var(--rw-icon-check-circle-fill) center / contain no-repeat;
+      transition: scale 0.35s var(--rw-spring, ease);
+    }
+    @starting-style {
+      :where(select.rw-input, .rw-native select):not([data-picker="native"]) option::checkmark {
+        scale: 0;
+      }
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) .rw-option__icon {
+      display: grid;
+      place-items: center;
+      inline-size: 2.1em;
+      block-size: 2.1em;
+      border-radius: 0.7em;
+      background: var(--rw-soft);
+      font-size: 1.05em;
+      line-height: 1;
+      box-shadow: inset 0 1px var(--rw-highlight);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])
+      selectedcontent
+      .rw-option__icon {
+      inline-size: 1.45em;
+      block-size: 1.45em;
+      font-size: 0.9em;
+      border-radius: 0.55em;
+    }
+    @starting-style {
+      :where(select.rw-input, .rw-native select):not([data-picker="native"]) option {
+        opacity: 0;
+        translate: -16px 0;
+      }
+    }
+    @supports (transition-delay: calc(1ms * sibling-index())) {
+      :where(select.rw-input, .rw-native select):not([data-picker="native"]) option {
+        transition:
+          opacity 0.25s calc(35ms * (sibling-index() - 1)),
+          translate 0.5s var(--rw-spring, ease) calc(35ms * (sibling-index() - 1)),
+          background-color 0.12s 0s;
+      }
+    }
+    @supports (color: attr(data-color type(<color>), red)) {
+      :where(select.rw-input, .rw-native select):not([data-picker="native"])
+        option[data-color]::before {
+        content: "";
+        order: -1;
+        inline-size: 0.7em;
+        block-size: 0.7em;
+        border-radius: 50%;
+        background: attr(data-color type(<color>), var(--rw-accent));
+        box-shadow: 0 0 0 3px
+          color-mix(in oklch, attr(data-color type(<color>), var(--rw-accent)) 22%, transparent);
+      }
+      :where(select.rw-input, .rw-native select):not([data-picker="native"]) option[data-color] {
+        grid-template-columns: auto auto minmax(0, 1fr) auto;
+      }
     }
   }
   /* Select variants: set data-* on the select. Sizes, shapes, looks and tones only change tokens and radii, so every variant keeps the same markup. */
-  @supports (appearance:base-select) {
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-size=sm] { --rw-field-padding:6px; font-size:12px; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-size=lg] { --rw-field-padding:15px; font-size:16px; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-shape=pill] { border-radius:999px; padding-inline:1.3em; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-shape=pill]::picker(select) { border-radius:28px; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-shape=pill] option { border-radius:999px; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-shape=square] { border-radius:4px; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-shape=square]::picker(select) { border-radius:4px; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-shape=square] option { border-radius:3px; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-variant=filled] { background:var(--rw-accent); color:var(--rw-on-accent); border-color:var(--rw-accent); box-shadow:0 3px 0 color-mix(in oklch,var(--rw-accent) 60%,black); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-variant=filled]::picker-icon { color:inherit; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-variant=filled] .rw-option__icon { background:color-mix(in oklch,var(--rw-on-accent) 22%,transparent); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-variant=outline] { background:transparent; border:2px solid var(--rw-accent); box-shadow:none; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-variant=ghost] { background:transparent; border-color:transparent; box-shadow:none; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-variant=ghost]:hover:not(:disabled) { background:var(--rw-soft); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-tone=coral] { --rw-accent:#e5533a; --rw-soft:#ffe6df; --rw-on-accent:#fff; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-tone=mint] { --rw-accent:#139878; --rw-soft:#dcf6ee; --rw-on-accent:#fff; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-tone=sky] { --rw-accent:#2f6fe0; --rw-soft:#e0ecff; --rw-on-accent:#fff; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-tone=sun] { --rw-accent:#b86e00; --rw-soft:#fff0cc; --rw-on-accent:#fff; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-density=compact]::picker(select) { padding:4px; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-density=compact] option { padding:6px 10px; column-gap:9px; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-density=roomy] option { padding:14px 14px; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-checkmark=off] option::checkmark { display:none; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-stagger=off] option { transition:background-color .12s; }
-    @starting-style { :where(select.rw-input,.rw-native select):not([data-picker=native])[data-stagger=off] option { opacity:1; translate:none; } }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-columns="2"] { --rw-picker-columns:2; } :where(select.rw-input,.rw-native select):not([data-picker=native])[data-columns="3"] { --rw-picker-columns:3; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native])[data-columns]:open::picker(select) { display:grid; grid-template-columns:repeat(var(--rw-picker-columns,1),minmax(0,1fr)); gap:4px; min-inline-size:max(anchor-size(inline),calc(var(--rw-picker-columns,1) * 14rem)); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) optgroup { display:contents; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) optgroup > legend { grid-column:1/-1; padding:12px 12px 4px; font:700 .68em/1.2 var(--rw-font); letter-spacing:.12em; text-transform:uppercase; color:var(--rw-muted); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) hr { grid-column:1/-1; inline-size:100%; margin:6px 8px; border:0; border-block-start:1px solid var(--rw-line); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) option:disabled { opacity:.45; cursor:not-allowed; }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) .rw-option__avatar { display:grid; place-items:center; inline-size:2.1em; block-size:2.1em; border-radius:50%; font:700 .75em/1 var(--rw-font); color:#fff; background:var(--rw-accent); }
-    :where(select.rw-input,.rw-native select):not([data-picker=native]) selectedcontent .rw-option__avatar { inline-size:1.6em; block-size:1.6em; font-size:.7em; }
+  @supports (appearance: base-select) {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-size="sm"] {
+      --rw-field-padding: 6px;
+      font-size: 12px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-size="lg"] {
+      --rw-field-padding: 15px;
+      font-size: 16px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-shape="pill"] {
+      border-radius: 999px;
+      padding-inline: 1.3em;
+    }
+    :where(select.rw-input, .rw-native select):not(
+        [data-picker="native"]
+      )[data-shape="pill"]::picker(select) {
+      border-radius: 28px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-shape="pill"]
+      option {
+      border-radius: 999px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-shape="square"] {
+      border-radius: 4px;
+    }
+    :where(select.rw-input, .rw-native select):not(
+        [data-picker="native"]
+      )[data-shape="square"]::picker(select) {
+      border-radius: 4px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-shape="square"]
+      option {
+      border-radius: 3px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-variant="filled"] {
+      background: var(--rw-accent);
+      color: var(--rw-on-accent);
+      border-color: var(--rw-accent);
+      box-shadow: 0 3px 0 color-mix(in oklch, var(--rw-accent) 60%, black);
+    }
+    :where(select.rw-input, .rw-native select):not(
+        [data-picker="native"]
+      )[data-variant="filled"]::picker-icon {
+      color: inherit;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-variant="filled"]
+      .rw-option__icon {
+      background: color-mix(in oklch, var(--rw-on-accent) 22%, transparent);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-variant="outline"] {
+      background: transparent;
+      border: 2px solid var(--rw-accent);
+      box-shadow: none;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-variant="ghost"] {
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
+    }
+    :where(select.rw-input, .rw-native select):not(
+        [data-picker="native"]
+      )[data-variant="ghost"]:hover:not(:disabled) {
+      background: var(--rw-soft);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-tone="coral"] {
+      --rw-accent: #e5533a;
+      --rw-soft: #ffe6df;
+      --rw-on-accent: #fff;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-tone="mint"] {
+      --rw-accent: #139878;
+      --rw-soft: #dcf6ee;
+      --rw-on-accent: #fff;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-tone="sky"] {
+      --rw-accent: #2f6fe0;
+      --rw-soft: #e0ecff;
+      --rw-on-accent: #fff;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-tone="sun"] {
+      --rw-accent: #b86e00;
+      --rw-soft: #fff0cc;
+      --rw-on-accent: #fff;
+    }
+    :where(select.rw-input, .rw-native select):not(
+        [data-picker="native"]
+      )[data-density="compact"]::picker(select) {
+      padding: 4px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-density="compact"]
+      option {
+      padding: 6px 10px;
+      column-gap: 9px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-density="roomy"]
+      option {
+      padding: 14px 14px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-checkmark="off"]
+      option::checkmark {
+      display: none;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-stagger="off"]
+      option {
+      transition: background-color 0.12s;
+    }
+    @starting-style {
+      :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-stagger="off"]
+        option {
+        opacity: 1;
+        translate: none;
+      }
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-columns="2"] {
+      --rw-picker-columns: 2;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])[data-columns="3"] {
+      --rw-picker-columns: 3;
+    }
+    :where(select.rw-input, .rw-native select):not(
+        [data-picker="native"]
+      )[data-columns]:open::picker(select) {
+      display: grid;
+      grid-template-columns: repeat(var(--rw-picker-columns, 1), minmax(0, 1fr));
+      gap: 4px;
+      min-inline-size: max(anchor-size(inline), calc(var(--rw-picker-columns, 1) * 14rem));
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) optgroup {
+      display: contents;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) optgroup > legend {
+      grid-column: 1 / -1;
+      padding: 12px 12px 4px;
+      font: 700 0.68em / 1.2 var(--rw-font);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rw-muted);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) hr {
+      grid-column: 1 / -1;
+      inline-size: 100%;
+      margin: 6px 8px;
+      border: 0;
+      border-block-start: 1px solid var(--rw-line);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) .rw-option__avatar {
+      display: grid;
+      place-items: center;
+      inline-size: 2.1em;
+      block-size: 2.1em;
+      border-radius: 50%;
+      font: 700 0.75em / 1 var(--rw-font);
+      color: #fff;
+      background: var(--rw-accent);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])
+      selectedcontent
+      .rw-option__avatar {
+      inline-size: 1.6em;
+      block-size: 1.6em;
+      font-size: 0.7em;
+    }
   }
-  @media (prefers-reduced-motion:reduce) { :where(select.rw-input,.rw-native select)::picker-icon,:where(select.rw-input,.rw-native select)::picker(select),:where(select.rw-input,.rw-native select):not([data-picker=native]) option { transition:none!important; } :where(select.rw-input,.rw-native select):not([data-picker=native]) option:hover .rw-option__icon { animation:none; } }
-  @media (forced-colors:active) {
-    :where(.rw-input,.rw-native input,.rw-native select,.rw-native textarea) { box-shadow:none; }
-    :where(select.rw-input,.rw-native select):not([multiple]):is(:not([size]),[size="1"]) { appearance:auto; background-image:none; padding-inline-end:var(--rw-field-padding); }
+  @media (prefers-reduced-motion: reduce) {
+    :where(select.rw-input, .rw-native select)::picker-icon,
+    :where(select.rw-input, .rw-native select)::picker(select),
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]) option {
+      transition: none !important;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"])
+      option:hover
+      .rw-option__icon {
+      animation: none;
+    }
+  }
+  @media (forced-colors: active) {
+    :where(.rw-input, .rw-native input, .rw-native select, .rw-native textarea) {
+      box-shadow: none;
+    }
+    :where(select.rw-input, .rw-native select):not([multiple]):is(:not([size]), [size="1"]) {
+      appearance: auto;
+      background-image: none;
+      padding-inline-end: var(--rw-field-padding);
+    }
   }
 }

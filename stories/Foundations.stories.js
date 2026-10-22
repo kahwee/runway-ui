@@ -1,10 +1,10 @@
 import {
-  escapeHTML as e,
   bounded,
-  text,
+  escapeHTML as e,
   flag,
-  select,
   range,
+  select,
+  text,
   uniqueId,
   withDefaults,
 } from "./helpers.js";
@@ -33,17 +33,12 @@ export const Button = {
   },
   argTypes: {
     label: text("Visible button text."),
-    shortcut: text(
-      "Optional keyboard hint; binding the shortcut belongs to the application.",
-    ),
+    shortcut: text("Optional keyboard hint; binding the shortcut belongs to the application."),
     variant: select(
       ["neutral", "primary", "secondary", "danger"],
       "data-variant chooses the color role.",
     ),
-    size: select(
-      ["sm", "md", "lg"],
-      "data-size controls padding and font size.",
-    ),
+    size: select(["sm", "md", "lg"], "data-size controls padding and font size."),
     disabled: flag("Native disabled attribute prevents activation."),
     block: flag("data-block fills the available inline width.", "Layout"),
     pressed: select(
@@ -51,9 +46,7 @@ export const Button = {
       "Set aria-pressed only for toggle actions.",
       "State",
     ),
-    busy: flag(
-      "aria-busy announces a pending update; does not disable activation.",
-    ),
+    busy: flag("aria-busy announces a pending update; does not disable activation."),
   },
   render: (a) =>
     `<button class="rw-button" type="button" data-variant="${e(a.variant)}" data-size="${e(a.size)}"${a.disabled ? " disabled" : ""}${a.block ? " data-block" : ""}${a.pressed !== "unset" ? ` aria-pressed="${e(a.pressed)}"` : ""}${a.busy ? ' aria-busy="true"' : ""}>${e(a.label)}${a.shortcut ? ` <kbd class="rw-shortcut">${e(a.shortcut)}</kbd>` : ""}</button>`,
@@ -73,10 +66,7 @@ export const Panel = {
     title: text("Visible section heading."),
     description: text("Body text; rendered as text, never HTML."),
     eyebrow: text("Optional kicker above the heading."),
-    elevation: select(
-      ["raised", "flat"],
-      "data-elevation removes the shadow in flat mode.",
-    ),
+    elevation: select(["raised", "flat"], "data-elevation removes the shadow in flat mode."),
     padding: range(8, 48, 2, "--rw-panel-padding, in CSS pixels."),
     width: range(320, 1000, 20, "Maximum panel width in the preview."),
     showBadge: flag("Show the status badge.", "Content"),
@@ -88,16 +78,10 @@ export const Panel = {
 export const Badge = {
   args: { label: "Low reserves", tone: "warning" },
   argTypes: {
-    label: text(
-      "Meaningful text; never communicate status through color alone.",
-    ),
-    tone: select(
-      ["neutral", "warning", "danger"],
-      "data-tone chooses a semantic color.",
-    ),
+    label: text("Meaningful text; never communicate status through color alone."),
+    tone: select(["neutral", "warning", "danger"], "data-tone chooses a semantic color."),
   },
-  render: (a) =>
-    `<span class="rw-badge" data-tone="${e(a.tone)}">${e(a.label)}</span>`,
+  render: (a) => `<span class="rw-badge" data-tone="${e(a.tone)}">${e(a.label)}</span>`,
 };
 export const Input = {
   args: {
@@ -122,11 +106,7 @@ export const Input = {
     label: text("Native associated label."),
     value: text("Initial value; user editing remains native."),
     placeholder: text("Supplementary placeholder, not a label."),
-    type: select(
-      ["text", "email", "number", "search"],
-      "Native input type.",
-      "HTML",
-    ),
+    type: select(["text", "email", "number", "search"], "Native input type.", "HTML"),
     disabled: flag("Native disabled state."),
     readonly: flag("Native readonly state."),
     required: flag("Native required constraint."),
@@ -156,13 +136,7 @@ export const Progress = {
   argTypes: {
     label: text("Accessible name and visible label."),
     value: range(0, 100, 1, "Current value, bounded by maximum.", "Data"),
-    maximum: range(
-      1,
-      100,
-      1,
-      "Positive maximum; fill and text share this scale.",
-      "Data",
-    ),
+    maximum: range(1, 100, 1, "Positive maximum; fill and text share this scale.", "Data"),
     tone: select(
       ["neutral", "warning", "danger", "energy", "morale"],
       "Semantic data-tone for the custom meter.",
@@ -185,8 +159,7 @@ export const Progress = {
 export const Disclosure = {
   args: {
     summary: "Production modifiers",
-    content:
-      "Weather improves output by 10%. Maintenance reduces output by 5%.",
+    content: "Weather improves output by 10%. Maintenance reduces output by 5%.",
     open: false,
   },
   argTypes: {
@@ -201,67 +174,162 @@ export const Disclosure = {
 const optionStyles = ["plain", "icons", "descriptions", "dots", "avatars", "rich"];
 const sampleIcons = ["🚀", "🧁", "🛰️", "🎲", "🪴", "🔮", "🧪", "🎈", "🍉", "🛼", "🪁", "🧩"];
 const sampleColors = ["#6a4cff", "#ff6b9d", "#1fb58f", "#ffb000", "#3aa0ff", "#e5533a"];
-const sampleNotes = ["Ships at suspicious speed", "Prototypes and sprinkles", "Listens to the internet", "Breaks things on purpose, kindly", "Quiet focus and good lighting", "Predicts the weather, mostly"];
-const initials = (label) => label.split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
+const sampleNotes = [
+  "Ships at suspicious speed",
+  "Prototypes and sprinkles",
+  "Listens to the internet",
+  "Breaks things on purpose, kindly",
+  "Quiet focus and good lighting",
+  "Predicts the weather, mostly",
+];
+const initials = (label) =>
+  label
+    .split(/\s+/)
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 export const Select = {
   args: {
     label: "Which team are you joining?",
     options: "Rocket crew\nCupcake lab\nSignal desk\nChaos garden\nCalm corner",
-    selected: 0, hint: "Open it, hover the options and use the arrow keys.", width: 460,
-    optionStyle: "rich", variant: "soft", size: "md", shape: "round", tone: "grape",
-    density: "comfortable", pickerColumns: 1, groups: false, disabledOptions: 0, placeholder: "",
-    checkmark: true, stagger: true,
-    arrowInset: 16, direction: "ltr", disabled: false, invalid: false, required: false,
-    multiple: false, nativeSkin: false, picker: "default",
+    selected: 0,
+    hint: "Open it, hover the options and use the arrow keys.",
+    width: 460,
+    optionStyle: "rich",
+    variant: "soft",
+    size: "md",
+    shape: "round",
+    tone: "grape",
+    density: "comfortable",
+    pickerColumns: 1,
+    groups: false,
+    disabledOptions: 0,
+    placeholder: "",
+    checkmark: true,
+    stagger: true,
+    arrowInset: 16,
+    direction: "ltr",
+    disabled: false,
+    invalid: false,
+    required: false,
+    multiple: false,
+    nativeSkin: false,
+    picker: "default",
   },
   argTypes: {
     label: text("Associated native label.", "Content"),
     options: text("One option per line, at most 12.", "Content"),
     selected: range(0, 11, 1, "Initial selected option index.", "Content"),
     hint: text("Help associated with the field.", "Content"),
-    placeholder: text("Optional disabled first option shown until a choice is made (also makes the field required).", "Content"),
-    optionStyle: select(optionStyles, "How options are dressed: plain text, emoji icons, descriptions, colour dots (typed attr()), avatars or all of it.", "Options"),
+    placeholder: text(
+      "Optional disabled first option shown until a choice is made (also makes the field required).",
+      "Content",
+    ),
+    optionStyle: select(
+      optionStyles,
+      "How options are dressed: plain text, emoji icons, descriptions, colour dots (typed attr()), avatars or all of it.",
+      "Options",
+    ),
     groups: flag("Wrap options in two optgroups with legends.", "Options"),
     disabledOptions: range(0, 4, 1, "Disable this many options from the end.", "Options"),
-    variant: select(["soft", "filled", "outline", "ghost"], "Trigger look. Sets data-variant.", "Look"),
+    variant: select(
+      ["soft", "filled", "outline", "ghost"],
+      "Trigger look. Sets data-variant.",
+      "Look",
+    ),
     size: select(["sm", "md", "lg"], "Trigger size. Sets data-size.", "Look"),
-    shape: select(["round", "pill", "square"], "Corner shape for trigger, picker and options. Sets data-shape.", "Look"),
-    tone: select(["grape", "coral", "mint", "sky", "sun"], "Accent for this select only. Sets data-tone.", "Look"),
-    density: select(["comfortable", "compact", "roomy"], "Option spacing. Sets data-density.", "Look"),
+    shape: select(
+      ["round", "pill", "square"],
+      "Corner shape for trigger, picker and options. Sets data-shape.",
+      "Look",
+    ),
+    tone: select(
+      ["grape", "coral", "mint", "sky", "sun"],
+      "Accent for this select only. Sets data-tone.",
+      "Look",
+    ),
+    density: select(
+      ["comfortable", "compact", "roomy"],
+      "Option spacing. Sets data-density.",
+      "Look",
+    ),
     pickerColumns: range(1, 3, 1, "Lay options out in columns. Sets data-columns.", "Look"),
     checkmark: flag("Show the selected check badge. Sets data-checkmark=off when false.", "Motion"),
-    stagger: flag("Stagger options in with sibling-index(). Sets data-stagger=off when false.", "Motion"),
+    stagger: flag(
+      "Stagger options in with sibling-index(). Sets data-stagger=off when false.",
+      "Motion",
+    ),
     width: range(180, 700, 10, "Field width; try long labels at 180px.", "Layout"),
-    arrowInset: range(10, 28, 1, "--rw-select-inset. Distance between arrow and inline edge (non-customizable fallback).", "Layout"),
-    direction: select(["ltr", "rtl"], "Direction changes arrow placement and text alignment.", "HTML"),
+    arrowInset: range(
+      10,
+      28,
+      1,
+      "--rw-select-inset. Distance between arrow and inline edge (non-customizable fallback).",
+      "Layout",
+    ),
+    direction: select(
+      ["ltr", "rtl"],
+      "Direction changes arrow placement and text alignment.",
+      "HTML",
+    ),
     disabled: flag("Native disabled control.", "State"),
     invalid: flag("aria-invalid and border state.", "State"),
     required: flag("Native required constraint.", "State"),
     multiple: flag("Native multi-select/listbox; never draws a dropdown arrow.", "HTML"),
     nativeSkin: flag("Use rw-native instead of an explicit rw-input class.", "HTML"),
-    picker: select(["default", "native"], "Default is the customizable picker where supported (Chrome 135+); native opts out with data-picker=native.", "HTML"),
+    picker: select(
+      ["default", "native"],
+      "Default is the customizable picker where supported (Chrome 135+); native opts out with data-picker=native.",
+      "HTML",
+    ),
   },
-  parameters: { docs: { description: { story: "One playground for the whole select. The customizable picker (appearance: base-select) is the default; variants only set data attributes, so the markup stays a plain native select. Browsers without support show the padded native select." } } },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "One playground for the whole select. The customizable picker (appearance: base-select) is the default; variants only set data attributes, so the markup stays a plain native select. Browsers without support show the padded native select.",
+      },
+    },
+  },
   render: (a) => {
     const id = uniqueId("select");
-    const labels = String(a.options).split("\n").map((v) => v.trim()).filter(Boolean).slice(0, 12);
+    const labels = String(a.options)
+      .split("\n")
+      .map((v) => v.trim())
+      .filter(Boolean)
+      .slice(0, 12);
     const index = Math.trunc(bounded(a.selected, 0, Math.max(0, labels.length - 1)));
     const style = a.optionStyle;
     const firstDisabled = labels.length - Math.round(bounded(a.disabledOptions, 0, 4));
     const option = (label, i) => {
       const icon = `<span class="rw-option__icon" aria-hidden="true">${sampleIcons[i % sampleIcons.length]}</span>`;
       const avatar = `<span class="rw-option__avatar" aria-hidden="true" style="background:${sampleColors[i % sampleColors.length]}">${e(initials(label))}</span>`;
-      const copy = (note) => `<span><strong>${e(label)}</strong>${note ? `<small>${e(sampleNotes[i % sampleNotes.length])}</small>` : ""}</span>`;
-      const lead = style === "icons" || style === "rich" || style === "descriptions" ? icon : style === "avatars" ? avatar : "";
-      const body = style === "descriptions" || style === "rich" || style === "avatars" ? copy(true) : e(label);
+      const copy = (note) =>
+        `<span><strong>${e(label)}</strong>${note ? `<small>${e(sampleNotes[i % sampleNotes.length])}</small>` : ""}</span>`;
+      const lead =
+        style === "icons" || style === "rich" || style === "descriptions"
+          ? icon
+          : style === "avatars"
+            ? avatar
+            : "";
+      const body =
+        style === "descriptions" || style === "rich" || style === "avatars" ? copy(true) : e(label);
       const attrs = `${!a.placeholder && i === index ? " selected" : ""}${i >= firstDisabled ? " disabled" : ""}${style === "dots" || style === "rich" ? ` data-color="${sampleColors[i % sampleColors.length]}"` : ""}`;
       return `<option${attrs}>${lead}${body}</option>`;
     };
     const items = labels.map(option);
     const half = Math.ceil(items.length / 2);
-    const body = a.groups ? `<optgroup label="First crew"><legend>First crew</legend>${items.slice(0, half).join("")}</optgroup><optgroup label="Second crew"><legend>Second crew</legend>${items.slice(half).join("")}</optgroup>` : items.join("");
-    const placeholder = a.placeholder ? `<option value="" selected disabled hidden>${e(a.placeholder)}</option>` : "";
-    const rich = style !== "plain" && !a.multiple ? "<button><selectedcontent></selectedcontent></button>" : "";
+    const body = a.groups
+      ? `<optgroup label="First crew"><legend>First crew</legend>${items.slice(0, half).join("")}</optgroup><optgroup label="Second crew"><legend>Second crew</legend>${items.slice(half).join("")}</optgroup>`
+      : items.join("");
+    const placeholder = a.placeholder
+      ? `<option value="" selected disabled hidden>${e(a.placeholder)}</option>`
+      : "";
+    const rich =
+      style !== "plain" && !a.multiple
+        ? "<button><selectedcontent></selectedcontent></button>"
+        : "";
     const attrs = [
       a.nativeSkin ? "" : ' class="rw-input"',
       a.picker === "native" ? ' data-picker="native"' : "",

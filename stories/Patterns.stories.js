@@ -1,11 +1,11 @@
 import {
-  escapeHTML as e,
-  iconHTML,
   bounded,
-  text,
+  escapeHTML as e,
   flag,
-  range,
+  iconHTML,
   object,
+  range,
+  text,
   withDefaults,
 } from "./helpers.js";
 export default {
@@ -47,7 +47,9 @@ export const ResourceHUD = {
       if: { arg: "showRate" },
       table: { category: "Data" },
     },
-    icon: text("Phosphor icon name (coins, users, flask, sun…) or any text symbol; hidden from accessibility APIs."),
+    icon: text(
+      "Phosphor icon name (coins, users, flask, sun…) or any text symbol; hidden from accessibility APIs.",
+    ),
     showCapacity: flag("Append capacity to the displayed quantity.", "Content"),
     showRate: flag("Show signed rate and cycle unit.", "Content"),
   },
@@ -86,13 +88,7 @@ export const Objectives = {
   },
   argTypes: {
     items: object("Array of objective labels."),
-    completed: range(
-      0,
-      12,
-      1,
-      "Number of completed objectives from the start.",
-      "State",
-    ),
+    completed: range(0, 12, 1, "Number of completed objectives from the start.", "State"),
   },
   render: (a) =>
     Array.isArray(a.items)
@@ -112,9 +108,7 @@ export const Choice = {
     description: text("Consequence shown before activation."),
     cost: text("Visible cost or requirement."),
     disabled: flag("Native disabled state."),
-    selected: flag(
-      "aria-pressed marks a selected choice; the parent uses :has() for its border.",
-    ),
+    selected: flag("aria-pressed marks a selected choice; the parent uses :has() for its border."),
   },
   render: (a) =>
     `<section class="rw-panel story-width"><button type="button" class="rw-choice" aria-pressed="${a.selected}"${a.disabled ? " disabled" : ""}><span><strong>${e(a.title)}</strong><small>${e(a.description)}</small></span><span>${e(a.cost)}</span></button></section>`,
@@ -178,12 +172,5 @@ export const ProductionLedger = {
       .join("")}</div>`;
   },
 };
-for (const story of [
-  ResourceHUD,
-  EquipmentSlots,
-  Objectives,
-  Choice,
-  ActionDock,
-  ProductionLedger,
-])
+for (const story of [ResourceHUD, EquipmentSlots, Objectives, Choice, ActionDock, ProductionLedger])
   story.argTypes = withDefaults(story.args, story.argTypes);

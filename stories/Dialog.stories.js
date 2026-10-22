@@ -1,15 +1,8 @@
-import {
-  escapeHTML as e,
-  text,
-  flag,
-  select,
-  meta,
-  uniqueId,
-} from "./helpers.js";
+import { escapeHTML as e, flag, meta, select, text, uniqueId } from "./helpers.js";
+
 const args = {
   title: "Chart the next frontier?",
-  description:
-    "This expedition costs 200 credits. Your crew will return after three cycles.",
+  description: "This expedition costs 200 credits. Your crew will return after three cycles.",
   eyebrow: "Expedition ready",
   triggerLabel: "Open decision",
   confirmLabel: "Confirm expedition",
@@ -27,9 +20,7 @@ const args = {
 const argTypes = {
   title: text("Heading referenced by aria-labelledby."),
   description: {
-    ...text(
-      "Body text referenced by aria-describedby; long text scrolls inside the body.",
-    ),
+    ...text("Body text referenced by aria-describedby; long text scrolls inside the body."),
     control: "text",
   },
   eyebrow: text("Optional short context label."),
@@ -43,14 +34,8 @@ const argTypes = {
     ["compact", "default", "wide"],
     "Class modifier: rw-dialog--compact, base rw-dialog, or rw-dialog--wide.",
   ),
-  tone: select(
-    ["neutral", "danger"],
-    "Danger adds rw-dialog--danger and a danger action.",
-  ),
-  footer: select(
-    ["end", "split", "stacked"],
-    "Class modifier on rw-dialog__footer.",
-  ),
+  tone: select(["neutral", "danger"], "Danger adds rw-dialog--danger and a danger action."),
+  footer: select(["end", "split", "stacked"], "Class modifier on rw-dialog__footer."),
   styled: flag(
     "Toggle rw-dialog and its BEM classes. Off shows an ordinary unstyled native dialog.",
     "Appearance",
@@ -82,12 +67,7 @@ export default {
 
 export const Playground = {
   render: (a) => {
-    if (
-      !a.showCancel &&
-      !a.showClose &&
-      a.confirmDisabled &&
-      a.dismissal === "none"
-    )
+    if (!a.showCancel && !a.showClose && a.confirmDisabled && a.dismissal === "none")
       return '<p role="alert">Keep at least one enabled explicit exit action when dismissal is disabled.</p>';
     const id = uniqueId("decision");
     const classes = a.styled
@@ -104,8 +84,7 @@ export const Playground = {
     const focusCancel =
       (a.autofocus === "cancel" && a.showCancel) ||
       (a.autofocus === "confirm" && a.confirmDisabled && a.showCancel);
-    const focusConfirm =
-      !a.confirmDisabled && (!a.showCancel || a.autofocus === "confirm");
+    const focusConfirm = !a.confirmDisabled && (!a.showCancel || a.autofocus === "confirm");
     return `<div class="story-width"><p class="rw-kicker">${a.styled ? e(classes) : "Native dialog · no styling class"}</p><button class="rw-button" data-variant="primary" commandfor="${id}" command="show-modal">${e(a.triggerLabel)}</button><dialog${classes ? ` class="${e(classes)}"` : ""} id="${id}" closedby="${e(a.dismissal)}" aria-labelledby="${id}-title" aria-describedby="${id}-description"><header${c("header")}><div>${a.eyebrow ? `<p${c("eyebrow")}>${e(a.eyebrow)}</p>` : ""}<h2${c("title")} id="${id}-title">${e(a.title)}</h2></div>${a.showClose ? `<button${c("close")} type="button" aria-label="Close dialog" commandfor="${id}" command="close"><span class="rw-icon" data-icon="x" aria-hidden="true"></span></button>` : ""}</header><div${c("body")}><p id="${id}-description">${e(a.description)}</p></div><form method="dialog"${a.styled ? ` class="rw-dialog__footer${a.footer !== "end" ? ` rw-dialog__footer--${a.footer}` : ""}"` : ""}>${a.showCancel ? `<button class="rw-button" value="cancel"${focusCancel ? " autofocus" : ""}>${e(a.cancelLabel)}</button>` : ""}<button class="rw-button" data-variant="${a.tone === "danger" ? "danger" : "primary"}" value="confirm"${a.confirmDisabled ? " disabled" : ""}${focusConfirm ? " autofocus" : ""}>${e(a.confirmLabel)}</button></form></dialog></div>`;
   },
 };

@@ -1,5 +1,6 @@
-import type { HistoryAnnotation, HistoryOptions } from './history.js';
-export interface HistoryWindowOptions extends Omit<HistoryOptions, 'values' | 'labels' | 'annotations'> {
+import type { HistoryAnnotation, HistoryOptions } from "./history.js";
+export interface HistoryWindowOptions
+  extends Omit<HistoryOptions, "values" | "labels" | "annotations"> {
   /** Every observation, in time order; null marks a missing slot. No practical length limit. */
   values: Array<number | null>;
   labels: string[];
@@ -22,4 +23,7 @@ export interface HistoryWindow {
   destroy(): void;
 }
 /** Draws one window of a long series with an overview, scrubber and pager. */
-export declare function mountHistoryWindow(root: Element, options: HistoryWindowOptions): HistoryWindow;
+export declare function mountHistoryWindow(
+  root: Element,
+  options: HistoryWindowOptions,
+): HistoryWindow;

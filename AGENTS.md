@@ -8,7 +8,7 @@
 - Desktop examples target 1100 × 640 minimum. Check relevant UI changes at 1440 × 900 and 1366 × 768. Narrow screens show an unsupported notice.
 - Keep all public material generic. Do not include private projects, personal naming discussions, local machine paths or consumer-specific adapters.
 - MIT is the only license for original code, styles, documentation and examples. Keep LICENSE in redistributions and package archives. Do not add attribution-in-UI requirements.
-- Build the self-contained CSS with npm run build. Do not publish npm packages, create releases or change hosting unless requested.
+- Build the self-contained CSS with pnpm run build. Do not publish npm packages, create releases or change hosting unless requested.
 
 ## CSS direction
 
@@ -21,3 +21,9 @@
 
 - Use kebab-case for new file and directory names, CSS classes, HTML IDs, data-attribute names, and package script names. Keep the `rw-` prefix for shared library classes and tokens.
 - Preserve existing public names and exports unless an intentional migration is documented. JavaScript/TypeScript identifiers follow camelCase/PascalCase and Rust identifiers follow Rust conventions; the kebab-case rule applies to paths and web-facing names.
+
+## Tooling
+
+- Use the pinned pnpm version and `pnpm-lock.yaml`; do not add npm or Yarn lockfiles.
+- Run `pnpm check` before committing. Use `pnpm check-fix` for safe lint fixes and formatting; review any behavior changes before applying unsafe fixes.
+- Biome covers authored JavaScript, TypeScript declarations, JSON, CSS and HTML. Keep generated bundles, generated icons, dependency trees and build output outside its scope.

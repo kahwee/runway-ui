@@ -5,9 +5,11 @@ The CSS entry has no JavaScript side effects. Import each behavior explicitly, r
 ## Roving focus
 
 ```js
-import { bindNavigation } from 'runway-ui/navigation';
-const navigation = bindNavigation(document.querySelector('[role=toolbar]'), {
-  selector: 'button', columns: 3, wrap: false
+import { bindNavigation } from "runway-ui/navigation";
+const navigation = bindNavigation(document.querySelector("[role=toolbar]"), {
+  selector: "button",
+  columns: 3,
+  wrap: false,
 });
 // Arrow keys / Home / End move focus. Enter/Space use native button activation.
 // After adding/removing/disabling buttons: navigation.refresh();
@@ -19,7 +21,7 @@ Hidden or disabled native buttons are skipped. The helper owns tabindex while mo
 ## Controller
 
 ```js
-import { bindGamepad } from 'runway-ui/navigation';
+import { bindGamepad } from "runway-ui/navigation";
 const controller = bindGamepad(root, navigation);
 // controller.destroy() stops requestAnimationFrame polling.
 ```
@@ -29,11 +31,13 @@ Opt in from a visible user action. The adapter uses the first connected **standa
 ## Fixed-height virtual inventory
 
 ```js
-import { createInventory } from 'runway-ui/inventory';
+import { createInventory } from "runway-ui/inventory";
 const inventory = createInventory(root, {
-  items: [{ id: 1, label: 'Copper ore', icon: '◇' }],
+  items: [{ id: 1, label: "Copper ore", icon: "◇" }],
   columns: 8,
-  onSelect(item, index) { /* host owns selected-item action */ }
+  onSelect(item, index) {
+    /* host owns selected-item action */
+  },
 });
 inventory.setItems(filteredItems);
 // inventory.destroy() disconnects listeners/ResizeObserver and clears owned markup.

@@ -49,13 +49,13 @@ Download this repository and link the self-contained bundle:
 Or install directly from GitHub:
 
 ```sh
-npm install github:kahwee/runway-ui
+pnpm add github:kahwee/runway-ui
 ```
 
 ```js
-import 'runway-ui/bundle.css';
+import "runway-ui/bundle.css";
 // Optional modular entry: import 'runway-ui';
-import { bindDialog } from 'runway-ui/dialog';
+import { bindDialog } from "runway-ui/dialog";
 ```
 
 This project is available on GitHub; **it has not been published to the npm registry**. GitHub installation is shown intentionally. The committed CSS bundle is ready to use without a build step. Node 22+ is needed only to rebuild it.
@@ -67,7 +67,6 @@ python3 -m http.server 4320 --bind 127.0.0.1
 ```
 
 Open **`http://127.0.0.1:4320/docs/charts.html`** for the CSS chart lab, or `http://127.0.0.1:4320/docs/` for searchable component options. The root page is the component workshop. Other examples:
-
 - [Illustrated workspace navigation](examples/view-tabs.html): six generic destinations with original vector miniatures.
 - `examples/colony.html`: production, reserve history and a searchable 10,000-item synthetic inventory.
 - `examples/drop-in.html`: opt-in styling for existing native form controls.
@@ -76,14 +75,14 @@ The examples target desktop windows at least 1100 × 640. The CSS library itself
 
 ## What's included
 
-| Module | Components |
-|---|---|
-| Foundations | Theme tokens, cascade layers, surfaces, typography, focus and state colors |
-| Primitives | Buttons, panels, badges, inputs, disclosures, native dialog styling |
-| Game patterns | Resource HUD, equipment slots, objectives, choices, action dock |
-| CSS charts | Columns, stacked bars, diverging bars, six-point areas, percentage-based HTML-table bars; [API and scale rules](docs/CHARTS.md) |
-| Simulation | Subgrid production ledger and container-aware panels |
-| Themes | Warm Studio, dark Orbital, Parchment and playful Whimsy; identical markup |
+| Module             | Components                                                                                                                                             |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Foundations        | Theme tokens, cascade layers, surfaces, typography, focus and state colors                                                                             |
+| Primitives         | Buttons, panels, badges, inputs, disclosures, native dialog styling                                                                                    |
+| Game patterns      | Resource HUD, equipment slots, objectives, choices, action dock                                                                                        |
+| CSS charts         | Columns, stacked bars, diverging bars, six-point areas, percentage-based HTML-table bars; [API and scale rules](docs/CHARTS.md)                        |
+| Simulation         | Subgrid production ledger and container-aware panels                                                                                                   |
+| Themes             | Warm Studio, dark Orbital, Parchment and playful Whimsy; identical markup                                                                              |
 | Optional behaviors | Native dialog dismissal policy, roving keyboard focus, standard controller adapter, fixed-height virtual inventory, range outputs and windowed history |
 
 All component classes use `rw-`; the root `rw-ui` supplies inherited tokens without a global reset. Application styles can override the cascade layers. This is a CSS namespace, not Shadow DOM isolation.
@@ -120,8 +119,8 @@ Targets current desktop Chromium, Firefox and Safari with subgrid and container-
 ## Development
 
 ```sh
-npm run build
-npm pack --dry-run
+pnpm run build
+pnpm pack --dry-run
 ```
 
 There are no third-party runtime dependencies and no font or asset downloads. The CSS bundle is generated from `index.css` and `styles/`; edit source modules and rebuild the bundle. Type declarations accompany every optional behavior.
@@ -130,7 +129,7 @@ Early-stage API: improvements should keep markup predictable, effects modest and
 
 ## Documentation development and hosting
 
-See the [Storybook guide](docs/STORYBOOK.md). Run `npm ci`, then `npm run storybook` for the HTML component explorer. `npm run build-site` creates the public allowlisted `.site/` folder with Storybook under `/storybook/`. GitHub Actions deploys it to GitHub Pages on pushes to `main`. npm package publication is separate.
+See the [Storybook guide](docs/STORYBOOK.md). Run `pnpm install --frozen-lockfile`, then `pnpm run storybook` for the HTML component explorer. `pnpm run build-site` creates the public allowlisted `.site/` folder with Storybook under `/storybook/`. GitHub Actions deploys it to GitHub Pages on pushes to `main`. npm package publication is separate.
 
 Native dialog stories use HTML invoker commands (`commandfor`, `command="show-modal"`) and `form method="dialog"`. Older browsers can use the optional dialog helper. Native disclosures and form controls need no event handlers.
 

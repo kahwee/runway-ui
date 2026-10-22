@@ -1,7 +1,6 @@
 # Options and behavior API
 
 Use the [interactive reference](index.html#reference) for component option tables and copyable markup. [Charts](CHARTS.md) have a separate numeric and scale contract.
-
 - Buttons: `data-variant="primary|secondary|danger"` (omit for neutral), `data-size="sm|md|lg"`, boolean `data-block`, native `disabled`, `aria-busy`.
 - Panels: `data-elevation="flat"` removes the raised shadow.
 - Badges: `data-tone="warning|danger"` supplies optional tones.
@@ -20,20 +19,20 @@ Dialogs use opt-in `rw-dialog` styling and BEM-style structure and modifiers. Se
 
 All modules ship TypeScript declarations and have no runtime dependencies. Use the full CSS bundle unless deliberately composing the style prerequisites.
 
-| Package entry | Exports | Lifecycle |
-| --- | --- | --- |
-| `runway-ui/dialog` | `bindDialog` | `destroy()` restores the dismissal attribute and removes listeners |
-| `runway-ui/navigation` | `bindNavigation`, `bindGamepad` | Destroy both handles when unmounting |
-| `runway-ui/inventory` | `createInventory` | Owns its root contents; `destroy()` clears owned markup |
-| `runway-ui/forms` | `bindRanges` | `destroy()` removes range listeners |
-| `runway-ui/history` | `renderHistory` | Pure escaped HTML renderer; no mounted listeners |
-| `runway-ui/timeseries` | `mountHistoryWindow` | Owns its root contents; `destroy()` cancels pending work and clears the root |
+| Package entry          | Exports                         | Lifecycle                                                                    |
+| ---------------------- | ------------------------------- | ---------------------------------------------------------------------------- |
+| `runway-ui/dialog`     | `bindDialog`                    | `destroy()` restores the dismissal attribute and removes listeners           |
+| `runway-ui/navigation` | `bindNavigation`, `bindGamepad` | Destroy both handles when unmounting                                         |
+| `runway-ui/inventory`  | `createInventory`               | Owns its root contents; `destroy()` clears owned markup                      |
+| `runway-ui/forms`      | `bindRanges`                    | `destroy()` removes range listeners                                          |
+| `runway-ui/history`    | `renderHistory`                 | Pure escaped HTML renderer; no mounted listeners                             |
+| `runway-ui/timeseries` | `mountHistoryWindow`            | Owns its root contents; `destroy()` cancels pending work and clears the root |
 
 ### Range outputs
 
 ```js
-import { bindRanges } from 'runway-ui/forms';
-const ranges = bindRanges(root, { format: value => `${value}%` });
+import { bindRanges } from "runway-ui/forms";
+const ranges = bindRanges(root, { format: (value) => `${value}%` });
 // On unmount:
 ranges.destroy();
 ```

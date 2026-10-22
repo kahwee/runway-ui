@@ -5,9 +5,7 @@ Use native HTML with explicit CSS classes. The library never styles every `dialo
 [Open the dialog playground](https://kahwee.github.io/runway-ui/storybook/?path=/story/foundations-dialog--playground). Change arguments, then open the modal to inspect them. Controls live outside its iframe, so they remain available while the preview dialog is modal.
 
 ```html
-<button class="rw-button" commandfor="decision" command="show-modal">
-  Open decision
-</button>
+<button class="rw-button" commandfor="decision" command="show-modal">Open decision</button>
 <dialog
   class="rw-ui rw-dialog rw-dialog--wide"
   id="decision"
@@ -18,9 +16,7 @@ Use native HTML with explicit CSS classes. The library never styles every `dialo
   <header class="rw-dialog__header">
     <div>
       <p class="rw-dialog__eyebrow">Expedition ready</p>
-      <h2 class="rw-dialog__title" id="decision-title">
-        Chart the next frontier?
-      </h2>
+      <h2 class="rw-dialog__title" id="decision-title">Chart the next frontier?</h2>
     </div>
     <button
       class="rw-dialog__close"
@@ -36,17 +32,15 @@ Use native HTML with explicit CSS classes. The library never styles every `dialo
   </div>
   <form class="rw-dialog__footer" method="dialog">
     <button class="rw-button" value="cancel" autofocus>Cancel</button>
-    <button class="rw-button" data-variant="primary" value="confirm">
-      Confirm
-    </button>
+    <button class="rw-button" data-variant="primary" value="confirm">Confirm</button>
   </form>
 </dialog>
 ```
 
 ## Class contract
 
-| Class                       | Purpose                                                                     |
-| --------------------------- | --------------------------------------------------------------------------- |
+| Class                        | Purpose                                                                     |
+| ---------------------------- | --------------------------------------------------------------------------- |
 | `rw-dialog`                  | Opt-in dialog surface, viewport bounds, backdrop and native open transition |
 | `rw-dialog--compact`         | 380px preferred width                                                       |
 | `rw-dialog--wide`            | 760px preferred width; default base width is 520px                          |

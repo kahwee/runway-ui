@@ -1,38 +1,140 @@
 /* Native details: a rounded card with an icon badge that springs open. Supported engines also animate its intrinsic size. */
 @layer runway-ui.primitives {
-  @keyframes rw-disclosure-boop { 40% { scale:1.22; rotate:-8deg; } to { scale:1; rotate:0deg; } }
-  .rw-disclosure {
-    --_icon:var(--rw-disclosure-icon,var(--rw-icon-caret-right));
-    interpolate-size:allow-keywords; padding:0; border:2px solid var(--rw-line); border-radius:var(--rw-radius); background:var(--rw-raised);
-    transition:background-color .2s,border-color .2s;
-    & > summary {
-      position:relative; display:flex; align-items:center; gap:12px; padding:12px 16px; border-radius:calc(var(--rw-radius) - 2px);
-      font-weight:650; list-style:none; cursor:pointer; transition:background-color .15s;
-      &::-webkit-details-marker { display:none; }
-      /* Badge circle (::before) with the icon drawn over it (::after) so each can use its own colour. */
-      &::before { content:""; flex:none; inline-size:1.7em; block-size:1.7em; border-radius:50%; background:var(--rw-soft); box-shadow:inset 0 -2px 0 color-mix(in oklch,var(--rw-accent) 18%,transparent); transition:background-color .2s,scale .3s var(--rw-spring,ease); }
-      &::after { content:""; position:absolute; inset-inline-start:calc(16px + .3em); inset-block-start:50%; translate:0 -50%; inline-size:1.1em; block-size:1.1em; background:var(--rw-accent); mask:var(--_icon) center / contain no-repeat; transition:rotate .4s var(--rw-spring,ease),background-color .2s; }
-      &:dir(rtl)::after { scale:-1 1; }
-      &:hover { background:color-mix(in oklch,var(--rw-soft) 60%,transparent); }
-      &:hover::before { animation:rw-disclosure-boop .45s var(--rw-spring,ease); }
-      &:active::before { scale:.88; }
-      &:focus-visible { outline:3px solid var(--rw-focus); outline-offset:2px; }
+  @keyframes rw-disclosure-boop {
+    40% {
+      scale: 1.22;
+      rotate: -8deg;
     }
-    &[open] { border-color:color-mix(in oklch,var(--rw-accent) 40%,var(--rw-line)); background:var(--rw-surface); }
-    &[open] > summary::before { background:var(--rw-accent); }
-    &[open] > summary::after { background:var(--rw-on-accent); rotate:90deg; }
-    & > :not(summary) { margin:0; padding:0 16px 16px; }
+    to {
+      scale: 1;
+      rotate: 0deg;
+    }
+  }
+  .rw-disclosure {
+    --_icon: var(--rw-disclosure-icon, var(--rw-icon-caret-right));
+    interpolate-size: allow-keywords;
+    padding: 0;
+    border: 2px solid var(--rw-line);
+    border-radius: var(--rw-radius);
+    background: var(--rw-raised);
+    transition:
+      background-color 0.2s,
+      border-color 0.2s;
+    & > summary {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: calc(var(--rw-radius) - 2px);
+      font-weight: 650;
+      list-style: none;
+      cursor: pointer;
+      transition: background-color 0.15s;
+      &::-webkit-details-marker {
+        display: none;
+      }
+      /* Badge circle (::before) with the icon drawn over it (::after) so each can use its own colour. */
+      &::before {
+        content: "";
+        flex: none;
+        inline-size: 1.7em;
+        block-size: 1.7em;
+        border-radius: 50%;
+        background: var(--rw-soft);
+        box-shadow: inset 0 -2px 0 color-mix(in oklch, var(--rw-accent) 18%, transparent);
+        transition:
+          background-color 0.2s,
+          scale 0.3s var(--rw-spring, ease);
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        inset-inline-start: calc(16px + 0.3em);
+        inset-block-start: 50%;
+        translate: 0 -50%;
+        inline-size: 1.1em;
+        block-size: 1.1em;
+        background: var(--rw-accent);
+        mask: var(--_icon) center / contain no-repeat;
+        transition:
+          rotate 0.4s var(--rw-spring, ease),
+          background-color 0.2s;
+      }
+      &:dir(rtl)::after {
+        scale: -1 1;
+      }
+      &:hover {
+        background: color-mix(in oklch, var(--rw-soft) 60%, transparent);
+      }
+      &:hover::before {
+        animation: rw-disclosure-boop 0.45s var(--rw-spring, ease);
+      }
+      &:active::before {
+        scale: 0.88;
+      }
+      &:focus-visible {
+        outline: 3px solid var(--rw-focus);
+        outline-offset: 2px;
+      }
+    }
+    &[open] {
+      border-color: color-mix(in oklch, var(--rw-accent) 40%, var(--rw-line));
+      background: var(--rw-surface);
+    }
+    &[open] > summary::before {
+      background: var(--rw-accent);
+    }
+    &[open] > summary::after {
+      background: var(--rw-on-accent);
+      rotate: 90deg;
+    }
+    & > :not(summary) {
+      margin: 0;
+      padding: 0 16px 16px;
+    }
   }
   @supports selector(::details-content) {
     .rw-disclosure::details-content {
-      block-size:0; opacity:0; overflow:clip; overflow-clip-margin:8px;
-      transition:block-size .35s cubic-bezier(.2,.9,.3,1),opacity .25s,content-visibility .35s allow-discrete;
+      block-size: 0;
+      opacity: 0;
+      overflow: clip;
+      overflow-clip-margin: 8px;
+      transition:
+        block-size 0.35s cubic-bezier(0.2, 0.9, 0.3, 1),
+        opacity 0.25s,
+        content-visibility 0.35s allow-discrete;
     }
-    .rw-disclosure[open]::details-content { block-size:auto; opacity:1; }
+    .rw-disclosure[open]::details-content {
+      block-size: auto;
+      opacity: 1;
+    }
   }
-  @media (prefers-reduced-motion:reduce) {
-    .rw-disclosure,.rw-disclosure > summary,.rw-disclosure > summary::before,.rw-disclosure > summary::after,.rw-disclosure::details-content { transition:none; }
-    .rw-disclosure > summary:hover::before { animation:none; }
+  @media (prefers-reduced-motion: reduce) {
+    .rw-disclosure,
+    .rw-disclosure > summary,
+    .rw-disclosure > summary::before,
+    .rw-disclosure > summary::after,
+    .rw-disclosure::details-content {
+      transition: none;
+    }
+    .rw-disclosure > summary:hover::before {
+      animation: none;
+    }
   }
-  @media (forced-colors:active) { .rw-disclosure { border-color:CanvasText; } .rw-disclosure > summary::before { border:1px solid CanvasText; background:Canvas; } .rw-disclosure > summary::after { background:CanvasText; } .rw-disclosure[open] > summary::after { background:CanvasText; } }
+  @media (forced-colors: active) {
+    .rw-disclosure {
+      border-color: CanvasText;
+    }
+    .rw-disclosure > summary::before {
+      border: 1px solid CanvasText;
+      background: Canvas;
+    }
+    .rw-disclosure > summary::after {
+      background: CanvasText;
+    }
+    .rw-disclosure[open] > summary::after {
+      background: CanvasText;
+    }
+  }
 }

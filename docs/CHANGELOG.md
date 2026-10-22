@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add `rw-section-tabs`, a sticky row of toggle buttons for switching sibling views, with a Storybook playground.
+
 - Add illustrated workspace navigation, a generic daily-places example with six original SVG miniatures, and an argument-driven Storybook playground.
 
 - Consolidate the documentation index, complete optional-module exports and remove stale status/performance claims. Preserve the percentage chart contract.

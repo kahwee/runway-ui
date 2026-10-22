@@ -1,14 +1,56 @@
-@property --rw-value { syntax:"<percentage>"; inherits:true; initial-value:0%; }
+@property --rw-value {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 0%;
+}
 @layer runway-ui.meters {
-  .rw-meter { margin-block-start:9px; }
-  .rw-meter__label { display:flex; justify-content:space-between; gap:12px; font-size:10px; color:var(--rw-muted); margin-block-end:5px; }
-  .rw-meter__track { block-size:var(--rw-meter-height,8px); border-radius:var(--rw-pill); background:var(--rw-soft); box-shadow:inset 0 1px 2px color-mix(in oklch,var(--rw-ink) 10%,transparent); overflow:hidden; }
-  .rw-meter__fill { block-size:100%; inline-size:clamp(0%,var(--rw-value,0%),100%); border-radius:inherit; background:var(--rw-meter-color,var(--rw-accent)); box-shadow:inset 0 2px 0 color-mix(in oklch,white 35%,transparent); transition:--rw-value .6s var(--rw-spring,ease); }
-  .rw-meter[data-tone=warning] { --rw-meter-color:var(--rw-gold); }
-  .rw-meter[data-tone=danger] { --rw-meter-color:var(--rw-danger); }
-  .rw-meter[data-tone=design] { --rw-meter-color:#9577af; }
-  .rw-meter[data-tone=pm] { --rw-meter-color:#a58748; }
-  .rw-meter[data-tone=energy] { --rw-meter-color:var(--rw-gold); }
-  .rw-meter[data-tone=morale] { --rw-meter-color:#638c74; }
-  @media(prefers-reduced-motion:reduce) { .rw-meter__fill { transition:none; } }
+  .rw-meter {
+    margin-block-start: 9px;
+  }
+  .rw-meter__label {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 10px;
+    color: var(--rw-muted);
+    margin-block-end: 5px;
+  }
+  .rw-meter__track {
+    block-size: var(--rw-meter-height, 8px);
+    border-radius: var(--rw-pill);
+    background: var(--rw-soft);
+    box-shadow: inset 0 1px 2px color-mix(in oklch, var(--rw-ink) 10%, transparent);
+    overflow: hidden;
+  }
+  .rw-meter__fill {
+    block-size: 100%;
+    inline-size: clamp(0%, var(--rw-value, 0%), 100%);
+    border-radius: inherit;
+    background: var(--rw-meter-color, var(--rw-accent));
+    box-shadow: inset 0 2px 0 color-mix(in oklch, white 35%, transparent);
+    transition: --rw-value 0.6s var(--rw-spring, ease);
+  }
+  .rw-meter[data-tone="warning"] {
+    --rw-meter-color: var(--rw-gold);
+  }
+  .rw-meter[data-tone="danger"] {
+    --rw-meter-color: var(--rw-danger);
+  }
+  .rw-meter[data-tone="design"] {
+    --rw-meter-color: #9577af;
+  }
+  .rw-meter[data-tone="pm"] {
+    --rw-meter-color: #a58748;
+  }
+  .rw-meter[data-tone="energy"] {
+    --rw-meter-color: var(--rw-gold);
+  }
+  .rw-meter[data-tone="morale"] {
+    --rw-meter-color: #638c74;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rw-meter__fill {
+      transition: none;
+    }
+  }
 }

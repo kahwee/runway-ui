@@ -7,6 +7,9 @@ export interface DialogController {
   /** Removes helper behavior and restores closedby; does not close the dialog. */
   destroy(): void;
 }
-export declare function bindDialog(dialog: HTMLDialogElement, options?: {
-  canDismiss?: () => boolean;
-}): DialogController;
+export declare function bindDialog(
+  dialog: HTMLDialogElement,
+  options?: {
+    canDismiss?: () => boolean;
+  },
+): DialogController;

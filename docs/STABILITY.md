@@ -1,7 +1,6 @@
 # Compatibility contract
 
 Runway UI is pre-1.0. See [Unreleased](CHANGELOG.md) for pending migrations; the source tree may include changes beyond the package version.
-
 - Preserve existing `rw-` classes, package entry points and documented numeric units during patch releases.
 - Introduce breaking pre-1.0 changes in a minor release with migration notes. Additive options may appear in patches.
 - Defaults work without optional behavior modules. Modules have no runtime dependencies and expose explicit teardown.

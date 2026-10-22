@@ -2,15 +2,10 @@
 export const escapeHTML = (value) =>
   String(value ?? "").replace(
     /[&<>"']/g,
-    (char) =>
-      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[
-        char
-      ],
+    (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char],
   );
 export const bounded = (value, min, max, fallback = min) =>
-  Number.isFinite(Number(value))
-    ? Math.min(max, Math.max(min, Number(value)))
-    : fallback;
+  Number.isFinite(Number(value)) ? Math.min(max, Math.max(min, Number(value))) : fallback;
 export const text = (description, category = "Content") => ({
   control: "text",
   description,
@@ -47,9 +42,7 @@ export const withDefaults = (args, argTypes) =>
           ...type.table,
           defaultValue: {
             summary:
-              typeof args[name] === "object"
-                ? JSON.stringify(args[name])
-                : String(args[name]),
+              typeof args[name] === "object" ? JSON.stringify(args[name]) : String(args[name]),
           },
         },
       },

@@ -43,8 +43,14 @@ Variants are primary, secondary and danger. Use native buttons for actions and n
 ```html
 <div class="rw-meter" data-tone="warning">
   <div class="rw-meter__label"><span>Readiness</span><span>38%</span></div>
-  <div class="rw-meter__track" role="progressbar" aria-label="Readiness"
-       aria-valuemin="0" aria-valuemax="100" aria-valuenow="38">
+  <div
+    class="rw-meter__track"
+    role="progressbar"
+    aria-label="Readiness"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="38"
+  >
     <div class="rw-meter__fill" style="--rw-value:38%"></div>
   </div>
 </div>
@@ -73,9 +79,23 @@ The parent owns four shared columns; each row uses `grid-template-columns: subgr
 
 ```html
 <table class="rw-chart">
-  <caption>Oxygen reserves · scale 0–300 units</caption>
-  <thead><tr><th scope="col">Cycle</th><th scope="col" class="rw-chart__axis">Reserve</th><th scope="col">Units</th></tr></thead>
-  <tbody><tr><th scope="row">1</th><td><span class="rw-chart__plot" style="--rw-value:40%" aria-hidden="true"></span></td><td>120</td></tr></tbody>
+  <caption>
+    Oxygen reserves · scale 0–300 units
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Cycle</th>
+      <th scope="col" class="rw-chart__axis">Reserve</th>
+      <th scope="col">Units</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td><span class="rw-chart__plot" style="--rw-value:40%" aria-hidden="true"></span></td>
+      <td>120</td>
+    </tr>
+  </tbody>
 </table>
 ```
 
@@ -91,8 +111,8 @@ The host maps quantities to a declared scale; actual values remain readable HTML
 ```
 
 ```js
-import { bindDialog } from 'runway-ui/dialog';
-const modal = bindDialog(document.querySelector('#decision'));
+import { bindDialog } from "runway-ui/dialog";
+const modal = bindDialog(document.querySelector("#decision"));
 // Open from a user action: modal.open();
 // Request policy-aware dismissal: modal.requestClose();
 // On unmount: modal.destroy();
@@ -124,3 +144,14 @@ Use `nav.rw-view-tabs` with native `.rw-view-tab` links or buttons. Each destina
 ```
 
 Use `data-layout="inline"` for side-by-side art and labels. Tokens are `--rw-view-art` (48px), `--rw-view-min` (72px) and `--rw-view-gap` (6px). Labels wrap without fixed text heights. Keep the collection small enough for the available desktop panel; the pattern does not conceal destinations or provide routing. Selection retains a border and underline, focus is visible, forced colors use system colors, and reduced motion disables decorative movement. The six original SVG miniatures in the example are MIT licensed and optional; consumers can supply their own artwork.
+
+### Section tabs
+
+Use `nav.rw-section-tabs` containing `.rw-button` toggles for switching sibling views inside one workspace. Mark the active button with `aria-pressed="true"` and `data-variant="primary"`; others use `data-variant="secondary"`. Add `data-sticky` to pin the row to the top of its scroll container. As with illustrated navigation, this is not an ARIA tablist; the host owns routing and content updates.
+
+```html
+<nav class="rw-section-tabs" data-sticky aria-label="Workspace sections">
+  <button type="button" class="rw-button" data-variant="primary" aria-pressed="true">Overview</button>
+  <button type="button" class="rw-button" data-variant="secondary" aria-pressed="false">Reports</button>
+</nav>
+```

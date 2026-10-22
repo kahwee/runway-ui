@@ -12,13 +12,13 @@ Wrap a plot in `figure.rw-figure`, include a `figcaption` with units and scale, 
 
 The application owns aggregation, sorting, missing data, validation and scaling. Do not silently encode missing observations as zero. CSS clips out-of-range marks to the plot bounds; it cannot report invalid business data. Validate values before rendering and display a warning if clipping is intentional. Keep the scale fixed when comparing datasets.
 
-| Plot | Markup | Numeric input | Valid domain |
-|---|---|---|---|
-| Column | `ol.rw-columns > li`, `.rw-column-track > .rw-column-mark`, real value and category siblings | `--rw-amount`, optionally `data-value` on each mark | 0 through maximum |
-| Stacked horizontal | `.rw-series-list`, `.rw-stack-track > .rw-stack-mark` | Amount per segment, shared maximum | Each segment >=0; sum <= maximum |
-| Diverging horizontal | `.rw-series-list`, `.rw-diverging-track > .rw-diverging-mark` | Signed amount; negative marks require `data-negative` | −maximum through +maximum; symmetric zero axis |
-| Area | `.rw-area` | Six `--rw-y0` through `--rw-y5` percentage coordinates | 0% top, 100% bottom; six equally spaced observations |
-| Percentage horizontal | `table.rw-chart`, `.rw-chart__plot` | `--rw-value:40%` | 0% through 100%; existing API preserved |
+| Plot                  | Markup                                                                                       | Numeric input                                          | Valid domain                                         |
+| --------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------- |
+| Column                | `ol.rw-columns > li`, `.rw-column-track > .rw-column-mark`, real value and category siblings | `--rw-amount`, optionally `data-value` on each mark    | 0 through maximum                                    |
+| Stacked horizontal    | `.rw-series-list`, `.rw-stack-track > .rw-stack-mark`                                        | Amount per segment, shared maximum                     | Each segment >=0; sum <= maximum                     |
+| Diverging horizontal  | `.rw-series-list`, `.rw-diverging-track > .rw-diverging-mark`                                | Signed amount; negative marks require `data-negative`  | −maximum through +maximum; symmetric zero axis       |
+| Area                  | `.rw-area`                                                                                   | Six `--rw-y0` through `--rw-y5` percentage coordinates | 0% top, 100% bottom; six equally spaced observations |
+| Percentage horizontal | `table.rw-chart`, `.rw-chart__plot`                                                          | `--rw-value:40%`                                       | 0% through 100%; existing API preserved              |
 
 ### Column recipe
 
@@ -28,8 +28,7 @@ The application owns aggregation, sorting, missing data, validation and scaling.
   <ol class="rw-columns" role="list">
     <li>
       <span class="rw-column-track">
-        <i class="rw-column-mark" data-value="42"
-           style="--rw-amount:42" aria-hidden="true"></i>
+        <i class="rw-column-mark" data-value="42" style="--rw-amount:42" aria-hidden="true"></i>
       </span>
       <strong>42</strong><span class="rw-category">January</span>
     </li>
@@ -49,16 +48,16 @@ The area chart is a bounded six-point primitive, not an arbitrary-length time-se
 
 ## Modern CSS and fallbacks
 
-| Feature | Purpose | Fallback |
-|---|---|---|
-| Cascade layers | Predictable host overrides | Modern browser required by library |
-| Subgrid | Columns share plot, value and label tracks | Modern browser required; do not promise legacy layout |
-| Container queries | Compact labels and row tracks inside narrow panels | Default spacious chart layout |
-| Typed `attr()` | Read numeric HTML attributes directly | Inline `--rw-amount` |
-| `shape()` | Responsive area path with percentage coordinates | Equivalent `polygon()` path |
-| `color-mix(in oklch,…)` | Theme-derived area fill | Modern browser required |
-| Logical properties | Inline and block sizing | Modern browser required |
-| Forced colors | Preserve solid marks and explicit zero axis | Labels and exact-data tables remain available |
+| Feature                 | Purpose                                            | Fallback                                              |
+| ----------------------- | -------------------------------------------------- | ----------------------------------------------------- |
+| Cascade layers          | Predictable host overrides                         | Modern browser required by library                    |
+| Subgrid                 | Columns share plot, value and label tracks         | Modern browser required; do not promise legacy layout |
+| Container queries       | Compact labels and row tracks inside narrow panels | Default spacious chart layout                         |
+| Typed `attr()`          | Read numeric HTML attributes directly              | Inline `--rw-amount`                                  |
+| `shape()`               | Responsive area path with percentage coordinates   | Equivalent `polygon()` path                           |
+| `color-mix(in oklch,…)` | Theme-derived area fill                            | Modern browser required                               |
+| Logical properties      | Inline and block sizing                            | Modern browser required                               |
+| Forced colors           | Preserve solid marks and explicit zero axis        | Labels and exact-data tables remain available         |
 
 References: [MDN typed attr()](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/attr), [MDN shape()](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/basic-shape/shape). Feature detection in the lab reports the current browser, not a cross-browser support guarantee. New features are used where they improve the implementation; experimental syntax is not a requirement for seeing the data.
 

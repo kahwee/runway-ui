@@ -4,16 +4,16 @@ Runway UI targets contemporary desktop engines with native CSS nesting, subgrid,
 
 ## Shared parent tracks
 
-| Component | Shared tracks | Content contract |
-| --- | --- | --- |
-| `rw-form-grid > rw-field` | Three row tracks | Associated label, control, optional hint |
-| `rw-card-grid > rw-card` | Four row tracks | `rw-card__title`, `rw-card__description`, `rw-card__body`, `rw-card__footer` |
-| `rw-stat-grid > rw-stat` | Three row tracks | `rw-stat__label`, `rw-stat__value`, `rw-stat__detail` |
-| `rw-choice-list > rw-choice` | Description and cost columns | Two children per choice |
-| `rw-objectives > li` | Status and description columns | Existing two-child markup |
-| `rw-series-list > li` | Label, plot, number columns | Existing three-child chart markup |
-| `rw-ledger > rw-ledger__row` | Production columns | Existing ledger markup |
-| `rw-columns > li` | Plot, value, category rows | Existing column chart markup |
+| Component                    | Shared tracks                  | Content contract                                                             |
+| ---------------------------- | ------------------------------ | ---------------------------------------------------------------------------- |
+| `rw-form-grid > rw-field`    | Three row tracks               | Associated label, control, optional hint                                     |
+| `rw-card-grid > rw-card`     | Four row tracks                | `rw-card__title`, `rw-card__description`, `rw-card__body`, `rw-card__footer` |
+| `rw-stat-grid > rw-stat`     | Three row tracks               | `rw-stat__label`, `rw-stat__value`, `rw-stat__detail`                        |
+| `rw-choice-list > rw-choice` | Description and cost columns   | Two children per choice                                                      |
+| `rw-objectives > li`         | Status and description columns | Existing two-child markup                                                    |
+| `rw-series-list > li`        | Label, plot, number columns    | Existing three-child chart markup                                            |
+| `rw-ledger > rw-ledger__row` | Production columns             | Existing ledger markup                                                       |
+| `rw-columns > li`            | Plot, value, category rows     | Existing column chart markup                                                 |
 
 These are real subgrids, not copies of the same track definition on each child. Card and field groups auto-place into the next group of shared rows. Keep the documented slots when a section is absent; an empty optional slot can be omitted when the remaining slot classes have explicit positions. Form fields use their first three direct children; do not wrap the control inside the label in this pattern. Native label associations remain intact. Do not put size containment on an individual row-subgrid card: it defeats content-based parent row sizing.
 
@@ -22,7 +22,9 @@ These are real subgrids, not copies of the same track definition on each child. 
   <form class="rw-form-grid">
     <div class="rw-field">
       <label for="department">Department</label>
-      <select class="rw-input" id="department"><option>Research</option></select>
+      <select class="rw-input" id="department">
+        <option>Research</option>
+      </select>
       <small>The hint has its own shared row.</small>
     </div>
     <div class="rw-field">
@@ -72,13 +74,13 @@ Primary references: [MDN subgrid](https://developer.mozilla.org/en-US/docs/Web/C
 
 By default, with a `<button><selectedcontent></selectedcontent></button>` first child and rich `<option>` content, the picker gets:
 
-| Feature | CSS | Without it |
-| --- | --- | --- |
+| Feature                              | CSS                                         | Without it                            |
+| ------------------------------------ | ------------------------------------------- | ------------------------------------- |
 | Rich options and closed-state mirror | `appearance:base-select`, `selectedcontent` | Native select shows plain option text |
-| Spring check badge | `option::checkmark` + `@starting-style` | Native selection indicator |
-| Staggered entry | `transition-delay` from `sibling-index()` | Options appear together |
-| Colour dots from data | typed `attr(data-color type(<color>))` | No dot; option still works |
-| Bouncy arrow, hover boop | `::picker-icon`, keyframes | Static |
+| Spring check badge                   | `option::checkmark` + `@starting-style`     | Native selection indicator            |
+| Staggered entry                      | `transition-delay` from `sibling-index()`   | Options appear together               |
+| Colour dots from data                | typed `attr(data-color type(<color>))`      | No dot; option still works            |
+| Bouncy arrow, hover boop             | `::picker-icon`, keyframes                  | Static                                |
 
 Detect each capability rather than assuming a browser version provides the whole recipe. Every layer is behind `@supports`, motion is off under `prefers-reduced-motion`, and the same markup stays a working native select elsewhere. Keep the description inside a `small` so the closed state can hide it.
 

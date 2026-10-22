@@ -1,1 +1,52 @@
-.chart-toolbar { display:flex; gap:24px; align-items:end; margin-block-end:14px; }.chart-toolbar label { display:grid; gap:6px; font-size:11px; }.chart-toolbar select { min-width:130px; }.chart-toolbar .chart-check { display:flex; align-items:center; margin-block-end:10px; }.chart-toolbar button { margin-inline-start:auto; }.support-note { font-size:10px; color:var(--rw-muted); margin-block:12px 28px; }.chart-gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; margin-block-end:36px; }.chart-card { margin:0; min-width:0; }.chart-card>.rw-eyebrow { margin-block-end:18px; }.chart-gallery .rw-figure figcaption { font-size:15px; }.chart-gallery .rw-figure figcaption small { font-size:10px; }#recipe-section p { font-size:12px; }input[type=checkbox] { accent-color:var(--rw-accent); }
+.chart-toolbar {
+  display: flex;
+  gap: 24px;
+  align-items: end;
+  margin-block-end: 14px;
+}
+.chart-toolbar label {
+  display: grid;
+  gap: 6px;
+  font-size: 11px;
+}
+.chart-toolbar select {
+  min-width: 130px;
+}
+.chart-toolbar .chart-check {
+  display: flex;
+  align-items: center;
+  margin-block-end: 10px;
+}
+.chart-toolbar button {
+  margin-inline-start: auto;
+}
+.support-note {
+  font-size: 10px;
+  color: var(--rw-muted);
+  margin-block: 12px 28px;
+}
+.chart-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-block-end: 36px;
+}
+.chart-card {
+  margin: 0;
+  min-width: 0;
+}
+.chart-card > .rw-eyebrow {
+  margin-block-end: 18px;
+}
+.chart-gallery .rw-figure figcaption {
+  font-size: 15px;
+}
+.chart-gallery .rw-figure figcaption small {
+  font-size: 10px;
+}
+#recipe-section p {
+  font-size: 12px;
+}
+input[type="checkbox"] {
+  accent-color: var(--rw-accent);
+}

@@ -2,5 +2,7 @@
 /* Storybook 10.6's fixed viewport is a flex child. Preserve its declared height
    when Controls is open; let the preview wrapper scroll rather than shrink
    a desktop story into a short CSS viewport. No consumer/runtime styling. */
-#storybook-preview-wrapper [data-dragging][data-scale] { flex-shrink:0; }
+#storybook-preview-wrapper [data-dragging][data-scale] {
+  flex-shrink: 0;
+}
 </style>

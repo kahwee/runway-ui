@@ -34,9 +34,9 @@ Selection in a visual equipment/choice/dock story is controlled through args; th
 ## Develop and deploy
 
 ```sh
-npm ci
-npm run storybook
-npm run build-site
+pnpm install --frozen-lockfile
+pnpm run storybook
+pnpm run build-site
 ```
 
 Story files are in `stories/`; shared argument metadata and escaping are in `stories/helpers.js`. Keep default CSF exports as object literals with a statically readable title and tags. Storybook's indexer does not execute metadata factory calls. The helper supplies runtime argument descriptions and defaults inside that object.

@@ -1,13 +1,5 @@
-import {
-  escapeHTML as e,
-  bounded,
-  text,
-  flag,
-  select,
-  range,
-  object,
-  meta,
-} from "./helpers.js";
+import { bounded, escapeHTML as e, flag, meta, object, range, select, text } from "./helpers.js";
+
 const args = {
   kind: "columns",
   title: "Monthly output",
@@ -57,9 +49,7 @@ export default {
         if: { arg: "preset", eq: "custom" },
       },
       secondaryValues: {
-        ...object(
-          "Nonnegative second-series amounts; segment totals cannot exceed maximum.",
-        ),
+        ...object("Nonnegative second-series amounts; segment totals cannot exceed maximum."),
         if: { arg: "kind", eq: "stacked" },
       },
       maximum: range(
@@ -70,17 +60,9 @@ export default {
         "Data",
       ),
       height: range(100, 320, 20, "Plot block size in CSS pixels."),
-      width: range(
-        320,
-        1100,
-        20,
-        "Maximum figure width; try narrow panel container queries.",
-      ),
+      width: range(320, 1100, 20, "Maximum figure width; try narrow panel container queries."),
       grid: flag("Background grid for columns and area.", "Appearance"),
-      tableOpen: flag(
-        "Initial open state of the native exact-data disclosure.",
-        "Content",
-      ),
+      tableOpen: flag("Initial open state of the native exact-data disclosure.", "Content"),
       seriesLabel: {
         ...text("First legend and table column label."),
         if: { arg: "kind", eq: "stacked" },
@@ -89,14 +71,10 @@ export default {
         ...text("Second legend and table column label."),
         if: { arg: "kind", eq: "stacked" },
       },
-      customColor: flag(
-        "Override the theme accent for this figure only.",
-        "Appearance",
-      ),
+      customColor: flag("Override the theme accent for this figure only.", "Appearance"),
       color: {
         control: "color",
-        description:
-          "--rw-chart-color override; otherwise follows the toolbar theme.",
+        description: "--rw-chart-color override; otherwise follows the toolbar theme.",
         if: { arg: "customColor" },
         table: { category: "Appearance", type: { summary: "CSS color" } },
       },
@@ -110,7 +88,7 @@ export const Columns = {
     const max = bounded(a.maximum, 1, 500, 100),
       height = bounded(a.height, 100, 320, 180);
     const sample = [24, 38, 32, 61, 54, 82];
-    let values =
+    const values =
       a.preset === "custom"
         ? a.values
         : sample.map((v, i) =>
@@ -124,10 +102,7 @@ export const Columns = {
                   ? -v
                   : v,
           );
-    const labels =
-      a.preset === "custom"
-        ? a.labels
-        : ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
+    const labels = a.preset === "custom" ? a.labels : ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
     const secondary =
       a.preset === "zero"
         ? Array(6).fill(0)
@@ -155,23 +130,17 @@ export const Columns = {
       return invalid("Provide 1–24 finite numeric values.");
     if (!Array.isArray(labels) || labels.length !== values.length)
       return invalid("Provide one category label for each value.");
-    if (
-      values.some((v) => Math.abs(v) > max || (a.kind !== "diverging" && v < 0))
-    )
+    if (values.some((v) => Math.abs(v) > max || (a.kind !== "diverging" && v < 0)))
       return invalid(
         "Values must fit the declared scale. Only diverging bars support negative values.",
       );
     if (a.kind === "area" && values.length !== 6)
-      return invalid(
-        "The area primitive requires exactly six equally spaced observations.",
-      );
+      return invalid("The area primitive requires exactly six equally spaced observations.");
     if (
       a.kind === "stacked" &&
       (!Array.isArray(secondary) ||
         secondary.length !== values.length ||
-        secondary.some(
-          (v, i) => !Number.isFinite(v) || v < 0 || v + values[i] > max,
-        ))
+        secondary.some((v, i) => !Number.isFinite(v) || v < 0 || v + values[i] > max))
     )
       return invalid(
         "Second-series values must be nonnegative numbers with matching length. Each stack total must fit the maximum.",
