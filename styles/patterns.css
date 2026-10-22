@@ -10,6 +10,8 @@
   .g-slot[aria-pressed=true] { border-color:var(--g-accent); box-shadow:inset 0 0 0 1px var(--g-accent); background:var(--g-soft); }
   .g-slot[data-rarity=rare]::after { content:"Rare"; position:absolute; inset-block-start:3px; inset-inline-end:5px; font-size:8px; color:var(--g-gold); }
   .g-choice { text-align:start; inline-size:100%; display:flex; gap:15px; justify-content:space-between; padding:var(--g-choice-padding); border:1px solid var(--g-line); border-radius:var(--g-radius); background:var(--g-raised); color:var(--g-ink); font:inherit; cursor:pointer; }
+  .g-choice > :first-child { min-inline-size:0; overflow-wrap:anywhere; }
+  .g-choice > :last-child { min-inline-size:0; text-align:end; overflow-wrap:anywhere; font-variant-numeric:tabular-nums; }
   .g-choice strong,.g-choice small { display:block; }
   .g-choice small { color:var(--g-muted); margin-block-start:5px; font-size:11px; }
   .g-objectives { list-style:none; padding:0; margin:0; display:grid; grid-template-columns:max-content minmax(0,1fr); gap:14px 12px; }
@@ -18,6 +20,6 @@
   .g-objectives li[data-complete=true] span:last-child { text-decoration:line-through; }
   .g-dock { display:flex; gap:7px; background:var(--g-surface); border:1px solid var(--g-line); padding:8px; border-radius:calc(var(--g-radius) + 5px); box-shadow:var(--g-shadow); }
   .g-dock .g-button { min-inline-size:85px; }
-  .g-button[aria-pressed=true] { --g-button-bg:var(--g-accent); --g-button-ink:var(--g-on-accent); }
+  .g-button[aria-pressed=true] { --g-button-bg:var(--g-accent); --g-button-ink:var(--g-on-accent); --g-button-border:var(--g-accent); }
   .g-shortcut { font:10px var(--g-font); border:1px solid currentColor; border-radius:3px; padding:2px 4px; opacity:.7; }
 }

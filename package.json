@@ -1,6 +1,6 @@
 {
   "name": "runway-ui",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Modern HTML/CSS interface primitives for simulation and management games",
   "type": "module",
   "sideEffects": [

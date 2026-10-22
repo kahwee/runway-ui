@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.1 — tighter shared details
+
+- Separate internal subgrid row spacing from group spacing in both densities.
+- Preserve preferred single-column layouts under container queries; cap narrow stat panels at one column.
+- Align chart axes with intrinsic label/plot/value tracks through nested column subgrids, removing fixed offsets.
+- Bound long action and choice labels, align numeric costs and synchronize pressed control borders.
+- Prevent Storybook typography from overriding card/field spacing; add an action-label argument.
+- Allow disclosure focus outlines room inside the clipped transition.
+- Give the chart guide a distinct generated URL so it cannot overwrite the interactive chart lab on case-insensitive disks.
+
+Source and documentation update only; no npm registry publication.
+
 ## 0.3.0 — modern CSS and comfortable defaults
 
 Source update for GitHub and the documentation site; no npm registry publication.

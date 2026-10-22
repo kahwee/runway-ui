@@ -9,12 +9,12 @@ body {
   color: var(--g-ink);
   font: 14px/1.6 var(--g-font);
 }
-.story-surface :where(h1, h2, h3):not(:where(.g-dialog *)) {
+.story-surface :where(h1, h2, h3):not(:where(.g-dialog *,.g-card *,.g-field *)) {
   margin-block: 0 16px;
   letter-spacing: -0.035em;
   font-weight: 550;
 }
-.story-surface p:not(:where(.g-dialog *)) {
+.story-surface p:not(:where(.g-dialog *,.g-card *,.g-field *)) {
   margin-block: 0 18px;
 }
 .story-surface a {

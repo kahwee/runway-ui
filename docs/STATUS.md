@@ -1,6 +1,6 @@
 # Status
 
-Version 0.3.0 is early-stage source available on GitHub. It is not yet published to the npm registry. Public API changes are possible while the library matures.
+Version 0.3.1 is early-stage source available on GitHub. It is not yet published to the npm registry. Public API changes are possible while the library matures.
 
 ## Supported scope
 
@@ -50,3 +50,11 @@ These are focused desktop Chromium observations. They do not establish physical-
 - Main Storybook had no measured horizontal overflow at 1440×900 and 1366×768. Final focused browser passes had no console errors.
 - An initial build used a metadata factory directly as the default CSF export; Storybook rejected indexing it. Object-literal exports with static title/tags resolved that issue; the final build succeeded.
 - This remains focused desktop Chromium evidence; cross-browser, assistive-technology and physical-controller support are not certified.
+
+## 0.3.1 focused desktop refinement
+
+- Chart lab manually reviewed at 1366 × 768 and 1440 × 900: no horizontal page overflow; diverging scale and plot bounds align through shared columns.
+- Storybook one-column cards in a 500px panel retain one 500px track. Description margins remain zero and the long action label stays within its button.
+- Shared cards use 10px internal row gaps with aligned footers. Compact density supplies an 8px internal gap.
+- The chart lab and generated chart guide have distinct URLs, including on case-insensitive filesystems.
+- CSS, Storybook and documentation site builds succeeded. These are focused Chromium observations, not cross-browser or accessibility certification.

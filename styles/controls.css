@@ -1,7 +1,7 @@
 /* Shared raised-control recipe. Native skin uses the same selectors and tokens. */
 @layer game-ui.primitives {
   :where(.g-button,.g-native button,.g-native input[type=submit],.g-native input[type=button]) {
-    box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; gap:var(--g-control-gap);
+    box-sizing:border-box; min-inline-size:0; max-inline-size:100%; overflow-wrap:anywhere; text-align:center; display:inline-flex; align-items:center; justify-content:center; gap:var(--g-control-gap);
     padding:var(--g-control-block) var(--g-control-inline); border:1px solid var(--g-button-border,var(--g-line));
     border-radius:var(--g-radius); color:var(--g-button-ink,var(--g-ink));
     background-color:var(--g-button-bg,var(--g-soft));

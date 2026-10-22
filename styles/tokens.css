@@ -13,11 +13,11 @@
     --g-display-font:ui-rounded,"Avenir Next",var(--g-font);
     --g-control-font:13px; --g-control-block:11px; --g-control-inline:15px;
     --g-control-gap:15px; --g-panel-padding:22px; --g-field-padding:10px;
-    --g-space:14px; --g-choice-padding:15px;
+    --g-content-gap:10px; --g-space:14px; --g-choice-padding:15px;
     color:var(--g-ink); font-family:var(--g-font); color-scheme:light;
   }
   :where(.g-ui)[data-density=compact] {
     --g-control-block:8px; --g-control-inline:12px; --g-control-gap:10px;
-    --g-panel-padding:16px; --g-field-padding:8px; --g-space:10px; --g-choice-padding:11px;
+    --g-panel-padding:16px; --g-field-padding:8px; --g-content-gap:8px; --g-space:10px; --g-choice-padding:11px;
   }
 }

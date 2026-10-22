@@ -34,7 +34,9 @@ These are real subgrids, not copies of the same track definition on each child. 
 </div>
 ```
 
-Use `g-layout` for a named inline-size container. Preferred columns come from `--g-form-columns` (2), `--g-card-columns` (3) and `--g-stat-columns` (4). Below 720px of container space, cards/stat tiles use two columns; below 460px, cards/forms use one. These adapt a component inside a desktop panel, independently of the browser viewport. Fluid titles use `cqi`, `clamp()` and `text-wrap:balance`; descriptions use `text-wrap:pretty`.
+Use `g-layout` for a named inline-size container. Preferred columns come from `--g-form-columns` (2), `--g-card-columns` (3) and `--g-stat-columns` (4). Below 720px of container space, cards/stat tiles are capped at two columns; below 460px, cards/forms/stats are capped at one. A preferred one-column layout stays one column at every width. These adapt a component inside a desktop panel, independently of the browser viewport. Fluid titles use `cqi`, `clamp()` and `text-wrap:balance`; descriptions use `text-wrap:pretty`.
+
+Internal row spacing uses `--g-content-gap` (10px, compact 8px), independently of the 14px/10px group gap `--g-space`. A chart figure containing a direct `g-series-list` shares intrinsic label, plot and value columns through two levels of subgrid. Its adjacent scale occupies the actual plot column; no label-width offsets are needed. Long labels and values wrap within bounded tracks. Keep the scale immediately after the list.
 
 ## Newer capabilities with deliberate degradation
 

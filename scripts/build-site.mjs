@@ -12,14 +12,17 @@ console.log('Built .site/ with workshop, documentation and HTML Storybook.');
 // Render trusted repository-authored Markdown at build time; no client renderer.
 const { marked }=await import('marked');
 const { readdir, readFile }=await import('node:fs/promises');
+// Keep the guide distinct from the hand-authored chart lab on case-insensitive disks.
+const htmlPath=path=>path.endsWith('CHARTS')?`${path.slice(0,-6)}charts-guide.html`:`${path}.html`;
+const rewriteLinks=html=>html.replace(/href="([^":]*?)\.md(#[^"]*)?"/g,(_,path,hash='')=>`href="${htmlPath(path)}${hash}"`);
 for(const file of await readdir(new URL('docs/',output))) {
   if(!file.endsWith('.md'))continue;
   const source=await readFile(new URL(`docs/${file}`,output),'utf8');
   const title=(source.match(/^# (.+)/m)?.[1]??'Documentation').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const body=marked.parse(source).replace(/href="([^":]*?)\.md(#[^"]*)?"/g,(_,path,hash='')=>`href="${path}.html${hash}"`);
-  await writeFile(new URL(`docs/${file.replace(/\.md$/,'.html')}`,output),`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} · Runway UI</title><link rel="stylesheet" href="../index.css"><link rel="stylesheet" href="docs.css"><link rel="stylesheet" href="reference.css"></head><body class="g-ui"><main class="reference-page"><nav class="reference-nav"><a href="./">← Component options</a><a href="../storybook/">Storybook ↗</a><a href="charts.html">Chart lab ↗</a></nav><article>${body}</article><footer>Runway UI · MIT · HTML and CSS</footer></main></body></html>`);
+  const body=rewriteLinks(marked.parse(source));
+  await writeFile(new URL(`docs/${htmlPath(file.replace(/\.md$/,''))}`,output),`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} · Runway UI</title><link rel="stylesheet" href="../index.css"><link rel="stylesheet" href="docs.css"><link rel="stylesheet" href="reference.css"></head><body class="g-ui"><main class="reference-page"><nav class="reference-nav"><a href="./">← Component options</a><a href="../storybook/">Storybook ↗</a><a href="charts.html">Chart lab ↗</a></nav><article>${body}</article><footer>Runway UI · MIT · HTML and CSS</footer></main></body></html>`);
 }
 for(const file of ['docs/index.html','docs/charts.html']) {
   const url=new URL(file,output);
-  await writeFile(url,(await readFile(url,'utf8')).replace(/href="([^":]*?)\.md(#[^"]*)?"/g,(_,path,hash='')=>`href="${path}.html${hash}"`));
+  await writeFile(url,rewriteLinks(await readFile(url,'utf8')));
 }
