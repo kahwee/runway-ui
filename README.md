@@ -6,6 +6,10 @@ Resource HUDs, production ledgers, economy charts, equipment grids, objectives a
 
 **MIT licensed. Free for personal and commercial projects, including closed-source games.** Keep the license notice in redistributed copies. No attribution in your interface is required. See [LICENSE](LICENSE).
 
+## Simulation Observatory
+
+[Open the polished desktop reference screen](https://kahwee.github.io/runway-ui/examples/observatory.html) · [Storybook playground](https://kahwee.github.io/runway-ui/storybook/?path=/story/compositions-simulation-observatory--playground) · [Data and capability contracts](docs/OBSERVATORY.md). Six CSS trend cards, observed/projected history, a target, anchored native event notes and an inspectable resource ledger. Generic synthetic data; no chart runtime.
+
 ## Modern CSS foundation
 
 Subgrid aligns cards, fields, stat tiles, choices, objectives, production rows and chart series. Native nesting, container queries, logical sizing, OKLCH colors, typed meter properties and CSS-driven native disclosures are part of the implementation. Newer picker/chart/dialog capabilities use feature-aware enhancement. See the [modern CSS contract](docs/MODERN-CSS.md) and [shared-track workshop](examples/layouts.html).

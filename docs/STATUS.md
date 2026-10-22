@@ -1,6 +1,6 @@
 # Status
 
-Version 0.3.1 is early-stage source available on GitHub. It is not yet published to the npm registry. Public API changes are possible while the library matures.
+Version 0.4.0 is early-stage source available on GitHub. It is not yet published to the npm registry. Public API changes are possible while the library matures.
 
 ## Supported scope
 
@@ -58,3 +58,17 @@ These are focused desktop Chromium observations. They do not establish physical-
 - Shared cards use 10px internal row gaps with aligned footers. Compact density supplies an 8px internal gap.
 - The chart lab and generated chart guide have distinct URLs, including on case-insensitive filesystems.
 - CSS, Storybook and documentation site builds succeeded. These are focused Chromium observations, not cross-browser or accessibility certification.
+
+## 0.4.0 Observatory desktop pass
+
+- CSS, HTML Storybook and self-contained site builds succeeded. Package dry run includes the new style modules, independent example modules and MIT license.
+- Manually reviewed the standalone composition at 1366 × 768 and 1440 × 900: no horizontal page or ledger overflow. The ledger computes column subgrids; axis label centers align with the plot's top/middle/bottom positions.
+- Storybook indexes 26 arguments and the shortage, missing and boundary fixtures. Orbital/compact/flat boundary composition keeps equal-height metric cards and fits both desktop targets with long resource labels.
+- Missing fixture: two visibly missing slots, three projected slots, unavailable latest comparison and open exact data. Missing readings are excluded from the recorded-value count.
+- Zero fixture: all 12 history marks measure zero height, including projected marks. An early projected-border minimum-height artifact was removed before the final build.
+- Insufficient budget disables the upgrade review with an explanation. Selecting Water updates its inspector and dialog. Pinning a plan closes the native dialog, returns focus to its opener and reports that no resources were spent. Dialog return values reset before reopening.
+- Native event popover opens and Escape dismisses it. A left-edge event note remains inside the viewport with CSS anchor positioning and named position-try fallbacks. No positioning JavaScript is used.
+- Ledger End-key scrolling changes the native scroll position and CSS timeline cue. Reduced-motion emulation computes no cue animation and zero popover transition duration. A 900px viewport shows only the desktop-required notice.
+- Out-of-scale data displays an alert instead of a clipped chart. The observed current Chromium uses the dialog-command bridge; native command attributes remain available for supporting engines.
+
+These are focused manual Chromium observations and build/packaging results. Forced-color rules are supplied but this pass does not certify their rendering, screen-reader behavior or Safari/Firefox compatibility. The reference has no simulation backend or persistent game state.

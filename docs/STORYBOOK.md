@@ -21,6 +21,10 @@ Theme and density are global toolbar settings. They are not duplicated as unrela
 
 Chart data is validated before rendering. Values, labels, CSS inputs and exact-data tables share the same source values. Maximums must be positive, stacks must fit the declared maximum, negative observations need diverging bars and the area primitive requires six equally spaced points. Invalid data produces an explanation, never silent truncation or a misleading chart.
 
+## Simulation Observatory
+
+The [Observatory playground](../storybook/?path=/story/compositions-simulation-observatory--playground) exposes 26 arguments with grouped descriptions and conditional custom data/event editors. Three companion fixtures exercise shortage, missing values and scale boundaries. This is a composed quality reference: inspect selection, native event popovers, scroll progress and the decision dialog alongside the charts. Use the toolbar for themes, density and depth; open the full Canvas for a desktop preview. Argument changes dispose and remount its optional demo controller.
+
 ## Native HTML and class-based CSS
 
 Styled dialogs use `g-dialog` and documented child/modifier classes; see the [dialog class contract](DIALOG.md). Native invoker commands and dialog forms provide opening/closing without an application event handler. Native inputs, progress and details/summary preserve browser behavior. Older browsers may need the optional dialog helper.
