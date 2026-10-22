@@ -85,3 +85,7 @@ Detect each capability rather than assuming a browser version provides the whole
 ## Form enhancements
 
 `field-sizing:content` lets textareas grow intrinsically; engines without it retain ordinary resizable textareas and their minimum size. Native range controls work without the optional output/fill binding. Switches and option cards retain native checked, focus and disabled semantics; forced-color styles expose system colors. Reduced-motion rules disable decorative spring and picker animations. See [fields](FIELDS.md) for markup.
+
+## Illustrated navigation
+
+The illustrated workspace navigation uses ordinary flex layout with intrinsic labels, logical sizing and native links/buttons. It introduces no new browser capability. Reduced motion disables hover translation/rotation, and forced colors preserve an explicit selected border and underline. See [the markup contract](COMPONENTS.md#illustrated-workspace-navigation).

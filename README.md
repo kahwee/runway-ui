@@ -68,6 +68,7 @@ python3 -m http.server 4320 --bind 127.0.0.1
 
 Open **`http://127.0.0.1:4320/docs/charts.html`** for the CSS chart lab, or `http://127.0.0.1:4320/docs/` for searchable component options. The root page is the component workshop. Other examples:
 
+- [Illustrated workspace navigation](examples/view-tabs.html): six generic destinations with original vector miniatures.
 - `examples/colony.html`: production, reserve history and a searchable 10,000-item synthetic inventory.
 - `examples/drop-in.html`: opt-in styling for existing native form controls.
 

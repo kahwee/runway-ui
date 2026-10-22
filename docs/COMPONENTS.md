@@ -107,3 +107,20 @@ The workshop includes `.rw-resource`, `.rw-slots` / `.rw-slot`, `.rw-objectives`
 ## Additional patterns
 
 Use the [field guide](FIELDS.md) for native switches, ranges, option cards and grouped inputs; the [modern CSS guide](MODERN-CSS.md) for shared-track cards, fields, stats and choices; and [instruments](INSTRUMENTS.md) for signed histories, windowed series and impact tables. The [API reference](API.md) lists all stylesheet and optional behavior entry points. Current recipes use the `rw-` namespace; historical prefix migration is recorded in the [changelog](CHANGELOG.md).
+
+## Illustrated workspace navigation
+
+[Open the daily-places example](../examples/view-tabs.html) · [Storybook playground](../storybook/?path=/story/game-patterns-illustrated-navigation--playground).
+
+Use `nav.rw-view-tabs` with native `.rw-view-tab` links or buttons. Each destination has a decorative `.rw-view-tab__art` image and a visible text label. Set `aria-current="page"` on the active navigation link; application action buttons may use `aria-pressed` for selected state. Do not add `role="tab"` unless implementing the full tab/panel keyboard and ARIA contract. All destinations remain in the ordinary Tab order; routing and content updates belong to the host.
+
+```html
+<nav class="rw-view-tabs" aria-label="Workspace">
+  <a class="rw-view-tab" href="/garden/" aria-current="page">
+    <img class="rw-view-tab__art" src="garden.svg" width="48" height="48" alt="">
+    <span>Garden</span>
+  </a>
+</nav>
+```
+
+Use `data-layout="inline"` for side-by-side art and labels. Tokens are `--rw-view-art` (48px), `--rw-view-min` (72px) and `--rw-view-gap` (6px). Labels wrap without fixed text heights. Keep the collection small enough for the available desktop panel; the pattern does not conceal destinations or provide routing. Selection retains a border and underline, focus is visible, forced colors use system colors, and reduced motion disables decorative movement. The six original SVG miniatures in the example are MIT licensed and optional; consumers can supply their own artwork.

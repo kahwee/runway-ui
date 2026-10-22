@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add illustrated workspace navigation, a generic daily-places example with six original SVG miniatures, and an argument-driven Storybook playground.
+
 - Consolidate the documentation index, complete optional-module exports and remove stale status/performance claims. Preserve the percentage chart contract.
 
 - Playful customizable select: rich options with `selectedcontent`, staggered `sibling-index()` entry, spring checkmark, typed-`attr()` colour dots and a Foundations / Controls / Fun picker story.

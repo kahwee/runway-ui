@@ -16,3 +16,8 @@
 - Use subgrid when children need shared parent alignment. Prefer the documented form, card, stat and choice layouts over duplicated track sizes or fixed-height alignment.
 - Add new layout patterns to the shared-track example and argument-driven Storybook playground. Keep native labels, controls and semantic wrappers.
 - Newer picker, chart, disclosure and dialog enhancements must have explicit capability/degradation notes in docs/MODERN-CSS.md. Prefer native CSS behavior to extra layout JavaScript.
+
+## Naming
+
+- Use kebab-case for new file and directory names, CSS classes, HTML IDs, data-attribute names, and package script names. Keep the `rw-` prefix for shared library classes and tokens.
+- Preserve existing public names and exports unless an intentional migration is documented. JavaScript/TypeScript identifiers follow camelCase/PascalCase and Rust identifiers follow Rust conventions; the kebab-case rule applies to paths and web-facing names.
