@@ -30,13 +30,13 @@ export const OperationsRoom = {
   render: (a) => {
     const source = new DOMParser().parseFromString(workshop, "text/html");
     const root = document.createElement("div");
-    root.className = "g-stack";
-    root.innerHTML = `<p class="g-kicker">Management / operations room</p><h1>${e(a.title)}</h1>`;
+    root.className = "rw-stack";
+    root.innerHTML = `<p class="rw-kicker">Management / operations room</p><h1>${e(a.title)}</h1>`;
     const grid = document.createElement("div");
     grid.className = "story-grid";
     grid.style.gridTemplateColumns =
       a.columns === "one" ? "1fr" : "repeat(2,minmax(0,1fr))";
-    const panels = [...source.querySelectorAll("#simulation .g-panel")];
+    const panels = [...source.querySelectorAll("#simulation .rw-panel")];
     panels.forEach((panel, index) => {
       if ((index === 0 && !a.showProduction) || (index === 1 && !a.showEconomy))
         return;

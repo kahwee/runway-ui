@@ -41,18 +41,18 @@ const argTypes = {
   },
   size: select(
     ["compact", "default", "wide"],
-    "Class modifier: g-dialog--compact, base g-dialog, or g-dialog--wide.",
+    "Class modifier: rw-dialog--compact, base rw-dialog, or rw-dialog--wide.",
   ),
   tone: select(
     ["neutral", "danger"],
-    "Danger adds g-dialog--danger and a danger action.",
+    "Danger adds rw-dialog--danger and a danger action.",
   ),
   footer: select(
     ["end", "split", "stacked"],
-    "Class modifier on g-dialog__footer.",
+    "Class modifier on rw-dialog__footer.",
   ),
   styled: flag(
-    "Toggle g-dialog and its BEM classes. Off shows an ordinary unstyled native dialog.",
+    "Toggle rw-dialog and its BEM classes. Off shows an ordinary unstyled native dialog.",
     "Appearance",
   ),
   dismissal: select(
@@ -74,7 +74,7 @@ export default {
   tags: ["autodocs"],
   ...meta(
     "Foundations/Dialog",
-    "Style native dialogs by class. .g-dialog owns the surface; .g-dialog__header, __body and __footer own layout. Modifiers change size, tone and footer arrangement. Native invoker commands open and close the modal without application event handlers. Edit args, then open the dialog to inspect the result. Browser focus and inertness remain native.",
+    "Style native dialogs by class. .rw-dialog owns the surface; .rw-dialog__header, __body and __footer own layout. Modifiers change size, tone and footer arrangement. Native invoker commands open and close the modal without application event handlers. Edit args, then open the dialog to inspect the result. Browser focus and inertness remain native.",
     args,
     argTypes,
   ),
@@ -92,20 +92,20 @@ export const Playground = {
     const id = uniqueId("decision");
     const classes = a.styled
       ? [
-          "g-ui",
-          "g-dialog",
-          a.size !== "default" ? `g-dialog--${a.size}` : "",
-          a.tone === "danger" ? "g-dialog--danger" : "",
+          "rw-ui",
+          "rw-dialog",
+          a.size !== "default" ? `rw-dialog--${a.size}` : "",
+          a.tone === "danger" ? "rw-dialog--danger" : "",
         ]
           .filter(Boolean)
           .join(" ")
       : "";
-    const c = (part) => (a.styled ? ` class="g-dialog__${part}"` : "");
+    const c = (part) => (a.styled ? ` class="rw-dialog__${part}"` : "");
     const focusCancel =
       (a.autofocus === "cancel" && a.showCancel) ||
       (a.autofocus === "confirm" && a.confirmDisabled && a.showCancel);
     const focusConfirm =
       !a.confirmDisabled && (!a.showCancel || a.autofocus === "confirm");
-    return `<div class="story-width"><p class="g-kicker">${a.styled ? e(classes) : "Native dialog · no styling class"}</p><button class="g-button" data-variant="primary" commandfor="${id}" command="show-modal">${e(a.triggerLabel)}</button><dialog${classes ? ` class="${e(classes)}"` : ""} id="${id}" closedby="${e(a.dismissal)}" aria-labelledby="${id}-title" aria-describedby="${id}-description"><header${c("header")}><div>${a.eyebrow ? `<p${c("eyebrow")}>${e(a.eyebrow)}</p>` : ""}<h2${c("title")} id="${id}-title">${e(a.title)}</h2></div>${a.showClose ? `<button${c("close")} type="button" aria-label="Close dialog" commandfor="${id}" command="close">×</button>` : ""}</header><div${c("body")}><p id="${id}-description">${e(a.description)}</p></div><form method="dialog"${a.styled ? ` class="g-dialog__footer${a.footer !== "end" ? ` g-dialog__footer--${a.footer}` : ""}"` : ""}>${a.showCancel ? `<button class="g-button" value="cancel"${focusCancel ? " autofocus" : ""}>${e(a.cancelLabel)}</button>` : ""}<button class="g-button" data-variant="${a.tone === "danger" ? "danger" : "primary"}" value="confirm"${a.confirmDisabled ? " disabled" : ""}${focusConfirm ? " autofocus" : ""}>${e(a.confirmLabel)}</button></form></dialog></div>`;
+    return `<div class="story-width"><p class="rw-kicker">${a.styled ? e(classes) : "Native dialog · no styling class"}</p><button class="rw-button" data-variant="primary" commandfor="${id}" command="show-modal">${e(a.triggerLabel)}</button><dialog${classes ? ` class="${e(classes)}"` : ""} id="${id}" closedby="${e(a.dismissal)}" aria-labelledby="${id}-title" aria-describedby="${id}-description"><header${c("header")}><div>${a.eyebrow ? `<p${c("eyebrow")}>${e(a.eyebrow)}</p>` : ""}<h2${c("title")} id="${id}-title">${e(a.title)}</h2></div>${a.showClose ? `<button${c("close")} type="button" aria-label="Close dialog" commandfor="${id}" command="close"><span class="rw-icon" data-icon="x" aria-hidden="true"></span></button>` : ""}</header><div${c("body")}><p id="${id}-description">${e(a.description)}</p></div><form method="dialog"${a.styled ? ` class="rw-dialog__footer${a.footer !== "end" ? ` rw-dialog__footer--${a.footer}` : ""}"` : ""}>${a.showCancel ? `<button class="rw-button" value="cancel"${focusCancel ? " autofocus" : ""}>${e(a.cancelLabel)}</button>` : ""}<button class="rw-button" data-variant="${a.tone === "danger" ? "danger" : "primary"}" value="confirm"${a.confirmDisabled ? " disabled" : ""}${focusConfirm ? " autofocus" : ""}>${e(a.confirmLabel)}</button></form></dialog></div>`;
   },
 };

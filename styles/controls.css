@@ -1,32 +1,32 @@
 /* Shared raised-control recipe. Native skin uses the same selectors and tokens. */
-@layer game-ui.primitives {
-  :where(.g-button,.g-native button,.g-native input[type=submit],.g-native input[type=button]) {
-    box-sizing:border-box; min-inline-size:0; max-inline-size:100%; overflow-wrap:anywhere; text-align:center; display:inline-flex; align-items:center; justify-content:center; gap:var(--g-control-gap);
-    padding:var(--g-control-block) var(--g-control-inline); border:1px solid var(--g-button-border,var(--g-line));
-    border-radius:var(--g-radius); color:var(--g-button-ink,var(--g-ink));
-    background-color:var(--g-button-bg,var(--g-soft));
-    background-image:linear-gradient(to bottom,color-mix(in oklch,var(--g-button-bg,var(--g-soft)) 94%,white),var(--g-button-bg,var(--g-soft)));
-    box-shadow:inset 0 1px var(--g-highlight),0 var(--g-control-depth) 0 var(--g-control-edge),0 calc(var(--g-control-depth) + 3px) 8px color-mix(in oklch,var(--g-ink) 7%,transparent);
-    font:600 var(--g-control-font)/1.3 var(--g-font); cursor:pointer;
-    transition:translate .14s,box-shadow .14s,background-color .14s;
+@layer runway-ui.primitives {
+  :where(.rw-button,.rw-native button,.rw-native input[type=submit],.rw-native input[type=button]) {
+    box-sizing:border-box; min-inline-size:0; max-inline-size:100%; overflow-wrap:anywhere; text-align:center; display:inline-flex; align-items:center; justify-content:center; gap:var(--rw-control-gap);
+    padding:var(--rw-control-block) var(--rw-control-inline); border:1px solid var(--rw-button-border,var(--rw-line));
+    border-radius:var(--rw-radius); color:var(--rw-button-ink,var(--rw-ink));
+    background-color:var(--rw-button-bg,var(--rw-soft));
+    background-image:linear-gradient(to bottom,color-mix(in oklch,var(--rw-button-bg,var(--rw-soft)) 94%,white),var(--rw-button-bg,var(--rw-soft)));
+    box-shadow:inset 0 1px var(--rw-highlight),0 var(--rw-control-depth) 0 var(--rw-control-edge),0 calc(var(--rw-control-depth) + 3px) 8px color-mix(in oklch,var(--rw-ink) 7%,transparent);
+    font:600 var(--rw-control-font)/1.3 var(--rw-font); cursor:pointer;
+    transition:translate .22s var(--rw-spring,ease),box-shadow .14s,background-color .14s;
   }
-  .g-button[data-variant=primary],:where(.g-native) :where(button[type=submit],input[type=submit]) { --g-button-bg:var(--g-accent); --g-button-ink:var(--g-on-accent); --g-button-border:var(--g-accent); }
-  .g-button[data-variant=secondary] { --g-button-bg:var(--g-surface); --g-button-border:var(--g-line); }
-  .g-button[data-variant=danger] { --g-button-bg:color-mix(in oklch,var(--g-danger) 12%,var(--g-surface)); --g-button-ink:var(--g-danger); --g-button-border:color-mix(in oklch,var(--g-danger) 30%,var(--g-line)); }
-  :where(.g-button,.g-native button,.g-native input[type=submit],.g-native input[type=button]):hover:not(:disabled) { translate:0 -1px; }
-  :where(.g-button,.g-native button,.g-native input[type=submit],.g-native input[type=button]):active:not(:disabled) { translate:0 var(--g-control-depth); box-shadow:inset 0 1px 3px color-mix(in oklch,var(--g-ink) 15%,transparent); }
-  :where(.g-button,.g-slot,.g-choice,.g-disclosure>summary,.g-native button,.g-native input):focus-visible { outline:3px solid var(--g-focus); outline-offset:3px; }
-  :where(.g-button,.g-slot,.g-choice,.g-native button,.g-native input[type=submit],.g-native input[type=button]):disabled { opacity:.5; cursor:not-allowed; box-shadow:none; }
-  :where(.g-slot,.g-choice):hover:not(:disabled) { filter:brightness(.97); }
-  .g-button[data-size=sm] { padding:7px 10px; font-size:11px; gap:8px; }
-  .g-button[data-size=lg] { padding:14px 20px; font-size:14px; gap:16px; }
-  .g-button[data-block] { inline-size:100%; }
-  .g-button[aria-busy=true] { cursor:progress; }
-  :where(.g-ui)[data-depth=flat] :where(.g-button,.g-native button) { box-shadow:none; background-image:none; }
+  .rw-button[data-variant=primary],:where(.rw-native) :where(button[type=submit],input[type=submit]) { --rw-button-bg:var(--rw-accent); --rw-button-ink:var(--rw-on-accent); --rw-button-border:var(--rw-accent); }
+  .rw-button[data-variant=secondary] { --rw-button-bg:var(--rw-surface); --rw-button-border:var(--rw-line); }
+  .rw-button[data-variant=danger] { --rw-button-bg:color-mix(in oklch,var(--rw-danger) 12%,var(--rw-surface)); --rw-button-ink:var(--rw-danger); --rw-button-border:color-mix(in oklch,var(--rw-danger) 30%,var(--rw-line)); }
+  :where(.rw-button,.rw-native button,.rw-native input[type=submit],.rw-native input[type=button]):hover:not(:disabled) { translate:0 -2px; }
+  :where(.rw-button,.rw-native button,.rw-native input[type=submit],.rw-native input[type=button]):active:not(:disabled) { translate:0 var(--rw-control-depth); box-shadow:inset 0 1px 3px color-mix(in oklch,var(--rw-ink) 15%,transparent); }
+  :where(.rw-button,.rw-slot,.rw-choice,.rw-disclosure>summary,.rw-native button,.rw-native input):focus-visible { outline:3px solid var(--rw-focus); outline-offset:3px; }
+  :where(.rw-button,.rw-slot,.rw-choice,.rw-native button,.rw-native input[type=submit],.rw-native input[type=button]):disabled { opacity:.5; cursor:not-allowed; box-shadow:none; }
+  :where(.rw-slot,.rw-choice):hover:not(:disabled) { filter:brightness(.97); }
+  .rw-button[data-size=sm] { padding:7px 10px; font-size:11px; gap:8px; }
+  .rw-button[data-size=lg] { padding:14px 20px; font-size:14px; gap:16px; }
+  .rw-button[data-block] { inline-size:100%; }
+  .rw-button[aria-busy=true] { cursor:progress; }
+  :where(.rw-ui)[data-depth=flat] :where(.rw-button,.rw-native button) { box-shadow:none; background-image:none; }
   @media (prefers-reduced-motion:reduce) {
-    :where(.g-button,.g-native button,.g-native input) { transition:none; translate:none!important; }
+    :where(.rw-button,.rw-native button,.rw-native input) { transition:none; translate:none!important; }
   }
   @media (forced-colors:active) {
-    :where(.g-button,.g-native button,.g-native input) { background-image:none; box-shadow:none; border-color:ButtonText; }
+    :where(.rw-button,.rw-native button,.rw-native input) { background-image:none; box-shadow:none; border-color:ButtonText; }
   }
 }

@@ -24,7 +24,7 @@ function update() {
     : 'You can dismiss this optional decision with Escape, the backdrop or a decision button.';
   $('#dialog-lock').checked = locked;
   modal.refresh();
-  $('#recipe').textContent = `<section class="g-ui g-panel" data-theme="${theme}"\n  data-density="${density}" data-elevation="${elevation}">\n  <button type="button" class="g-button"\n    data-variant="${variant}" data-size="${size}"${block ? ' data-block' : ''}${disabled ? ' disabled' : ''}>\n    Plan expedition →\n  </button>\n</section>`;
+  $('#recipe').textContent = `<section class="rw-ui rw-panel" data-theme="${theme}"\n  data-density="${density}" data-elevation="${elevation}">\n  <button type="button" class="rw-button"\n    data-variant="${variant}" data-size="${size}"${block ? ' data-block' : ''}${disabled ? ' disabled' : ''}>\n    Plan expedition →\n  </button>\n</section>`;
 }
 controls.addEventListener('change', update);
 controls.addEventListener('submit', event => event.preventDefault());
@@ -37,7 +37,7 @@ dialog.addEventListener('close', () => { $('#action-status').textContent = `Dial
 async function copy(text, status) {
   try {
     await navigator.clipboard.writeText(text);
-    status.textContent = 'Copied. Paste into a g-ui root in your application.';
+    status.textContent = 'Copied. Paste into a rw-ui root in your application.';
   } catch {
     status.textContent = 'Clipboard access is unavailable. Select and copy the code directly.';
   }
@@ -50,15 +50,15 @@ function element(tag, text, className) {
   return node;
 }
 for (const entry of catalog) {
-  const article = element('article', undefined, 'g-panel reference-card');
+  const article = element('article', undefined, 'rw-panel reference-card');
   article.id = `component-${entry.id}`;
-  const header = element('div', undefined, 'g-row');
+  const header = element('div', undefined, 'rw-row');
   const heading = element('h3', entry.name);
   heading.id = `${article.id}-title`;
   article.setAttribute('aria-labelledby', heading.id);
   const link = element('a', '#'); link.href = `#${article.id}`; link.setAttribute('aria-label', `Link to ${entry.name}`);
   header.append(heading, link);
-  article.append(header, element('p', entry.description, 'g-muted'));
+  article.append(header, element('p', entry.description, 'rw-muted'));
   const table = element('table', undefined, 'reference-table');
   table.append(element('caption', `${entry.name} options`));
   const thead = element('thead'), headerRow = element('tr');
@@ -73,11 +73,11 @@ for (const entry of catalog) {
     row.append(label, values, element('td', detail)); tbody.append(row);
   }
   table.append(tbody); article.append(table);
-  const details = element('details', undefined, 'g-disclosure');
+  const details = element('details', undefined, 'rw-disclosure');
   details.append(element('summary', 'Markup / usage'));
   const pre = element('pre'); pre.append(element('code', entry.snippet)); details.append(pre);
-  const status = element('p', '', 'g-muted'); status.setAttribute('role', 'status');
-  const button = element('button', 'Copy example', 'g-button'); button.type = 'button'; button.dataset.size = 'sm';
+  const status = element('p', '', 'rw-muted'); status.setAttribute('role', 'status');
+  const button = element('button', 'Copy example', 'rw-button'); button.type = 'button'; button.dataset.size = 'sm';
   button.addEventListener('click', () => copy(entry.snippet, status));
   details.append(button, status); article.append(details);
   $('#catalog').append(article);

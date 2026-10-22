@@ -56,7 +56,7 @@ export const Button = {
     ),
   },
   render: (a) =>
-    `<button class="g-button" type="button" data-variant="${e(a.variant)}" data-size="${e(a.size)}"${a.disabled ? " disabled" : ""}${a.block ? " data-block" : ""}${a.pressed !== "unset" ? ` aria-pressed="${e(a.pressed)}"` : ""}${a.busy ? ' aria-busy="true"' : ""}>${e(a.label)}${a.shortcut ? ` <kbd class="g-shortcut">${e(a.shortcut)}</kbd>` : ""}</button>`,
+    `<button class="rw-button" type="button" data-variant="${e(a.variant)}" data-size="${e(a.size)}"${a.disabled ? " disabled" : ""}${a.block ? " data-block" : ""}${a.pressed !== "unset" ? ` aria-pressed="${e(a.pressed)}"` : ""}${a.busy ? ' aria-busy="true"' : ""}>${e(a.label)}${a.shortcut ? ` <kbd class="rw-shortcut">${e(a.shortcut)}</kbd>` : ""}</button>`,
 };
 export const Panel = {
   args: {
@@ -77,13 +77,13 @@ export const Panel = {
       ["raised", "flat"],
       "data-elevation removes the shadow in flat mode.",
     ),
-    padding: range(8, 48, 2, "--g-panel-padding, in CSS pixels."),
+    padding: range(8, 48, 2, "--rw-panel-padding, in CSS pixels."),
     width: range(320, 1000, 20, "Maximum panel width in the preview."),
     showBadge: flag("Show the status badge.", "Content"),
     badge: { ...text("Visible status label."), if: { arg: "showBadge" } },
   },
   render: (a) =>
-    `<section class="g-panel g-stack" data-elevation="${e(a.elevation)}" style="--g-panel-padding:${bounded(a.padding, 8, 48)}px;max-inline-size:${bounded(a.width, 320, 1000)}px">${a.eyebrow ? `<p class="g-kicker">${e(a.eyebrow)}</p>` : ""}<header class="g-panel__header"><h2>${e(a.title)}</h2>${a.showBadge ? `<span class="g-badge">${e(a.badge)}</span>` : ""}</header><p>${e(a.description)}</p></section>`,
+    `<section class="rw-panel rw-stack" data-elevation="${e(a.elevation)}" style="--rw-panel-padding:${bounded(a.padding, 8, 48)}px;max-inline-size:${bounded(a.width, 320, 1000)}px">${a.eyebrow ? `<p class="rw-kicker">${e(a.eyebrow)}</p>` : ""}<header class="rw-panel__header"><h2>${e(a.title)}</h2>${a.showBadge ? `<span class="rw-badge">${e(a.badge)}</span>` : ""}</header><p>${e(a.description)}</p></section>`,
 };
 export const Badge = {
   args: { label: "Low reserves", tone: "warning" },
@@ -97,7 +97,7 @@ export const Badge = {
     ),
   },
   render: (a) =>
-    `<span class="g-badge" data-tone="${e(a.tone)}">${e(a.label)}</span>`,
+    `<span class="rw-badge" data-tone="${e(a.tone)}">${e(a.label)}</span>`,
 };
 export const Input = {
   args: {
@@ -116,7 +116,7 @@ export const Input = {
   },
   argTypes: {
     nativeSkin: flag(
-      "Use g-native on the field group instead of g-input on the control.",
+      "Use rw-native on the field group instead of rw-input on the control.",
       "HTML",
     ),
     label: text("Native associated label."),
@@ -140,7 +140,7 @@ export const Input = {
   },
   render: (a) => {
     const id = uniqueId("field");
-    return `<div class="g-stack${a.nativeSkin ? " g-native" : ""}" style="max-inline-size:${bounded(a.width, 240, 850)}px"><label for="${id}">${e(a.label)}</label><input${a.nativeSkin ? "" : ' class="g-input"'} id="${id}" type="${e(a.type)}" value="${e(a.value)}" placeholder="${e(a.placeholder)}" aria-describedby="${id}-hint"${a.disabled ? " disabled" : ""}${a.readonly ? " readonly" : ""}${a.required ? " required" : ""}${a.invalid ? ' aria-invalid="true"' : ""}><small id="${id}-hint">${e(a.invalid ? a.error : a.hint)}</small></div>`;
+    return `<div class="rw-stack${a.nativeSkin ? " rw-native" : ""}" style="max-inline-size:${bounded(a.width, 240, 850)}px"><label for="${id}">${e(a.label)}</label><input${a.nativeSkin ? "" : ' class="rw-input"'} id="${id}" type="${e(a.type)}" value="${e(a.value)}" placeholder="${e(a.placeholder)}" aria-describedby="${id}-hint"${a.disabled ? " disabled" : ""}${a.readonly ? " readonly" : ""}${a.required ? " required" : ""}${a.invalid ? ' aria-invalid="true"' : ""}><small id="${id}-hint">${e(a.invalid ? a.error : a.hint)}</small></div>`;
   },
 };
 export const Progress = {
@@ -168,7 +168,7 @@ export const Progress = {
       "Semantic data-tone for the custom meter.",
     ),
     height: {
-      ...range(4, 24, 1, "--g-meter-height in CSS pixels."),
+      ...range(4, 24, 1, "--rw-meter-height in CSS pixels."),
       if: { arg: "native", truthy: false },
     },
     showValues: flag("Keep the numeric value visible.", "Content"),
@@ -179,7 +179,7 @@ export const Progress = {
       value = bounded(a.value, 0, max);
     return a.native
       ? `<label>${e(a.label)} <progress max="${max}" value="${value}">${value} / ${max}</progress>${a.showValues ? ` ${value} / ${max}` : ""}</label>`
-      : `<div class="g-meter story-width" data-tone="${e(a.tone)}" style="--g-meter-height:${bounded(a.height, 4, 24)}px"><div class="g-meter__label"><span>${e(a.label)}</span>${a.showValues ? `<span>${value} / ${max}</span>` : ""}</div><div class="g-meter__track" role="progressbar" aria-label="${e(a.label)}" aria-valuenow="${value}" aria-valuemin="0" aria-valuemax="${max}"><div class="g-meter__fill" style="--g-value:${(value / max) * 100}%"></div></div></div>`;
+      : `<div class="rw-meter story-width" data-tone="${e(a.tone)}" style="--rw-meter-height:${bounded(a.height, 4, 24)}px"><div class="rw-meter__label"><span>${e(a.label)}</span>${a.showValues ? `<span>${value} / ${max}</span>` : ""}</div><div class="rw-meter__track" role="progressbar" aria-label="${e(a.label)}" aria-valuenow="${value}" aria-valuemin="0" aria-valuemax="${max}"><div class="rw-meter__fill" style="--rw-value:${(value / max) * 100}%"></div></div></div>`;
   },
 };
 export const Disclosure = {
@@ -195,7 +195,7 @@ export const Disclosure = {
     open: flag("Initial native open attribute; the user can still toggle it."),
   },
   render: (a) =>
-    `<details class="g-disclosure story-width"${a.open ? " open" : ""}><summary>${e(a.summary)}</summary><p>${e(a.content)}</p></details>`,
+    `<details class="rw-disclosure story-width"${a.open ? " open" : ""}><summary>${e(a.summary)}</summary><p>${e(a.content)}</p></details>`,
 };
 
 export const Select = {
@@ -209,17 +209,17 @@ export const Select = {
     label:text("Associated native label."), options:text("One option per line, at most 12."),
     selected:range(0,11,1,"Initial selected option index.","Data"),
     hint:text("Help associated with the field."), width:range(180,700,10,"Field width; try long labels at 180px."),
-    arrowInset:range(10,28,1,"--g-select-inset. Distance between arrow and inline edge."),
+    arrowInset:range(10,28,1,"--rw-select-inset. Distance between arrow and inline edge."),
     direction:select(["ltr","rtl"],"Direction changes arrow placement and text alignment.","HTML"),
     disabled:flag("Native disabled control."),invalid:flag("aria-invalid and border state."),required:flag("Native required constraint."),
     multiple:flag("Native multi-select/listbox; never draws a dropdown arrow.","HTML"),
-    nativeSkin:flag("Use g-native instead of an explicit g-input class.","HTML"),
+    nativeSkin:flag("Use rw-native instead of an explicit rw-input class.","HTML"),
     picker:select(["native","enhanced"],"Opt into base-select where supported; fallback remains native.","HTML"),
   },
   render:a=>{
     const id=uniqueId("select"),options=String(a.options).split("\n").map(v=>v.trim()).filter(Boolean).slice(0,12);
     const index=Math.trunc(bounded(a.selected,0,Math.max(0,options.length-1)));
-    return `<div class="g-stack${a.nativeSkin?' g-native':''}" dir="${e(a.direction)}" style="max-inline-size:${bounded(a.width,180,700)}px;--g-select-inset:${bounded(a.arrowInset,10,28)}px"><label for="${id}">${e(a.label)}</label><select id="${id}"${a.nativeSkin?'':' class="g-input"'} data-picker="${e(a.picker)}" aria-describedby="${id}-hint"${a.disabled?' disabled':''}${a.required?' required':''}${a.invalid?' aria-invalid="true"':''}${a.multiple?' multiple size="3"':''}>${options.map((v,i)=>`<option${i===index?' selected':''}>${e(v)}</option>`).join('')}</select><small class="g-muted" id="${id}-hint">${e(a.hint)}</small></div>`;
+    return `<div class="rw-stack${a.nativeSkin?' rw-native':''}" dir="${e(a.direction)}" style="max-inline-size:${bounded(a.width,180,700)}px;--rw-select-inset:${bounded(a.arrowInset,10,28)}px"><label for="${id}">${e(a.label)}</label><select id="${id}"${a.nativeSkin?'':' class="rw-input"'} data-picker="${e(a.picker)}" aria-describedby="${id}-hint"${a.disabled?' disabled':''}${a.required?' required':''}${a.invalid?' aria-invalid="true"':''}${a.multiple?' multiple size="3"':''}>${options.map((v,i)=>`<option${i===index?' selected':''}>${e(v)}</option>`).join('')}</select><small class="rw-muted" id="${id}-hint">${e(a.hint)}</small></div>`;
   },
 };
 for (const story of [Button, Panel, Badge, Input, Select, Progress, Disclosure])

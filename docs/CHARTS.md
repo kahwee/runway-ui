@@ -4,40 +4,40 @@
 
 ## Load
 
-Use `index.css` or `dist/runway-ui.css` for the full library. For selective loading, import `styles/tokens.css` and `styles/charts.css`, with a `g-ui` ancestor supplying tokens. The package alias `runway-ui/charts.css` exports the chart module. This local iteration is not published to npm.
+Use `index.css` or `dist/runway-ui.css` for the full library. For selective loading, import `styles/tokens.css` and `styles/charts.css`, with a `rw-ui` ancestor supplying tokens. The package alias `runway-ui/charts.css` exports the chart module. This local iteration is not published to npm.
 
 ## Common contract
 
-Wrap a plot in `figure.g-figure`, include a `figcaption` with units and scale, and supply exact values in HTML. `--g-chart-max` defaults to 100 and MUST be finite and greater than zero. `--g-chart-height` defaults to 180px. `--g-chart-color` defaults to the theme accent. `data-grid="off"` removes the background grid.
+Wrap a plot in `figure.rw-figure`, include a `figcaption` with units and scale, and supply exact values in HTML. `--rw-chart-max` defaults to 100 and MUST be finite and greater than zero. `--rw-chart-height` defaults to 180px. `--rw-chart-color` defaults to the theme accent. `data-grid="off"` removes the background grid.
 
 The application owns aggregation, sorting, missing data, validation and scaling. Do not silently encode missing observations as zero. CSS clips out-of-range marks to the plot bounds; it cannot report invalid business data. Validate values before rendering and display a warning if clipping is intentional. Keep the scale fixed when comparing datasets.
 
 | Plot | Markup | Numeric input | Valid domain |
 |---|---|---|---|
-| Column | `ol.g-columns > li`, `.g-column-track > .g-column-mark`, real value and category siblings | `--g-amount`, optionally `data-value` on each mark | 0 through maximum |
-| Stacked horizontal | `.g-series-list`, `.g-stack-track > .g-stack-mark` | Amount per segment, shared maximum | Each segment >=0; sum <= maximum |
-| Diverging horizontal | `.g-series-list`, `.g-diverging-track > .g-diverging-mark` | Signed amount; negative marks require `data-negative` | −maximum through +maximum; symmetric zero axis |
-| Area | `.g-area` | Six `--g-y0` through `--g-y5` percentage coordinates | 0% top, 100% bottom; six equally spaced observations |
-| Legacy horizontal | `table.g-chart`, `.g-chart__plot` | `--g-value:40%` | 0% through 100%; existing API preserved |
+| Column | `ol.rw-columns > li`, `.rw-column-track > .rw-column-mark`, real value and category siblings | `--rw-amount`, optionally `data-value` on each mark | 0 through maximum |
+| Stacked horizontal | `.rw-series-list`, `.rw-stack-track > .rw-stack-mark` | Amount per segment, shared maximum | Each segment >=0; sum <= maximum |
+| Diverging horizontal | `.rw-series-list`, `.rw-diverging-track > .rw-diverging-mark` | Signed amount; negative marks require `data-negative` | −maximum through +maximum; symmetric zero axis |
+| Area | `.rw-area` | Six `--rw-y0` through `--rw-y5` percentage coordinates | 0% top, 100% bottom; six equally spaced observations |
+| Legacy horizontal | `table.rw-chart`, `.rw-chart__plot` | `--rw-value:40%` | 0% through 100%; existing API preserved |
 
 ### Column recipe
 
 ```html
-<figure class="g-figure" style="--g-chart-max:100">
+<figure class="rw-figure" style="--rw-chart-max:100">
   <figcaption>Monthly output <small>Units · 0–100</small></figcaption>
-  <ol class="g-columns" role="list">
+  <ol class="rw-columns" role="list">
     <li>
-      <span class="g-column-track">
-        <i class="g-column-mark" data-value="42"
-           style="--g-amount:42" aria-hidden="true"></i>
+      <span class="rw-column-track">
+        <i class="rw-column-mark" data-value="42"
+           style="--rw-amount:42" aria-hidden="true"></i>
       </span>
-      <strong>42</strong><span class="g-category">January</span>
+      <strong>42</strong><span class="rw-category">January</span>
     </li>
   </ol>
 </figure>
 ```
 
-For typed `attr()` browsers, `data-value` supplies the numeric input. Elsewhere, `--g-amount` supplies it. If both are present, keep them equal. Visible text is separate: CSS cannot ensure that the label agrees with the geometry. Render all three from the same application value. With only the fallback custom property, the chart works without typed attributes.
+For typed `attr()` browsers, `data-value` supplies the numeric input. Elsewhere, `--rw-amount` supplies it. If both are present, keep them equal. Visible text is separate: CSS cannot ensure that the label agrees with the geometry. Render all three from the same application value. With only the fallback custom property, the chart works without typed attributes.
 
 ### Stacks and diverging bars
 
@@ -45,7 +45,7 @@ Stack segments share a fixed absolute scale; they are not automatically normaliz
 
 ### Area geometry
 
-The area chart is a bounded six-point primitive, not an arbitrary-length time-series engine. For a value of 24 on a 0–100 scale, supply `--g-y0:76%`. The host computes percentage coordinates from validated data. Set all six coordinates explicitly. Positions are equally spaced, with straight interpolation and a zero baseline. Do not use it for irregular timestamps without resampling and explaining that transformation. Exact observations belong in a table. No smoothing is applied, so curves do not invent intermediate peaks.
+The area chart is a bounded six-point primitive, not an arbitrary-length time-series engine. For a value of 24 on a 0–100 scale, supply `--rw-y0:76%`. The host computes percentage coordinates from validated data. Set all six coordinates explicitly. Positions are equally spaced, with straight interpolation and a zero baseline. Do not use it for irregular timestamps without resampling and explaining that transformation. Exact observations belong in a table. No smoothing is applied, so curves do not invent intermediate peaks.
 
 ## Modern CSS and fallbacks
 
@@ -54,7 +54,7 @@ The area chart is a bounded six-point primitive, not an arbitrary-length time-se
 | Cascade layers | Predictable host overrides | Modern browser required by library |
 | Subgrid | Columns share plot, value and label tracks | Modern browser required; do not promise legacy layout |
 | Container queries | Compact labels and row tracks inside narrow panels | Default spacious chart layout |
-| Typed `attr()` | Read numeric HTML attributes directly | Inline `--g-amount` |
+| Typed `attr()` | Read numeric HTML attributes directly | Inline `--rw-amount` |
 | `shape()` | Responsive area path with percentage coordinates | Equivalent `polygon()` path |
 | `color-mix(in oklch,…)` | Theme-derived area fill | Modern browser required |
 | Logical properties | Inline and block sizing | Modern browser required |

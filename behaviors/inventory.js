@@ -20,16 +20,16 @@ export function createInventory(root, {
   let firstRendered = -1, lastRendered = -1, destroyed = false;
   const attributes = ['role', 'tabindex', 'aria-label', 'aria-rowcount', 'aria-colcount'];
   const originalAttributes = new Map(attributes.map(name => [name, root.getAttribute(name)]));
-  const properties = ['--g-columns', '--g-row-height'];
+  const properties = ['--rw-columns', '--rw-row-height'];
   const originalProperties = new Map(properties.map(name => [name, {
     value: root.style.getPropertyValue(name),
     priority: root.style.getPropertyPriority(name),
   }]));
-  const hadClass = root.classList.contains('g-virtual');
+  const hadClass = root.classList.contains('rw-virtual');
 
-  root.classList.add('g-virtual');
-  root.style.setProperty('--g-columns', columns);
-  root.style.setProperty('--g-row-height', `${rowHeight}px`);
+  root.classList.add('rw-virtual');
+  root.style.setProperty('--rw-columns', columns);
+  root.style.setProperty('--rw-row-height', `${rowHeight}px`);
   root.setAttribute('role', 'grid');
   root.setAttribute('aria-colcount', columns);
   root.setAttribute('aria-label', originalAttributes.get('aria-label') ?? 'Inventory');
@@ -43,19 +43,19 @@ export function createInventory(root, {
 
   function cellFor(item, index, column) {
     const cell = document.createElement('div');
-    cell.className = 'g-virtual__cell';
+    cell.className = 'rw-virtual__cell';
     cell.setAttribute('role', 'gridcell');
     cell.setAttribute('aria-colindex', column + 1);
 
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'g-slot';
+    button.className = 'rw-slot';
     button.dataset.index = index;
     button.tabIndex = index === active ? 0 : -1;
     button.setAttribute('aria-pressed', String(index === selected));
 
     const icon = document.createElement('span');
-    icon.className = 'g-slot__icon';
+    icon.className = 'rw-slot__icon';
     icon.textContent = item.icon ?? '◇';
     icon.setAttribute('aria-hidden', 'true');
     const label = document.createElement('small');
@@ -79,7 +79,7 @@ export function createInventory(root, {
     fragment.append(spacer(first * rowHeight));
     for (let row = first; row < last; row++) {
       const line = document.createElement('div');
-      line.className = 'g-virtual__row';
+      line.className = 'rw-virtual__row';
       line.setAttribute('role', 'row');
       line.setAttribute('aria-rowindex', row + 1);
       for (let column = 0; column < columns; column++) {
@@ -160,7 +160,7 @@ export function createInventory(root, {
       root.removeEventListener('click', clicked);
       root.removeEventListener('focusin', focused);
       root.replaceChildren();
-      if (!hadClass) root.classList.remove('g-virtual');
+      if (!hadClass) root.classList.remove('rw-virtual');
       for (const [name, value] of originalAttributes) {
         if (value === null) root.removeAttribute(name); else root.setAttribute(name, value);
       }

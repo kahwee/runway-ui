@@ -1,40 +1,40 @@
-/* Optional structure and modifiers for native <dialog class="g-dialog">.
+/* Optional structure and modifiers for native <dialog class="rw-dialog">.
    The existing base surface remains in primitives.css for compatibility. */
-@layer game-ui.dialog {
-  .g-dialog--compact {
-    --g-dialog-width: 380px;
+@layer runway-ui.dialog {
+  .rw-dialog--compact {
+    --rw-dialog-width: 380px;
   }
-  .g-dialog--wide {
-    --g-dialog-width: 760px;
+  .rw-dialog--wide {
+    --rw-dialog-width: 760px;
   }
-  .g-dialog--danger {
-    border-color: color-mix(in oklch, var(--g-danger) 50%, var(--g-line));
+  .rw-dialog--danger {
+    border-color: color-mix(in oklch, var(--rw-danger) 50%, var(--rw-line));
   }
-  .g-dialog__header {
+  .rw-dialog__header {
     display: flex;
     justify-content: space-between;
     align-items: start;
     gap: 24px;
     margin-block-end: 20px;
   }
-  .g-dialog__eyebrow {
+  .rw-dialog__eyebrow {
     margin: 0 0 8px;
-    color: var(--g-muted);
-    font: 700 10px/1.5 var(--g-font);
+    color: var(--rw-muted);
+    font: 700 10px/1.5 var(--rw-font);
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
-  .g-dialog--danger .g-dialog__eyebrow {
-    color: var(--g-danger);
+  .rw-dialog--danger .rw-dialog__eyebrow {
+    color: var(--rw-danger);
   }
-  .g-dialog__title {
+  .rw-dialog__title {
     margin: 0;
-    color: var(--g-ink);
-    font: 550 24px/1.25 var(--g-font);
+    color: var(--rw-ink);
+    font: 550 24px/1.25 var(--rw-font);
     letter-spacing: -0.035em;
     overflow-wrap: anywhere;
   }
-  .g-dialog__body {
+  .rw-dialog__body {
     max-block-size: 50dvb;
     overflow: auto;
     overscroll-behavior: contain;
@@ -42,26 +42,26 @@
     overflow-wrap: anywhere;
     white-space: pre-line;
   }
-  .g-dialog__body p {
+  .rw-dialog__body p {
     margin: 0;
   }
-  .g-dialog__footer {
+  .rw-dialog__footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: end;
     gap: 10px;
     margin: 24px 0 0;
     padding-block-start: 20px;
-    border-block-start: 1px solid var(--g-line);
+    border-block-start: 1px solid var(--rw-line);
   }
-  .g-dialog__footer--split {
+  .rw-dialog__footer--split {
     justify-content: space-between;
   }
-  .g-dialog__footer--stacked {
+  .rw-dialog__footer--stacked {
     flex-direction: column-reverse;
     align-items: stretch;
   }
-  .g-dialog__close {
+  .rw-dialog__close {
     box-sizing: border-box;
     display: grid;
     place-items: center;
@@ -69,15 +69,19 @@
     inline-size: 32px;
     block-size: 32px;
     padding: 0;
-    border: 1px solid var(--g-line);
-    border-radius: var(--g-radius);
-    background: var(--g-raised);
-    color: var(--g-ink);
-    font: 20px/1 var(--g-font);
+    border: 1px solid var(--rw-line);
+    border-radius: var(--rw-radius);
+    background: var(--rw-raised);
+    color: var(--rw-ink);
+    font: 20px/1 var(--rw-font);
     cursor: pointer;
+    transition: rotate .3s var(--rw-spring, ease), background-color .14s;
   }
-  .g-dialog__close:focus-visible {
-    outline: 3px solid var(--g-focus);
+  .rw-dialog__close:hover { rotate: 90deg; background: var(--rw-soft); }
+  .rw-dialog__close:active { scale: .92; }
+  @media (prefers-reduced-motion: reduce) { .rw-dialog__close { transition: none; } .rw-dialog__close:hover { rotate: none; } }
+  .rw-dialog__close:focus-visible {
+    outline: 3px solid var(--rw-focus);
     outline-offset: 3px;
   }
 }

@@ -1,15 +1,36 @@
-@layer game-ui.themes {
-  .g-ui[data-theme=orbital] {
-    --g-bg:#0d1722; --g-surface:#142331; --g-raised:#1b2d3c; --g-ink:#e4f1f3;
-    --g-muted:#a1b9c5; --g-line:#345064; --g-accent:#76d5cc; --g-on-accent:#102b2d;
-    --g-soft:#243e4e; --g-gold:#e9bc76; --g-danger:#ff9c8d; --g-focus:#e9bc76;
-    --g-radius:3px; --g-shadow:0 10px 35px #0003; color-scheme:dark;
+@layer runway-ui.themes {
+  .rw-ui[data-theme=orbital] {
+    --rw-bg:#0d1722; --rw-surface:#142331; --rw-raised:#1b2d3c; --rw-ink:#e4f1f3;
+    --rw-muted:#a1b9c5; --rw-line:#345064; --rw-accent:#76d5cc; --rw-on-accent:#102b2d;
+    --rw-soft:#243e4e; --rw-gold:#e9bc76; --rw-danger:#ff9c8d; --rw-focus:#e9bc76;
+    --rw-radius:3px; --rw-shadow:0 10px 35px #0003; color-scheme:dark;
   }
-  .g-ui[data-theme=parchment] {
-    --g-bg:#ded1b4; --g-surface:#f7edd4; --g-raised:#eee0bd; --g-ink:#44341e;
-    --g-muted:#77613f; --g-line:#c9ad79; --g-accent:#715430; --g-on-accent:#fff3d7;
-    --g-soft:#e7d5ab; --g-gold:#896010; --g-danger:#a0412e; --g-focus:#a0412e;
-    --g-radius:2px; --g-shadow:3px 3px 0 #72573524; --g-font:Georgia,serif;
+  .rw-ui[data-theme=parchment] {
+    --rw-bg:#ded1b4; --rw-surface:#f7edd4; --rw-raised:#eee0bd; --rw-ink:#44341e;
+    --rw-muted:#77613f; --rw-line:#c9ad79; --rw-accent:#715430; --rw-on-accent:#fff3d7;
+    --rw-soft:#e7d5ab; --rw-gold:#896010; --rw-danger:#a0412e; --rw-focus:#a0412e;
+    --rw-radius:2px; --rw-shadow:3px 3px 0 #72573524; --rw-font:Georgia,serif;
   }
-  .g-ui[data-depth=flat] { --g-control-depth:0px; --g-shadow:none; }
+  /* Whimsy: playful product-studio look. Violet lead with coral, mint and sun companions. */
+  .rw-ui[data-theme=whimsy] {
+    --rw-bg:#f1edff; --rw-surface:#fffdf8; --rw-raised:#f7f3ff; --rw-ink:#2b2250;
+    --rw-muted:#6f648f; --rw-line:#d9d0f5; --rw-accent:#6a4cff; --rw-on-accent:#fffdf8;
+    --rw-soft:#e8e1ff; --rw-gold:#c77700; --rw-danger:#e2475d; --rw-focus:#ff6b4a;
+    --rw-radius:20px; --rw-control-depth:4px; --rw-control-edge:color-mix(in oklch,var(--rw-accent) 35%,var(--rw-line));
+    --rw-display-font:ui-rounded,"SF Pro Rounded","Nunito","Avenir Next",var(--rw-font);
+    --rw-shadow:inset 0 2px white,0 4px 0 color-mix(in oklch,var(--rw-accent) 14%,var(--rw-line)),0 18px 32px color-mix(in oklch,var(--rw-accent) 14%,transparent);
+  }
+  .rw-ui[data-theme=whimsy] .rw-dialog,.rw-dialog[data-theme=whimsy] { border-width:2px; border-color:var(--rw-line); }
+  .rw-ui[data-theme=whimsy] .rw-dialog::backdrop,.rw-dialog[data-theme=whimsy]::backdrop { background:color-mix(in oklch,var(--rw-accent) 32%,transparent); backdrop-filter:blur(8px) saturate(1.2); }
+  .rw-ui[data-theme=whimsy] .rw-dialog__close,.rw-dialog[data-theme=whimsy] .rw-dialog__close { border-radius:50%; border-width:2px; border-color:color-mix(in oklch,var(--rw-accent) 35%,var(--rw-line)); box-shadow:0 2px 0 color-mix(in oklch,var(--rw-accent) 25%,var(--rw-line)); color:var(--rw-accent); }
+  .rw-ui[data-theme=whimsy] .rw-badge { rotate:-2deg; border-width:1.5px; background:color-mix(in oklch,#ffd23f 45%,var(--rw-surface)); color:var(--rw-ink); border-color:color-mix(in oklch,#ffd23f 70%,var(--rw-ink)); }
+  .rw-ui[data-theme=whimsy] .rw-badge[data-tone=warning] { background:color-mix(in oklch,#ff6b4a 22%,var(--rw-surface)); border-color:#ff6b4a; }
+  .rw-ui[data-theme=whimsy] .rw-badge[data-tone=danger] { background:color-mix(in oklch,var(--rw-danger) 18%,var(--rw-surface)); border-color:var(--rw-danger); }
+  .rw-ui[data-theme=whimsy] .rw-meter__fill { background:linear-gradient(90deg,var(--rw-meter-color,var(--rw-accent)),color-mix(in oklch,var(--rw-meter-color,var(--rw-accent)) 65%,#ff6b4a)); }
+  .rw-ui[data-theme=whimsy] .rw-meter[data-tone=morale] { --rw-meter-color:#1fb58f; }
+  @media (prefers-reduced-motion:no-preference) {
+    .rw-ui[data-theme=whimsy] .rw-button:hover:not(:disabled) { animation:rw-wiggle .45s var(--rw-spring); }
+    @keyframes rw-wiggle { 25% { rotate:-1.5deg; } 60% { rotate:1.2deg; } to { rotate:0deg; } }
+  }
+  .rw-ui[data-depth=flat] { --rw-control-depth:0px; --rw-shadow:none; }
 }

@@ -51,7 +51,7 @@ export const ResourceHUD = {
     showRate: flag("Show signed rate and cycle unit.", "Content"),
   },
   render: (a) =>
-    `<div class="g-panel story-width"><div class="g-resource"><span class="g-resource__icon" aria-hidden="true">${e(a.icon)}</span><div><strong>${e(a.amount)}${a.showCapacity ? ` / ${e(a.capacity)}` : ""}</strong><small>${e(a.label)}${a.showRate ? ` · ${Number(a.rate) > 0 ? "+" : ""}${e(a.rate)} / cycle` : ""}</small></div></div></div>`,
+    `<div class="rw-panel story-width"><div class="rw-resource"><span class="rw-resource__icon" aria-hidden="true">${e(a.icon)}</span><div><strong>${e(a.amount)}${a.showCapacity ? ` / ${e(a.capacity)}` : ""}</strong><small>${e(a.label)}${a.showRate ? ` · ${Number(a.rate) > 0 ? "+" : ""}${e(a.rate)} / cycle` : ""}</small></div></div></div>`,
 };
 export const EquipmentSlots = {
   args: {
@@ -66,7 +66,7 @@ export const EquipmentSlots = {
   argTypes: {
     title: text("Visible collection heading."),
     items: object("Array of item labels, from 1 to 24."),
-    columns: range(1, 8, 1, "--g-columns on the slot grid."),
+    columns: range(1, 8, 1, "--rw-columns on the slot grid."),
     selected: range(-1, 23, 1, "Selected item index; -1 means none.", "State"),
     disabled: range(-1, 23, 1, "Disabled item index; -1 means none.", "State"),
     rare: range(-1, 23, 1, "Rare item index; -1 means none.", "State"),
@@ -75,7 +75,7 @@ export const EquipmentSlots = {
   render: (a) => {
     if (!Array.isArray(a.items) || !a.items.length || a.items.length > 24)
       return '<p role="alert">Provide 1–24 item labels.</p>';
-    return `<section class="story-width"><h2>${e(a.title)}</h2><div class="g-slots" style="--g-columns:${Math.round(bounded(a.columns, 1, 8))}">${a.items.map((item, i) => `<button class="g-slot" type="button" aria-pressed="${i === a.selected}" aria-label="${e(item)}${i === a.rare ? ", rare" : ""}"${i === a.disabled ? " disabled" : ""}${i === a.rare ? ' data-rarity="rare"' : ""}><span class="g-slot__icon" aria-hidden="true">${e(a.icon)}</span><small>${e(item)}</small></button>`).join("")}</div></section>`;
+    return `<section class="story-width"><h2>${e(a.title)}</h2><div class="rw-slots" style="--rw-columns:${Math.round(bounded(a.columns, 1, 8))}">${a.items.map((item, i) => `<button class="rw-slot" type="button" aria-pressed="${i === a.selected}" aria-label="${e(item)}${i === a.rare ? ", rare" : ""}"${i === a.disabled ? " disabled" : ""}${i === a.rare ? ' data-rarity="rare"' : ""}><span class="rw-slot__icon" aria-hidden="true">${e(a.icon)}</span><small>${e(item)}</small></button>`).join("")}</div></section>`;
   },
 };
 export const Objectives = {
@@ -95,7 +95,7 @@ export const Objectives = {
   },
   render: (a) =>
     Array.isArray(a.items)
-      ? `<ul class="g-objectives">${a.items.map((label, i) => `<li data-complete="${i < a.completed}"><span>${i < a.completed ? "✓ Complete" : "○ Pending"}</span><span>${e(label)}</span></li>`).join("")}</ul>`
+      ? `<ul class="rw-objectives">${a.items.map((label, i) => `<li data-complete="${i < a.completed}"><span>${i < a.completed ? "✓ Complete" : "○ Pending"}</span><span>${e(label)}</span></li>`).join("")}</ul>`
       : '<p role="alert">Provide an array of objective labels.</p>',
 };
 export const Choice = {
@@ -116,7 +116,7 @@ export const Choice = {
     ),
   },
   render: (a) =>
-    `<section class="g-panel story-width"><button type="button" class="g-choice" aria-pressed="${a.selected}"${a.disabled ? " disabled" : ""}><span><strong>${e(a.title)}</strong><small>${e(a.description)}</small></span><span>${e(a.cost)}</span></button></section>`,
+    `<section class="rw-panel story-width"><button type="button" class="rw-choice" aria-pressed="${a.selected}"${a.disabled ? " disabled" : ""}><span><strong>${e(a.title)}</strong><small>${e(a.description)}</small></span><span>${e(a.cost)}</span></button></section>`,
 };
 export const ActionDock = {
   args: {
@@ -136,7 +136,7 @@ export const ActionDock = {
   },
   render: (a) =>
     Array.isArray(a.items) && a.items.length > 0 && a.items.length <= 8
-      ? `<nav class="g-dock" aria-label="${e(a.label)}">${a.items.map((label, i) => `<button class="g-button" type="button" aria-pressed="${i === a.selected}">${e(label)}${a.showShortcuts ? ` <kbd class="g-shortcut">${i + 1}</kbd>` : ""}</button>`).join("")}</nav>`
+      ? `<nav class="rw-dock" aria-label="${e(a.label)}">${a.items.map((label, i) => `<button class="rw-button" type="button" aria-pressed="${i === a.selected}">${e(label)}${a.showShortcuts ? ` <kbd class="rw-shortcut">${i + 1}</kbd>` : ""}</button>`).join("")}</nav>`
       : '<p role="alert">Provide at most eight view labels.</p>',
 };
 export const ProductionLedger = {
@@ -166,10 +166,10 @@ export const ProductionLedger = {
       a.rows.some((r) => !Array.isArray(r) || r.length !== 4)
     )
       return '<p role="alert">Use four headers and four cells in each row.</p>';
-    return `<div class="g-ledger" role="table" aria-label="${e(a.label)}" style="max-inline-size:${bounded(a.width, 480, 1100)}px">${a.showHeader ? `<div class="g-ledger__row" data-heading role="row">${a.headers.map((h) => `<span role="columnheader">${e(h)}</span>`).join("")}</div>` : ""}${a.rows
+    return `<div class="rw-ledger" role="table" aria-label="${e(a.label)}" style="max-inline-size:${bounded(a.width, 480, 1100)}px">${a.showHeader ? `<div class="rw-ledger__row" data-heading role="row">${a.headers.map((h) => `<span role="columnheader">${e(h)}</span>`).join("")}</div>` : ""}${a.rows
       .map(
         (r) =>
-          `<div class="g-ledger__row" role="row"><strong role="rowheader">${e(r[0])}</strong>${r
+          `<div class="rw-ledger__row" role="row"><strong role="rowheader">${e(r[0])}</strong>${r
             .slice(1)
             .map((v) => `<span role="cell">${e(v)}</span>`)
             .join("")}</div>`,

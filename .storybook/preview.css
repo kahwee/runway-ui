@@ -5,22 +5,24 @@ body {
   box-sizing: border-box;
   min-block-size: 100dvh;
   padding: 40px;
-  background: var(--g-bg);
-  color: var(--g-ink);
-  font: 14px/1.6 var(--g-font);
+  background: radial-gradient(circle at 1px 1px, color-mix(in oklch, var(--rw-accent) 14%, transparent) 1.5px, transparent 0) 0 0 / 22px 22px, var(--rw-bg);
+  color: var(--rw-ink);
+  font: 14px/1.6 var(--rw-font);
 }
-.story-surface :where(h1, h2, h3):not(:where(.g-dialog *,.g-card *,.g-field *,.g-observatory *,.g-instrument *)) {
+.story-surface :where(h1, h2, h3):not(:where(.rw-dialog *,.rw-card *,.rw-field *,.rw-observatory *,.rw-instrument *)) {
   margin-block: 0 16px;
   letter-spacing: -0.035em;
-  font-weight: 550;
+  font-weight: 700;
+  font-family: var(--rw-display-font, var(--rw-font));
+  text-wrap: balance;
 }
-.story-surface p:not(:where(.g-dialog *,.g-card *,.g-field *,.g-observatory *,.g-instrument *)) {
+.story-surface p:not(:where(.rw-dialog *,.rw-card *,.rw-field *,.rw-observatory *,.rw-instrument *)) {
   margin-block: 0 18px;
 }
 .story-surface a {
-  color: var(--g-accent);
+  color: var(--rw-accent);
 }
-.story-surface .g-figure:not(:where(.g-observatory *,.g-instrument *)) {
+.story-surface .rw-figure:not(:where(.rw-observatory *,.rw-instrument *)) {
   max-inline-size: 850px;
 }
 .story-surface .story-width {
@@ -38,7 +40,7 @@ body {
   gap: 24px;
   max-inline-size: 1100px;
 }
-.story-surface .g-input {
+.story-surface .rw-input {
   max-inline-size: 100%;
 }
 .story-surface code {
@@ -48,9 +50,9 @@ body {
 }
 .story-surface pre {
   padding: 20px;
-  background: var(--g-raised);
+  background: var(--rw-raised);
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-  border: 1px solid var(--g-line);
-  border-radius: var(--g-radius);
+  border: 1px solid var(--rw-line);
+  border-radius: var(--rw-radius);
 }

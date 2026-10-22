@@ -16,6 +16,7 @@ async function inline(path, ancestors = new Set()) {
   }
   return output + source.slice(cursor);
 }
+await import('./icons.mjs');
 const css = await inline(resolve(root,'index.css'));
 await mkdir(resolve(root,'dist'),{recursive:true});
 await writeFile(resolve(root,'dist/runway-ui.css'),'/*! Runway UI | MIT License | https://github.com/kahwee/runway-ui */\n'+css.trimEnd()+'\n');

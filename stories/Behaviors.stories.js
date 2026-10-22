@@ -71,7 +71,7 @@ export const KeyboardNavigation = {
       root.innerHTML = '<p role="alert">Provide at least one action label.</p>';
       return root;
     }
-    root.innerHTML = `<h2>Roving keyboard focus</h2><p>Tab enters the group. Arrows, Home and End move focus; disabled controls are skipped.</p><div class="g-dock" role="toolbar" aria-label="${e(a.label)}">${a.items.map((label, i) => `<button class="g-button"${i === a.disabledIndex ? " disabled" : ""}>${e(label)}</button>`).join("")}</div><p role="status">Choose a view.</p>`;
+    root.innerHTML = `<h2>Roving keyboard focus</h2><p>Tab enters the group. Arrows, Home and End move focus; disabled controls are skipped.</p><div class="rw-dock" role="toolbar" aria-label="${e(a.label)}">${a.items.map((label, i) => `<button class="rw-button"${i === a.disabledIndex ? " disabled" : ""}>${e(label)}</button>`).join("")}</div><p role="status">Choose a view.</p>`;
     root.setup = () => {
       const nav = bindNavigation(root.querySelector("[role=toolbar]"), {
         columns: Math.round(bounded(a.columns, 1, 4)),
@@ -123,9 +123,9 @@ export const VirtualInventory = {
     const root = document.createElement("runway-story-host");
     root.className = "story-width";
     root.style.display = "block";
-    root.innerHTML = `<h2>${e(a.title)}</h2><p>End reaches the final item; Enter selects it. Changing arguments remounts this optional behavior.</p><div class="g-virtual" tabindex="0" aria-label="${e(a.title)}"></div><p role="status">No item selected.</p>`;
+    root.innerHTML = `<h2>${e(a.title)}</h2><p>End reaches the final item; Enter selects it. Changing arguments remounts this optional behavior.</p><div class="rw-virtual" tabindex="0" aria-label="${e(a.title)}"></div><p role="status">No item selected.</p>`;
     root.setup = () => {
-      const inventory = createInventory(root.querySelector(".g-virtual"), {
+      const inventory = createInventory(root.querySelector(".rw-virtual"), {
         items: Array.from(
           { length: Math.round(bounded(a.count, 1, 10000)) },
           (_, i) => ({ label: `${a.prefix} ${i + 1}`, icon: "◈" }),

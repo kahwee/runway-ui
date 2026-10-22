@@ -2,14 +2,14 @@ import "../index.css";
 import "../styles/native.css";
 import "./preview.css";
 export default {
-  initialGlobals: { theme: "studio", density: "comfortable", depth:"raised", skin:"play" },
+  initialGlobals: { theme: "whimsy", density: "comfortable", depth:"raised", skin:"play" },
   globalTypes: {
     skin:{description:"Interface material",toolbar:{icon:"circlehollow",items:["classic","play"],dynamicTitle:true}},
     theme: {
       description: "Art direction",
       toolbar: {
         icon: "paintbrush",
-        items: ["studio", "orbital", "parchment"],
+        items: ["whimsy", "studio", "orbital", "parchment"],
         dynamicTitle: true,
       },
     },
@@ -46,7 +46,7 @@ export default {
   decorators: [
     (story, context) => {
       const root = document.createElement("section");
-      root.className = "g-ui story-surface";
+      root.className = "rw-ui story-surface";
       root.dataset.theme = context.globals.theme;
       root.dataset.density = context.globals.density;
       root.dataset.depth = context.globals.depth;

@@ -19,7 +19,7 @@ const descriptions = { 'Portable terminal':'350 credits · +18% research speed',
 for (const button of document.querySelectorAll('[data-item]')) button.addEventListener('click', () => {
   for (const slot of document.querySelectorAll('[data-item]')) slot.setAttribute('aria-pressed', String(slot === button));
   const strong = document.createElement('strong'); strong.textContent = button.dataset.item;
-  const p = document.createElement('p'); p.className = 'g-muted'; p.textContent = descriptions[button.dataset.item];
+  const p = document.createElement('p'); p.className = 'rw-muted'; p.textContent = descriptions[button.dataset.item];
   $('#item-info').replaceChildren(strong, p);
 });
 for (const button of document.querySelectorAll('[data-section]')) button.addEventListener('click', () => {
@@ -28,10 +28,10 @@ for (const button of document.querySelectorAll('[data-section]')) button.addEven
 });
 $('#advance').addEventListener('click', () => {
   const meter = $('#readiness'); const next = (Number(meter.getAttribute('aria-valuenow')) + 8) % 101;
-  meter.setAttribute('aria-valuenow', String(next)); meter.firstElementChild.style.setProperty('--g-value', `${next}%`);
+  meter.setAttribute('aria-valuenow', String(next)); meter.firstElementChild.style.setProperty('--rw-value', `${next}%`);
   $('#readiness-label').textContent = `${next}%`;
   $('#preview-status').textContent = `Sample readiness advanced to ${next}%. No simulation is running.`;
 });
 
-bindNavigation(document.querySelector('.g-dock'), { columns:3 });
-bindNavigation(document.querySelector('.g-slots'), { columns:2, wrap:false });
+bindNavigation(document.querySelector('.rw-dock'), { columns:3 });
+bindNavigation(document.querySelector('.rw-slots'), { columns:2, wrap:false });

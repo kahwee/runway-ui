@@ -14,4 +14,4 @@ Use the [interactive reference](index.html#reference) for component option table
 
 `createInventory(root, options)` owns the root's contents while mounted; use a dedicated empty root. Fixed row heights and column counts must agree with CSS. See exported declarations and [interaction guide](INTERACTIONS.md) for the complete contracts. Replacing data while focused keeps focus in the grid; filtering from an outside input keeps focus there.
 
-Dialogs use opt-in `g-dialog` styling and BEM-style structure and modifiers. See [dialog classes](DIALOG.md) for sizes, tone, scrollable body and action layout.
+Dialogs use opt-in `rw-dialog` styling and BEM-style structure and modifiers. See [dialog classes](DIALOG.md) for sizes, tone, scrollable body and action layout.

@@ -1,7 +1,8 @@
 /* Import all modules, or select individual styles. No global reset. */
-@layer game-ui.tokens, game-ui.primitives, game-ui.meters, game-ui.patterns, game-ui.simulation, game-ui.layout, game-ui.charts, game-ui.observatory, game-ui.dialog, game-ui.themes;
+@layer runway-ui.tokens, runway-ui.primitives, runway-ui.icons, runway-ui.meters, runway-ui.patterns, runway-ui.simulation, runway-ui.layout, runway-ui.charts, runway-ui.observatory, runway-ui.dialog, runway-ui.themes;
 @import url('./styles/tokens.css');
 @import url('./styles/primitives.css');
+@import url('./styles/icons.css');
 @import url('./styles/meters.css');
 @import url('./styles/patterns.css');
 @import url('./styles/simulation.css');

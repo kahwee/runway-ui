@@ -27,14 +27,14 @@ The example modules have no third-party imports. JavaScript validates/render inp
 
 | Class | Input | Meaning |
 | --- | --- | --- |
-| `g-spark` | `--g-chart-max` and per-child `--g-amount`; optional matching `data-value` | Tiny decorative bars; accompany with visible current value, units and comparison |
-| `g-history` | `--g-chart-max`, `--g-chart-height`, `--g-target` | Observed/projected column composition on a declared absolute scale |
-| `g-history__frame` | Axis plus plot wrapper | Axis height equals the plot's declared block size |
-| `g-columns > li[data-projected]` inside history | Ordinary value and striped mark | Projection; text and exact table must identify it too |
-| `g-columns > li[data-missing]` inside history | No numeric mark | Missing data; never encode as zero |
-| `g-history__target` | `--g-target` between 0 and maximum | Dashed reference line with a visible target label |
-| `g-history__event` | Native `popovertarget` button | Click/keyboard event note, not a hover-only tooltip |
-| `g-resource-ledger` | Four columns: resource, storage, in/out, net | Header and rows share column tracks through subgrid |
+| `rw-spark` | `--rw-chart-max` and per-child `--rw-amount`; optional matching `data-value` | Tiny decorative bars; accompany with visible current value, units and comparison |
+| `rw-history` | `--rw-chart-max`, `--rw-chart-height`, `--rw-target` | Observed/projected column composition on a declared absolute scale |
+| `rw-history__frame` | Axis plus plot wrapper | Axis height equals the plot's declared block size |
+| `rw-columns > li[data-projected]` inside history | Ordinary value and striped mark | Projection; text and exact table must identify it too |
+| `rw-columns > li[data-missing]` inside history | No numeric mark | Missing data; never encode as zero |
+| `rw-history__target` | `--rw-target` between 0 and maximum | Dashed reference line with a visible target label |
+| `rw-history__event` | Native `popovertarget` button | Click/keyboard event note, not a hover-only tooltip |
+| `rw-resource-ledger` | Four columns: resource, storage, in/out, net | Header and rows share column tracks through subgrid |
 
 The example validates 6–18 equally spaced observations, one string label per value, positive finite maximum up to 10,000 and finite nonnegative numbers within that scale. `null` means missing. It rejects invalid data visibly rather than clipping or coercing numeric strings. Projection count is 0–4; final projected observations never enter the observed summary or Output card. A missing final or previous observation makes its comparison unavailable. The other five instrument series are independent illustrative data, disclosed in the notebook.
 

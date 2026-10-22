@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased — cuter defaults
+
+- **Breaking: the `g-` prefix is now `rw-`.** Classes (`.g-button` → `.rw-button`), custom properties (`--g-accent` → `--rw-accent`), keyframes, container names and cascade layers (`game-ui.*` → `runway-ui.*`) all change; the root class is `.rw-ui`. Rename with `s/(?<![\w-])g-(?=[a-z])/rw-/` and `s/--g-/--rw-/` on your own markup and CSS.
+
+- Add native-form skins: springy `rw-switch`, `rw-range` slider with optional `runway-ui/forms` output binding, `rw-check`, option cards, input groups, fieldsets and field-sizing textareas; add the Foundations / Forms story.
+
+- Add `runway-ui/timeseries` (`mountHistoryWindow`): windowed time series with overview, native scrubber and pager; the history playground now defaults to 1,000 days and goes to 5,000.
+- Fix narrow columns overflowing their track.
+
+- Round the default radius to 16px, add pill badges with a status dot, pill meters with a springy fill, and springy lift on buttons and slots (reduced-motion safe).
+- Add the pastel Whimsy theme (`data-theme="whimsy"`): lavender and violet with coral, mint and sun accents, sticker badges and a hover wiggle.
+
 ## 0.5.0 — tactile history instruments
 
 - Add generic signed history markup with explicit gaps, up to 366 observations, grouped native event popovers and exact-value disclosures.
@@ -50,7 +62,7 @@ Source update for GitHub and the documentation site; no npm registry publication
 ### Comfortable, playful defaults
 
 - Warm Studio palette, raised controls, softer panel edges and configurable flat depth. Default radius changes from 10px to 12px; button text from 11px to 13px. These are intentional visual changes.
-- Split shared controls and fields from layout primitives; native form styling reuses those modules. The full bundle includes opt-in `g-native` selectors.
+- Split shared controls and fields from layout primitives; native form styling reuses those modules. The full bundle includes opt-in `rw-native` selectors.
 - Reserve an arrow/text gutter on native selects, flip it in RTL and retain listbox behavior.
 - Add opt-in customizable native pickers behind a CSS support check, plus forced-color/reduced-motion accommodations.
 - Add a richly configurable Select story, depth toolbar and generic Clipboard Club example. Existing g- classes, exports, dialog policy and chart behavior are retained.

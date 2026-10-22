@@ -9,7 +9,7 @@ function render(message) {
   $('#next-cycle').disabled=finished; $('#upgrade').disabled=finished || credits<200; actions.refresh();
   $('#history').replaceChildren(...history.slice(-6).map(point=>{
     const tr=document.createElement('tr'),th=document.createElement('th'),td=document.createElement('td'),bar=document.createElement('span'),value=document.createElement('td');
-    th.scope='row';th.textContent=point.cycle; bar.className='g-chart__plot';bar.style.setProperty('--g-value',`${Math.min(100,point.oxygen/3)}%`);bar.setAttribute('aria-hidden','true');td.append(bar);value.textContent=point.oxygen;tr.append(th,td,value);return tr;
+    th.scope='row';th.textContent=point.cycle; bar.className='rw-chart__plot';bar.style.setProperty('--rw-value',`${Math.min(100,point.oxygen/3)}%`);bar.setAttribute('aria-hidden','true');td.append(bar);value.textContent=point.oxygen;tr.append(th,td,value);return tr;
   }));
   if(message) $('#outcome').textContent=message;
 }

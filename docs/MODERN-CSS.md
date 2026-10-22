@@ -6,37 +6,37 @@ Runway UI targets contemporary desktop engines with native CSS nesting, subgrid,
 
 | Component | Shared tracks | Content contract |
 | --- | --- | --- |
-| `g-form-grid > g-field` | Three row tracks | Associated label, control, optional hint |
-| `g-card-grid > g-card` | Four row tracks | `g-card__title`, `g-card__description`, `g-card__body`, `g-card__footer` |
-| `g-stat-grid > g-stat` | Three row tracks | `g-stat__label`, `g-stat__value`, `g-stat__detail` |
-| `g-choice-list > g-choice` | Description and cost columns | Two children per choice |
-| `g-objectives > li` | Status and description columns | Existing two-child markup |
-| `g-series-list > li` | Label, plot, number columns | Existing three-child chart markup |
-| `g-ledger > g-ledger__row` | Production columns | Existing ledger markup |
-| `g-columns > li` | Plot, value, category rows | Existing column chart markup |
+| `rw-form-grid > rw-field` | Three row tracks | Associated label, control, optional hint |
+| `rw-card-grid > rw-card` | Four row tracks | `rw-card__title`, `rw-card__description`, `rw-card__body`, `rw-card__footer` |
+| `rw-stat-grid > rw-stat` | Three row tracks | `rw-stat__label`, `rw-stat__value`, `rw-stat__detail` |
+| `rw-choice-list > rw-choice` | Description and cost columns | Two children per choice |
+| `rw-objectives > li` | Status and description columns | Existing two-child markup |
+| `rw-series-list > li` | Label, plot, number columns | Existing three-child chart markup |
+| `rw-ledger > rw-ledger__row` | Production columns | Existing ledger markup |
+| `rw-columns > li` | Plot, value, category rows | Existing column chart markup |
 
 These are real subgrids, not copies of the same track definition on each child. Card and field groups auto-place into the next group of shared rows. Keep the documented slots when a section is absent; an empty optional slot can be omitted when the remaining slot classes have explicit positions. Form fields use their first three direct children; do not wrap the control inside the label in this pattern. Native label associations remain intact. Do not put size containment on an individual row-subgrid card: it defeats content-based parent row sizing.
 
 ```html
-<div class="g-layout">
-  <form class="g-form-grid">
-    <div class="g-field">
+<div class="rw-layout">
+  <form class="rw-form-grid">
+    <div class="rw-field">
       <label for="department">Department</label>
-      <select class="g-input" id="department"><option>Research</option></select>
+      <select class="rw-input" id="department"><option>Research</option></select>
       <small>The hint has its own shared row.</small>
     </div>
-    <div class="g-field">
+    <div class="rw-field">
       <label for="lead">The person with the excellent clipboard</label>
-      <input class="g-input" id="lead">
+      <input class="rw-input" id="lead">
       <small>Longer labels keep neighboring controls aligned.</small>
     </div>
   </form>
 </div>
 ```
 
-Use `g-layout` for a named inline-size container. Preferred columns come from `--g-form-columns` (2), `--g-card-columns` (3) and `--g-stat-columns` (4). Below 720px of container space, cards/stat tiles are capped at two columns; below 460px, cards/forms/stats are capped at one. A preferred one-column layout stays one column at every width. These adapt a component inside a desktop panel, independently of the browser viewport. Fluid titles use `cqi`, `clamp()` and `text-wrap:balance`; descriptions use `text-wrap:pretty`.
+Use `rw-layout` for a named inline-size container. Preferred columns come from `--rw-form-columns` (2), `--rw-card-columns` (3) and `--rw-stat-columns` (4). Below 720px of container space, cards/stat tiles are capped at two columns; below 460px, cards/forms/stats are capped at one. A preferred one-column layout stays one column at every width. These adapt a component inside a desktop panel, independently of the browser viewport. Fluid titles use `cqi`, `clamp()` and `text-wrap:balance`; descriptions use `text-wrap:pretty`.
 
-Internal row spacing uses `--g-content-gap` (10px, compact 8px), independently of the 14px/10px group gap `--g-space`. A chart figure containing a direct `g-series-list` shares intrinsic label, plot and value columns through two levels of subgrid. Its adjacent scale occupies the actual plot column; no label-width offsets are needed. Long labels and values wrap within bounded tracks. Keep the scale immediately after the list.
+Internal row spacing uses `--rw-content-gap` (10px, compact 8px), independently of the 14px/10px group gap `--rw-space`. A chart figure containing a direct `rw-series-list` shares intrinsic label, plot and value columns through two levels of subgrid. Its adjacent scale occupies the actual plot column; no label-width offsets are needed. Long labels and values wrap within bounded tracks. Keep the scale immediately after the list.
 
 ## Signed instruments
 
@@ -50,7 +50,7 @@ The [Simulation Observatory](OBSERVATORY.md) adds native event popovers with imp
 
 - **Native CSS nesting** groups each layout's direct-child slot rules.
 - **OKLCH color mixing** derives surfaces, borders and highlights perceptually across themes.
-- **Typed `@property --g-value`** registers percentages for meter interpolation. Keep existing values as percentages; a parent may supply the value because it inherits.
+- **Typed `@property --rw-value`** registers percentages for meter interpolation. Keep existing values as percentages; a parent may supply the value because it inherits.
 - **`::details-content` + `interpolate-size:allow-keywords`** animates native disclosure height without measurement JavaScript. Unsupported engines keep ordinary native details behavior; motion preferences disable the transition.
 - **`appearance:base-select` / `::picker(select)`** remains an opt-in native picker enhancement.
 - **Typed `attr()` and `shape()`** enhance numeric charts and CSS area paths; the existing custom-property and polygon paths stay functional where those newer APIs are absent.
@@ -62,3 +62,8 @@ Feature support is checked for the capability being enhanced. No new layout runt
 [Shared-track example](../examples/layouts.html) · [Storybook layout playground](../storybook/?path=/story/foundations-subgrid-layouts--playground)
 
 Primary references: [MDN subgrid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Subgrid), [container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries), [interpolate-size](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/interpolate-size), [details content](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::details-content).
+
+## Dialog and select enhancements
+
+- **Dialog** uses `@starting-style` with `allow-discrete` transitions for `display` and `overlay`, so the dialog and its `::backdrop` fade and spring in from the top layer. Browsers without these features open and close it instantly.
+- **Customizable select** (`data-picker="enhanced"`) uses `appearance:base-select`, an anchored `::picker(select)` sized with `anchor-size()`, a styled `option::checkmark` and an entry animation. Unsupported browsers keep the padded native select. The picker has no exit animation because minifiers reject state pseudo-classes after `::picker()`.

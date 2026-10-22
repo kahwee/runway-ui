@@ -27,7 +27,7 @@ The [Observatory playground](../storybook/?path=/story/compositions-simulation-o
 
 ## Native HTML and class-based CSS
 
-Styled dialogs use `g-dialog` and documented child/modifier classes; see the [dialog class contract](DIALOG.md). Native invoker commands and dialog forms provide opening/closing without an application event handler. Native inputs, progress and details/summary preserve browser behavior. Older browsers may need the optional dialog helper.
+Styled dialogs use `rw-dialog` and documented child/modifier classes; see the [dialog class contract](DIALOG.md). Native invoker commands and dialog forms provide opening/closing without an application event handler. Native inputs, progress and details/summary preserve browser behavior. Older browsers may need the optional dialog helper.
 
 Selection in a visual equipment/choice/dock story is controlled through args; these previews do not fabricate simulation logic. The two behavior stories explicitly demonstrate optional JavaScript. Their documentation-only lifecycle hosts install a helper on connection and dispose it on disconnection. No custom elements are required by Runway UI.
 

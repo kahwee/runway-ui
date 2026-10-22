@@ -30,10 +30,20 @@
     "./layout.css": "./styles/layout.css",
     "./history.css": "./styles/history.css",
     "./observatory.css": "./styles/observatory.css",
+    "./forms": {
+      "types": "./behaviors/forms.d.ts",
+      "default": "./behaviors/forms.js"
+    },
+    "./timeseries": {
+      "types": "./behaviors/timeseries.d.ts",
+      "default": "./behaviors/timeseries.js"
+    },
     "./history": {
       "types": "./behaviors/history.d.ts",
       "default": "./behaviors/history.js"
     },
+    "./forms.css": "./styles/forms.css",
+    "./icons.css": "./styles/icons.css",
     "./instruments.css": "./styles/instruments.css"
   },
   "files": [
@@ -79,6 +89,7 @@
     "node": ">=22"
   },
   "devDependencies": {
+    "@phosphor-icons/core": "^2.1.1",
     "@storybook/addon-docs": "10.6.3",
     "@storybook/html-vite": "10.6.3",
     "marked": "18.1.1",

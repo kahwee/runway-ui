@@ -8,7 +8,7 @@ Resource HUDs, production ledgers, economy charts, equipment grids, objectives a
 
 ## Tactile history instruments
 
-[Explore signed history instruments](https://kahwee.github.io/runway-ui/storybook/?path=/story/charts-history-instruments--playground): real observation arrays, explicit missing values, grouped native notes and exact tables. Add `data-skin="play"` to a `g-ui` root for deeper, more playful surfaces. [Contracts](docs/INSTRUMENTS.md).
+[Explore signed history instruments](https://kahwee.github.io/runway-ui/storybook/?path=/story/charts-history-instruments--playground): real observation arrays, explicit missing values, grouped native notes and exact tables. Add `data-skin="play"` to a `rw-ui` root for deeper, more playful surfaces. [Contracts](docs/INSTRUMENTS.md).
 
 ## Simulation Observatory
 
@@ -20,9 +20,9 @@ Subgrid aligns cards, fields, stat tiles, choices, objectives, production rows a
 
 ## Comfortable defaults
 
-Warm Studio colors, tactile controls and softly raised panels are the default. Add `data-depth="flat"` on a `g-ui` root for quieter surfaces. `select.g-input` reserves a 16px arrow inset and a separate text gutter, including RTL. `data-picker="enhanced"` progressively enables the newer native picker where supported. No JavaScript is needed for field styling.
+Warm Studio colors, tactile controls and softly raised panels are the default. Add `data-depth="flat"` on a `rw-ui` root for quieter surfaces. `select.rw-input` reserves a 16px arrow inset and a separate text gutter, including RTL. `data-picker="enhanced"` progressively enables the newer native picker where supported. No JavaScript is needed for field styling.
 
-See [the Clipboard Club](examples/controls.html) and [field documentation](docs/FIELDS.md), or tune the Select playground in Storybook. The bundle now includes the `g-native` opt-in selectors; `native.css` remains a compatible standalone form entry.
+See [the Clipboard Club](examples/controls.html) and [field documentation](docs/FIELDS.md), or tune the Select playground in Storybook. The bundle now includes the `rw-native` opt-in selectors; `native.css` remains a compatible standalone form entry.
 
 ## Explore the library
 
@@ -40,9 +40,9 @@ Download this repository and link the self-contained bundle:
 ```html
 <link rel="stylesheet" href="./runway-ui/dist/runway-ui.css">
 
-<section class="g-ui g-panel" data-theme="orbital" aria-labelledby="mission">
+<section class="rw-ui rw-panel" data-theme="orbital" aria-labelledby="mission">
   <h2 id="mission">Prepare the expedition</h2>
-  <button class="g-button" data-variant="primary">Launch</button>
+  <button class="rw-button" data-variant="primary">Launch</button>
 </section>
 ```
 
@@ -85,12 +85,12 @@ The examples target desktop windows at least 1100 × 640. The CSS library itself
 | Themes | Warm Studio, dark Orbital and Parchment; identical markup |
 | Optional behaviors | Native dialog dismissal policy, roving keyboard focus, standard controller adapter, fixed-height virtual inventory |
 
-All component classes use `g-`; the root `g-ui` supplies inherited tokens without a global reset. Application styles can override the cascade layers. This is a CSS namespace, not Shadow DOM isolation.
+All component classes use `rw-`; the root `rw-ui` supplies inherited tokens without a global reset. Application styles can override the cascade layers. This is a CSS namespace, not Shadow DOM isolation.
 
 ## Easy adoption
 
-1. **Components:** add the stylesheet, a `g-ui` root and documented component classes.
-2. **Existing forms:** additionally load `runway-ui/native.css` and add `g-native` to the root. Native submission and control semantics stay intact.
+1. **Components:** add the stylesheet, a `rw-ui` root and documented component classes.
+2. **Existing forms:** additionally load `runway-ui/native.css` and add `rw-native` to the root. Native submission and control semantics stay intact.
 3. **Interactions:** import only the optional modules you need; retain their handles and call `destroy()` on unmount.
 
 Runway UI is not an API-compatible replacement for another UI framework. Existing custom widgets may need markup changes. The CSS core does not run a simulation, store saves or render a world.
@@ -136,4 +136,4 @@ See the [Storybook guide](docs/STORYBOOK.md). Run `npm ci`, then `npm run storyb
 
 Native dialog stories use HTML invoker commands (`commandfor`, `command="show-modal"`) and `form method="dialog"`. Older browsers can use the optional dialog helper. Native disclosures and form controls need no event handlers.
 
-Dialog styling is opt-in with `g-dialog`, structured `g-dialog__header`, `__body` and `__footer` classes, plus compact/wide/danger modifiers. See the [dialog class guide](docs/DIALOG.md) and [dialog playground](https://kahwee.github.io/runway-ui/storybook/?path=/story/foundations-dialog--playground).
+Dialog styling is opt-in with `rw-dialog`, structured `rw-dialog__header`, `__body` and `__footer` classes, plus compact/wide/danger modifiers. See the [dialog class guide](docs/DIALOG.md) and [dialog playground](https://kahwee.github.io/runway-ui/storybook/?path=/story/foundations-dialog--playground).

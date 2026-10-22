@@ -1,12 +1,12 @@
 /* Native details retains behavior; supported engines animate its intrinsic size. */
-@layer game-ui.primitives {
-  .g-disclosure { interpolate-size:allow-keywords; }
+@layer runway-ui.primitives {
+  .rw-disclosure { interpolate-size:allow-keywords; }
   @supports selector(::details-content) {
-    .g-disclosure::details-content {
+    .rw-disclosure::details-content {
       block-size:0; opacity:0; overflow:clip; overflow-clip-margin:8px;
       transition:block-size .2s,opacity .2s,content-visibility .2s allow-discrete;
     }
-    .g-disclosure[open]::details-content { block-size:auto; opacity:1; }
-    @media(prefers-reduced-motion:reduce) { .g-disclosure::details-content { transition:none; } }
+    .rw-disclosure[open]::details-content { block-size:auto; opacity:1; }
+    @media(prefers-reduced-motion:reduce) { .rw-disclosure::details-content { transition:none; } }
   }
 }

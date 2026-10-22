@@ -96,7 +96,7 @@ export default {
       color: {
         control: "color",
         description:
-          "--g-chart-color override; otherwise follows the toolbar theme.",
+          "--rw-chart-color override; otherwise follows the toolbar theme.",
         if: { arg: "customColor" },
         table: { category: "Appearance", type: { summary: "CSS color" } },
       },
@@ -135,13 +135,13 @@ export const Columns = {
           ? Array(6).fill(0)
           : a.secondaryValues;
     const figure = document.createElement("figure");
-    figure.className = "g-figure";
-    figure.style.setProperty("--g-chart-max", max);
-    figure.style.setProperty("--g-chart-height", `${height}px`);
+    figure.className = "rw-figure";
+    figure.style.setProperty("--rw-chart-max", max);
+    figure.style.setProperty("--rw-chart-height", `${height}px`);
     figure.style.maxInlineSize = `${bounded(a.width, 320, 1100, 850)}px`;
     figure.dataset.grid = a.grid ? "on" : "off";
     if (a.customColor && CSS.supports("color", a.color))
-      figure.style.setProperty("--g-chart-color", a.color);
+      figure.style.setProperty("--rw-chart-color", a.color);
     const invalid = (message) => {
       figure.innerHTML = `<figcaption>${e(a.title)}</figcaption><p role="alert">${e(message)}</p>`;
       return figure;
@@ -179,18 +179,18 @@ export const Columns = {
     const scale = a.kind === "diverging" ? `−${max} to +${max}` : `0–${max}`;
     let markup = `<figcaption>${e(a.title)}<small>${e(a.unit)} · ${scale}</small></figcaption>`;
     const mark = (className, v, extra = "") =>
-      `<i class="${className}" data-value="${v}" style="--g-amount:${v}"${extra}></i>`;
+      `<i class="${className}" data-value="${v}" style="--rw-amount:${v}"${extra}></i>`;
     if (a.kind === "columns")
-      markup += `<ol class="g-columns" role="list">${values.map((v, i) => `<li><span class="g-column-track" aria-hidden="true">${mark("g-column-mark", v)}</span><strong>${v}</strong><span class="g-category">${e(labels[i])}</span></li>`).join("")}</ol>`;
+      markup += `<ol class="rw-columns" role="list">${values.map((v, i) => `<li><span class="rw-column-track" aria-hidden="true">${mark("rw-column-mark", v)}</span><strong>${v}</strong><span class="rw-category">${e(labels[i])}</span></li>`).join("")}</ol>`;
     if (a.kind === "stacked")
-      markup += `<ul class="g-series-list" role="list">${values.map((v, i) => `<li><span>${e(labels[i])}</span><span class="g-stack-track" aria-hidden="true">${mark("g-stack-mark", v)}${mark("g-stack-mark", secondary[i], ' data-series="secondary"')}</span><strong>${v + secondary[i]}</strong></li>`).join("")}</ul><div class="g-legend"><span><i></i>${e(a.seriesLabel)}</span><span data-series="secondary"><i></i>${e(a.secondaryLabel)}</span></div>`;
+      markup += `<ul class="rw-series-list" role="list">${values.map((v, i) => `<li><span>${e(labels[i])}</span><span class="rw-stack-track" aria-hidden="true">${mark("rw-stack-mark", v)}${mark("rw-stack-mark", secondary[i], ' data-series="secondary"')}</span><strong>${v + secondary[i]}</strong></li>`).join("")}</ul><div class="rw-legend"><span><i></i>${e(a.seriesLabel)}</span><span data-series="secondary"><i></i>${e(a.secondaryLabel)}</span></div>`;
     if (a.kind === "diverging")
-      markup += `<ul class="g-series-list" role="list">${values.map((v, i) => `<li><span>${e(labels[i])}</span><span class="g-diverging-track" aria-hidden="true">${mark("g-diverging-mark", v, v < 0 ? " data-negative" : "")}</span><strong>${v > 0 ? "+" : ""}${v}</strong></li>`).join("")}</ul><div class="g-chart-scale"><span>−${max}</span><span>0</span><span>+${max}</span></div>`;
+      markup += `<ul class="rw-series-list" role="list">${values.map((v, i) => `<li><span>${e(labels[i])}</span><span class="rw-diverging-track" aria-hidden="true">${mark("rw-diverging-mark", v, v < 0 ? " data-negative" : "")}</span><strong>${v > 0 ? "+" : ""}${v}</strong></li>`).join("")}</ul><div class="rw-chart-scale"><span>−${max}</span><span>0</span><span>+${max}</span></div>`;
     if (a.kind === "area")
-      markup += `<div class="g-area" aria-hidden="true" style="${values.map((v, i) => `--g-y${i}:${100 - (v / max) * 100}%`).join(";")}"></div><div class="g-chart-scale"><span>${e(labels[0])}</span><span>${e(labels.at(-1))}</span></div>`;
+      markup += `<div class="rw-area" aria-hidden="true" style="${values.map((v, i) => `--rw-y${i}:${100 - (v / max) * 100}%`).join(";")}"></div><div class="rw-chart-scale"><span>${e(labels[0])}</span><span>${e(labels.at(-1))}</span></div>`;
     if (a.kind === "horizontal")
-      markup += `<table class="g-chart"><caption>${e(a.title)} · ${scale} ${e(a.unit)}</caption><thead><tr><th scope="col">Category</th><th scope="col" class="g-chart__axis">Plot</th><th scope="col">${e(a.unit)}</th></tr></thead><tbody>${values.map((v, i) => `<tr><th scope="row">${e(labels[i])}</th><td><span class="g-chart__plot" style="--g-value:${(v / max) * 100}%" aria-hidden="true"></span></td><td>${v}</td></tr>`).join("")}</tbody></table>`;
-    markup += `<details class="g-chart-data"${a.tableOpen ? " open" : ""}><summary>View exact data</summary><table><caption>${e(a.title)} · ${e(a.unit)}</caption><thead><tr><th scope="col">Category</th><th scope="col">${e(a.kind === "stacked" ? a.seriesLabel : a.unit)}</th>${a.kind === "stacked" ? `<th scope="col">${e(a.secondaryLabel)}</th>` : ""}</tr></thead><tbody>${values.map((v, i) => `<tr><th scope="row">${e(labels[i])}</th><td>${v}</td>${a.kind === "stacked" ? `<td>${secondary[i]}</td>` : ""}</tr>`).join("")}</tbody></table></details>`;
+      markup += `<table class="rw-chart"><caption>${e(a.title)} · ${scale} ${e(a.unit)}</caption><thead><tr><th scope="col">Category</th><th scope="col" class="rw-chart__axis">Plot</th><th scope="col">${e(a.unit)}</th></tr></thead><tbody>${values.map((v, i) => `<tr><th scope="row">${e(labels[i])}</th><td><span class="rw-chart__plot" style="--rw-value:${(v / max) * 100}%" aria-hidden="true"></span></td><td>${v}</td></tr>`).join("")}</tbody></table>`;
+    markup += `<details class="rw-chart-data"${a.tableOpen ? " open" : ""}><summary>View exact data</summary><table><caption>${e(a.title)} · ${e(a.unit)}</caption><thead><tr><th scope="col">Category</th><th scope="col">${e(a.kind === "stacked" ? a.seriesLabel : a.unit)}</th>${a.kind === "stacked" ? `<th scope="col">${e(a.secondaryLabel)}</th>` : ""}</tr></thead><tbody>${values.map((v, i) => `<tr><th scope="row">${e(labels[i])}</th><td>${v}</td>${a.kind === "stacked" ? `<td>${secondary[i]}</td>` : ""}</tr>`).join("")}</tbody></table></details>`;
     figure.innerHTML = markup;
     return figure;
   },

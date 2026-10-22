@@ -4,7 +4,7 @@ Small, focused improvements are welcome. Include the component, expected behavio
 
 - Edit `styles/` and optional `behaviors/`; regenerate `dist/runway-ui.css` with `npm run build`.
 - Give interactive controls accessible names, visible focus and native HTML semantics where possible.
-- Keep `g-` classes stable, theme through tokens and include teardown for browser behaviors.
+- Keep `rw-` classes stable, theme through tokens and include teardown for browser behaviors.
 - Check desktop examples at 1440 × 900 and 1366 × 768 for relevant visual changes. Do not hide features to fit a phone layout.
 - Document browser requirements and distinguish observed checks from unverified claims.
 - Do not add unrelated application rules, network services, analytics or proprietary artwork.
