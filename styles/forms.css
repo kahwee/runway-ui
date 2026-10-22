@@ -17,6 +17,12 @@
       box-shadow:0 2px 0 color-mix(in oklch,var(--rw-ink) 18%,transparent),0 3px 6px color-mix(in oklch,var(--rw-ink) 14%,transparent);
       transition:inset-inline-start .32s var(--rw-spring,ease),inline-size .18s var(--rw-spring,ease);
     }
+    &::after {
+      content:""; position:absolute; inset-block-start:50%; inset-inline-start:calc(var(--_pad) + (var(--_thumb) - .75em) / 2); translate:0 -50%; inline-size:.75em; block-size:.75em;
+      background:var(--rw-accent); mask:var(--rw-icon-check) center / contain no-repeat; opacity:0; scale:.4;
+      transition:inset-inline-start .32s var(--rw-spring,ease),opacity .2s,scale .32s var(--rw-spring,ease);
+    }
+    &:checked::after { inset-inline-start:calc(100% - var(--_thumb) - var(--_pad) + (var(--_thumb) - .75em) / 2); opacity:1; scale:1; }
     &:hover:not(:disabled)::before { scale:1.06; }
     &:active:not(:disabled)::before { inline-size:calc(var(--_thumb) * 1.3); }
     &:checked { background:var(--rw-accent); border-color:var(--rw-accent); box-shadow:inset 0 2px 3px color-mix(in oklch,black 22%,transparent); }

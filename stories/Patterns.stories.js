@@ -1,5 +1,6 @@
 import {
   escapeHTML as e,
+  iconHTML,
   bounded,
   text,
   flag,
@@ -25,7 +26,7 @@ export const ResourceHUD = {
     amount: 12840,
     capacity: 20000,
     rate: 240,
-    icon: "◈",
+    icon: "coins",
     showCapacity: false,
     showRate: true,
   },
@@ -46,12 +47,12 @@ export const ResourceHUD = {
       if: { arg: "showRate" },
       table: { category: "Data" },
     },
-    icon: text("Decorative symbol, hidden from accessibility APIs."),
+    icon: text("Phosphor icon name (coins, users, flask, sun…) or any text symbol; hidden from accessibility APIs."),
     showCapacity: flag("Append capacity to the displayed quantity.", "Content"),
     showRate: flag("Show signed rate and cycle unit.", "Content"),
   },
   render: (a) =>
-    `<div class="rw-panel story-width"><div class="rw-resource"><span class="rw-resource__icon" aria-hidden="true">${e(a.icon)}</span><div><strong>${e(a.amount)}${a.showCapacity ? ` / ${e(a.capacity)}` : ""}</strong><small>${e(a.label)}${a.showRate ? ` · ${Number(a.rate) > 0 ? "+" : ""}${e(a.rate)} / cycle` : ""}</small></div></div></div>`,
+    `<div class="rw-panel story-width"><div class="rw-resource"><span class="rw-resource__icon" aria-hidden="true">${iconHTML(a.icon)}</span><div><strong>${e(a.amount)}${a.showCapacity ? ` / ${e(a.capacity)}` : ""}</strong><small>${e(a.label)}${a.showRate ? ` · ${Number(a.rate) > 0 ? "+" : ""}${e(a.rate)} / cycle` : ""}</small></div></div></div>`,
 };
 export const EquipmentSlots = {
   args: {
@@ -61,7 +62,7 @@ export const EquipmentSlots = {
     selected: 1,
     disabled: 2,
     rare: 0,
-    icon: "◈",
+    icon: "coins",
   },
   argTypes: {
     title: text("Visible collection heading."),
@@ -70,12 +71,12 @@ export const EquipmentSlots = {
     selected: range(-1, 23, 1, "Selected item index; -1 means none.", "State"),
     disabled: range(-1, 23, 1, "Disabled item index; -1 means none.", "State"),
     rare: range(-1, 23, 1, "Rare item index; -1 means none.", "State"),
-    icon: text("Shared decorative symbol."),
+    icon: text("Shared Phosphor icon name or text symbol."),
   },
   render: (a) => {
     if (!Array.isArray(a.items) || !a.items.length || a.items.length > 24)
       return '<p role="alert">Provide 1–24 item labels.</p>';
-    return `<section class="story-width"><h2>${e(a.title)}</h2><div class="rw-slots" style="--rw-columns:${Math.round(bounded(a.columns, 1, 8))}">${a.items.map((item, i) => `<button class="rw-slot" type="button" aria-pressed="${i === a.selected}" aria-label="${e(item)}${i === a.rare ? ", rare" : ""}"${i === a.disabled ? " disabled" : ""}${i === a.rare ? ' data-rarity="rare"' : ""}><span class="rw-slot__icon" aria-hidden="true">${e(a.icon)}</span><small>${e(item)}</small></button>`).join("")}</div></section>`;
+    return `<section class="story-width"><h2>${e(a.title)}</h2><div class="rw-slots" style="--rw-columns:${Math.round(bounded(a.columns, 1, 8))}">${a.items.map((item, i) => `<button class="rw-slot" type="button" aria-pressed="${i === a.selected}" aria-label="${e(item)}${i === a.rare ? ", rare" : ""}"${i === a.disabled ? " disabled" : ""}${i === a.rare ? ' data-rarity="rare"' : ""}><span class="rw-slot__icon" aria-hidden="true">${iconHTML(a.icon)}</span><small>${e(item)}</small></button>`).join("")}</div></section>`;
   },
 };
 export const Objectives = {
@@ -95,7 +96,7 @@ export const Objectives = {
   },
   render: (a) =>
     Array.isArray(a.items)
-      ? `<ul class="rw-objectives">${a.items.map((label, i) => `<li data-complete="${i < a.completed}"><span>${i < a.completed ? "✓ Complete" : "○ Pending"}</span><span>${e(label)}</span></li>`).join("")}</ul>`
+      ? `<ul class="rw-objectives">${a.items.map((label, i) => `<li data-complete="${i < a.completed}"><span>${i < a.completed ? `${iconHTML("check-circle", "fill")} Complete` : `${iconHTML("circle", "bold")} Pending`}</span><span>${e(label)}</span></li>`).join("")}</ul>`
       : '<p role="alert">Provide an array of objective labels.</p>',
 };
 export const Choice = {

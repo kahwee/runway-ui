@@ -12,8 +12,6 @@
   .rw-muted { color:var(--rw-muted); }
   .rw-kicker { font-size:10px; text-transform:uppercase; letter-spacing:.14em; font-weight:700; color:var(--rw-muted); }
   .rw-badge { display:inline-flex; align-items:center; gap:6px; font-size:10px; font-weight:650; padding:5px 11px; border:1px solid color-mix(in oklch,var(--rw-accent) 15%,var(--rw-soft)); border-radius:999px; background:var(--rw-soft); color:var(--rw-accent); }
-  .rw-disclosure { border-top:1px solid var(--rw-line); padding-block:14px; }
-  .rw-disclosure>summary { cursor:pointer; font-weight:600; }
   .rw-dialog { color:var(--rw-ink); background:var(--rw-surface); border:1px solid var(--rw-line); border-radius:var(--rw-radius); padding:calc(var(--rw-panel-padding) + 10px); inline-size:var(--rw-dialog-width,520px); max-inline-size:calc(100vi - 64px); max-block-size:calc(100dvb - 64px); overflow:auto; box-shadow:var(--rw-shadow); }
   .rw-dialog::backdrop { background:color-mix(in oklch,var(--rw-ink,#14251e) 78%,transparent); backdrop-filter:blur(5px); transition:opacity .2s,overlay .2s allow-discrete,display .2s allow-discrete; }
   .rw-panel[data-elevation=flat] { box-shadow:none; }

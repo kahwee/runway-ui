@@ -1,3 +1,5 @@
+import "@fontsource-variable/fredoka";
+import "@fontsource-variable/nunito";
 import "../index.css";
 import "../styles/native.css";
 import "./preview.css";

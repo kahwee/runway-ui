@@ -32,7 +32,7 @@ This optional ES module returns escaped semantic HTML. It performs validation an
 
 ## Long time series: windowed history
 
-Flat column charts stay legible to a few hundred observations, then thin their axis labels by count tiers; beyond a couple of thousand columns the DOM itself becomes the problem. For daily or longer time series use the optional `mountHistoryWindow` behavior:
+The direct renderer accepts up to 366 observations and thins axis labels for dense windows. For daily or longer time series use the optional `mountHistoryWindow` behavior:
 
 ```js
 import { mountHistoryWindow } from 'runway-ui/timeseries';
@@ -44,7 +44,7 @@ view.destroy();
 - The host keeps every observation; only one window (default 30, up to 366 observations) is rendered as real columns. Nothing in the window is downsampled, and the exact table covers that window.
 - A whole-series overview shows up to 120 bars, each the mean of the real observations it covers, with an all-missing bin left empty. It is labelled as an overview. A native `input[type=range]` scrubs the window start; the buttons page by one window, and a native select changes the window (week, fortnight, month, quarter).
 - Annotations use full-series indexes and appear when their observation is in the window. `destroy()` aborts all listeners and empties the root.
-- Tested to 5,000 daily observations: paging redraws in single-digit milliseconds with about 600 DOM nodes.
+- The playground offers up to 5,000 synthetic daily observations. This is a demonstration size, not a performance guarantee.
 
 ## Modern CSS and degradation
 

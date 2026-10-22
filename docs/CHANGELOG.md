@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased — cuter defaults
+## Unreleased
+
+- Consolidate the documentation index, complete optional-module exports and remove stale status/performance claims. Preserve the percentage chart contract.
 
 - Playful customizable select: rich options with `selectedcontent`, staggered `sibling-index()` entry, spring checkmark, typed-`attr()` colour dots and a Foundations / Controls / Fun picker story.
 
@@ -77,7 +79,7 @@ Source update for GitHub and the documentation site; no npm registry publication
 - Add class-styled native dialog structure, compact/wide/danger modifiers and action layouts.
 - Keep all component rendering HTML/CSS-first; JavaScript remains optional.
 
-## Chart and documentation refinement
+## Earlier chart and documentation refinement
 
 - Add a dedicated CSS charts module: columns, stacked bars, diverging bars and six-point area plots, plus the preserved horizontal table API.
 - Add chart lab, exact-data disclosures, fixed-scale datasets, theme/height/grid controls and copyable recipes.

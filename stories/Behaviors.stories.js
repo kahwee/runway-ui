@@ -128,7 +128,7 @@ export const VirtualInventory = {
       const inventory = createInventory(root.querySelector(".rw-virtual"), {
         items: Array.from(
           { length: Math.round(bounded(a.count, 1, 10000)) },
-          (_, i) => ({ label: `${a.prefix} ${i + 1}`, icon: "◈" }),
+          (_, i) => ({ label: `${a.prefix} ${i + 1}`, icon: "coins" }),
         ),
         columns: Math.round(bounded(a.columns, 1, 12)),
         rowHeight: bounded(a.rowHeight, 48, 128),

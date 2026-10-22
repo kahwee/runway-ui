@@ -56,7 +56,10 @@ export function createInventory(root, {
 
     const icon = document.createElement('span');
     icon.className = 'rw-slot__icon';
-    icon.textContent = item.icon ?? '◇';
+    const name = item.icon ?? 'cube';
+    // A Phosphor icon name (see styles/icons.css) draws an icon; any other string is shown as text.
+    if (/^[a-z][a-z-]*$/.test(name)) { const glyph = document.createElement('span'); glyph.className = 'rw-icon'; glyph.dataset.icon = name; glyph.dataset.weight = 'duotone'; glyph.dataset.size = 'lg'; icon.append(glyph); }
+    else icon.textContent = name;
     icon.setAttribute('aria-hidden', 'true');
     const label = document.createElement('small');
     label.textContent = item.label;

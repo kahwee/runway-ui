@@ -20,7 +20,7 @@ $('#next-cycle').addEventListener('click',()=>{
 });
 $('#upgrade').addEventListener('click',()=>{if(credits>=200&&!finished) {credits-=200;output+=6;render('Oxygen output improved by 6 per cycle.');}});
 $('#restart').addEventListener('click',()=>{cycle=1;credits=600;oxygen=120;food=100;power=80;output=24;history=[{cycle,oxygen}];finished=false;render('A fresh colony. Keep everyone supplied for 20 cycles.');});
-const catalog=Array.from({length:10000},(_,index)=>({id:index+1,label:`Supply crate ${index+1}`,icon:['◇','▱','♧','◈'][index%4]}));
+const catalog=Array.from({length:10000},(_,index)=>({id:index+1,label:`Supply crate ${index+1}`,icon:['cube','package','flask','coins'][index%4]}));
 let inventory=createInventory($('#cargo'),{items:catalog,columns:8,onSelect:item=>$('#selection').textContent=`Selected ${item.label} · manifest ${item.id} of 10,000`});
 $('#filter').addEventListener('input',event=>{
   const query=event.target.value.trim().toLowerCase(),filtered=catalog.filter(item=>item.label.toLowerCase().includes(query)); inventory.setItems(filtered);$('#selection').textContent=`${filtered.length.toLocaleString()} ${filtered.length === 1 ? "manifest matches" : "manifests match"}.`;

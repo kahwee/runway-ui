@@ -25,3 +25,26 @@
   .rw-shortcut { font:10px var(--rw-font); border:1px solid currentColor; border-radius:6px; padding:2px 4px; opacity:.7; }
   @media(prefers-reduced-motion:reduce) { .rw-slot { transition:none; } .rw-slot:hover:not(:disabled) { translate:none; } }
 }
+
+/* Illustrated workspace navigation. Native links/buttons, application-owned routing. */
+@layer runway-ui.patterns {
+  .rw-view-tabs { display:flex; align-items:stretch; gap:var(--rw-view-gap,6px); min-inline-size:0; }
+  .rw-view-tab {
+    position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+    min-inline-size:var(--rw-view-min,72px); max-inline-size:140px; padding:8px 12px 12px;
+    border:1px solid transparent; border-radius:var(--rw-radius); background:transparent; color:var(--rw-muted);
+    font:650 12px/1.3 var(--rw-font); text-align:center; text-decoration:none; cursor:pointer;
+    transition:translate .2s var(--rw-spring),background-color .2s,box-shadow .2s;
+    & > :last-child { overflow-wrap:anywhere; }
+    &:hover:not(:disabled) { translate:0 -2px; background:var(--rw-surface); border-color:var(--rw-line); }
+    &:is([aria-current=page],[aria-pressed=true]) { background:var(--rw-soft); color:var(--rw-accent); border-color:var(--rw-line); box-shadow:inset 0 1px var(--rw-highlight),0 3px 0 var(--rw-line); }
+    &:is([aria-current=page],[aria-pressed=true])::after { content:''; position:absolute; inset-block-end:4px; inline-size:18px; block-size:3px; border-radius:3px; background:currentColor; }
+    &:focus-visible { outline:3px solid var(--rw-focus); outline-offset:3px; }
+    &:disabled { opacity:.45; cursor:not-allowed; }
+  }
+  .rw-view-tab__art { display:block; flex:none; inline-size:var(--rw-view-art,48px); block-size:var(--rw-view-art,48px); object-fit:contain; transition:rotate .25s var(--rw-spring); }
+  .rw-view-tab:hover:not(:disabled) .rw-view-tab__art { rotate:-5deg; }
+  .rw-view-tabs[data-layout=inline] .rw-view-tab { flex-direction:row; gap:10px; max-inline-size:none; padding-block:8px; }
+  @media(prefers-reduced-motion:reduce) { .rw-view-tab,.rw-view-tab__art { transition:none; }.rw-view-tab:hover:not(:disabled) { translate:none; }.rw-view-tab:hover:not(:disabled) .rw-view-tab__art { rotate:none; } }
+  @media(forced-colors:active) { .rw-view-tab:is([aria-current=page],[aria-pressed=true]) { border-color:Highlight; color:Highlight; box-shadow:none; } }
+}

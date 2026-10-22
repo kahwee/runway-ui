@@ -52,7 +52,7 @@ The [Simulation Observatory](OBSERVATORY.md) adds native event popovers with imp
 - **OKLCH color mixing** derives surfaces, borders and highlights perceptually across themes.
 - **Typed `@property --rw-value`** registers percentages for meter interpolation. Keep existing values as percentages; a parent may supply the value because it inherits.
 - **`::details-content` + `interpolate-size:allow-keywords`** animates native disclosure height without measurement JavaScript. Unsupported engines keep ordinary native details behavior; motion preferences disable the transition.
-- **`appearance:base-select` / `::picker(select)`** remains an opt-in native picker enhancement.
+- **`appearance:base-select` / `::picker(select)`** is the default picker wherever supported; `data-picker="native"` opts out and other engines keep the padded native select.
 - **Typed `attr()` and `shape()`** enhance numeric charts and CSS area paths; the existing custom-property and polygon paths stay functional where those newer APIs are absent.
 - **`@starting-style` and discrete `display`/`overlay` transitions** animate the native dialog's top-layer lifecycle.
 - **`:has()`** handles selected choices and field focus/validation without mirror state classes.
@@ -66,11 +66,11 @@ Primary references: [MDN subgrid](https://developer.mozilla.org/en-US/docs/Web/C
 ## Dialog and select enhancements
 
 - **Dialog** uses `@starting-style` with `allow-discrete` transitions for `display` and `overlay`, so the dialog and its `::backdrop` fade and spring in from the top layer. Browsers without these features open and close it instantly.
-- **Customizable select** (`data-picker="enhanced"`) uses `appearance:base-select`, an anchored `::picker(select)` sized with `anchor-size()`, a styled `option::checkmark` and an entry animation. Unsupported browsers keep the padded native select. The picker has no exit animation because minifiers reject state pseudo-classes after `::picker()`.
+- **Customizable select** (default; `data-picker="native"` opts out) uses `appearance:base-select`, an anchored `::picker(select)` sized with `anchor-size()`, a styled `option::checkmark` and an entry animation. Unsupported browsers keep the padded native select. The picker has no exit animation because minifiers reject state pseudo-classes after `::picker()`.
 
 ### Playful customizable select
 
-With `data-picker="enhanced"`, a `<button><selectedcontent></selectedcontent></button>` first child and rich `<option>` content, the picker gets:
+By default, with a `<button><selectedcontent></selectedcontent></button>` first child and rich `<option>` content, the picker gets:
 
 | Feature | CSS | Without it |
 | --- | --- | --- |
@@ -80,4 +80,8 @@ With `data-picker="enhanced"`, a `<button><selectedcontent></selectedcontent></b
 | Colour dots from data | typed `attr(data-color type(<color>))` | No dot; option still works |
 | Bouncy arrow, hover boop | `::picker-icon`, keyframes | Static |
 
-Currently Chrome 135+ for base-select (`sibling-index()` and typed `attr()` arrive later in some engines). Every layer is behind `@supports`, motion is off under `prefers-reduced-motion`, and the same markup stays a working native select elsewhere. Keep the description inside a `small` so the closed state can hide it.
+Detect each capability rather than assuming a browser version provides the whole recipe. Every layer is behind `@supports`, motion is off under `prefers-reduced-motion`, and the same markup stays a working native select elsewhere. Keep the description inside a `small` so the closed state can hide it.
+
+## Form enhancements
+
+`field-sizing:content` lets textareas grow intrinsically; engines without it retain ordinary resizable textareas and their minimum size. Native range controls work without the optional output/fill binding. Switches and option cards retain native checked, focus and disabled semantics; forced-color styles expose system colors. Reduced-motion rules disable decorative spring and picker animations. See [fields](FIELDS.md) for markup.

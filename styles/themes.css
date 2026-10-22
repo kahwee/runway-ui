@@ -17,7 +17,8 @@
     --rw-muted:#6f648f; --rw-line:#d9d0f5; --rw-accent:#6a4cff; --rw-on-accent:#fffdf8;
     --rw-soft:#e8e1ff; --rw-gold:#c77700; --rw-danger:#e2475d; --rw-focus:#ff6b4a;
     --rw-radius:20px; --rw-control-depth:4px; --rw-control-edge:color-mix(in oklch,var(--rw-accent) 35%,var(--rw-line));
-    --rw-display-font:ui-rounded,"SF Pro Rounded","Nunito","Avenir Next",var(--rw-font);
+    --rw-font:"Nunito Variable",Nunito,ui-rounded,"SF Pro Rounded","Varela Round","Hiragino Maru Gothic ProN","Arial Rounded MT Bold",system-ui,sans-serif;
+    --rw-display-font:"Fredoka Variable",Fredoka,ui-rounded,"SF Pro Rounded","Arial Rounded MT Bold",var(--rw-font);
     --rw-shadow:inset 0 2px white,0 4px 0 color-mix(in oklch,var(--rw-accent) 14%,var(--rw-line)),0 18px 32px color-mix(in oklch,var(--rw-accent) 14%,transparent);
   }
   .rw-ui[data-theme=whimsy] .rw-dialog,.rw-dialog[data-theme=whimsy] { border-width:2px; border-color:var(--rw-line); }

@@ -13,7 +13,7 @@ export const catalog = [
     ['--rw-panel-padding','CSS length','Default: 22px, or 16px in compact density.'],
   ], snippet:'<section class="rw-panel" data-elevation="flat" aria-labelledby="heading">\n  <h2 id="heading">Production</h2>\n</section>' },
   { id:'input', name:'Input', description:'Style native input, select or textarea elements.', options:[
-    ['--rw-select-inset','CSS length','Default: 16px arrow inset, with a separate text gutter; RTL-aware.'],['data-picker','enhanced','Opt-in base-select picker where supported; otherwise the padded native dropdown.'],['disabled','native boolean','Retains native disabled semantics.'],['readonly','native boolean','For supported input/textarea types.'],
+    ['--rw-select-inset','CSS length','Default: 16px arrow inset, with a separate text gutter; RTL-aware.'],['data-picker','native','Opt out of the default customizable picker; otherwise the padded native dropdown.'],['disabled','native boolean','Retains native disabled semantics.'],['readonly','native boolean','For supported input/textarea types.'],
     ['aria-invalid','true | false','Apply after validation, alongside an associated text error.'],
     ['aria-describedby','element ID','Connect hint or validation text; never rely on color alone.'],
   ], snippet:'<label for="colony">Colony name</label>\n<input class="rw-input" id="colony" aria-describedby="hint">\n<small id="hint">Use a name your crew will recognize.</small>' },
@@ -58,9 +58,9 @@ export const catalog = [
     ['grid-template-columns','CSS track list on .rw-ledger','Default: one flexible label column and three value columns.'],
     ['role / headers','native table or ARIA table semantics','Supply meaningful row/column labels. See the markup guide.'],
   ], snippet:'<div class="rw-ledger" role="table" aria-label="Production">\n  <div class="rw-ledger__row" role="row">\n    <strong role="rowheader">Oxygen</strong><span role="cell">120</span>\n    <span role="cell">24</span><span role="cell">18</span>\n  </div>\n</div>' },
-  { id:'chart', name:'CSS charts', description:'Columns, stacked and diverging bars, six-point areas and legacy horizontal table bars. Open the CSS chart lab for the full collection.', options:[
+  { id:'chart', name:'CSS charts', description:'Columns, stacked and diverging bars, six-point areas and percentage-based horizontal table bars. Open the CSS chart lab for the full collection.', options:[
     ['--rw-value','percentage','Host maps the quantity to the scale declared in the caption.'],
-    ['--rw-chart-max','Positive number','Shared maximum for numeric chart marks; default 100.'],['--rw-amount / data-value','Number','Numeric mark input, distinct from legacy --rw-value percentages.'],['--rw-chart-height','CSS length','Plot height; default 180px.'],['--rw-chart-color','CSS color','Default: accent.'],['data-series','expense','Optional row/element tone using the gold token.'],
+    ['--rw-chart-max','Positive number','Shared maximum for numeric chart marks; default 100.'],['--rw-amount / data-value','Number','Numeric mark input, distinct from percentage-based --rw-value inputs.'],['--rw-chart-height','CSS length','Plot height; default 180px.'],['--rw-chart-color','CSS color','Default: accent.'],['data-series','expense','Optional row/element tone using the gold token.'],
   ], snippet:'<table class="rw-chart">\n  <caption>Oxygen · scale 0–300 units</caption>\n  <tbody><tr><th scope="row">Cycle 1</th>\n    <td><span class="rw-chart__plot" style="--rw-value:40%" aria-hidden="true"></span></td>\n    <td>120</td>\n  </tr></tbody>\n</table>' },
   { id:'slot', name:'Equipment slot', description:'A native toggle action with an optional visible rarity label.', options:[
     ['aria-pressed','true | false','Application-owned selection; not changed by CSS or roving focus.'],

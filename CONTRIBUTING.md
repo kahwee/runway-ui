@@ -10,3 +10,16 @@ Small, focused improvements are welcome. Include the component, expected behavio
 - Do not add unrelated application rules, network services, analytics or proprietary artwork.
 
 Contributions are provided under the project's MIT license. There is no separate contributor agreement or required on-screen attribution.
+
+## Local validation
+
+```sh
+npm ci
+npm run build
+npm run build-site
+npm pack --dry-run
+```
+
+`build-site` builds Storybook and the allowlisted static documentation; it does not deploy. Keep generated CSS in sync, check local documentation links, and inspect changed examples at both desktop sizes. Publishing packages, creating releases and changing hosting require an explicit request.
+
+Document new public patterns in the component guides, shared-track example and argument-driven Storybook where applicable. Add capability and degradation notes to [MODERN-CSS.md](docs/MODERN-CSS.md) for picker, chart, disclosure or dialog enhancements. Preserve existing exports and percentage units unless documenting an intentional breaking migration in the changelog. Historical migration notes stay in the changelog; current recipes use `rw-` throughout.

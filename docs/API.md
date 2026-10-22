@@ -6,7 +6,7 @@ Use the [interactive reference](index.html#reference) for component option table
 - Panels: `data-elevation="flat"` removes the raised shadow.
 - Badges: `data-tone="warning|danger"` supplies optional tones.
 - Inputs: native `disabled`, `readonly`, constraints and `aria-invalid="true"`; preserve associated labels and validation text.
-- Roots: `data-theme="studio|orbital|parchment"`, `data-density="comfortable|compact"`.
+- Roots: `data-theme="studio|orbital|parchment|whimsy"`, `data-density="comfortable|compact"`, `data-depth="flat"`, optional `data-skin="play"`.
 
 `bindDialog(dialog, {canDismiss})` returns `open()`, `requestClose(returnValue?)`, `refresh()` and `destroy()`. Call `refresh()` when dismissal policy changes while the dialog is open. `requestClose()` returns whether a request was issued; other cancel listeners can still veto closure. `destroy()` removes helper listeners and restores the original `closedby` attribute; it does not close the dialog. Explicit decision buttons can use a native `form method="dialog"`.
 
@@ -15,3 +15,37 @@ Use the [interactive reference](index.html#reference) for component option table
 `createInventory(root, options)` owns the root's contents while mounted; use a dedicated empty root. Fixed row heights and column counts must agree with CSS. See exported declarations and [interaction guide](INTERACTIONS.md) for the complete contracts. Replacing data while focused keeps focus in the grid; filtering from an outside input keeps focus there.
 
 Dialogs use opt-in `rw-dialog` styling and BEM-style structure and modifiers. See [dialog classes](DIALOG.md) for sizes, tone, scrollable body and action layout.
+
+## Optional module exports
+
+All modules ship TypeScript declarations and have no runtime dependencies. Use the full CSS bundle unless deliberately composing the style prerequisites.
+
+| Package entry | Exports | Lifecycle |
+| --- | --- | --- |
+| `runway-ui/dialog` | `bindDialog` | `destroy()` restores the dismissal attribute and removes listeners |
+| `runway-ui/navigation` | `bindNavigation`, `bindGamepad` | Destroy both handles when unmounting |
+| `runway-ui/inventory` | `createInventory` | Owns its root contents; `destroy()` clears owned markup |
+| `runway-ui/forms` | `bindRanges` | `destroy()` removes range listeners |
+| `runway-ui/history` | `renderHistory` | Pure escaped HTML renderer; no mounted listeners |
+| `runway-ui/timeseries` | `mountHistoryWindow` | Owns its root contents; `destroy()` cancels pending work and clears the root |
+
+### Range outputs
+
+```js
+import { bindRanges } from 'runway-ui/forms';
+const ranges = bindRanges(root, { format: value => `${value}%` });
+// On unmount:
+ranges.destroy();
+```
+
+Use native `.rw-range` inputs and associated `output[for]` elements. Without the helper, native range interaction remains available; output text and the custom fill are host-owned. See [fields](FIELDS.md).
+
+### History
+
+`renderHistory(options)` accepts signed finite observations, explicit null gaps, matching labels, scales spanning zero, annotations and value formatters. It returns HTML rather than mounting a controller. See [history contracts and recipes](INSTRUMENTS.md).
+
+`mountHistoryWindow(root, options)` adds a full-series overview and native paging controls. Supply matching `values`/`labels`, a finite valid scale and integer window sizes from 1–366. It returns `state`, `setWindow(start, size?)` and `destroy()`. Indexes are zero-based and `state.end` is exclusive. Keep starts and sizes valid in programmatic calls; this is not an input-sanitization boundary. Only the visible window has an exact-data table; the host retains the full dataset.
+
+## Stylesheet entries
+
+`runway-ui` loads modular CSS; `runway-ui/bundle.css` is self-contained. Named style aliases are `native.css`, `charts.css`, `dialog.css`, `controls.css`, `fields.css`, `layout.css`, `history.css`, `observatory.css`, `forms.css`, `icons.css` and `instruments.css`. Source modules are also exposed through `runway-ui/styles/*`. Individual modules may require tokens and related styles; an alias does not imply a standalone bundle. Native form styling imports its prerequisites.

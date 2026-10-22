@@ -103,3 +103,7 @@ The browser owns focus/inertness. The helper uses current dismissal policy for E
 ## Other patterns
 
 The workshop includes `.rw-resource`, `.rw-slots` / `.rw-slot`, `.rw-objectives`, `.rw-choice` and `.rw-dock`, plus native disclosures and badges. Interactive selection uses application-owned aria-pressed. Copy semantic markup from the examples and attach your own rules.
+
+## Additional patterns
+
+Use the [field guide](FIELDS.md) for native switches, ranges, option cards and grouped inputs; the [modern CSS guide](MODERN-CSS.md) for shared-track cards, fields, stats and choices; and [instruments](INSTRUMENTS.md) for signed histories, windowed series and impact tables. The [API reference](API.md) lists all stylesheet and optional behavior entry points. Current recipes use the `rw-` namespace; historical prefix migration is recorded in the [changelog](CHANGELOG.md).

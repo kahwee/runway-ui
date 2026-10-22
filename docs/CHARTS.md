@@ -4,7 +4,7 @@
 
 ## Load
 
-Use `index.css` or `dist/runway-ui.css` for the full library. For selective loading, import `styles/tokens.css` and `styles/charts.css`, with a `rw-ui` ancestor supplying tokens. The package alias `runway-ui/charts.css` exports the chart module. This local iteration is not published to npm.
+Use `index.css` or `dist/runway-ui.css` for the full library. For selective loading, import `styles/tokens.css` and `styles/charts.css`, with a `rw-ui` ancestor supplying tokens. The package alias `runway-ui/charts.css` exports the chart module. See [package status](STATUS.md) and the repository installation instructions.
 
 ## Common contract
 
@@ -18,7 +18,7 @@ The application owns aggregation, sorting, missing data, validation and scaling.
 | Stacked horizontal | `.rw-series-list`, `.rw-stack-track > .rw-stack-mark` | Amount per segment, shared maximum | Each segment >=0; sum <= maximum |
 | Diverging horizontal | `.rw-series-list`, `.rw-diverging-track > .rw-diverging-mark` | Signed amount; negative marks require `data-negative` | −maximum through +maximum; symmetric zero axis |
 | Area | `.rw-area` | Six `--rw-y0` through `--rw-y5` percentage coordinates | 0% top, 100% bottom; six equally spaced observations |
-| Legacy horizontal | `table.rw-chart`, `.rw-chart__plot` | `--rw-value:40%` | 0% through 100%; existing API preserved |
+| Percentage horizontal | `table.rw-chart`, `.rw-chart__plot` | `--rw-value:40%` | 0% through 100%; existing API preserved |
 
 ### Column recipe
 
@@ -66,4 +66,4 @@ References: [MDN typed attr()](https://developer.mozilla.org/en-US/docs/Web/CSS/
 
 Keep a descriptive caption, units, scale, text values and a native `details` disclosure containing an ordinary data table. Decorative marks are hidden from accessibility APIs. The column list preserves labels and values without JavaScript. Stacked segment values remain in the exact-data table. There is no hover-only tooltip or animation requirement.
 
-Charts do not provide zoom, brush selection, interactive crosshairs, automatic ticks, arbitrary line paths or thousands of points. Use an appropriate plotting engine for those needs. This module is intended for small, readable simulation panels. Focused desktop Chromium checks do not establish screen-reader conformance or cross-browser certification.
+These primitives do not provide zoom, brush selection, interactive crosshairs, automatic ticks or arbitrary line paths. For bounded windows of longer series, use the optional [time-series behavior](INSTRUMENTS.md#long-time-series-windowed-history). Use an appropriate plotting engine for those needs. This module is intended for small, readable simulation panels. Focused desktop Chromium checks do not establish screen-reader conformance or cross-browser certification.

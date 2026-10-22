@@ -1,83 +1,27 @@
 # Status
 
-Version 0.5.0 is early-stage source available on GitHub. It is not yet published to the npm registry. Public API changes are possible while the library matures.
+The package metadata is version 0.5.0; changes after that baseline are listed under [Unreleased](CHANGELOG.md). The library is pre-1.0. This file describes source scope and recorded checks, not a registry or live deployment check.
 
-## Supported scope
+## Implemented scope
 
-- Framework-independent CSS/HTML presentation for desktop management and simulation interfaces.
-- Native HTML dialogs, table-based horizontal bars and subgrid production ledgers.
-- Optional roving keyboard focus, standard-mapped controller adapter and fixed-height virtual inventories.
-- Zero runtime dependencies; a committed CSS bundle can be used directly.
+- Framework-independent HTML/CSS for desktop management and simulation interfaces, with zero runtime dependencies.
+- Native fields, disclosures and dialogs; shared-track layouts, production ledgers and optional Play material.
+- Fixed-scale CSS charts, signed histories with explicit gaps, native event notes and exact-data tables.
+- Optional dialog policies, roving focus, standard-mapped controller input, fixed-height inventory virtualization, range outputs and windowed time series.
+- Modular source CSS, a committed self-contained bundle, typed ES modules, standalone examples and HTML Storybook.
 
-## Limitations
+## Verification boundaries
 
-- Physical controller input is implemented but has not been verified on hardware in the current development environment.
-- No comprehensive screen-reader, accessibility-conformance or cross-browser audit has been completed.
-- Virtual inventory uses fixed row heights; it does not implement drag/drop, item stacking, server pagination or variable-height rows.
-- Off-screen virtual items are omitted from the DOM. Search and logical keyboard navigation help access items, but screen-reader browse-mode behavior requires further work.
-- A 10,000-item synthetic catalog demonstrates bounded DOM rendering, not a population simulation or frame-rate guarantee.
-- The CSS is namespaced but host styles can still override it. There is no Shadow DOM boundary.
-- Charts supply small HTML/CSS plots: columns, stacked and diverging bars, six-point areas and legacy horizontal bars. Arbitrary-length time series, automatic ticks and interactive chart-engine features are outside the current scope.
+Prior focused desktop Chromium passes covered 1440 × 900 and 1366 × 768 layouts, native dialog dismissal/focus, inventory navigation through a 10,000-item fixture, chart zero/boundary/missing data and Observatory event notes. These are recorded development observations, not fresh checks of every subsequent change. The Observatory Storybook uses a fixed 1366 × 900 canvas.
 
-Current browser observations and packaging results are recorded here after each focused development pass. They do not imply certification across all supported browsers.
+Build and packaging checks establish generated artifacts and package contents only. See [Storybook development](STORYBOOK.md#develop-and-deploy) for current local commands. They do not establish publication or deployment.
 
-## October 21, 2026 desktop pass
+## Remaining limitations
 
-- Workshop checked at 1440 × 900 and 1366 × 768 with the bundled stylesheet; measured no horizontal overflow. Computed production rows use subgrid.
-- Native dialog opened in the top layer; Escape dismissed it and restored focus to its opener.
-- The standalone inventory reached and selected item 10,000 with 40 mounted buttons in comfortable mode.
-- Compact mode rendered 64px rows and 56px cells, and still reached item 10,000. A density change tears down/remounts the grid.
-- Filtering produced one result and an empty state; advancing the colony updated cycle 2. No console errors in the final inventory pass.
-- Package dry run included the full MIT license and single-file CSS bundle.
+- Firefox, Safari, screen readers, forced colors and physical controller hardware still need direct validation before broader support claims.
+- Virtual inventories require fixed row heights. Off-screen items are absent from the DOM and may limit screen-reader browse mode. No drag/drop, stacking or server pagination is supplied.
+- The direct history renderer supports up to 366 observations; the optional time-series module draws a bounded window of a longer host-owned series. Its overview averages bins and its exact table covers only the visible window. No general zoom/brush, automatic tick engine or irregular-time interpolation is provided.
+- Namespaced CSS is not Shadow DOM isolation; host styles can override it.
+- Examples are synthetic references with no simulation backend or persistent game state. They require a desktop window at least 1100 × 640; the CSS library itself has no viewport gate.
 
-These are focused desktop Chromium observations. They do not establish physical-controller support, screen-reader conformance or cross-browser certification.
-
-## Local chart refinement
-
-- CSS chart lab checked at 1440 × 900 and 1366 × 768 with no measured horizontal overflow.
-- Native typed attr() and shape() paths active in this desktop Chromium browser; columns computed subgrid tracks.
-- Zero datasets produced zero-sized marks. Boundary datasets filled the column scale and exactly half the symmetric diverging track.
-- Orbital theme, dataset reset and native exact-data disclosure exercised with no observed console errors.
-- These observations cover the current browser, not Safari/Firefox, forced-colors rendering or screen-reader behavior. Progressive fallback rules are supplied but were not exercised in an older engine.
-- Documentation workbench: compact padding and large button size observed; locked native dialog resisted Escape, then a live policy change enabled Escape and restored focus to the opener. Search reduced the reference to one matching chart entry. A stale cached behavior module initially caused errors; a fresh reload used the updated helper and completed these flows.
-
-## Argument-driven Storybook refinement
-
-- Consolidated repetitive snapshots into configurable playgrounds with categorized descriptions, defaults and conditional controls.
-- Chart playground exposes data, plot type and scales; an invalid scale shows an explanation, and zero-area inputs matched six zero values in the data table. The second-series control appears for stacked bars.
-- Dynamic Code source reflected changed dialog size classes. Styled wide dialog measured 760px at desktop size; restricted native dismissal resisted Escape. Confirming closed the modal and restored focus to the opener.
-- The unstyled comparison had no dialog/header classes and retained native modality. Styling remains explicitly class-based.
-- Main Storybook had no measured horizontal overflow at 1440×900 and 1366×768. Final focused browser passes had no console errors.
-- An initial build used a metadata factory directly as the default CSF export; Storybook rejected indexing it. Object-literal exports with static title/tags resolved that issue; the final build succeeded.
-- This remains focused desktop Chromium evidence; cross-browser, assistive-technology and physical-controller support are not certified.
-
-## 0.3.1 focused desktop refinement
-
-- Chart lab manually reviewed at 1366 × 768 and 1440 × 900: no horizontal page overflow; diverging scale and plot bounds align through shared columns.
-- Storybook one-column cards in a 500px panel retain one 500px track. Description margins remain zero and the long action label stays within its button.
-- Shared cards use 10px internal row gaps with aligned footers. Compact density supplies an 8px internal gap.
-- The chart lab and generated chart guide have distinct URLs, including on case-insensitive filesystems.
-- CSS, Storybook and documentation site builds succeeded. These are focused Chromium observations, not cross-browser or accessibility certification.
-
-## 0.4.0 Observatory desktop pass
-
-- CSS, HTML Storybook and self-contained site builds succeeded. Package dry run includes the new style modules, independent example modules and MIT license.
-- Manually reviewed the standalone composition at 1366 × 768 and 1440 × 900: no horizontal page or ledger overflow. The ledger computes column subgrids; axis label centers align with the plot's top/middle/bottom positions.
-- Storybook indexes 26 arguments and the shortage, missing and boundary fixtures. Orbital/compact/flat boundary composition keeps equal-height metric cards and fits both desktop targets with long resource labels.
-- Missing fixture: two visibly missing slots, three projected slots, unavailable latest comparison and open exact data. Missing readings are excluded from the recorded-value count.
-- Zero fixture: all 12 history marks measure zero height, including projected marks. An early projected-border minimum-height artifact was removed before the final build.
-- Insufficient budget disables the upgrade review with an explanation. Selecting Water updates its inspector and dialog. Pinning a plan closes the native dialog, returns focus to its opener and reports that no resources were spent. Dialog return values reset before reopening.
-- Native event popover opens and Escape dismisses it. A left-edge event note remains inside the viewport with CSS anchor positioning and named position-try fallbacks. No positioning JavaScript is used.
-- Ledger End-key scrolling changes the native scroll position and CSS timeline cue. Reduced-motion emulation computes no cue animation and zero popover transition duration. A 900px viewport shows only the desktop-required notice.
-- Out-of-scale data displays an alert instead of a clipped chart. The observed current Chromium uses the dialog-command bridge; native command attributes remain available for supporting engines.
-
-These are focused manual Chromium observations and build/packaging results. Forced-color rules are supplied but this pass does not certify their rendering, screen-reader behavior or Safari/Firefox compatibility. The reference has no simulation backend or persistent game state.
-- Follow-up manager review: the Observatory declares a 1366 × 900 viewport. A manager-only flex-shrink correction preserves that 900px iframe height with Controls open; the manager scrolls the fixed desktop canvas instead of triggering the unsupported-screen notice. This does not change runtime component sizing.
-
-## 0.5.0 focused instrument pass
-
-- Shared signed history rendered in the HTML Storybook with positive and negative marks on the same zero baseline. Zero samples measured zero height; negative marks extend below zero. Native notes and complete tables remain available with compact labels.
-- The history playground exposes 16 arguments, including signed/zero/missing/custom inputs, negative-value meaning and a native comparison table. Play/Classic material is a global toolbar choice; flat depth removes outer instrument/panel shadows.
-- The native comparison table shares parent columns through table section and row subgrids. No domain rules are included in the renderer or material styles.
-- Existing Observatory composes the tactile frame and Play surfaces. The shared renderer supplies escaped strings, explicit finite-range validation, custom visible/axis/exact formatters and raw data values.
-- CSS/site/Storybook builds, JavaScript syntax checks and a package dry run completed. These are focused source and Chromium observations, not cross-browser or accessibility certification.
+Read [modern CSS](MODERN-CSS.md) for capability-specific degradation and [compatibility](STABILITY.md) for API policy.

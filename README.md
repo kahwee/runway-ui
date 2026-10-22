@@ -80,17 +80,17 @@ The examples target desktop windows at least 1100 × 640. The CSS library itself
 | Foundations | Theme tokens, cascade layers, surfaces, typography, focus and state colors |
 | Primitives | Buttons, panels, badges, inputs, disclosures, native dialog styling |
 | Game patterns | Resource HUD, equipment slots, objectives, choices, action dock |
-| CSS charts | Columns, stacked bars, diverging bars, six-point areas, legacy HTML-table bars; [API and scale rules](docs/CHARTS.md) |
+| CSS charts | Columns, stacked bars, diverging bars, six-point areas, percentage-based HTML-table bars; [API and scale rules](docs/CHARTS.md) |
 | Simulation | Subgrid production ledger and container-aware panels |
-| Themes | Warm Studio, dark Orbital and Parchment; identical markup |
-| Optional behaviors | Native dialog dismissal policy, roving keyboard focus, standard controller adapter, fixed-height virtual inventory |
+| Themes | Warm Studio, dark Orbital, Parchment and playful Whimsy; identical markup |
+| Optional behaviors | Native dialog dismissal policy, roving keyboard focus, standard controller adapter, fixed-height virtual inventory, range outputs and windowed history |
 
 All component classes use `rw-`; the root `rw-ui` supplies inherited tokens without a global reset. Application styles can override the cascade layers. This is a CSS namespace, not Shadow DOM isolation.
 
 ## Easy adoption
 
 1. **Components:** add the stylesheet, a `rw-ui` root and documented component classes.
-2. **Existing forms:** additionally load `runway-ui/native.css` and add `rw-native` to the root. Native submission and control semantics stay intact.
+2. **Existing forms:** add `rw-native` to the root (included in the full bundle; `runway-ui/native.css` is a standalone form entry). Native submission and control semantics stay intact.
 3. **Interactions:** import only the optional modules you need; retain their handles and call `destroy()` on unmount.
 
 Runway UI is not an API-compatible replacement for another UI framework. Existing custom widgets may need markup changes. The CSS core does not run a simulation, store saves or render a world.
@@ -108,7 +108,9 @@ Targets current desktop Chromium, Firefox and Safari with subgrid and container-
 
 ## Documentation
 
-- [Component markup and theming](docs/COMPONENTS.md)
+- [Component markup](docs/COMPONENTS.md), [theming](docs/THEMING.md) and [native fields](docs/FIELDS.md)
+- [CSS charts](docs/CHARTS.md), [history instruments and windowed time series](docs/INSTRUMENTS.md)
+- [Options and behavior API](docs/API.md), [compatibility contract](docs/STABILITY.md) and [changelog](docs/CHANGELOG.md)
 - [Keyboard, controller and inventory contracts](docs/INTERACTIONS.md)
 - [Status and current limitations](docs/STATUS.md)
 - [Contributing](CONTRIBUTING.md)
@@ -124,11 +126,6 @@ npm pack --dry-run
 There are no third-party runtime dependencies and no font or asset downloads. The CSS bundle is generated from `index.css` and `styles/`; edit source modules and rebuild the bundle. Type declarations accompany every optional behavior.
 
 Early-stage API: improvements should keep markup predictable, effects modest and boundaries explicit. Suggestions and small, focused contributions are welcome.
-
-## Documentation
-
-- [CSS charts](docs/CHARTS.md) — numeric inputs, scales, accessibility and fallbacks.
-- [Options API](docs/API.md), [theming](docs/THEMING.md), [compatibility contract](docs/STABILITY.md) and [unreleased changes](docs/CHANGELOG.md).
 
 ## Documentation development and hosting
 

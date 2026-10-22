@@ -80,6 +80,7 @@
   .rw-dialog__close:hover { rotate: 90deg; background: var(--rw-soft); }
   .rw-dialog__close:active { scale: .92; }
   @media (prefers-reduced-motion: reduce) { .rw-dialog__close { transition: none; } .rw-dialog__close:hover { rotate: none; } }
+  .rw-dialog__close > .rw-icon { --rw-icon-size:calc(var(--rw-icon-stroke) * 256 / 24); }
   .rw-dialog__close:focus-visible {
     outline: 3px solid var(--rw-focus);
     outline-offset: 3px;

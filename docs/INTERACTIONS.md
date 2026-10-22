@@ -5,7 +5,7 @@ The CSS entry has no JavaScript side effects. Import each behavior explicitly, r
 ## Roving focus
 
 ```js
-import { bindNavigation } from '../behaviors/navigation.js';
+import { bindNavigation } from 'runway-ui/navigation';
 const navigation = bindNavigation(document.querySelector('[role=toolbar]'), {
   selector: 'button', columns: 3, wrap: false
 });
@@ -19,7 +19,7 @@ Hidden or disabled native buttons are skipped. The helper owns tabindex while mo
 ## Controller
 
 ```js
-import { bindGamepad } from '../behaviors/navigation.js';
+import { bindGamepad } from 'runway-ui/navigation';
 const controller = bindGamepad(root, navigation);
 // controller.destroy() stops requestAnimationFrame polling.
 ```
@@ -29,7 +29,7 @@ Opt in from a visible user action. The adapter uses the first connected **standa
 ## Fixed-height virtual inventory
 
 ```js
-import { createInventory } from '../behaviors/inventory.js';
+import { createInventory } from 'runway-ui/inventory';
 const inventory = createInventory(root, {
   items: [{ id: 1, label: 'Copper ore', icon: '◇' }],
   columns: 8,
@@ -44,3 +44,7 @@ The helper exclusively owns root children. It restores its owned root attributes
 Default row height is 92px; cells are 84px inside padded rows. The rowHeight option sets --rw-row-height for both row and cell sizing, with a minimum of 32px. columns must be a positive integer, and overscan a non-negative integer. Variable-height cards are not supported. Search/filter is important for finding items without visual scrolling. Virtual DOM omission can limit screen-reader browse-mode access; this has not received a screen-reader audit. The example exposes logical row counts and navigation but does not claim WCAG conformance. For a small catalog prefer ordinary HTML, or offer an unvirtualized/searchable alternative where required.
 
 The 10,000-item example demonstrates bounded DOM count, not a 10,000-unit simulation. No frame-rate benchmark is claimed.
+
+## Forms and time series
+
+`bindRanges` synchronizes native slider outputs and visual fill; call its `destroy()` on unmount. `mountHistoryWindow` owns a dedicated root, renders one bounded window and returns paging state plus teardown. See the [API](API.md), [fields](FIELDS.md) and [history guide](INSTRUMENTS.md) for options, data ownership and exact-table scope. `renderHistory` itself returns escaped HTML and installs no listeners.

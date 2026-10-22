@@ -70,3 +70,9 @@ export const meta = (title, description, args, argTypes) => ({
 });
 let sequence = 0;
 export const uniqueId = (prefix) => `${prefix}-${++sequence}`;
+
+/** Phosphor icon name -> icon markup; any other string is escaped text. */
+export const iconHTML = (value, weight = "duotone") =>
+  /^[a-z][a-z-]*$/.test(String(value ?? ""))
+    ? `<span class="rw-icon" data-icon="${value}" data-weight="${weight}" aria-hidden="true"></span>`
+    : escapeHTML(value);
