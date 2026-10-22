@@ -356,21 +356,21 @@
   tr:hover .rw-rank {
     animation: rw-rank-wiggle 0.5s var(--rw-spring);
   }
-  .rw-trend {
-    --rw-trend: var(--rw-muted);
+  .rw-outlook {
+    --rw-outlook-tone: var(--rw-muted);
     display: inline-flex;
     align-items: center;
     gap: 4px;
     padding: 3px 9px;
     border-radius: var(--rw-pill);
-    background: color-mix(in oklch, var(--rw-trend) 12%, transparent);
-    color: var(--rw-trend);
+    background: color-mix(in oklch, var(--rw-outlook-tone) 12%, transparent);
+    color: var(--rw-outlook-tone);
     font: 700 11px / 1.2 var(--rw-font);
     &[data-direction="up"] {
-      --rw-trend: var(--rw-accent);
+      --rw-outlook-tone: var(--rw-accent);
     }
     &[data-direction="down"] {
-      --rw-trend: var(--rw-danger);
+      --rw-outlook-tone: var(--rw-danger);
     }
     &::before {
       content: "→";

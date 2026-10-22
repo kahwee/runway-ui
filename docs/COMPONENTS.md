@@ -159,3 +159,69 @@ Use `nav.rw-section-tabs` containing `.rw-button` toggles for switching sibling 
   </button>
 </nav>
 ```
+
+## Segmented control, person chip and leaderboard
+
+[Segmented control](../storybook/?path=/story/game-patterns-segmented-control--playground) · [Person chip](../storybook/?path=/story/game-patterns-person-chip--playground) · [Leaderboard](../storybook/?path=/story/game-patterns-leaderboard--playground).
+
+All three use native elements and application-owned state. Motion is a squash, stretch and landing bounce that plays when `aria-pressed` becomes true, and it is disabled under `prefers-reduced-motion`. Forced colors use system colors.
+
+### Segmented control
+
+A sunken pill track of mutually exclusive buttons, such as game speed. This is a toggle group, not an ARIA tablist or radio group; the host owns the selected state. Add `data-tone="warm"` or `"danger"` to tint a segment.
+
+```html
+<div class="rw-segmented" role="group" aria-label="Pace">
+  <span class="rw-segmented__label" aria-hidden="true">Pace</span>
+  <button type="button" class="rw-segment" aria-pressed="false">Care</button>
+  <button type="button" class="rw-segment" aria-pressed="true">Steady</button>
+  <button type="button" class="rw-segment" aria-pressed="false" data-tone="warm">Push</button>
+</div>
+```
+
+### Avatar and person chip
+
+`.rw-avatar` is a tinted tile for initials, an image or an icon. Set `--rw-avatar-hue` to any colour; `data-shape="round"` and `data-size="sm | lg"` adjust it. `.rw-person-chip` wraps an avatar, an optional name and a `.rw-person-chip__status` dot (`data-status="busy | away | alert"`). Avatar-only chips need an `aria-label`. `.rw-person-strip` lays out a wrapping row.
+
+```html
+<div class="rw-person-strip" role="group" aria-label="People">
+  <button type="button" class="rw-person-chip" data-layout="inline" aria-pressed="true">
+    <span class="rw-avatar" style="--rw-avatar-hue: #4f7fa8" aria-hidden="true">AL</span>
+    <span>Ada Lane<small>Engineer</small></span>
+    <span class="rw-person-chip__status" data-status="busy" aria-hidden="true"></span>
+  </button>
+</div>
+```
+
+### Leaderboard
+
+A native table with a caption, `th scope` attributes, medal ranks (`.rw-rank[data-place="1"]` to `3`), a `.rw-leaderboard__who` cell, `data-numeric` cells with tabular figures, `.rw-outlook[data-direction="up | down | flat"]` pills and a highlighted `tr[data-you]` row. Set `--rw-row` on each row for the staggered entrance. Medals and arrows are decorative; the numbers and text carry the meaning.
+
+```html
+<table class="rw-leaderboard">
+  <caption>
+    Season standings
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Rank</th>
+      <th scope="col">Company</th>
+      <th scope="col" data-numeric>Value</th>
+      <th scope="col">Outlook</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="--rw-row: 0">
+      <th scope="row"><span class="rw-rank" data-place="1">1</span></th>
+      <td>
+        <div class="rw-leaderboard__who">
+          <span class="rw-avatar" aria-hidden="true">N</span
+          ><span><strong>Northwind</strong><small>A neighbouring team</small></span>
+        </div>
+      </td>
+      <td data-numeric>$4.2m</td>
+      <td><span class="rw-outlook" data-direction="up">Climbing</span></td>
+    </tr>
+  </tbody>
+</table>
+```

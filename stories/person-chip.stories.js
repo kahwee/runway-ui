@@ -85,7 +85,10 @@ export const Variations = {
         },
         {
           ...args,
-          people: Array.from({ length: 12 }, (_, i) => `Person ${i + 1}`),
+          people: Array.from(
+            { length: 12 },
+            (_, i) => `${String.fromCharCode(65 + i)}${String.fromCharCode(97 + i)} Person`,
+          ),
           roles: [],
           layout: "compact",
           selected: 7,

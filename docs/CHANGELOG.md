@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add `rw-segmented` / `rw-segment`, `rw-avatar`, `rw-person-chip` and `rw-leaderboard` (with `rw-rank` and `rw-outlook`), each with a bouncy selection animation, reduced-motion and forced-colors support, a Storybook playground and stress cases.
+
 - Make `rw-view-tabs` and `rw-dock` bouncier: a tray for illustrated tabs, squash-and-stretch pop when a tab or dock action becomes selected, hopping artwork, pill buttons and keycap-style `rw-shortcut` hints. All motion is disabled under `prefers-reduced-motion`.
 
 - Add `rw-section-tabs`, a sticky row of toggle buttons for switching sibling views, with a Storybook playground.
