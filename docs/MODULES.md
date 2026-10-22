@@ -30,6 +30,13 @@ The recursive build resolves the composition imports into the self-contained
 merge, resolve authored components first, then rebuild the bundle once. Commit
 the bundle because GitHub archive consumers use it without a package build step.
 
+Run `pnpm check-generated` to rebuild and verify both `dist/runway-ui.css` and
+`styles/icons.css` against the current commit. The package CI job runs this on
+pull requests and pushes to `main`; stale, missing or untracked generated files
+fail with instructions to rebuild and commit them. The command regenerates the
+working copies, so commit intentional source and generated changes together
+before checking locally.
+
 ## Automated boundary checks
 
 Run `pnpm check-boundaries` before committing a module change. It checks authored

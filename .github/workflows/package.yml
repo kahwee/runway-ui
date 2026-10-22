@@ -48,8 +48,8 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run build
-      - run: git diff --exit-code -- dist/
+      - name: Verify committed generated CSS
+        run: pnpm check-generated
       - run: pnpm pack --dry-run
   storybook:
     name: Storybook build

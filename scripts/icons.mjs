@@ -27,26 +27,21 @@ const uri = (svg) =>
   '")';
 let tokens = "",
   rules = "";
-try {
-  for (const [weight, names] of [
-    ["bold", bold],
-    ["duotone", duotone],
-    ["fill", fill],
-  ]) {
-    for (const name of names) {
-      const file = weight === "bold" ? `${name}-bold.svg` : `${name}-${weight}.svg`;
-      const svg = (await readFile(new URL(`${weight}/${file}`, base), "utf8")).trim();
-      const key = weight === "bold" ? name : `${name}-${weight}`;
-      tokens += `    --rw-icon-${key}:${uri(svg)};\n`;
-      rules +=
-        weight === "bold"
-          ? `  .rw-icon[data-icon=${name}] { --rw-icon-mask:var(--rw-icon-${name}); }\n`
-          : `  .rw-icon[data-icon=${name}][data-weight=${weight}] { --rw-icon-mask:var(--rw-icon-${key}); }\n`;
-    }
+for (const [weight, names] of [
+  ["bold", bold],
+  ["duotone", duotone],
+  ["fill", fill],
+]) {
+  for (const name of names) {
+    const file = weight === "bold" ? `${name}-bold.svg` : `${name}-${weight}.svg`;
+    const svg = (await readFile(new URL(`${weight}/${file}`, base), "utf8")).trim();
+    const key = weight === "bold" ? name : `${name}-${weight}`;
+    tokens += `    --rw-icon-${key}:${uri(svg)};\n`;
+    rules +=
+      weight === "bold"
+        ? `  .rw-icon[data-icon=${name}] { --rw-icon-mask:var(--rw-icon-${name}); }\n`
+        : `  .rw-icon[data-icon=${name}][data-weight=${weight}] { --rw-icon-mask:var(--rw-icon-${key}); }\n`;
   }
-} catch {
-  console.log("Phosphor not installed; keeping committed styles/icons.css");
-  process.exit(0);
 }
 await writeFile(
   target,
