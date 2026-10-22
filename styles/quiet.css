@@ -147,6 +147,16 @@
     animation: none;
     opacity: 1;
   }
+  & .rw-chart-data > summary::before {
+    background: none;
+    box-shadow: none;
+    animation: none;
+  }
+  & .rw-chart-data > summary::after {
+    inset-inline-start: 0.3em;
+    inset-block-start: calc(50% + 6px);
+    background: var(--rw-accent);
+  }
   @media (prefers-reduced-motion: reduce) {
     & * {
       scroll-behavior: auto;
