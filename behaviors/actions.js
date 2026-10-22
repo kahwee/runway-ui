@@ -5,6 +5,7 @@ import { createLazyResource } from "./resource.js";
 // Each action has one owner. Reject collisions instead of silently overriding a feature.
 /** @param {ActionGroup[]} groups @returns {ActionHandler} */
 export function createActionRouter(groups) {
+  /** @type {Map<string, ActionHandler>} */
   const handlers = new Map();
   for (const group of groups) {
     for (const [name, handler] of Object.entries(group)) {
