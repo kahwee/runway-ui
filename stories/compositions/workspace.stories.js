@@ -4,8 +4,16 @@ export default {
   title: "Compositions/Desk workspace",
   tags: ["autodocs"],
   globals: { theme: "ledger" },
-  args: { title: "Field office", cash: "84,250", staff: 24, selected: "People", disabled: false },
+  args: {
+    title: "Field office",
+    cash: "84,250",
+    staff: 24,
+    selected: "People",
+    disabled: false,
+    quiet: false,
+  },
   argTypes: {
+    quiet: flag("Use restrained surfaces and controls."),
     title: text("Workspace identity."),
     cash: text("Formatted resource value supplied by the application."),
     staff: range(0, 1000, 1, "Staff count."),
@@ -24,6 +32,8 @@ export default {
 export const Playground = {
   render: (a) => {
     const root = document.createElement("div");
+    root.className = "rw-ui";
+    if (a.quiet) root.dataset.appearance = "quiet";
     root.style.cssText = "display:grid;gap:20px;max-inline-size:1200px";
     root.innerHTML = `<header class="rw-command-bar"><div class="rw-command-bar__identity"><strong>${e(a.title)}</strong></div><div class="rw-command-bar__metrics"><div class="rw-command-stat"><span>Credits</span><strong>${e(a.cash)}</strong></div><div class="rw-command-stat"><span>Team</span><strong>${a.staff}</strong></div></div></header>
       <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:24px">
@@ -52,3 +62,5 @@ export const Playground = {
     return root;
   },
 };
+
+export const Quiet = { ...Playground, args: { quiet: true } };

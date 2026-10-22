@@ -121,3 +121,5 @@ See the [Storybook guide](docs/STORYBOOK.md). Run `pnpm install --frozen-lockfil
 Native dialog stories use HTML invoker commands (`commandfor`, `command="show-modal"`) and `form method="dialog"`. Older browsers can use the optional dialog helper. Native disclosures and form controls need no event handlers.
 
 Dialog styling is opt-in with `rw-dialog`, structured `rw-dialog__header`, `__body` and `__footer` classes, plus compact/wide/danger modifiers. See the [dialog class guide](docs/DIALOG.md) and [dialog playground](https://kahwee.github.io/runway-ui/storybook/?path=/story/foundations-dialog--playground).
+
+For restrained surfaces and controls, see [Quiet appearance](docs/QUIET.md).

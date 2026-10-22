@@ -45,7 +45,8 @@
     "./forms.css": "./styles/forms.css",
     "./icons.css": "./styles/icons.css",
     "./instruments.css": "./styles/instruments.css",
-    "./workspace.css": "./styles/workspace.css"
+    "./workspace.css": "./styles/workspace.css",
+    "./quiet.css": "./styles/quiet.css"
   },
   "files": [
     "index.css",
