@@ -63,3 +63,5 @@ workflow builds Storybook and checks documentation links before deployment. New
 commits cancel superseded Package runs for the same branch or pull request.
 These jobs report check results; repository branch-protection settings determine
 whether GitHub requires those checks before a merge.
+
+Optional loading behavior belongs in `behaviors/resource.js`, stylesheet downloads in `behaviors/styles.js`, and action dispatch in `behaviors/actions.js`. Hosts own feature indexes, relative URL resolution and event listeners. See [loading and reuse](LOADING.md).

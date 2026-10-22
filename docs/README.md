@@ -41,3 +41,4 @@ New to Runway UI? Follow **Install → Components → Compose**. Use Storybook w
 - [Contributing and source layout](../CONTRIBUTING.md): where to make changes.
 
 Source Markdown guides live alongside the interactive documentation. The site build renders them as HTML and rewrites their guide links. Existing guide filenames remain stable so external links continue working.
+- [Lazy game features and reusable action routing](LOADING.md), with the [supply desk example](../examples/lazy-workspace/index.html).

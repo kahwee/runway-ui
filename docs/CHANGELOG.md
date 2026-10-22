@@ -121,3 +121,7 @@ Added HTML Storybook covering visual components, charts, optional behaviors and 
 ## 0.2.0
 
 Initial standalone MIT distribution with modular CSS, optional behavior modules, desktop examples and a self-contained bundle.
+
+## Optional feature loading
+
+Added focused resource, stylesheet and action behavior entries, declarations and a standalone lazy workspace example. No runtime dependencies or automatic imports of application features.

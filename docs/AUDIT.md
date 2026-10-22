@@ -27,3 +27,14 @@ it fails rather than silently accepting missing destinations.
 No new cross-browser or screen-reader verification was performed in this docs
 pass. Prior Chrome 154 dialog checks remain scoped in [STATUS.md](STATUS.md).
 No package release or branch-protection change is implied by a passing workflow.
+
+## Optional loading extraction
+
+Added independent resource, deferred stylesheet and action-routing modules with
+TypeScript declarations, no runtime dependencies and no automatic feature imports.
+The standalone lazy-workspace example keeps its simulation state in the host.
+Automated coverage includes concurrent/retried loads, falsy results, duplicate and
+mismatched action ownership, recycled controls and stylesheet listener cleanup.
+Chromium checks at 1440 × 900 and 1366 × 768 opened the deferred panel and ordered
+supplies without console errors. The documentation site and local link checker
+passed. This is loading correctness evidence, not a frame-rate benchmark.

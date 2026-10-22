@@ -47,7 +47,19 @@
     "./instruments.css": "./styles/instruments.css",
     "./workspace.css": "./styles/workspace.css",
     "./quiet.css": "./styles/quiet.css",
-    "./studio.css": "./styles/studio.css"
+    "./studio.css": "./styles/studio.css",
+    "./resource": {
+      "types": "./behaviors/resource.d.ts",
+      "default": "./behaviors/resource.js"
+    },
+    "./styles": {
+      "types": "./behaviors/styles.d.ts",
+      "default": "./behaviors/styles.js"
+    },
+    "./actions": {
+      "types": "./behaviors/actions.d.ts",
+      "default": "./behaviors/actions.js"
+    }
   },
   "files": [
     "index.css",
@@ -95,7 +107,8 @@
     "check-generated": "node scripts/check-generated.mjs",
     "check-boundaries": "node scripts/check-boundaries.mjs",
     "test-dialog": "node --test tests/dialog.test.mjs tests/dialog-stories.test.mjs",
-    "test-boundaries": "node --test tests/boundaries.test.mjs"
+    "test-boundaries": "node --test tests/boundaries.test.mjs",
+    "test-behaviors": "node --test tests/*.test.mjs"
   },
   "engines": {
     "node": ">=22"
