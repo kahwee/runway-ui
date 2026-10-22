@@ -305,3 +305,18 @@ footer {
     scroll-behavior: auto;
   }
 }
+
+.sidebar {
+  overflow-y: auto;
+}
+.nav-group + .nav-group {
+  margin-block-start: 18px;
+}
+.nav-group h2 {
+  margin-block-end: 6px;
+  color: var(--rw-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

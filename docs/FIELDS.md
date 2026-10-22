@@ -60,3 +60,32 @@ Set data attributes on the `select`; the markup stays a plain native select. Eve
 | `data-stagger`   | `off`                                            | Skip the `sibling-index()` entry animation      |
 
 Option content: wrap an icon in `.rw-option__icon`, or initials in `.rw-option__avatar`, add a `<small>` description, and set `data-color` for a dot (typed `attr()`). Put `<legend>` inside an `optgroup` for a group heading, `<hr>` for a separator, and use `disabled` options normally. Add `<button><selectedcontent></selectedcontent></button>` first inside the select to mirror the chosen option (without its description) in the closed state. The Foundations / Controls / Select story exposes all of these as arguments.
+
+## Input with an action button
+
+Place an input and `.rw-button` inside `.rw-input-group` to join them in one surface. Keep the label and help text outside the group, using `.rw-field` for spacing. The action follows the input in reading order, including RTL.
+
+```html
+<div class="rw-field">
+  <label for="crew-name">Crew member name</label>
+  <div class="rw-input-group">
+    <input
+      class="rw-input"
+      id="crew-name"
+      name="crew-name"
+      value="Alex Morgan"
+      aria-describedby="crew-name-hint"
+    >
+    <button class="rw-button" type="button" data-variant="secondary">
+      Generate another name <span aria-hidden="true">↻</span>
+    </button>
+  </div>
+  <small id="crew-name-hint">Edit the name or generate another suggestion.</small>
+</div>
+```
+
+The group supplies the shared border and focus ring; the button retains its variant and disabled styling, with an inset keyboard focus indicator. Long action labels wrap and take at most half the group width. Existing prefix/suffix spans still work.
+
+Use `type="button"` for auxiliary actions so they do not submit the surrounding form. Applications supply action behavior; CSS does not generate data. Disable both controls with native `disabled` when the whole group is unavailable. `readonly` applies only to the input; disable an action that would change it separately. Put `aria-invalid="true"` on the input and associate error text through `aria-describedby`. Keep a separate primary form action outside this group.
+
+Try the **Foundations / Input group** Storybook playground for editable values, button variants, disabled/read-only/error states and RTL. Its name suggestions use local demonstration data.

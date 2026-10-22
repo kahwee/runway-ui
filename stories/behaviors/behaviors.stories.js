@@ -1,6 +1,6 @@
-import { createInventory } from "../behaviors/inventory.js";
-import { bindNavigation } from "../behaviors/navigation.js";
-import { bounded, escapeHTML as e, flag, object, range, text, withDefaults } from "./helpers.js";
+import { createInventory } from "../../behaviors/inventory.js";
+import { bindNavigation } from "../../behaviors/navigation.js";
+import { bounded, escapeHTML as e, flag, object, range, text, withDefaults } from "../helpers.js";
 
 // Documentation-only host; the library requires no custom elements.
 if (!customElements.get("runway-story-host"))

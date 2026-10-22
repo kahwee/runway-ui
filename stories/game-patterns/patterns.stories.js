@@ -8,7 +8,7 @@ import {
   range,
   text,
   withDefaults,
-} from "./helpers.js";
+} from "../helpers.js";
 export default {
   title: "Game patterns/Systems",
   tags: ["autodocs"],

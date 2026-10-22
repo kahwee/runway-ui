@@ -1,5 +1,5 @@
-import { bindRanges } from "../behaviors/forms.js";
-import { flag, range, select } from "./helpers.js";
+import { bindRanges } from "../../behaviors/forms.js";
+import { flag, range, select } from "../helpers.js";
 export default {
   title: "Foundations/Forms",
   tags: ["autodocs"],

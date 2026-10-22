@@ -39,7 +39,7 @@ pnpm run storybook
 pnpm run build-site
 ```
 
-Story files are in `stories/`; shared argument metadata and escaping are in `stories/helpers.js`. Keep default CSF exports as object literals with a statically readable title and tags. Storybook's indexer does not execute metadata factory calls. The helper supplies runtime argument descriptions and defaults inside that object.
+Story files are grouped by sidebar category under `stories/` (for example, `stories/foundations/` and `stories/game-patterns/`); shared argument metadata and escaping are in `stories/helpers.js`. Keep default CSF exports as object literals with a statically readable title and tags. Storybook's indexer does not execute metadata factory calls. The helper supplies runtime argument descriptions and defaults inside that object.
 
 The Pages build writes only allowlisted public files to `.site/`, places Storybook under `/storybook/`, and renders Markdown guides to static HTML at build time. `main` pushes deploy through GitHub Actions. Generated output and local evidence are ignored.
 

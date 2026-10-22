@@ -1,8 +1,8 @@
-import { bindObservatory } from "../examples/observatory/controller.js";
-import { defaults } from "../examples/observatory/data.js";
-import { renderObservatory } from "../examples/observatory/render.js";
-import { flag, object, range, select, text, withDefaults } from "./helpers.js";
-import { demoHost } from "./host.js";
+import { bindObservatory } from "../../examples/observatory/controller.js";
+import { defaults } from "../../examples/observatory/data.js";
+import { renderObservatory } from "../../examples/observatory/render.js";
+import { flag, object, range, select, text, withDefaults } from "../helpers.js";
+import { demoHost } from "../host.js";
 export default {
   title: "Compositions/Simulation Observatory",
   tags: ["autodocs"],

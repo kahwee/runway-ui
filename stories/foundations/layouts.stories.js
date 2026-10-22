@@ -7,7 +7,7 @@ import {
   text,
   uniqueId,
   withDefaults,
-} from "./helpers.js";
+} from "../helpers.js";
 
 const args = {
   pattern: "cards",

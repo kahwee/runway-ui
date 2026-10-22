@@ -1,4 +1,4 @@
-import { escapeHTML as e, exclusive, flag, object, range, text, withDefaults } from "./helpers.js";
+import { escapeHTML as e, exclusive, flag, object, range, text, withDefaults } from "../helpers.js";
 
 const args = {
   label: "Pace",

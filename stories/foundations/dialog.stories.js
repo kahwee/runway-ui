@@ -1,4 +1,4 @@
-import { escapeHTML as e, flag, meta, select, text, uniqueId } from "./helpers.js";
+import { escapeHTML as e, flag, meta, select, text, uniqueId } from "../helpers.js";
 
 const args = {
   title: "Chart the next frontier?",

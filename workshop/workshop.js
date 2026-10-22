@@ -1,5 +1,5 @@
-import { bindDialog } from "./behaviors/dialog.js";
-import { bindNavigation } from "./behaviors/navigation.js";
+import { bindDialog } from "../behaviors/dialog.js";
+import { bindNavigation } from "../behaviors/navigation.js";
 
 const $ = (selector) => document.querySelector(selector);
 const dialog = $("#demo-dialog");

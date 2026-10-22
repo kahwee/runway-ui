@@ -1,6 +1,31 @@
 /** Documentation data; not imported by the runtime package. */
 export const catalog = [
   {
+    id: "input-group",
+    name: "Input group",
+    description: "A labeled input with an attached action button or prefix/suffix.",
+    options: [
+      [".rw-input-group", "wrapper", "Joins an input and button in one shared surface."],
+      [
+        "type",
+        "button | submit",
+        "Use button for auxiliary actions; submit only for form submission.",
+      ],
+      [
+        "disabled",
+        "native boolean on each control",
+        "Disable both controls when the group is unavailable.",
+      ],
+      [
+        "aria-invalid",
+        "true on input",
+        "Shows the group error border; associate explanatory text.",
+      ],
+    ],
+    snippet:
+      '<label for="crew-name">Crew member name</label>\n<div class="rw-input-group">\n  <input class="rw-input" id="crew-name" value="Alex Morgan">\n  <button class="rw-button" type="button">Generate another name</button>\n</div>',
+  },
+  {
     id: "button",
     name: "Button",
     description: "Native actions with explicit size, variant and state.",

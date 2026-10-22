@@ -6,8 +6,7 @@ await mkdir(output, { recursive: true });
 // Explicit public allowlist: never copy the checkout or local evidence wholesale.
 for (const path of [
   "index.html",
-  "workshop.css",
-  "workshop.js",
+  "workshop",
   "index.css",
   "styles",
   "behaviors",
@@ -44,7 +43,7 @@ for (const file of await readdir(new URL("docs/", output))) {
   const body = rewriteLinks(marked.parse(source));
   await writeFile(
     new URL(`docs/${htmlPath(file.replace(/\.md$/, ""))}`, output),
-    `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} · Runway UI</title><link rel="stylesheet" href="../index.css"><link rel="stylesheet" href="docs.css"><link rel="stylesheet" href="reference.css"></head><body class="rw-ui"><main class="reference-page"><nav class="reference-nav"><a href="./">← Component options</a><a href="../storybook/">Storybook ↗</a><a href="charts.html">Chart lab ↗</a></nav><article>${body}</article><footer>Runway UI · MIT · HTML and CSS</footer></main></body></html>`,
+    `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} · Runway UI</title><link rel="stylesheet" href="../index.css"><link rel="stylesheet" href="docs.css"><link rel="stylesheet" href="reference.css"></head><body class="rw-ui"><main class="reference-page"><nav class="reference-nav"><a href="README.html">Documentation map</a><a href="./#reference">Component reference</a><a href="../storybook/">Storybook ↗</a><a href="charts.html">Chart lab ↗</a></nav><article>${body}</article><footer>Runway UI · MIT · HTML and CSS</footer></main></body></html>`,
   );
 }
 for (const file of ["docs/index.html", "docs/charts.html"]) {

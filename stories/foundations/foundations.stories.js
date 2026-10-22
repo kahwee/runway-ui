@@ -7,7 +7,7 @@ import {
   text,
   uniqueId,
   withDefaults,
-} from "./helpers.js";
+} from "../helpers.js";
 export default {
   title: "Foundations/Controls",
   tags: ["autodocs"],

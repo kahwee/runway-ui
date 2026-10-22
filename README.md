@@ -6,32 +6,19 @@ Resource HUDs, production ledgers, economy charts, equipment grids, objectives a
 
 **MIT licensed. Free for personal and commercial projects, including closed-source games.** Keep the license notice in redistributed copies. No attribution in your interface is required. See [LICENSE](LICENSE).
 
-## Tactile history instruments
+## Find your way
 
-[Explore signed history instruments](https://kahwee.github.io/runway-ui/storybook/?path=/story/charts-history-instruments--playground): real observation arrays, explicit missing values, grouped native notes and exact tables. Add `data-skin="play"` to a `rw-ui` root for deeper, more playful surfaces. [Contracts](docs/INSTRUMENTS.md).
+Start with the installation below, then choose the resource for your task:
 
-## Simulation Observatory
+| Task                                       | Resource                                                                                                |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| Learn the library and choose a guide       | [Documentation map](docs/README.md)                                                                     |
+| Find classes, defaults and copyable markup | [Component reference](https://kahwee.github.io/runway-ui/docs/#reference)                               |
+| Try component states and theme controls    | [Storybook](https://kahwee.github.io/runway-ui/storybook/)                                              |
+| See components assembled into a screen     | [Workshop](https://kahwee.github.io/runway-ui/) and [Simulation Observatory](examples/observatory.html) |
+| Change the library itself                  | [Contributing and repository layout](CONTRIBUTING.md)                                                   |
 
-[Open the polished desktop reference screen](https://kahwee.github.io/runway-ui/examples/observatory.html) · [Storybook playground](https://kahwee.github.io/runway-ui/storybook/?path=/story/compositions-simulation-observatory--playground) · [Data and capability contracts](docs/OBSERVATORY.md). Six CSS trend cards, observed/projected history, a target, anchored native event notes and an inspectable resource ledger. Generic synthetic data; no chart runtime.
-
-## Modern CSS foundation
-
-Subgrid aligns cards, fields, stat tiles, choices, objectives, production rows and chart series. Native nesting, container queries, logical sizing, OKLCH colors, typed meter properties and CSS-driven native disclosures are part of the implementation. Newer picker/chart/dialog capabilities use feature-aware enhancement. See the [modern CSS contract](docs/MODERN-CSS.md) and [shared-track workshop](examples/layouts.html).
-
-## Comfortable defaults
-
-Warm Studio colors, tactile controls and softly raised panels are the default. Add `data-depth="flat"` on a `rw-ui` root for quieter surfaces. `select.rw-input` reserves a 16px arrow inset and a separate text gutter, including RTL. `data-picker="enhanced"` progressively enables the newer native picker where supported. No JavaScript is needed for field styling.
-
-See [the Clipboard Club](examples/controls.html) and [field documentation](docs/FIELDS.md), or tune the Select playground in Storybook. The bundle now includes the `rw-native` opt-in selectors; `native.css` remains a compatible standalone form entry.
-
-## Explore the library
-
-- [Live workshop](https://kahwee.github.io/runway-ui/)
-- [HTML Storybook](https://kahwee.github.io/runway-ui/storybook/) — focused argument-driven playgrounds, CSS charts and optional behaviors.
-- [CSS chart lab](https://kahwee.github.io/runway-ui/docs/charts.html)
-- [Component options](https://kahwee.github.io/runway-ui/docs/)
-
-Storybook is development tooling only. Consuming the CSS library requires no JavaScript or framework.
+The docs explain usage and contracts. Storybook is the interactive component explorer. Examples demonstrate compositions with synthetic data; they do not run a simulation.
 
 ## Start with one stylesheet
 

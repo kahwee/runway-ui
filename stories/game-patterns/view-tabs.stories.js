@@ -1,9 +1,9 @@
-import cloud from "../examples/assets/view-tabs/cloud.svg?url";
-import cottage from "../examples/assets/view-tabs/cottage.svg?url";
-import garden from "../examples/assets/view-tabs/garden.svg?url";
-import letters from "../examples/assets/view-tabs/letters.svg?url";
-import pantry from "../examples/assets/view-tabs/pantry.svg?url";
-import picnic from "../examples/assets/view-tabs/picnic.svg?url";
+import cloud from "../../examples/assets/view-tabs/cloud.svg?url";
+import cottage from "../../examples/assets/view-tabs/cottage.svg?url";
+import garden from "../../examples/assets/view-tabs/garden.svg?url";
+import letters from "../../examples/assets/view-tabs/letters.svg?url";
+import pantry from "../../examples/assets/view-tabs/pantry.svg?url";
+import picnic from "../../examples/assets/view-tabs/picnic.svg?url";
 import {
   escapeHTML as e,
   exclusive,
@@ -12,7 +12,7 @@ import {
   range,
   select,
   withDefaults,
-} from "./helpers.js";
+} from "../helpers.js";
 
 const art = [cottage, garden, letters, pantry, cloud, picnic];
 const args = {

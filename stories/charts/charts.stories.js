@@ -1,4 +1,4 @@
-import { bounded, escapeHTML as e, flag, meta, object, range, select, text } from "./helpers.js";
+import { bounded, escapeHTML as e, flag, meta, object, range, select, text } from "../helpers.js";
 
 const args = {
   kind: "columns",

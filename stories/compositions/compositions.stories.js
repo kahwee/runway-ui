@@ -1,5 +1,5 @@
-import workshop from "../index.html?raw";
-import { escapeHTML as e, flag, meta, select, text } from "./helpers.js";
+import workshop from "../../index.html?raw";
+import { escapeHTML as e, flag, meta, select, text } from "../helpers.js";
 export default {
   title: "Compositions/Game interface",
   tags: ["autodocs"],

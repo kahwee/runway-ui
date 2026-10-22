@@ -1,4 +1,4 @@
-import { escapeHTML as e, flag, object, range, text, withDefaults } from "./helpers.js";
+import { escapeHTML as e, flag, object, range, text, withDefaults } from "../helpers.js";
 
 const hues = ["#c2603f", "#4f7fa8", "#7a8f3a", "#9a6bb0", "#b8851f", "#3a9a8f"];
 const args = {

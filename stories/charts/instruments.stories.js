@@ -1,6 +1,6 @@
-import { renderHistory } from "../behaviors/history.js";
-import { mountHistoryWindow } from "../behaviors/timeseries.js";
-import { escapeHTML as e, flag, object, range, select, text, withDefaults } from "./helpers.js";
+import { renderHistory } from "../../behaviors/history.js";
+import { mountHistoryWindow } from "../../behaviors/timeseries.js";
+import { escapeHTML as e, flag, object, range, select, text, withDefaults } from "../helpers.js";
 
 const args = {
   title: "Supply balance",

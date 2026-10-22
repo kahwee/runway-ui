@@ -28,3 +28,12 @@ Document new public patterns in the component guides, shared-track example and a
 The `packageManager` field pins pnpm; install that version before running the frozen-lockfile setup above. Use `pnpm check`, `pnpm check-fix`, `pnpm format` and `pnpm lint`. Biome is a development dependency only. Generated CSS, generated icon data, Storybook output and the static site are excluded; rebuild them from formatted sources.
 
 The recommended rule preset remains enabled. The configuration allows intentional cascade specificity and essential `!important` visibility/motion guards. Narrow overrides preserve the existing ARIA table/grid demonstrations and the newer `selectedcontent` selector, which Biome does not yet recognize. List roles remain explicit where CSS marker removal otherwise affects list semantics. These exceptions do not replace browser or accessibility review. HTML formatting uses Biome's experimental full-document support.
+
+## Repository layout
+
+- `styles/` and `behaviors/` contain the public library; `index.css` is its entry point and `dist/` holds generated CSS.
+- `workshop/` contains assets for the root `index.html` demo.
+- `stories/` groups Storybook stories by their sidebar category: `start-here/`, `foundations/`, `charts/`, `game-patterns/`, `behaviors/` and `compositions/`. Shared helpers stay at the top level. Use kebab-case filenames and preserve story titles and export names so existing story links keep working.
+- `examples/` contains standalone compositions and their supporting assets.
+- `docs/` contains guides and the documentation workbench; `scripts/` contains build tooling.
+- `.storybook/` configures the component explorer. `storybook-static/` and `.site/` are generated and ignored.
