@@ -1,6 +1,7 @@
 import {
   bounded,
   escapeHTML as e,
+  exclusive,
   flag,
   iconHTML,
   object,
@@ -131,7 +132,10 @@ export const ActionDock = {
   },
   render: (a) =>
     Array.isArray(a.items) && a.items.length > 0 && a.items.length <= 8
-      ? `<nav class="rw-dock" aria-label="${e(a.label)}">${a.items.map((label, i) => `<button class="rw-button" type="button" aria-pressed="${i === a.selected}">${e(label)}${a.showShortcuts ? ` <kbd class="rw-shortcut">${i + 1}</kbd>` : ""}</button>`).join("")}</nav>`
+      ? exclusive(
+          `<nav class="rw-dock" aria-label="${e(a.label)}">${a.items.map((label, i) => `<button class="rw-button" type="button" aria-pressed="${i === a.selected}">${e(label)}${a.showShortcuts ? ` <kbd class="rw-shortcut">${i + 1}</kbd>` : ""}</button>`).join("")}</nav>`,
+          ".rw-dock .rw-button",
+        )
       : '<p role="alert">Provide at most eight view labels.</p>',
 };
 export const ProductionLedger = {

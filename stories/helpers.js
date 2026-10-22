@@ -69,3 +69,29 @@ export const iconHTML = (value, weight = "duotone") =>
   /^[a-z][a-z-]*$/.test(String(value ?? ""))
     ? `<span class="rw-icon" data-icon="${value}" data-weight="${weight}" aria-hidden="true"></span>`
     : escapeHTML(value);
+
+/**
+ * Make the single-select buttons or links inside rendered markup respond to clicks, so a story
+ * shows the real selection animation. Application-owned state in a real interface.
+ */
+export const exclusive = (markup, itemSelector, selectedAttr = "aria-pressed") => {
+  const root = document.createElement("div");
+  root.innerHTML = markup;
+  const items = [...root.querySelectorAll(itemSelector)];
+  const variant = items.find((item) => item.getAttribute(selectedAttr) === "true")?.dataset.variant;
+  root.addEventListener("click", (event) => {
+    const item = event.target.closest(itemSelector);
+    if (!item || item.disabled || !root.contains(item)) return;
+    event.preventDefault();
+    for (const other of items) {
+      const on = other === item;
+      other.setAttribute(selectedAttr, String(on));
+      if (selectedAttr === "aria-current") {
+        if (on) other.setAttribute("aria-current", "page");
+        else other.removeAttribute("aria-current");
+      }
+      if (variant) other.dataset.variant = on ? variant : "secondary";
+    }
+  });
+  return root;
+};

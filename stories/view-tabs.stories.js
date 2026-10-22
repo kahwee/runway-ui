@@ -4,7 +4,15 @@ import garden from "../examples/assets/view-tabs/garden.svg?url";
 import letters from "../examples/assets/view-tabs/letters.svg?url";
 import pantry from "../examples/assets/view-tabs/pantry.svg?url";
 import picnic from "../examples/assets/view-tabs/picnic.svg?url";
-import { escapeHTML as e, flag, object, range, select, withDefaults } from "./helpers.js";
+import {
+  escapeHTML as e,
+  exclusive,
+  flag,
+  object,
+  range,
+  select,
+  withDefaults,
+} from "./helpers.js";
 
 const art = [cottage, garden, letters, pantry, cloud, picnic];
 const args = {
@@ -38,7 +46,10 @@ export const Playground = {
   render: (a) =>
     !Array.isArray(a.labels) || !a.labels.length || a.labels.length > 6
       ? '<p role="alert">Supply one to six labels.</p>'
-      : `<section class="rw-panel"><nav class="rw-view-tabs" data-layout="${a.layout === "inline" ? "inline" : "stacked"}" aria-label="Daily places" style="--rw-view-art:${Math.max(32, Math.min(64, Number(a.illustrationSize) || 48))}px">${a.labels.map((label, i) => `<button type="button" class="rw-view-tab" aria-pressed="${i === a.selected}"${i === a.disabled ? " disabled" : ""}><img class="rw-view-tab__art" src="${art[i]}" width="48" height="48" alt=""><span>${e(label)}</span></button>`).join("")}</nav></section>`,
+      : exclusive(
+          `<section class="rw-panel"><nav class="rw-view-tabs" data-layout="${a.layout === "inline" ? "inline" : "stacked"}" aria-label="Daily places" style="--rw-view-art:${Math.max(32, Math.min(64, Number(a.illustrationSize) || 48))}px">${a.labels.map((label, i) => `<button type="button" class="rw-view-tab" aria-pressed="${i === a.selected}"${i === a.disabled ? " disabled" : ""}><img class="rw-view-tab__art" src="${art[i]}" width="48" height="48" alt=""><span>${e(label)}</span></button>`).join("")}</nav></section>`,
+          ".rw-view-tab",
+        ),
 };
 
 const sectionArgs = {
@@ -67,5 +78,8 @@ export const SectionTabs = {
   render: (a) =>
     !Array.isArray(a.labels) || !a.labels.length || a.labels.length > 6
       ? '<p role="alert">Supply one to six labels.</p>'
-      : `<section class="rw-panel"><nav class="rw-section-tabs"${a.sticky ? " data-sticky" : ""} aria-label="Workspace sections">${a.labels.map((label, i) => `<button type="button" class="rw-button" data-variant="${i === a.selected ? (a.variant === "secondary" ? "secondary" : "primary") : "secondary"}" aria-pressed="${i === a.selected}">${e(label)}</button>`).join("")}</nav><p>Section content goes here.</p></section>`,
+      : exclusive(
+          `<section class="rw-panel"><nav class="rw-section-tabs"${a.sticky ? " data-sticky" : ""} aria-label="Workspace sections">${a.labels.map((label, i) => `<button type="button" class="rw-button" data-variant="${i === a.selected ? (a.variant === "secondary" ? "secondary" : "primary") : "secondary"}" aria-pressed="${i === a.selected}">${e(label)}</button>`).join("")}</nav><p>Section content goes here.</p></section>`,
+          ".rw-section-tabs .rw-button",
+        ),
 };
