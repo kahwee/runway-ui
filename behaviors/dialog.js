@@ -1,4 +1,12 @@
+/**
+ * @typedef {object} DialogController
+ * @property {() => void} open Opens with the current native dismissal policy.
+ * @property {() => void} refresh Reapplies dismissal policy while open.
+ * @property {(returnValue?: string) => boolean} requestClose True means issued; another cancel listener may still prevent closure.
+ * @property {() => void} destroy Restores the original closedby attribute and removes listeners; does not close the dialog.
+ */
 /** Optional native modal policy. The browser owns focus and background inertness. */
+/** @param {HTMLDialogElement} dialog @param {{canDismiss?: () => boolean}} [options] @returns {DialogController} */
 export function bindDialog(dialog, { canDismiss = () => true } = {}) {
   if (
     dialog?.localName !== "dialog" ||
@@ -17,9 +25,11 @@ export function bindDialog(dialog, { canDismiss = () => true } = {}) {
   function refresh() {
     if (!destroyed) dialog.setAttribute("closedby", canDismiss() ? "any" : "none");
   }
+  /** @param {Event} event */
   function cancel(event) {
     if (!canDismiss()) event.preventDefault();
   }
+  /** @param {string} [returnValue] */
   function requestClose(returnValue) {
     if (destroyed || !dialog.open || !canDismiss()) return false;
     if (returnValue === undefined) dialog.requestClose();

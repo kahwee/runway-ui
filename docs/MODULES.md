@@ -65,3 +65,5 @@ These jobs report check results; repository branch-protection settings determine
 whether GitHub requires those checks before a merge.
 
 Optional loading behavior belongs in `behaviors/resource.js`, stylesheet downloads in `behaviors/styles.js`, and action dispatch in `behaviors/actions.js`. Hosts own feature indexes, relative URL resolution and event listeners. See [loading and reuse](LOADING.md).
+
+Behavior types are authored as JSDoc in the owning JavaScript module. Generate declarations with `pnpm build-types`; verify source and consumer fixtures with `pnpm check-types`. Do not edit `.d.ts` output. See [type ownership and the behavior map](TYPES.md).

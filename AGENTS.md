@@ -29,5 +29,6 @@
 
 - Use the pinned pnpm version and `pnpm-lock.yaml`; do not add npm or Yarn lockfiles.
 - Validate imports with `pnpm check-boundaries`, checker fixtures with `pnpm test-boundaries`, and dialog policy with `pnpm test-dialog`. Rebuild CSS before committing; run `pnpm check-generated` after committing, since it compares against `HEAD`.
+- Behavior declarations are generated from strict JSDoc in `behaviors/*.js`; never edit `.d.ts` by hand. Run `pnpm build-types`, `pnpm check-types` and `pnpm test-behaviors` for behavior changes. See [docs/TYPES.md](docs/TYPES.md).
 - Run `pnpm check` before committing. Use `pnpm check-fix` for safe lint fixes and formatting; review any behavior changes before applying unsafe fixes.
 - Biome covers authored JavaScript, TypeScript declarations, JSON, CSS and HTML. Keep generated bundles, generated icons, dependency trees and build output outside its scope.

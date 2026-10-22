@@ -47,3 +47,7 @@ The recommended rule preset remains enabled. The configuration allows intentiona
 - `examples/` contains standalone compositions and their supporting assets.
 - `docs/` contains guides and the documentation workbench; `scripts/` contains build tooling.
 - `.storybook/` configures the component explorer. `storybook-static/` and `.site/` are generated and ignored.
+
+## Behavior types
+
+Author public types in the owning JavaScript JSDoc, then run `pnpm build-types`, `pnpm check-types` and `pnpm test-behaviors`. Declarations are generated, formatted and committed. Add positive and expected-error consumer examples when changing public contracts. `pnpm check-generated` checks declarations as well as CSS after commit. See [type generation](docs/TYPES.md).

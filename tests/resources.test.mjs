@@ -92,3 +92,22 @@ test("styles preserve slots, listeners, coalescing and retry", async () => {
   assert.equal(events.size, 0);
   assert.equal(link.href, "/panel.css");
 });
+
+test("stylesheet setter failures release the cache and listeners for retry", async () => {
+  const events = new Map();
+  let fail = true;
+  const link = {
+    dataset: { href: "/panel.css" },
+    set href(_value) {
+      if (fail) throw new Error("Invalid URL");
+    },
+    addEventListener: (name, fn) => events.set(name, fn),
+    removeEventListener: (name) => events.delete(name),
+  };
+  await assert.rejects(loadStylesheet(link), /Invalid URL/);
+  assert.equal(events.size, 0);
+  fail = false;
+  const retry = loadStylesheet(link);
+  events.get("load")();
+  await retry;
+});

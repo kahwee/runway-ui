@@ -125,3 +125,7 @@ Initial standalone MIT distribution with modular CSS, optional behavior modules,
 ## Optional feature loading
 
 Added focused resource, stylesheet and action behavior entries, declarations and a standalone lazy workspace example. No runtime dependencies or automatic imports of application features.
+
+## Generated behavior declarations
+
+All nine optional behaviors now generate declarations from strictly checked JavaScript JSDoc. Existing public type names remain exported; object declarations are generated aliases, so declaration merging of the previous handwritten interfaces is no longer supported. Added consumer type fixtures and CI drift checks. Tightened DOM/event typing and windowed-history validation. Empty histories have finite geometry and disabled paging; destroyed timelines no longer redraw.

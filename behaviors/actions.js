@@ -1,5 +1,9 @@
+/** @typedef {(button: HTMLButtonElement, event: Event) => unknown} ActionHandler */
+/** @typedef {Record<string, ActionHandler>} ActionGroup */
+/** @typedef {{groups?: ActionGroup[], features?: Record<string, {names: string[], load(attempt: number): ActionGroup | PromiseLike<ActionGroup>}>, onError?: (error: unknown, action: string) => unknown}} LazyActionOptions */
 import { createLazyResource } from "./resource.js";
 // Each action has one owner. Reject collisions instead of silently overriding a feature.
+/** @param {ActionGroup[]} groups @returns {ActionHandler} */
 export function createActionRouter(groups) {
   const handlers = new Map();
   for (const group of groups) {
@@ -8,13 +12,18 @@ export function createActionRouter(groups) {
       handlers.set(name, handler);
     }
   }
-  return (button, event) => handlers.get(button.dataset.action)?.(button, event);
+  return (button, event) => {
+    const name = button.dataset.action;
+    return name === undefined ? undefined : handlers.get(name)?.(button, event);
+  };
 }
 
 /** Load action groups only when invoked. Action names and services belong to the host. */
+/** @param {LazyActionOptions} options @returns {ActionHandler} */
 export function createLazyActionRouter({ groups = [], features = {}, onError = () => {} }) {
   const route = createActionRouter(groups);
   const known = new Set(groups.flatMap(Object.keys));
+  /** @type {Map<string, import("./resource.js").LazyResource<ActionGroup>>} */
   const owners = new Map();
   for (const [feature, { names, load }] of Object.entries(features)) {
     const resource = createLazyResource(async (attempt) => {
@@ -36,6 +45,7 @@ export function createLazyActionRouter({ groups = [], features = {}, onError = (
   const busy = new WeakSet();
   return (button, event) => {
     const name = button.dataset.action;
+    if (name === undefined) return;
     const resource = owners.get(name);
     if (!resource) return route(button, event);
     if (busy.has(button)) return;

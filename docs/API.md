@@ -50,3 +50,5 @@ Use native `.rw-range` inputs and associated `output[for]` elements. Without the
 `runway-ui` loads modular CSS; `runway-ui/bundle.css` is self-contained. Named style aliases are `native.css`, `charts.css`, `dialog.css`, `controls.css`, `fields.css`, `layout.css`, `history.css`, `observatory.css`, `forms.css`, `icons.css`, `instruments.css`, `workspace.css`, `quiet.css` and `studio.css`. Source modules are also exposed through `runway-ui/styles/*`. Individual modules may require tokens and related styles; an alias does not imply a standalone bundle. Native form styling imports its prerequisites.
 
 Feature loading: `runway-ui/resource` exports `createLazyResource` and `resourceUrl`; `runway-ui/styles` exports `loadStylesheet`; `runway-ui/actions` exports `createActionRouter` and `createLazyActionRouter`. See [loading contracts](LOADING.md).
+
+Declarations are generated from strictly checked JSDoc in each behavior. See [type generation and consumer contracts](TYPES.md); public object type names remain available as generated aliases.

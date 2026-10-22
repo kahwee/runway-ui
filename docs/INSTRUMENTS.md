@@ -63,3 +63,5 @@ view.destroy();
 Signed geometry uses CSS arithmetic and custom properties. Typed numeric `attr()` with `abs()` enhances mark inputs; the renderer also supplies absolute custom-property values. Native CSS nesting, container queries, subgrid, logical properties and OKLCH mixing remain the baseline. Event notes reuse the native top layer, implicit anchors, named position-try fallbacks and reduced-motion transitions documented in [Observatory](OBSERVATORY.md). Forced colors retain explicit signs, values and readable marks; decorative rivets disappear.
 
 Read [status](STATUS.md) for the focused browser observations. This is not a general-purpose chart engine: no free-form zoom/brush, irregular-time interpolation or causal inference is provided.
+
+Windowed history validates the complete series before mounting, including offscreen values and annotation indexes. Start indexes must be non-negative integers, window sizes 1–366 and overview bins positive integers. Empty series show “No observations” with disabled navigation and finite geometry. `setWindow()` cannot redraw a destroyed view.

@@ -38,3 +38,31 @@ mismatched action ownership, recycled controls and stylesheet listener cleanup.
 Chromium checks at 1440 × 900 and 1366 × 768 opened the deferred panel and ordered
 supplies without console errors. The documentation site and local link checker
 passed. This is loading correctness evidence, not a frame-rate benchmark.
+
+## Generated type contracts and behavior review
+
+Reviewed all nine runtime behaviors and replaced parallel handwritten declarations
+with strictly checked JSDoc and generated, formatted `.d.ts` output. Generation
+compiles source copies without old declarations. Public exports retain their names;
+object types become aliases, with the declaration-merging limitation documented.
+Added package-entry consumer fixtures, expected-error assertions, export/output
+validation and CI checks. A deliberate stale declaration was rejected without
+rewriting it. The consumer fixture also compiled against an actual packed archive.
+
+Strict checking tightened DOM query/event boundaries, generic item/resource
+inference, native DOM string arguments and cached-promise handling. Reviewed
+windowed history now validates offscreen observations, labels, indexes and options
+before replacing host contents; empty data has finite geometry and disabled controls.
+Destroyed timelines cannot redraw, and programmatic windows reject fractional/invalid
+bounds and cancel queued redraws. Added Node regression coverage for these cases
+and stylesheet setter failure cleanup/retry.
+
+All 29 Node behavior/boundary/dialog contracts, strict source generation and consumer
+types passed. The native browser fixture exercises all nine modules and passed in
+Chromium 154 at 1440 × 900 and 1366 × 768, including range outputs, keyboard focus,
+inventory replacement, native guarded dialogs, history gaps, empty/paged/destroyed
+windows, resources, stylesheet loading and actions. No browser errors were reported.
+The fixture is available at `tests/browser-contracts.html` for local reproduction;
+CI runs Node contracts and type checks, not native browser automation. Storybook/site,
+309 documentation links, frozen install, package checks and Biome passed. This review
+does not claim cross-browser certification or a new performance benchmark.

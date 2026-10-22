@@ -1,11 +1,18 @@
+/** @typedef {"left" | "right" | "up" | "down" | "first" | "last"} Direction */
+/** @typedef {{move(direction: Direction): void, activate(): void, refresh(): HTMLElement[], destroy(): void}} Navigation */
 const directions = new Set(["left", "right", "up", "down", "first", "last"]);
 
 /** Roving focus for native controls. Selection and ARIA widget semantics belong to the host. */
+/** @param {HTMLElement} root @param {{selector?: string, columns?: number | (() => number), wrap?: boolean}} [options] @returns {Navigation} */
 export function bindNavigation(root, { selector = "button", columns = 1, wrap = true } = {}) {
-  const view = root.ownerDocument.defaultView;
+  const window = root.ownerDocument.defaultView;
+  if (!window) throw new TypeError("Navigation requires a document with a window");
+  const view = window;
+  /** @type {Map<HTMLElement, string | null>} */
   const original = new Map();
-  let active,
-    destroyed = false;
+  /** @type {HTMLElement | undefined} */
+  let active;
+  let destroyed = false;
   function columnCount() {
     const count = typeof columns === "function" ? columns() : columns;
     if (!Number.isInteger(count) || count < 1)
@@ -15,6 +22,7 @@ export function bindNavigation(root, { selector = "button", columns = 1, wrap = 
   columnCount();
   root.querySelectorAll(selector); // Validate the selector before installing listeners.
 
+  /** @param {HTMLElement} element */
   function eligible(element) {
     const visibility = view.getComputedStyle(element).visibility;
     return (
@@ -27,13 +35,16 @@ export function bindNavigation(root, { selector = "button", columns = 1, wrap = 
       visibility !== "collapse"
     );
   }
+  /** @param {HTMLElement} element @param {string | null} value */
   function restore(element, value) {
     if (value === null) element.removeAttribute("tabindex");
     else element.setAttribute("tabindex", value);
   }
   function refresh() {
     if (destroyed) return [];
-    const candidates = [...root.querySelectorAll(selector)];
+    const candidates = [
+      .../** @type {NodeListOf<HTMLElement>} */ (root.querySelectorAll(selector)),
+    ];
     for (const [element, value] of original) {
       if (!candidates.includes(element)) {
         restore(element, value);
@@ -44,33 +55,37 @@ export function bindNavigation(root, { selector = "button", columns = 1, wrap = 
       if (!original.has(element)) original.set(element, element.getAttribute("tabindex"));
     }
     const list = candidates.filter(eligible);
-    active = list.includes(active)
-      ? active
-      : (list.find((element) => element.getAttribute("aria-pressed") === "true") ?? list[0]);
+    active =
+      active && list.includes(active)
+        ? active
+        : (list.find((element) => element.getAttribute("aria-pressed") === "true") ?? list[0]);
     for (const element of candidates) element.tabIndex = element === active ? 0 : -1;
     return list;
   }
+  /** @param {Direction} direction */
   function move(direction) {
     if (!directions.has(direction)) return;
     const list = refresh();
     if (!list.length) return;
     const count = columnCount();
-    const delta = { left: -1, right: 1, up: -count, down: count }[direction];
+    const delta = { left: -1, right: 1, up: -count, down: count, first: 0, last: 0 }[direction];
     let next =
       direction === "first"
         ? 0
         : direction === "last"
           ? list.length - 1
-          : list.indexOf(active) + delta;
+          : list.indexOf(/** @type {HTMLElement} */ (active)) + delta;
     next = wrap
       ? ((next % list.length) + list.length) % list.length
       : Math.max(0, Math.min(list.length - 1, next));
-    active.tabIndex = -1;
+    if (active) active.tabIndex = -1;
     active = list[next];
     active.tabIndex = 0;
     active.focus();
   }
+  /** @param {KeyboardEvent} event */
   function keydown(event) {
+    if (!(event.target instanceof Element)) return;
     if (
       event.altKey ||
       event.ctrlKey ||
@@ -78,23 +93,27 @@ export function bindNavigation(root, { selector = "button", columns = 1, wrap = 
       event.target.closest("input,select,textarea,[contenteditable]:not([contenteditable=false])")
     )
       return;
-    if (!refresh().includes(event.target)) return;
-    const action = {
+    if (!refresh().some((element) => element === event.target)) return;
+    /** @type {Partial<Record<string, Direction>>} */
+    const keys = {
       ArrowLeft: "left",
       ArrowRight: "right",
       ArrowUp: "up",
       ArrowDown: "down",
       Home: "first",
       End: "last",
-    }[event.key];
+    };
+    const action = keys[event.key];
     if (action) {
       event.preventDefault();
       move(action);
     }
   }
+  /** @param {FocusEvent} event */
   function focusin(event) {
+    if (!(event.target instanceof HTMLElement)) return;
     if (
-      root.querySelectorAll(selector).length &&
+      /** @type {NodeListOf<HTMLElement>} */ (root.querySelectorAll(selector)).length &&
       event.target.matches(selector) &&
       eligible(event.target)
     ) {
@@ -123,13 +142,17 @@ export function bindNavigation(root, { selector = "button", columns = 1, wrap = 
 }
 
 /** Opt-in standard-mapped controller polling, limited to the focused document/root. */
+/** @param {HTMLElement} root @param {Pick<Navigation, "move" | "activate">} navigation */
 export function bindGamepad(root, navigation) {
   const document = root.ownerDocument;
-  const view = document.defaultView;
+  const window = document.defaultView;
+  if (!window) throw new TypeError("Gamepad requires a document with a window");
+  const view = window;
   let frame = 0,
     last = "",
     nextRepeat = 0,
     destroyed = false;
+  /** @param {number} time */
   function tick(time) {
     if (destroyed) return;
     if (
@@ -138,6 +161,7 @@ export function bindGamepad(root, navigation) {
       root.contains(document.activeElement) &&
       !document.querySelector("dialog:modal")
     ) {
+      /** @type {(Gamepad | null)[]} */
       let pads = [];
       try {
         pads = view.navigator.getGamepads?.() ?? [];

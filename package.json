@@ -94,7 +94,7 @@
     "inventory"
   ],
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "pnpm build-types && node scripts/build.mjs",
     "prepack": "pnpm run build",
     "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build --disable-telemetry",
@@ -108,7 +108,9 @@
     "check-boundaries": "node scripts/check-boundaries.mjs",
     "test-dialog": "node --test tests/dialog.test.mjs tests/dialog-stories.test.mjs",
     "test-boundaries": "node --test tests/boundaries.test.mjs",
-    "test-behaviors": "node --test tests/*.test.mjs"
+    "test-behaviors": "node --test tests/*.test.mjs",
+    "build-types": "node scripts/build-types.mjs",
+    "check-types": "node scripts/build-types.mjs --check && tsc -p tsconfig.consumer.json"
   },
   "engines": {
     "node": ">=22"
@@ -125,6 +127,7 @@
     "parse5": "^8.0.1",
     "postcss": "^8.5.31",
     "storybook": "10.6.3",
+    "typescript": "7.0.2",
     "vite": "8.3.5"
   },
   "packageManager": "pnpm@12.14.0"
