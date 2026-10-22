@@ -118,7 +118,7 @@
     :where(select.rw-input,.rw-native select)[data-picker=enhanced] option::checkmark { content:"✓"; display:grid; place-items:center; inline-size:1.6em; block-size:1.6em; border-radius:50%; background:var(--rw-accent); color:var(--rw-on-accent); font-size:.8em; transition:scale .35s var(--rw-spring,ease); }
     @starting-style { :where(select.rw-input,.rw-native select)[data-picker=enhanced] option::checkmark { scale:0; } }
     :where(select.rw-input,.rw-native select)[data-picker=enhanced] .rw-option__icon { display:grid; place-items:center; inline-size:2.1em; block-size:2.1em; border-radius:.7em; background:var(--rw-soft); font-size:1.05em; line-height:1; box-shadow:inset 0 1px var(--rw-highlight); }
-    :where(select.rw-input,.rw-native select)[data-picker=enhanced] selectedcontent .rw-option__icon { inline-size:1.8em; block-size:1.8em; }
+    :where(select.rw-input,.rw-native select)[data-picker=enhanced] selectedcontent .rw-option__icon { inline-size:1.45em; block-size:1.45em; font-size:.9em; border-radius:.55em; }
     @starting-style { :where(select.rw-input,.rw-native select)[data-picker=enhanced] option { opacity:0; translate:-16px 0; } }
     @supports (transition-delay:calc(1ms * sibling-index())) {
       :where(select.rw-input,.rw-native select)[data-picker=enhanced] option { transition:opacity .25s calc(35ms * (sibling-index() - 1)),translate .5s var(--rw-spring,ease) calc(35ms * (sibling-index() - 1)),background-color .12s 0s; }
