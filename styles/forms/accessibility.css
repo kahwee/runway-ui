@@ -2,6 +2,7 @@
   @media (prefers-reduced-motion: reduce) {
     .rw-switch,
     .rw-switch::before,
+    .rw-switch::after,
     .rw-check,
     .rw-check::before,
     .rw-range::-webkit-slider-thumb,
@@ -34,6 +35,17 @@
     }
     .rw-check::before {
       background: HighlightText;
+    }
+    .rw-range::-moz-range-track {
+      background: ButtonText;
+    }
+    .rw-range::-moz-range-progress {
+      background: Highlight;
+    }
+    .rw-range::-moz-range-thumb {
+      background: Canvas;
+      border-color: Highlight;
+      box-shadow: none;
     }
     .rw-range::-webkit-slider-runnable-track {
       background: ButtonText;

@@ -4,6 +4,7 @@ export default {
   title: "Foundations/Forms",
   tags: ["autodocs"],
   args: {
+    appearance: "playful",
     disabled: false,
     switchOn: true,
     sliderValue: 64,
@@ -12,6 +13,10 @@ export default {
     invalid: false,
   },
   argTypes: {
+    appearance: select(
+      ["playful", "quiet"],
+      "Shared appearance; quiet uses restrained switches and slimmer sliders.",
+    ),
     disabled: flag("Disable the interactive controls."),
     switchOn: flag("Initial state of the first switch."),
     invalid: flag("Show native :user-invalid styling after interaction by prefilling a bad email."),
@@ -35,6 +40,8 @@ export const Settings = {
   render: (a) => {
     const d = a.disabled ? " disabled" : "";
     const root = document.createElement("div");
+    root.className = "rw-ui";
+    root.dataset.appearance = a.appearance;
     root.innerHTML = `<form class="rw-layout" dir="${a.direction}" style="max-inline-size:900px" onsubmit="return false">
 <div class="rw-panel rw-stack">
  <header class="rw-panel__header"><div><span class="rw-kicker">STUDIO SETTINGS</span><h2 class="rw-panel__title">Make it yours</h2></div><span class="rw-badge">Autosaved</span></header>

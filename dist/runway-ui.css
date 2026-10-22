@@ -914,6 +914,33 @@
 }
 
 @layer runway-ui.primitives {
+  :where(.rw-ui[data-appearance="quiet"]) .rw-switch {
+    box-shadow: none;
+    &::before {
+      box-shadow: 0 1px 2px color-mix(in oklch, var(--rw-ink) 16%, transparent);
+      transition: inset-inline-start 0.15s ease;
+    }
+    &::after {
+      transition:
+        inset-inline-start 0.15s ease,
+        opacity 0.15s ease;
+    }
+    &:checked {
+      box-shadow: none;
+    }
+    &:hover:not(:disabled)::before {
+      scale: 1;
+    }
+    &:active:not(:disabled)::before {
+      inline-size: var(--_thumb);
+    }
+    &:checked:active:not(:disabled)::before {
+      inset-inline-start: calc(100% - var(--_thumb) - var(--_pad));
+    }
+  }
+}
+
+@layer runway-ui.primitives {
   /* Checkbox and radio: native inputs with a drawn box. A checkmark reuses the generated Phosphor icon token. */
   .rw-check {
     appearance: none;
@@ -1079,6 +1106,38 @@
       background: var(--rw-soft);
       color: var(--rw-accent);
     }
+  }
+}
+
+@layer runway-ui.primitives {
+  /* Quiet appearance keeps native hit targets while reducing decorative weight. */
+  :where(.rw-ui[data-appearance="quiet"]) .rw-range {
+    --_track: 6px;
+    --_thumb: 20px;
+    block-size: 32px;
+    &::-webkit-slider-runnable-track {
+      box-shadow: inset 0 0 0 1px var(--rw-line);
+    }
+    &::-webkit-slider-thumb {
+      border-width: 2px;
+      box-shadow: 0 1px 3px color-mix(in oklch, var(--rw-ink) 16%, transparent);
+      transition: none;
+    }
+    &::-moz-range-thumb {
+      inline-size: calc(var(--_thumb) - 4px);
+      block-size: calc(var(--_thumb) - 4px);
+      border-width: 2px;
+      box-shadow: 0 1px 3px color-mix(in oklch, var(--rw-ink) 16%, transparent);
+    }
+    &:is(:hover, :active):not(:disabled)::-webkit-slider-thumb {
+      scale: 1;
+    }
+  }
+  :where(.rw-ui[data-appearance="quiet"]) .rw-range-field > output {
+    padding: 2px 6px;
+    background: transparent;
+    color: var(--rw-muted);
+    font-weight: 500;
   }
 }
 
@@ -1262,6 +1321,7 @@
   @media (prefers-reduced-motion: reduce) {
     .rw-switch,
     .rw-switch::before,
+    .rw-switch::after,
     .rw-check,
     .rw-check::before,
     .rw-range::-webkit-slider-thumb,
@@ -1294,6 +1354,17 @@
     }
     .rw-check::before {
       background: HighlightText;
+    }
+    .rw-range::-moz-range-track {
+      background: ButtonText;
+    }
+    .rw-range::-moz-range-progress {
+      background: Highlight;
+    }
+    .rw-range::-moz-range-thumb {
+      background: Canvas;
+      border-color: Highlight;
+      box-shadow: none;
     }
     .rw-range::-webkit-slider-runnable-track {
       background: ButtonText;

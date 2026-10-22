@@ -42,6 +42,8 @@ All of these are real form controls; the classes only add skin. See the Foundati
 | Input group      | `.rw-input-group` with a `span` prefix/suffix                                                       | `:focus-within` shows one focus ring; `:has(:user-invalid)` shows the error border.                                                                                                                                                                                           |
 | Fields           | `.rw-field`                                                                                         | Required marker via `label:has(+ :required)`, error colour via `:user-invalid`, textarea `field-sizing:content`, styled `::placeholder`, `::file-selector-button` and `:autofill`.                                                                                            |
 
+The `quiet` appearance uses a 6px slider track, a 20px thumb inside a 32px interaction area, understated value readouts and switches without spring or press stretching. Choose appearance in the Foundations / Forms playground. Keyboard, disabled, RTL, reduced-motion and forced-color behavior stays native.
+
 Capability notes: `field-sizing` is optional (textareas keep their fixed minimum without it). `:user-invalid` and `:has()` are baseline in current engines. Motion respects `prefers-reduced-motion`; forced-colors replaces the skin with system colors.
 
 ## Select variants

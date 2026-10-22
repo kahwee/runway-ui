@@ -112,3 +112,30 @@
     }
   }
 }
+
+@layer runway-ui.primitives {
+  :where(.rw-ui[data-appearance="quiet"]) .rw-switch {
+    box-shadow: none;
+    &::before {
+      box-shadow: 0 1px 2px color-mix(in oklch, var(--rw-ink) 16%, transparent);
+      transition: inset-inline-start 0.15s ease;
+    }
+    &::after {
+      transition:
+        inset-inline-start 0.15s ease,
+        opacity 0.15s ease;
+    }
+    &:checked {
+      box-shadow: none;
+    }
+    &:hover:not(:disabled)::before {
+      scale: 1;
+    }
+    &:active:not(:disabled)::before {
+      inline-size: var(--_thumb);
+    }
+    &:checked:active:not(:disabled)::before {
+      inset-inline-start: calc(100% - var(--_thumb) - var(--_pad));
+    }
+  }
+}
