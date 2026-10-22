@@ -15,7 +15,8 @@
       "!!dist",
       "!!storybook-static",
       "!!.site",
-      "!!styles/icons.css"
+      "!!styles/icons.css",
+      "!!pnpm-lock.yaml"
     ]
   },
   "formatter": {
