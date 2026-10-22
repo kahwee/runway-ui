@@ -5075,6 +5075,7 @@
 /* Native dialog surface, structure and modifiers. */
 @layer runway-ui.dialog {
   .rw-dialog {
+    container: rw-dialog / inline-size;
     box-sizing: border-box;
     color: var(--rw-ink);
     background: var(--rw-surface);
@@ -5085,6 +5086,7 @@
     max-inline-size: calc(100vi - 64px);
     max-block-size: calc(100dvb - 64px);
     overflow: auto;
+    overscroll-behavior: contain;
     box-shadow: var(--rw-shadow);
   }
   .rw-dialog::backdrop {
@@ -5106,26 +5108,27 @@
       display 140ms allow-discrete,
       overlay 140ms allow-discrete;
   }
-  .rw-dialog[open] {
+  .rw-dialog:open {
     opacity: 1;
     translate: 0;
     scale: 1;
   }
-  .rw-dialog:not([open])::backdrop {
+  .rw-dialog:not(:open)::backdrop {
     opacity: 0;
   }
   @starting-style {
-    .rw-dialog[open] {
+    .rw-dialog:open {
       opacity: 0;
       translate: 0 8px;
       scale: 0.97;
     }
-    .rw-dialog[open]::backdrop {
+    .rw-dialog:open::backdrop {
       opacity: 0;
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .rw-dialog {
+    .rw-dialog,
+    .rw-dialog::backdrop {
       transition: none;
       translate: none;
       scale: none;
@@ -5161,6 +5164,7 @@
     margin: 0;
     color: var(--rw-ink);
     font: 550 24px / 1.25 var(--rw-font);
+    text-wrap: balance;
     letter-spacing: -0.035em;
     overflow-wrap: anywhere;
   }
@@ -5171,6 +5175,7 @@
     scrollbar-gutter: stable;
     overflow-wrap: anywhere;
     white-space: pre-line;
+    text-wrap: pretty;
   }
   .rw-dialog__body p {
     margin: 0;
@@ -5190,6 +5195,18 @@
   .rw-dialog__footer--stacked {
     flex-direction: column-reverse;
     align-items: stretch;
+  }
+  @container rw-dialog (inline-size < 400px) {
+    .rw-dialog__header {
+      gap: 12px;
+    }
+    .rw-dialog__footer {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .rw-dialog__footer--stacked {
+      flex-direction: column-reverse;
+    }
   }
   .rw-dialog__close {
     box-sizing: border-box;
@@ -5222,6 +5239,11 @@
     }
     .rw-dialog__close:hover {
       rotate: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rw-dialog__close:active {
+      scale: none;
     }
   }
   .rw-dialog__close > .rw-icon {

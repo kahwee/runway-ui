@@ -3,16 +3,19 @@ export function bindDialog(dialog, { canDismiss = () => true } = {}) {
   if (
     dialog?.localName !== "dialog" ||
     typeof dialog.showModal !== "function" ||
-    typeof dialog.requestClose !== "function"
+    typeof dialog.requestClose !== "function" ||
+    !("closedBy" in dialog)
   ) {
-    throw new TypeError("bindDialog requires a native HTMLDialogElement with requestClose()");
+    throw new TypeError(
+      "bindDialog requires a native HTMLDialogElement with requestClose() and closedBy",
+    );
   }
   if (typeof canDismiss !== "function") throw new TypeError("canDismiss must be a function");
   const originalClosedBy = dialog.getAttribute("closedby");
   let destroyed = false;
 
   function refresh() {
-    if (!destroyed) dialog.setAttribute("closedby", canDismiss() ? "closerequest" : "none");
+    if (!destroyed) dialog.setAttribute("closedby", canDismiss() ? "any" : "none");
   }
   function cancel(event) {
     if (!canDismiss()) event.preventDefault();
@@ -23,19 +26,7 @@ export function bindDialog(dialog, { canDismiss = () => true } = {}) {
     else dialog.requestClose(returnValue);
     return true; // A request was issued; another cancel listener can still prevent closing.
   }
-  function click(event) {
-    if (event.target !== dialog) return;
-    const bounds = dialog.getBoundingClientRect();
-    if (
-      event.clientX < bounds.left ||
-      event.clientX > bounds.right ||
-      event.clientY < bounds.top ||
-      event.clientY > bounds.bottom
-    )
-      requestClose();
-  }
   dialog.addEventListener("cancel", cancel);
-  dialog.addEventListener("click", click);
 
   return {
     open() {
@@ -49,7 +40,6 @@ export function bindDialog(dialog, { canDismiss = () => true } = {}) {
       if (destroyed) return;
       destroyed = true;
       dialog.removeEventListener("cancel", cancel);
-      dialog.removeEventListener("click", click);
       if (originalClosedBy === null) dialog.removeAttribute("closedby");
       else dialog.setAttribute("closedby", originalClosedBy);
     },

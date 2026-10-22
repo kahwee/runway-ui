@@ -112,3 +112,19 @@ Every `select.rw-input` and `.rw-native select` uses `appearance: base-select` w
 `renderHistory({ plot: "line" })` draws straight SVG segments through actual observations, with a subtle fill to zero. Null values break both line and fill; a single observation stays a point. The default remains `columns`. Native note buttons and the exact-values disclosure remain available for either plot. SVG is decorative: the semantic observation list and table retain the full dataset without SVG support. No animation or interpolation is applied. Forced colors use CanvasText strokes with no fill.
 
 The opt-in `styles/quiet.css` appearance removes instrument hardware decoration and defines `--rw-type-caption`, `--rw-type-body`, `--rw-type-heading`, and `--rw-type-value`. Hosts can override these type tokens without duplicating chart styles. Charts retain a zero-inclusive scale; a line does not imply observations between checkpoints.
+
+## Dialog state and component sizing
+
+Dialogs use native `:open`, `@starting-style` and discrete `display`/`overlay`
+transitions. Reduced motion disables both surface and backdrop transitions and
+close-button transforms. The dialog is an inline-size container: below 400px of
+content width, header spacing shrinks and footer actions stack without changing
+DOM or keyboard order. Explicit stacked footers retain their reverse visual
+order. `text-wrap: balance` improves headings and `text-wrap: pretty` improves body
+copy; engines without those text enhancements use ordinary wrapping. Container
+queries and `:open` are the modern baseline; no JavaScript layout fallback is
+provided. Scroll containment prevents a long dialog from chaining to its page.
+
+The optional policy helper requires native `requestClose()` and `closedBy` and
+uses browser-owned light dismissal. It retains a cancel guard for dynamic required
+decisions. Call `refresh()` when policy changes to update `closedby`.

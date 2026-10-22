@@ -7,6 +7,7 @@ function nativeDialog() {
   const attributes = new Map();
   return Object.assign(dialog, {
     localName: "dialog",
+    closedBy: "auto",
     open: false,
     returnValue: "",
     getAttribute: (name) => attributes.get(name) ?? null,
@@ -35,7 +36,7 @@ test("native close requests preserve dismissal guards, cancellation and return v
   assert.equal(dialog.open, true);
   allowed = true;
   controller.refresh();
-  assert.equal(dialog.getAttribute("closedby"), "closerequest");
+  assert.equal(dialog.getAttribute("closedby"), "any");
   dialog.addEventListener("cancel", (event) => event.preventDefault(), { once: true });
   assert.equal(controller.requestClose("vetoed"), true);
   assert.equal(dialog.open, true);
@@ -63,4 +64,10 @@ test("unsupported dialog implementations fail before binding listeners", () => {
   const dialog = nativeDialog();
   dialog.requestClose = undefined;
   assert.throws(() => bindDialog(dialog), /requestClose/);
+});
+
+test("native light-dismiss capability is required", () => {
+  const dialog = nativeDialog();
+  delete dialog.closedBy;
+  assert.throws(() => bindDialog(dialog), /closedBy/);
 });
