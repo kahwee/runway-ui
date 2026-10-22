@@ -1,0 +1,170 @@
+/* Composable desktop workspaces. The host owns viewport placement and imagery. */
+@layer runway-ui.patterns {
+  .rw-command-bar {
+    --rw-command-bg: #183b34;
+    --rw-command-ink: #fff8df;
+    --rw-command-muted: #d6ceb0;
+    display: flex;
+    align-items: center;
+    gap: var(--rw-space);
+    min-inline-size: 0;
+    padding: 16px 22px;
+    color: var(--rw-command-ink);
+    background: var(--rw-command-bg);
+    border: 1px solid var(--rw-gold);
+    border-radius: var(--rw-radius);
+    box-shadow:
+      inset 0 0 0 3px var(--rw-command-bg),
+      inset 0 0 0 4px #ffffff14;
+    & .rw-command-bar__identity {
+      min-inline-size: 0;
+      margin-inline-end: auto;
+    }
+    & .rw-command-bar__metrics {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    & .rw-command-stat {
+      display: grid;
+      gap: 5px;
+      padding-inline-start: 20px;
+      border-inline-start: 1px solid #ffffff30;
+      font-variant-numeric: tabular-nums;
+      & > span {
+        color: var(--rw-command-muted);
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      & > strong {
+        font-size: 22px;
+        line-height: 1.1;
+      }
+      & > small {
+        color: var(--rw-command-muted);
+      }
+    }
+  }
+  .rw-folio-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-inline-size: 0;
+    padding: 0;
+    & > .rw-folio-tab {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-block-size: 80px;
+      padding: 10px 14px;
+      border: 1px solid var(--rw-line);
+      border-radius: 5px 12px 12px 5px;
+      background: var(--rw-raised);
+      color: var(--rw-ink);
+      box-shadow: 0 3px 0 color-mix(in oklch, var(--rw-ink) 20%, transparent);
+      font: 600 14px / 1.2 var(--rw-font);
+      text-decoration: none;
+      cursor: pointer;
+      & > img {
+        inline-size: 36px;
+        block-size: 36px;
+        object-fit: contain;
+      }
+      &:is([aria-current="page"], [aria-selected="true"]) {
+        border-inline-start: 5px solid var(--rw-tab-accent, var(--rw-accent));
+        background: var(--rw-surface);
+        color: var(--rw-accent);
+        font-weight: 750;
+      }
+      &:hover {
+        background: var(--rw-surface);
+      }
+      &:focus-visible {
+        outline: 3px solid var(--rw-focus);
+        outline-offset: 3px;
+      }
+    }
+  }
+  .rw-sheet {
+    min-inline-size: 0;
+    padding: var(--rw-panel-padding);
+    border: 1px solid var(--rw-line);
+    border-radius: 8px;
+    background: var(--rw-surface);
+    color: var(--rw-ink);
+    box-shadow: 0 5px 16px color-mix(in oklch, var(--rw-ink) 10%, transparent);
+  }
+  .rw-dossier-list {
+    container-type: inline-size;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(180px, 0.65fr);
+    gap: 14px 20px;
+  }
+  .rw-dossier {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    gap: 16px 20px;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid var(--rw-line);
+    border-radius: 8px;
+    background: var(--rw-raised);
+    & .rw-dossier__body,
+    & .rw-dossier__actions {
+      min-inline-size: 0;
+      display: grid;
+      gap: 12px;
+    }
+    & .rw-dossier__heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    & h3,
+    & p {
+      margin: 0;
+    }
+  }
+  @container (inline-size < 540px) {
+    .rw-dossier > .rw-dossier__body,
+    .rw-dossier > .rw-dossier__actions {
+      grid-column: 1 / -1;
+    }
+  }
+  .rw-control-console {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    border: 1px solid var(--rw-line);
+    border-radius: 12px;
+    background: var(--rw-surface);
+    color: var(--rw-ink);
+    box-shadow: 0 3px 0 color-mix(in oklch, var(--rw-ink) 25%, transparent);
+  }
+  @media (forced-colors: active) {
+    .rw-command-bar,
+    .rw-sheet,
+    .rw-dossier,
+    .rw-control-console,
+    .rw-folio-tabs > .rw-folio-tab {
+      color: CanvasText;
+      background: Canvas;
+      border-color: CanvasText;
+      box-shadow: none;
+    }
+    .rw-command-bar .rw-command-stat > :is(span, small) {
+      color: CanvasText;
+    }
+    .rw-folio-tabs > .rw-folio-tab[aria-current="page"] {
+      border-inline-start-color: Highlight;
+    }
+  }
+}

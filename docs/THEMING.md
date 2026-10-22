@@ -18,3 +18,7 @@ The rounded display stack applies only to explicit `rw-panel__title` headings. H
 See [native fields](FIELDS.md) for arrow spacing, RTL, listboxes and progressive pickers.
 
 Set `data-skin="play"` for tactile instrument surfaces; see [instruments](INSTRUMENTS.md). Theme, density, depth and material are independent settings. Copy them to separately rooted dialogs.
+
+## Ledger
+
+Use `data-theme="ledger"` for cream paper surfaces, forest-green actions, brass borders and serif display type. See [desktop workspaces](WORKSPACES.md) for complementary layout components.

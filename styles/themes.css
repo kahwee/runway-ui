@@ -124,3 +124,22 @@
     --rw-shadow: none;
   }
 }
+
+@layer runway-ui.themes {
+  .rw-ui[data-theme="ledger"] {
+    --rw-bg: #e6dcc4;
+    --rw-surface: #fff9e9;
+    --rw-raised: #f5edd9;
+    --rw-ink: #203f37;
+    --rw-muted: #66705d;
+    --rw-line: #d4c8a9;
+    --rw-accent: #275547;
+    --rw-on-accent: #fff8e2;
+    --rw-soft: #eae5d2;
+    --rw-gold: #a78345;
+    --rw-focus: #af592c;
+    --rw-radius: 8px;
+    --rw-display-font: Georgia, "Times New Roman", serif;
+    --rw-control-depth: 2px;
+  }
+}

@@ -23,6 +23,8 @@ New to Runway UI? Follow **Install → Components → Compose**. Use Storybook w
 
 ## 3. Compose an interface
 
+- [Desktop workspaces](WORKSPACES.md): command bars, folio navigation, dossier rows and control consoles.
+
 - [Modern CSS and browser capabilities](MODERN-CSS.md), with the [shared-track layout example](../examples/layouts.html).
 - [Simulation Observatory guide](OBSERVATORY.md), with the [complete screen](../examples/observatory.html).
 - [Workshop](../index.html): a management interface assembled from the library.

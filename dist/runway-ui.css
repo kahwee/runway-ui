@@ -1304,6 +1304,7 @@
    Phosphor Icons — MIT License — Copyright (c) 2020 Phosphor Icons — https://github.com/phosphor-icons/core */
 @layer runway-ui.icons {
   :where(.rw-ui) {
+    --rw-icon-arrows-clockwise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M228,48V96a12,12,0,0,1-12,12H168a12,12,0,0,1,0-24h19l-7.8-7.8a75.55,75.55,0,0,0-53.32-22.26h-.43A75.49,75.49,0,0,0,72.39,75.57,12,12,0,1,1,55.61,58.41a99.38,99.38,0,0,1,69.87-28.47H126A99.42,99.42,0,0,1,196.2,59.23L204,67V48a12,12,0,0,1,24,0ZM183.61,180.43a75.49,75.49,0,0,1-53.09,21.63h-.43A75.55,75.55,0,0,1,76.77,179.8L69,172H88a12,12,0,0,0,0-24H40a12,12,0,0,0-12,12v48a12,12,0,0,0,24,0V189l7.8,7.8A99.42,99.42,0,0,0,130,226.06h.56a99.38,99.38,0,0,0,69.87-28.47,12,12,0,0,0-16.78-17.16Z'/%3E%3C/svg%3E");
     --rw-icon-x:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z'/%3E%3C/svg%3E");
     --rw-icon-check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z'/%3E%3C/svg%3E");
     --rw-icon-plus:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z'/%3E%3C/svg%3E");
@@ -1392,6 +1393,7 @@
   .rw-icon { --rw-icon-stroke:2px; --_size:var(--rw-icon-size,calc(var(--rw-icon-stroke) * 256 / 24)); display:inline-block; flex:none; inline-size:var(--_size); block-size:var(--_size); background:currentColor; mask:var(--rw-icon-mask) center / contain no-repeat; vertical-align:-.2em; }
   :where(a,button,summary,label,li,p,small,strong,span,.rw-button,.rw-badge,.rw-kicker) > .rw-icon { --rw-icon-size:1.2em; }
   .rw-icon[data-size=sm] { --rw-icon-size:1em; } .rw-icon[data-size=md] { --rw-icon-size:1.5em; } .rw-icon[data-size=lg] { --rw-icon-size:2em; } .rw-icon[data-size=xl] { --rw-icon-size:2.75em; }
+  .rw-icon[data-icon=arrows-clockwise] { --rw-icon-mask:var(--rw-icon-arrows-clockwise); }
   .rw-icon[data-icon=x] { --rw-icon-mask:var(--rw-icon-x); }
   .rw-icon[data-icon=check] { --rw-icon-mask:var(--rw-icon-check); }
   .rw-icon[data-icon=plus] { --rw-icon-mask:var(--rw-icon-plus); }
@@ -2395,6 +2397,177 @@
     }
     .rw-leaderboard tbody tr[data-you] > * {
       border-color: Highlight;
+    }
+  }
+}
+
+/* Composable desktop workspaces. The host owns viewport placement and imagery. */
+@layer runway-ui.patterns {
+  .rw-command-bar {
+    --rw-command-bg: #183b34;
+    --rw-command-ink: #fff8df;
+    --rw-command-muted: #d6ceb0;
+    display: flex;
+    align-items: center;
+    gap: var(--rw-space);
+    min-inline-size: 0;
+    padding: 16px 22px;
+    color: var(--rw-command-ink);
+    background: var(--rw-command-bg);
+    border: 1px solid var(--rw-gold);
+    border-radius: var(--rw-radius);
+    box-shadow:
+      inset 0 0 0 3px var(--rw-command-bg),
+      inset 0 0 0 4px #ffffff14;
+    & .rw-command-bar__identity {
+      min-inline-size: 0;
+      margin-inline-end: auto;
+    }
+    & .rw-command-bar__metrics {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    & .rw-command-stat {
+      display: grid;
+      gap: 5px;
+      padding-inline-start: 20px;
+      border-inline-start: 1px solid #ffffff30;
+      font-variant-numeric: tabular-nums;
+      & > span {
+        color: var(--rw-command-muted);
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      & > strong {
+        font-size: 22px;
+        line-height: 1.1;
+      }
+      & > small {
+        color: var(--rw-command-muted);
+      }
+    }
+  }
+  .rw-folio-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-inline-size: 0;
+    padding: 0;
+    & > .rw-folio-tab {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-block-size: 80px;
+      padding: 10px 14px;
+      border: 1px solid var(--rw-line);
+      border-radius: 5px 12px 12px 5px;
+      background: var(--rw-raised);
+      color: var(--rw-ink);
+      box-shadow: 0 3px 0 color-mix(in oklch, var(--rw-ink) 20%, transparent);
+      font: 600 14px / 1.2 var(--rw-font);
+      text-decoration: none;
+      cursor: pointer;
+      & > img {
+        inline-size: 36px;
+        block-size: 36px;
+        object-fit: contain;
+      }
+      &:is([aria-current="page"], [aria-selected="true"]) {
+        border-inline-start: 5px solid var(--rw-tab-accent, var(--rw-accent));
+        background: var(--rw-surface);
+        color: var(--rw-accent);
+        font-weight: 750;
+      }
+      &:hover {
+        background: var(--rw-surface);
+      }
+      &:focus-visible {
+        outline: 3px solid var(--rw-focus);
+        outline-offset: 3px;
+      }
+    }
+  }
+  .rw-sheet {
+    min-inline-size: 0;
+    padding: var(--rw-panel-padding);
+    border: 1px solid var(--rw-line);
+    border-radius: 8px;
+    background: var(--rw-surface);
+    color: var(--rw-ink);
+    box-shadow: 0 5px 16px color-mix(in oklch, var(--rw-ink) 10%, transparent);
+  }
+  .rw-dossier-list {
+    container-type: inline-size;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(180px, 0.65fr);
+    gap: 14px 20px;
+  }
+  .rw-dossier {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    gap: 16px 20px;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid var(--rw-line);
+    border-radius: 8px;
+    background: var(--rw-raised);
+    & .rw-dossier__body,
+    & .rw-dossier__actions {
+      min-inline-size: 0;
+      display: grid;
+      gap: 12px;
+    }
+    & .rw-dossier__heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    & h3,
+    & p {
+      margin: 0;
+    }
+  }
+  @container (inline-size < 540px) {
+    .rw-dossier > .rw-dossier__body,
+    .rw-dossier > .rw-dossier__actions {
+      grid-column: 1 / -1;
+    }
+  }
+  .rw-control-console {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    border: 1px solid var(--rw-line);
+    border-radius: 12px;
+    background: var(--rw-surface);
+    color: var(--rw-ink);
+    box-shadow: 0 3px 0 color-mix(in oklch, var(--rw-ink) 25%, transparent);
+  }
+  @media (forced-colors: active) {
+    .rw-command-bar,
+    .rw-sheet,
+    .rw-dossier,
+    .rw-control-console,
+    .rw-folio-tabs > .rw-folio-tab {
+      color: CanvasText;
+      background: Canvas;
+      border-color: CanvasText;
+      box-shadow: none;
+    }
+    .rw-command-bar .rw-command-stat > :is(span, small) {
+      color: CanvasText;
+    }
+    .rw-folio-tabs > .rw-folio-tab[aria-current="page"] {
+      border-inline-start-color: Highlight;
     }
   }
 }
@@ -4578,5 +4751,24 @@
   .rw-ui[data-depth="flat"] {
     --rw-control-depth: 0px;
     --rw-shadow: none;
+  }
+}
+
+@layer runway-ui.themes {
+  .rw-ui[data-theme="ledger"] {
+    --rw-bg: #e6dcc4;
+    --rw-surface: #fff9e9;
+    --rw-raised: #f5edd9;
+    --rw-ink: #203f37;
+    --rw-muted: #66705d;
+    --rw-line: #d4c8a9;
+    --rw-accent: #275547;
+    --rw-on-accent: #fff8e2;
+    --rw-soft: #eae5d2;
+    --rw-gold: #a78345;
+    --rw-focus: #af592c;
+    --rw-radius: 8px;
+    --rw-display-font: Georgia, "Times New Roman", serif;
+    --rw-control-depth: 2px;
   }
 }

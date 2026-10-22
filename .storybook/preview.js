@@ -14,7 +14,7 @@ export default {
       description: "Art direction",
       toolbar: {
         icon: "paintbrush",
-        items: ["whimsy", "studio", "orbital", "parchment"],
+        items: ["whimsy", "studio", "orbital", "parchment", "ledger"],
         dynamicTitle: true,
       },
     },
