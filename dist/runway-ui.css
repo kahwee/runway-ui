@@ -4772,3 +4772,85 @@
     --rw-control-depth: 2px;
   }
 }
+
+/* Explicit opt-in presentation overrides. Unlayered so this can follow host skins. */
+.rw-ui[data-appearance="quiet"] {
+  --rw-surface: #fff;
+  --rw-panel-bg: #fafbf8;
+  --rw-ink: #263d35;
+  --rw-muted: #58685e;
+  --rw-line: #cbd4c9;
+  --rw-accent: #315e4e;
+  --rw-on-accent: #fff;
+  --rw-focus: #267e69;
+  --rw-display-font: var(--rw-font);
+  --rw-shadow: none;
+
+  & :is(.rw-panel, .rw-card, .rw-sheet, .rw-dossier) {
+    background: var(--rw-panel-bg);
+    background-image: none;
+    box-shadow: none;
+    border: 1px solid var(--rw-line);
+    border-radius: 8px;
+  }
+  & :is(.rw-button, .rw-segment) {
+    background-image: none;
+    box-shadow: none;
+    transform: none;
+    transition:
+      background-color 100ms,
+      color 100ms;
+  }
+  & .rw-button {
+    border-radius: 6px;
+    min-block-size: 36px;
+    &[data-variant="primary"] {
+      background: var(--rw-accent);
+      color: var(--rw-on-accent);
+      border-color: var(--rw-accent);
+    }
+  }
+  & .rw-input {
+    background: var(--rw-surface);
+    box-shadow: none;
+    border-color: var(--rw-line);
+    border-radius: 5px;
+  }
+  & :is(button, a, input, select, summary):focus-visible {
+    outline: 3px solid var(--rw-focus);
+    outline-offset: 3px;
+  }
+  & :is(button, a)[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  & .rw-folio-tab {
+    box-shadow: none;
+    transition: none;
+    transform: none;
+    &[aria-current="page"] {
+      transform: none;
+    }
+  }
+  & .rw-leaderboard caption {
+    font:
+      650 19px var(--rw-font),
+      system-ui,
+      sans-serif;
+  }
+  & .rw-leaderboard tbody tr {
+    animation: none;
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    & * {
+      scroll-behavior: auto;
+      transition: none;
+    }
+  }
+  @media (forced-colors: active) {
+    & :is(.rw-panel, .rw-card, .rw-sheet, .rw-dossier, .rw-button) {
+      border: 1px solid CanvasText;
+    }
+  }
+}
