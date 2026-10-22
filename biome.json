@@ -67,7 +67,7 @@
       }
     },
     {
-      "includes": ["styles/fields.css"],
+      "includes": ["styles/fields/**/*.css"],
       "linter": {
         "rules": {
           "correctness": {

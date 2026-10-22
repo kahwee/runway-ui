@@ -1,0 +1,32 @@
+@layer runway-ui.observatory {
+  .rw-observatory__decision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-block: 20px;
+  }
+  .rw-observatory__decision-grid > div {
+    padding: 14px;
+    border: 1px solid var(--rw-line);
+    border-radius: 8px;
+    background: var(--rw-soft);
+  }
+  .rw-observatory__decision-grid dt {
+    color: var(--rw-muted);
+    font-size: 11px;
+  }
+  .rw-observatory__decision-grid dd {
+    margin: 5px 0 0;
+    font-weight: 700;
+    font-size: 17px;
+  }
+  .rw-observatory__decision-copy {
+    line-height: 1.65;
+    color: var(--rw-muted);
+  }
+  .rw-observatory__error {
+    padding: 24px;
+    border: 1px solid var(--rw-danger);
+    border-radius: var(--rw-radius);
+  }
+}

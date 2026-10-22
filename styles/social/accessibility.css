@@ -1,0 +1,33 @@
+@layer runway-ui.patterns {
+  @media (prefers-reduced-motion: reduce) {
+    .rw-segment,
+    .rw-person-chip,
+    .rw-person-chip .rw-avatar,
+    .rw-leaderboard :is(td, th) {
+      transition: none;
+    }
+    .rw-segment,
+    .rw-person-chip,
+    .rw-leaderboard tbody tr,
+    tr:hover .rw-rank {
+      animation: none !important;
+    }
+    .rw-segment:is(:hover, :active):not(:disabled),
+    .rw-person-chip:is(:hover, :active):not(:disabled),
+    .rw-person-chip:hover:not(:disabled) .rw-avatar {
+      translate: none;
+      scale: none;
+      rotate: none;
+    }
+  }
+  @media (forced-colors: active) {
+    .rw-segment[aria-pressed="true"],
+    .rw-person-chip[aria-pressed="true"] {
+      border-color: Highlight;
+      color: Highlight;
+    }
+    .rw-leaderboard tbody tr[data-you] > * {
+      border-color: Highlight;
+    }
+  }
+}

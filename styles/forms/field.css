@@ -1,0 +1,112 @@
+@layer runway-ui.primitives {
+  /* Field patterns */
+  .rw-fieldset {
+    min-inline-size: 0;
+    margin: 0;
+    padding: var(--rw-panel-padding);
+    border: 1px solid var(--rw-line);
+    border-radius: var(--rw-radius);
+    background: var(--rw-raised);
+    display: grid;
+    gap: var(--rw-space);
+    & > legend {
+      padding-inline: 8px;
+      font: 650 12px / 1.2 var(--rw-font);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--rw-muted);
+    }
+  }
+  .rw-field {
+    display: grid;
+    gap: var(--rw-content-gap, 10px);
+    min-inline-size: 0;
+  }
+  .rw-options > legend {
+    padding: 0;
+    margin-block-end: 10px;
+  }
+  .rw-field > label:has(+ :required)::after {
+    content: " *";
+    color: var(--rw-danger);
+  }
+  .rw-field:has(:user-invalid) > :nth-child(3) {
+    color: var(--rw-danger);
+  }
+  .rw-input::placeholder {
+    color: var(--rw-muted);
+    opacity: 0.7;
+  }
+  .rw-input::file-selector-button {
+    margin-inline-end: 12px;
+    padding: 6px 12px;
+    border: 1px solid var(--rw-line);
+    border-radius: calc(var(--rw-radius) * 0.6);
+    background: var(--rw-soft);
+    color: var(--rw-ink);
+    font: 600 12px var(--rw-font);
+    cursor: pointer;
+  }
+  .rw-input:autofill {
+    box-shadow: inset 0 0 0 100px color-mix(in oklch, var(--rw-gold) 14%, var(--rw-raised));
+  }
+  @supports (field-sizing: content) {
+    textarea.rw-input {
+      field-sizing: content;
+      min-block-size: 4lh;
+      max-block-size: 14lh;
+      resize: vertical;
+    }
+    .rw-input[data-autosize] {
+      field-sizing: content;
+      min-inline-size: 8ch;
+    }
+  }
+  .rw-input-group {
+    min-inline-size: 0;
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--rw-line);
+    border-radius: var(--rw-radius);
+    background: var(--rw-raised);
+    overflow: hidden;
+    box-shadow: inset 0 2px 3px color-mix(in oklch, var(--rw-ink) 5%, transparent);
+    & > .rw-input {
+      flex: 1;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: transparent;
+      outline: 0;
+    }
+    & > :is(span, button:not(.rw-button)) {
+      display: grid;
+      place-items: center;
+      padding-inline: 14px;
+      background: var(--rw-soft);
+      color: var(--rw-muted);
+      font: 600 12px var(--rw-font);
+      border: 0;
+    }
+    &:focus-within {
+      outline: 3px solid var(--rw-focus);
+      outline-offset: 3px;
+    }
+    & > .rw-button {
+      flex: 0 1 auto;
+      max-inline-size: 50%;
+      border: 0;
+      border-inline-start: 1px solid var(--rw-line);
+      border-radius: 0;
+      box-shadow: none;
+      translate: none;
+      &:focus-visible {
+        outline: 3px solid var(--rw-focus);
+        outline-offset: -4px;
+      }
+    }
+    &:has(:user-invalid, [aria-invalid="true"]) {
+      border-color: var(--rw-danger);
+    }
+  }
+}

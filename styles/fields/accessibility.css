@@ -1,0 +1,41 @@
+@layer runway-ui.primitives {
+  @media (prefers-reduced-motion: reduce) {
+    :where(select.rw-input, .rw-native select)::picker-icon,
+    :where(select.rw-input, .rw-native select)::picker(select),
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option {
+      transition: none !important;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option:hover
+      .rw-option__icon {
+      animation: none;
+    }
+  }
+  @media (forced-colors: active) {
+    :where(.rw-input, .rw-native input, .rw-native select, .rw-native textarea) {
+      box-shadow: none;
+    }
+    :where(select.rw-input, .rw-native select):not([multiple]):is(:not([size]), [size="1"]) {
+      appearance: auto;
+      background-image: none;
+      padding-inline-end: var(--rw-field-padding);
+    }
+    :where(select.rw-input, .rw-native select)::picker(select) {
+      appearance: auto;
+      background: Canvas;
+      color: CanvasText;
+      border-color: CanvasText;
+    }
+    :where(select.rw-input, .rw-native select) option:checked {
+      background: Highlight;
+      color: HighlightText;
+    }
+  }
+}

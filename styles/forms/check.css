@@ -1,0 +1,66 @@
+@layer runway-ui.primitives {
+  /* Checkbox and radio: native inputs with a drawn box. A checkmark reuses the generated Phosphor icon token. */
+  .rw-check {
+    appearance: none;
+    flex: none;
+    box-sizing: border-box;
+    margin: 0;
+    inline-size: 1.35em;
+    block-size: 1.35em;
+    font-size: var(--rw-control-font, 13px);
+    display: inline-grid;
+    place-content: center;
+    border: 2px solid var(--rw-control-edge);
+    border-radius: 0.42em;
+    background: var(--rw-raised);
+    cursor: pointer;
+    transition:
+      background-color 0.15s,
+      border-color 0.15s,
+      scale 0.2s var(--rw-spring, ease);
+    &::before {
+      content: "";
+      inline-size: 0.95em;
+      block-size: 0.95em;
+      background: var(--rw-on-accent);
+      mask: var(--rw-icon-check) center / contain no-repeat;
+      scale: 0;
+      transition: scale 0.22s var(--rw-spring, ease);
+    }
+    &:checked {
+      background: var(--rw-accent);
+      border-color: var(--rw-accent);
+    }
+    &:checked::before {
+      scale: 1;
+    }
+    &:indeterminate {
+      background: var(--rw-accent);
+      border-color: var(--rw-accent);
+    }
+    &:indeterminate::before {
+      mask-image: var(--rw-icon-minus);
+      scale: 1;
+    }
+    &[type="radio"] {
+      border-radius: 50%;
+    }
+    &[type="radio"]::before {
+      inline-size: 0.55em;
+      block-size: 0.55em;
+      border-radius: 50%;
+      mask: none;
+    }
+    &:active:not(:disabled) {
+      scale: 0.9;
+    }
+    &:focus-visible {
+      outline: 3px solid var(--rw-focus);
+      outline-offset: 3px;
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}

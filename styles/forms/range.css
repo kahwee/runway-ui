@@ -1,0 +1,101 @@
+@layer runway-ui.primitives {
+  /* Slider: native range. Optional behaviors/forms.js sets --rw-fill and the <output>. */
+  .rw-range {
+    --_track: 10px;
+    --_thumb: 26px;
+    appearance: none;
+    inline-size: 100%;
+    block-size: calc(var(--_thumb) + 6px);
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+    accent-color: var(--rw-accent);
+    &::-webkit-slider-runnable-track {
+      block-size: var(--_track);
+      border-radius: 999px;
+      background: linear-gradient(
+        to right,
+        var(--rw-accent) var(--rw-fill, 0%),
+        var(--rw-soft) var(--rw-fill, 0%)
+      );
+      box-shadow:
+        inset 0 0 0 1px var(--rw-line),
+        inset 0 2px 3px color-mix(in oklch, var(--rw-ink) 8%, transparent);
+    }
+    &::-webkit-slider-thumb {
+      appearance: none;
+      inline-size: var(--_thumb);
+      block-size: var(--_thumb);
+      margin-block-start: calc((var(--_track) - var(--_thumb)) / 2);
+      box-sizing: border-box;
+      border: 4px solid var(--rw-accent);
+      border-radius: 50%;
+      background: var(--rw-surface);
+      box-shadow:
+        0 3px 0 color-mix(in oklch, var(--rw-accent) 40%, var(--rw-line)),
+        0 6px 10px color-mix(in oklch, var(--rw-ink) 14%, transparent);
+      transition: scale 0.2s var(--rw-spring, ease);
+    }
+    &:dir(rtl)::-webkit-slider-runnable-track {
+      background: linear-gradient(
+        to left,
+        var(--rw-accent) var(--rw-fill, 0%),
+        var(--rw-soft) var(--rw-fill, 0%)
+      );
+    }
+    &::-moz-range-track {
+      block-size: var(--_track);
+      border-radius: 999px;
+      background: var(--rw-soft);
+      box-shadow: inset 0 0 0 1px var(--rw-line);
+    }
+    &::-moz-range-progress {
+      block-size: var(--_track);
+      border-radius: 999px;
+      background: var(--rw-accent);
+    }
+    &::-moz-range-thumb {
+      inline-size: calc(var(--_thumb) - 8px);
+      block-size: calc(var(--_thumb) - 8px);
+      border: 4px solid var(--rw-accent);
+      border-radius: 50%;
+      background: var(--rw-surface);
+      box-shadow: 0 3px 0 color-mix(in oklch, var(--rw-accent) 40%, var(--rw-line));
+    }
+    &:hover:not(:disabled)::-webkit-slider-thumb {
+      scale: 1.08;
+    }
+    &:active:not(:disabled)::-webkit-slider-thumb {
+      scale: 1.22;
+    }
+    &:focus-visible {
+      outline: 3px solid var(--rw-focus);
+      outline-offset: 4px;
+      border-radius: 999px;
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  .rw-range-field {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 4px 12px;
+    font: 600 var(--rw-control-font, 13px) / 1.35 var(--rw-font);
+    & > .rw-range {
+      grid-column: 1 / -1;
+    }
+    & > output,
+    & .rw-range__value {
+      font-variant-numeric: tabular-nums;
+      min-inline-size: 3.2ch;
+      text-align: center;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--rw-soft);
+      color: var(--rw-accent);
+    }
+  }
+}

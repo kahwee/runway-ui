@@ -1,0 +1,67 @@
+@layer runway-ui.observatory {
+  @container rw-observatory (inline-size < 1050px) {
+    .rw-trend {
+      padding: 12px;
+    }
+    .rw-observatory__metrics {
+      gap: 10px;
+    }
+    .rw-observatory__history,
+    .rw-observatory__resources {
+      grid-column: span 7;
+    }
+    .rw-observatory__briefing,
+    .rw-observatory__inspector {
+      grid-column: span 5;
+    }
+  }
+  :where(.rw-ui)[data-density="compact"] .rw-observatory {
+    --rw-observatory-gap: 12px;
+  }
+  :where(.rw-ui)[data-density="compact"] .rw-resource-ledger__row {
+    padding-block: 8px;
+  }
+  .rw-observatory[data-whimsy="false"] .rw-observatory__seal {
+    display: none;
+  }
+  @container rw-observatory (inline-size < 960px) {
+    .rw-observatory__workspace {
+      display: none;
+    }
+    .rw-observatory__unsupported {
+      display: block;
+    }
+  }
+  @media (width < 1100px), (height < 640px) {
+    .rw-observatory__workspace {
+      display: none;
+    }
+    .rw-observatory__unsupported {
+      display: block;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rw-context {
+      transition: none;
+    }
+    .rw-scroll-progress {
+      animation: none !important;
+      scale: none;
+      opacity: 0.35;
+    }
+  }
+  @media (forced-colors: active) {
+    .rw-observatory__seal {
+      display: none;
+    }
+    .rw-resource-ledger__row:has([aria-pressed="true"]) {
+      outline: 2px solid Highlight;
+      box-shadow: none;
+    }
+    .rw-resource-ledger__track i,
+    .rw-scroll-progress {
+      background: Highlight;
+      forced-color-adjust: none;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+@layer runway-ui.patterns {
+  /* Avatar: initials, an image or an icon on a tinted tile. Set --rw-avatar-hue to any colour. */
+  .rw-avatar {
+    --rw-avatar-hue: var(--rw-accent);
+    --rw-avatar-size: 36px;
+    display: inline-grid;
+    flex: none;
+    place-items: center;
+    inline-size: var(--rw-avatar-size);
+    block-size: var(--rw-avatar-size);
+    border-radius: 32%;
+    background: color-mix(in oklch, var(--rw-avatar-hue) 18%, var(--rw-surface));
+    color: var(--rw-avatar-hue);
+    box-shadow:
+      inset 0 0 0 1px color-mix(in oklch, var(--rw-avatar-hue) 25%, transparent),
+      inset 0 -3px 0 color-mix(in oklch, var(--rw-avatar-hue) 14%, transparent);
+    font: 700 calc(var(--rw-avatar-size) * 0.36) / 1 var(--rw-display-font);
+    overflow: hidden;
+    user-select: none;
+    &[data-shape="round"] {
+      border-radius: 50%;
+    }
+    &[data-size="sm"] {
+      --rw-avatar-size: 28px;
+    }
+    &[data-size="lg"] {
+      --rw-avatar-size: 48px;
+    }
+    & > img {
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: cover;
+    }
+  }
+}

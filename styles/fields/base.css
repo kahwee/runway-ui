@@ -1,0 +1,69 @@
+@layer runway-ui.primitives {
+  :where(
+    .rw-input,
+    .rw-native
+      input:not(
+        [type="button"],
+        [type="submit"],
+        [type="checkbox"],
+        [type="radio"],
+        [type="range"]
+      ),
+    .rw-native select,
+    .rw-native textarea
+  ) {
+    box-sizing: border-box;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    color: var(--rw-ink);
+    background-color: var(--rw-raised);
+    border: 1px solid var(--rw-line);
+    border-radius: var(--rw-radius);
+    padding: var(--rw-field-padding);
+    font: inherit;
+    line-height: 1.4;
+    box-shadow:
+      inset 0 2px 3px color-mix(in oklch, var(--rw-ink) 5%, transparent),
+      0 1px var(--rw-highlight);
+  }
+  :where(.rw-input, .rw-native input, .rw-native select, .rw-native textarea):focus-visible {
+    outline: 3px solid var(--rw-focus);
+    outline-offset: 3px;
+  }
+  :where(.rw-input, .rw-native input, .rw-native select, .rw-native textarea):disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+  :where(.rw-input, .rw-native input, .rw-native textarea)[readonly] {
+    background-color: var(--rw-soft);
+  }
+  :where(.rw-input, .rw-native input, .rw-native select, .rw-native textarea):is(
+    [aria-invalid="true"],
+    :user-invalid
+  ) {
+    border-color: var(--rw-danger);
+  }
+  :where(select.rw-input, .rw-native select):not([multiple]):is(:not([size]), [size="1"]) {
+    appearance: none;
+    padding-inline-end: calc(var(--rw-select-inset) + 24px);
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--rw-muted) 50%),
+      linear-gradient(135deg, var(--rw-muted) 50%, transparent 50%);
+    background-position:
+      right calc(var(--rw-select-inset) + 5px) center,
+      right var(--rw-select-inset) center;
+    background-size: 5px 5px;
+    background-repeat: no-repeat;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  :where(select.rw-input, .rw-native select):not([multiple]):is(:not([size]), [size="1"]):dir(rtl) {
+    background-position:
+      left var(--rw-select-inset) center,
+      left calc(var(--rw-select-inset) + 5px) center;
+  }
+  :where(select.rw-input, .rw-native select):disabled {
+    cursor: not-allowed;
+  }
+}

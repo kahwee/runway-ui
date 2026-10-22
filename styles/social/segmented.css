@@ -1,0 +1,95 @@
+@layer runway-ui.patterns {
+  /* Segmented control: a sunken track of mutually exclusive buttons. */
+  .rw-segmented {
+    --rw-segment-tone: var(--rw-accent);
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3px;
+    max-inline-size: 100%;
+    padding: 4px;
+    border: 1px solid var(--rw-line);
+    border-radius: var(--rw-pill);
+    background: color-mix(in oklch, var(--rw-raised) 80%, var(--rw-line));
+    box-shadow: inset 0 2px 4px color-mix(in oklch, var(--rw-ink) 10%, transparent);
+  }
+  .rw-segmented__label {
+    padding-inline: 10px 6px;
+    color: var(--rw-muted);
+    font: 700 10px / 1 var(--rw-font);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .rw-segment {
+    --rw-segment-tone: var(--rw-accent);
+    position: relative;
+    min-inline-size: 0;
+    padding: 7px 14px;
+    border: 1px solid transparent;
+    border-radius: var(--rw-pill);
+    background: transparent;
+    color: var(--rw-muted);
+    font: 700 12px / 1.2 var(--rw-display-font);
+    overflow-wrap: anywhere;
+    cursor: pointer;
+    transition:
+      translate 0.3s var(--rw-spring),
+      scale 0.3s var(--rw-spring),
+      background-color 0.2s,
+      color 0.2s,
+      box-shadow 0.2s;
+    &[data-tone="warm"] {
+      --rw-segment-tone: var(--rw-gold);
+    }
+    &[data-tone="danger"] {
+      --rw-segment-tone: var(--rw-danger);
+    }
+    &:hover:not(:disabled, [aria-pressed="true"]) {
+      translate: 0 -2px;
+      color: var(--rw-ink);
+      background: color-mix(in oklch, var(--rw-surface) 60%, transparent);
+    }
+    &:active:not(:disabled) {
+      scale: 1.05 0.88;
+    }
+    &[aria-pressed="true"] {
+      animation: rw-segment-pop 0.55s var(--rw-spring);
+      border-color: color-mix(in oklch, var(--rw-segment-tone) 35%, var(--rw-line));
+      background: linear-gradient(
+        to bottom,
+        var(--rw-surface),
+        color-mix(in oklch, var(--rw-segment-tone) 14%, var(--rw-surface))
+      );
+      color: var(--rw-segment-tone);
+      box-shadow:
+        inset 0 1px var(--rw-highlight),
+        0 2px 0 color-mix(in oklch, var(--rw-segment-tone) 35%, var(--rw-line)),
+        0 6px 12px color-mix(in oklch, var(--rw-segment-tone) 16%, transparent);
+    }
+    &:focus-visible {
+      outline: 3px solid var(--rw-focus);
+      outline-offset: 2px;
+    }
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+  }
+  @keyframes rw-segment-pop {
+    0% {
+      scale: 0.86 1.1;
+    }
+    40% {
+      scale: 1.12 0.9;
+      translate: 0 -5px;
+    }
+    70% {
+      scale: 0.97 1.03;
+      translate: 0 1px;
+    }
+    100% {
+      scale: 1;
+      translate: 0 0;
+    }
+  }
+}

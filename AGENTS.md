@@ -1,5 +1,7 @@
 # Runway UI
 
+- Component ownership and cascade composition: [docs/MODULES.md](docs/MODULES.md). Edit the owning component; rebuild generated CSS after resolving source merges.
+
 - Framework-independent HTML/CSS library for generic management and simulation interfaces.
 - Keep runtime dependencies at zero. Browser behaviors are optional ES modules with TypeScript declarations and explicit teardown.
 - Use native HTML dialog behavior and browser focus/inertness. Preserve Escape/cancel guards for required decisions.

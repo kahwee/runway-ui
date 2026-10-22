@@ -1,0 +1,115 @@
+@layer runway-ui.observatory {
+  /* Four columns shared by header, rows and their nested content. */
+  .rw-resource-ledger {
+    display: grid;
+    grid-template-columns: minmax(150px, 1.4fr) minmax(110px, 1fr) repeat(2, minmax(65px, 0.6fr));
+    column-gap: 14px;
+    font-variant-numeric: tabular-nums;
+  }
+  .rw-resource-ledger__row {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 8px;
+    border-block-end: 1px solid var(--rw-line);
+    min-inline-size: 0;
+  }
+  .rw-resource-ledger__row > :not(:first-child) {
+    text-align: end;
+  }
+  .rw-resource-ledger__row[data-heading] {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 1;
+    background: var(--rw-surface);
+    color: var(--rw-muted);
+    font-size: 10px;
+  }
+  .rw-resource-ledger__row:has([aria-pressed="true"]) {
+    background: var(--rw-soft);
+    box-shadow: inset 3px 0 var(--rw-accent);
+  }
+  .rw-resource-ledger__row button {
+    display: block;
+    inline-size: 100%;
+    padding: 2px;
+    border: 0;
+    color: var(--rw-accent);
+    background: none;
+    text-align: start;
+    font: 650 12px / 1.4 var(--rw-font);
+    cursor: pointer;
+    overflow-wrap: anywhere;
+  }
+  .rw-resource-ledger__row button:focus-visible {
+    outline: 3px solid var(--rw-focus);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  .rw-resource-ledger__reserve {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+  }
+  .rw-resource-ledger__track {
+    block-size: 5px;
+    border-radius: 3px;
+    background: var(--rw-line);
+    overflow: hidden;
+  }
+  .rw-resource-ledger__track i {
+    display: block;
+    block-size: 100%;
+    inline-size: clamp(0%, var(--rw-value, 0%), 100%);
+    background: var(--rw-accent);
+  }
+  .rw-resource-ledger__net {
+    color: var(--rw-accent);
+  }
+  .rw-resource-ledger__net[data-negative] {
+    color: var(--rw-gold);
+  }
+  .rw-ledger-frame {
+    min-inline-size: 0;
+  }
+  .rw-scrollbox {
+    max-block-size: 268px;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    scrollbar-color: var(--rw-line) transparent;
+  }
+  .rw-scroll-progress {
+    display: none;
+    block-size: 3px;
+    margin-block-start: 8px;
+    border-radius: 3px;
+    background: var(--rw-accent);
+    transform-origin: left;
+  }
+  @supports (animation-timeline: scroll()) and (timeline-scope: --rw-ledger-scroll) {
+    .rw-ledger-frame[data-scroll-cue="true"] {
+      timeline-scope: --rw-ledger-scroll;
+    }
+    .rw-ledger-frame[data-scroll-cue="true"] .rw-scrollbox {
+      scroll-timeline: --rw-ledger-scroll block;
+    }
+    .rw-ledger-frame[data-scroll-cue="true"] .rw-scroll-progress {
+      display: block;
+      animation: rw-scroll-progress 1s linear both;
+      animation-timeline: --rw-ledger-scroll;
+    }
+    @keyframes rw-scroll-progress {
+      from {
+        scale: 0 1;
+      }
+      to {
+        scale: 1 1;
+      }
+    }
+  }
+}

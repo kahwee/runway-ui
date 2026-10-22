@@ -1,0 +1,257 @@
+@layer runway-ui.primitives {
+  /* Select variants: set data-* on the select. Sizes, shapes, looks and tones only change tokens and radii, so every variant keeps the same markup. */
+  @supports (appearance: base-select) {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-size="sm"] {
+      --rw-field-padding: 6px;
+      font-size: 12px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-size="lg"] {
+      --rw-field-padding: 15px;
+      font-size: 16px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-shape="pill"] {
+      border-radius: 999px;
+      padding-inline: 1.3em;
+    }
+    :where(select.rw-input, .rw-native select):not(
+        [data-picker="native"]
+      )[data-shape="pill"]::picker(select) {
+      border-radius: 28px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-shape="pill"]
+      option {
+      border-radius: 999px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-shape="square"] {
+      border-radius: 4px;
+    }
+    :where(select.rw-input, .rw-native select):not(
+        [data-picker="native"]
+      )[data-shape="square"]::picker(select) {
+      border-radius: 4px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-shape="square"]
+      option {
+      border-radius: 3px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-variant="filled"] {
+      background: var(--rw-accent);
+      color: var(--rw-on-accent);
+      border-color: var(--rw-accent);
+      box-shadow: 0 3px 0 color-mix(in oklch, var(--rw-accent) 60%, black);
+    }
+    :where(select.rw-input, .rw-native select):not(
+        [data-picker="native"]
+      )[data-variant="filled"]::picker-icon {
+      color: inherit;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-variant="filled"]
+      .rw-option__icon {
+      background: color-mix(in oklch, var(--rw-on-accent) 22%, transparent);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-variant="outline"] {
+      background: transparent;
+      border: 2px solid var(--rw-accent);
+      box-shadow: none;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-variant="ghost"] {
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
+    }
+    :where(select.rw-input, .rw-native select):not(
+        [data-picker="native"]
+      )[data-variant="ghost"]:hover:not(:disabled) {
+      background: var(--rw-soft);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-tone="coral"] {
+      --rw-accent: #e5533a;
+      --rw-soft: #ffe6df;
+      --rw-on-accent: #fff;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-tone="mint"] {
+      --rw-accent: #139878;
+      --rw-soft: #dcf6ee;
+      --rw-on-accent: #fff;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-tone="sky"] {
+      --rw-accent: #2f6fe0;
+      --rw-soft: #e0ecff;
+      --rw-on-accent: #fff;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-tone="sun"] {
+      --rw-accent: #b86e00;
+      --rw-soft: #fff0cc;
+      --rw-on-accent: #fff;
+    }
+    :where(select.rw-input, .rw-native select):not(
+        [data-picker="native"]
+      )[data-density="compact"]::picker(select) {
+      padding: 4px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-density="compact"]
+      option {
+      padding: 6px 10px;
+      column-gap: 9px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-density="roomy"]
+      option {
+      padding: 14px 14px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-checkmark="off"]
+      option::checkmark {
+      display: none;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-stagger="off"]
+      option {
+      transition: background-color 0.12s;
+    }
+    @starting-style {
+      :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+          :not([size]),
+          [size="1"]
+        )[data-stagger="off"]
+        option {
+        opacity: 1;
+        translate: none;
+      }
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-columns="2"] {
+      --rw-picker-columns: 2;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )[data-columns="3"] {
+      --rw-picker-columns: 3;
+    }
+    :where(select.rw-input, .rw-native select):not(
+        [data-picker="native"]
+      )[data-columns]:open::picker(select) {
+      display: grid;
+      grid-template-columns: repeat(var(--rw-picker-columns, 1), minmax(0, 1fr));
+      gap: 4px;
+      min-inline-size: max(anchor-size(inline), calc(var(--rw-picker-columns, 1) * 14rem));
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      optgroup {
+      display: contents;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      optgroup
+      > legend {
+      grid-column: 1 / -1;
+      padding: 12px 12px 4px;
+      font: 700 0.68em / 1.2 var(--rw-font);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rw-muted);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      hr {
+      grid-column: 1 / -1;
+      inline-size: 100%;
+      margin: 6px 8px;
+      border: 0;
+      border-block-start: 1px solid var(--rw-line);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      .rw-option__avatar {
+      display: grid;
+      place-items: center;
+      inline-size: 2.1em;
+      block-size: 2.1em;
+      border-radius: 50%;
+      font: 700 0.75em / 1 var(--rw-font);
+      color: #fff;
+      background: var(--rw-accent);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      selectedcontent
+      .rw-option__avatar {
+      inline-size: 1.6em;
+      block-size: 1.6em;
+      font-size: 0.7em;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+@layer runway-ui.primitives {
+  @media (prefers-reduced-motion: reduce) {
+    .rw-switch,
+    .rw-switch::before,
+    .rw-check,
+    .rw-check::before,
+    .rw-range::-webkit-slider-thumb,
+    .rw-option {
+      transition: none;
+    }
+    .rw-option:hover {
+      translate: none;
+    }
+  }
+  @media (forced-colors: active) {
+    .rw-switch {
+      border-color: ButtonText;
+      background: Canvas;
+      box-shadow: none;
+    }
+    .rw-switch:checked {
+      background: Highlight;
+    }
+    .rw-switch::before {
+      background: ButtonText;
+      box-shadow: none;
+    }
+    .rw-check {
+      border-color: ButtonText;
+    }
+    .rw-check:checked,
+    .rw-check:indeterminate {
+      background: Highlight;
+    }
+    .rw-check::before {
+      background: HighlightText;
+    }
+    .rw-range::-webkit-slider-runnable-track {
+      background: ButtonText;
+    }
+    .rw-range::-webkit-slider-thumb {
+      background: Canvas;
+      border-color: Highlight;
+      box-shadow: none;
+    }
+  }
+}

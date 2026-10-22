@@ -1,0 +1,62 @@
+@layer runway-ui.primitives {
+  .rw-options {
+    display: grid;
+    grid-template-columns: repeat(var(--rw-columns, 2), minmax(0, 1fr));
+    gap: var(--rw-space);
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .rw-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: var(--rw-choice-padding, 14px);
+    border: 2px solid var(--rw-line);
+    border-radius: var(--rw-radius);
+    background: var(--rw-raised);
+    cursor: pointer;
+    transition:
+      border-color 0.15s,
+      background-color 0.15s,
+      translate 0.22s var(--rw-spring, ease);
+    & strong,
+    & small {
+      display: block;
+    }
+    & small {
+      color: var(--rw-muted);
+      margin-block-start: 3px;
+      font-size: 0.85em;
+    }
+    line-height: 1.6;
+    & > .rw-check {
+      align-self: flex-start;
+      font-size: inherit;
+      line-height: inherit;
+      margin-block-start: calc((1lh - 1.35em) / 2);
+    }
+    &:hover:not(:has(:disabled)) {
+      translate: 0 -2px;
+    }
+    &:has(:checked) {
+      border-color: var(--rw-accent);
+      background: var(--rw-soft);
+    }
+    &:has(:focus-visible) {
+      outline: 3px solid var(--rw-focus);
+      outline-offset: 3px;
+    }
+    &:has(:disabled) {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+  }
+  .rw-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-block-start: var(--rw-space);
+    border-block-start: 1px solid var(--rw-line);
+  }
+}

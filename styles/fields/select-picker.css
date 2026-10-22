@@ -1,0 +1,231 @@
+@layer runway-ui.primitives {
+  /* Native customizable single-select. Lists and multiple selects retain OS behavior. */
+  @supports (appearance: base-select) {
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      ),
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )::picker(select) {
+      appearance: base-select;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      ) {
+      background-image: none;
+      padding-inline-end: var(--rw-select-inset);
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-block-size: 38px;
+      white-space: normal;
+      text-align: start;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )::picker-icon {
+      content: "";
+      flex: 0 0 7px;
+      inline-size: 7px;
+      block-size: 7px;
+      border-inline-end: 1.5px solid currentColor;
+      border-block-end: 1.5px solid currentColor;
+      rotate: 45deg;
+      margin: -4px 3px 0 8px;
+      color: var(--rw-muted);
+      transition: rotate 120ms;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      ):open::picker-icon {
+      rotate: 225deg;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )::picker(select) {
+      color: var(--rw-ink);
+      background: var(--rw-surface);
+      border: 1px solid var(--rw-line);
+      border-radius: var(--rw-radius);
+      padding: 5px;
+      margin-block: 5px;
+      min-inline-size: anchor-size(inline);
+      max-inline-size: min(40rem, calc(100dvi - 24px));
+      max-block-size: min(24rem, 60dvb);
+      overflow: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: var(--rw-line) transparent;
+      box-shadow: 0 8px 24px color-mix(in oklch, var(--rw-ink) 18%, transparent);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-block-size: 38px;
+      box-sizing: border-box;
+      padding: 9px 12px;
+      border-radius: max(3px, calc(var(--rw-radius) - 3px));
+      white-space: normal;
+      overflow-wrap: anywhere;
+      text-align: start;
+      cursor: pointer;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option:hover:not(:disabled),
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option:focus-visible {
+      background: var(--rw-soft);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option:checked {
+      background: color-mix(in oklch, var(--rw-accent) 12%, var(--rw-surface));
+      color: var(--rw-ink);
+      font-weight: 650;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option:focus-visible {
+      outline: 2px solid var(--rw-focus);
+      outline-offset: -2px;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option::checkmark {
+      content: "✓";
+      order: 2;
+      margin-inline-start: auto;
+      padding-inline-start: 12px;
+      color: var(--rw-accent);
+      font-weight: 800;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      optgroup
+      > legend {
+      padding: 10px 12px 6px;
+      color: var(--rw-muted);
+      font-size: 0.85em;
+      font-weight: 700;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      selectedcontent {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-inline-size: 0;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      selectedcontent
+      small {
+      display: none;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      > button {
+      all: unset;
+      display: flex;
+      align-items: center;
+      inline-size: 100%;
+      cursor: inherit;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option
+      > span:not(.rw-option__icon) {
+      display: grid;
+      min-inline-size: 0;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      option
+      small {
+      color: var(--rw-muted);
+      font-size: 0.82em;
+      font-weight: 400;
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      .rw-option__icon {
+      display: grid;
+      place-items: center;
+      flex: 0 0 2em;
+      inline-size: 2em;
+      block-size: 2em;
+      border-radius: 5px;
+      background: var(--rw-soft);
+    }
+    :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+        :not([size]),
+        [size="1"]
+      )
+      selectedcontent
+      .rw-option__icon {
+      inline-size: 1.4em;
+      block-size: 1.4em;
+      flex-basis: 1.4em;
+    }
+    @supports (color: attr(data-color type(<color>), red)) {
+      :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
+          :not([size]),
+          [size="1"]
+        )
+        option[data-color]::before {
+        content: "";
+        flex: 0 0 0.7em;
+        inline-size: 0.7em;
+        block-size: 0.7em;
+        border-radius: 50%;
+        background: attr(data-color type(<color>), var(--rw-accent));
+      }
+    }
+  }
+}

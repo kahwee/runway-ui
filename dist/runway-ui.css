@@ -193,7 +193,7 @@
   }
 }
 
-/* Native form behavior, with a comfortable and direction-aware arrow gutter. */
+/* Fields composition. Keep component order stable. */
 @layer runway-ui.primitives {
   :where(
     .rw-input,
@@ -262,6 +262,9 @@
   :where(select.rw-input, .rw-native select):disabled {
     cursor: not-allowed;
   }
+}
+
+@layer runway-ui.primitives {
   /* Native customizable single-select. Lists and multiple selects retain OS behavior. */
   @supports (appearance: base-select) {
     :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
@@ -491,6 +494,9 @@
       }
     }
   }
+}
+
+@layer runway-ui.primitives {
   /* Select variants: set data-* on the select. Sizes, shapes, looks and tones only change tokens and radii, so every variant keeps the same markup. */
   @supports (appearance: base-select) {
     :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
@@ -746,6 +752,9 @@
       font-size: 0.7em;
     }
   }
+}
+
+@layer runway-ui.primitives {
   @media (prefers-reduced-motion: reduce) {
     :where(select.rw-input, .rw-native select)::picker-icon,
     :where(select.rw-input, .rw-native select)::picker(select),
@@ -787,7 +796,8 @@
   }
 }
 
-/* Native form controls: switch, slider, checkbox, radio and field patterns. Behavior stays native. */
+
+/* Forms composition. Keep component order stable. */
 @layer runway-ui.primitives {
   /* Switch: <input type="checkbox" role="switch" class="rw-switch"> inside a .rw-toggle label. */
   .rw-toggle {
@@ -901,7 +911,9 @@
       cursor: not-allowed;
     }
   }
+}
 
+@layer runway-ui.primitives {
   /* Checkbox and radio: native inputs with a drawn box. A checkmark reuses the generated Phosphor icon token. */
   .rw-check {
     appearance: none;
@@ -966,7 +978,9 @@
       cursor: not-allowed;
     }
   }
+}
 
+@layer runway-ui.primitives {
   /* Slider: native range. Optional behaviors/forms.js sets --rw-fill and the <output>. */
   .rw-range {
     --_track: 10px;
@@ -1066,7 +1080,9 @@
       color: var(--rw-accent);
     }
   }
+}
 
+@layer runway-ui.primitives {
   /* Field patterns */
   .rw-fieldset {
     min-inline-size: 0;
@@ -1177,6 +1193,9 @@
       border-color: var(--rw-danger);
     }
   }
+}
+
+@layer runway-ui.primitives {
   .rw-options {
     display: grid;
     grid-template-columns: repeat(var(--rw-columns, 2), minmax(0, 1fr));
@@ -1237,6 +1256,9 @@
     padding-block-start: var(--rw-space);
     border-block-start: 1px solid var(--rw-line);
   }
+}
+
+@layer runway-ui.primitives {
   @media (prefers-reduced-motion: reduce) {
     .rw-switch,
     .rw-switch::before,
@@ -1283,6 +1305,7 @@
     }
   }
 }
+
 
 
 @layer runway-ui.primitives {
@@ -2062,7 +2085,7 @@
   }
 }
 
-/* Segmented control, avatars, person chips and leaderboards. Native elements, application-owned state. */
+/* Social composition. Keep component order stable. */
 @layer runway-ui.patterns {
   /* Segmented control: a sunken track of mutually exclusive buttons. */
   .rw-segmented {
@@ -2157,7 +2180,9 @@
       translate: 0 0;
     }
   }
+}
 
+@layer runway-ui.patterns {
   /* Avatar: initials, an image or an icon on a tinted tile. Set --rw-avatar-hue to any colour. */
   .rw-avatar {
     --rw-avatar-hue: var(--rw-accent);
@@ -2191,7 +2216,9 @@
       object-fit: cover;
     }
   }
+}
 
+@layer runway-ui.patterns {
   /* Person chip: a native button holding an avatar, an optional name and a status dot. */
   .rw-person-strip {
     display: flex;
@@ -2307,7 +2334,9 @@
       translate: 0 0;
     }
   }
+}
 
+@layer runway-ui.patterns {
   /* Leaderboard: a native table with medal ranks, who-cells, trends and a highlighted "you" row. */
   .rw-leaderboard {
     inline-size: 100%;
@@ -2462,7 +2491,9 @@
       rotate: 8deg;
     }
   }
+}
 
+@layer runway-ui.patterns {
   @media (prefers-reduced-motion: reduce) {
     .rw-segment,
     .rw-person-chip,
@@ -2565,6 +2596,7 @@
     }
   }
 }
+
 
 /* Composable desktop workspaces. The host owns viewport placement and imagery. */
 @layer runway-ui.patterns {
@@ -4110,7 +4142,7 @@
   }
 }
 
-/* Generic desktop composition. No layout or chart measurement JavaScript. */
+/* Observatory composition. Keep component order stable. */
 @layer runway-ui.observatory {
   .rw-observatory {
     --rw-observatory-gap: 18px;
@@ -4362,6 +4394,9 @@
   .rw-observatory__footer p {
     max-inline-size: 78ch;
   }
+}
+
+@layer runway-ui.observatory {
   /* Four columns shared by header, rows and their nested content. */
   .rw-resource-ledger {
     display: grid;
@@ -4475,6 +4510,9 @@
       }
     }
   }
+}
+
+@layer runway-ui.observatory {
   /* Native top-layer popovers use their implicit invoker anchor when supported. */
   .rw-context {
     box-sizing: border-box;
@@ -4540,6 +4578,9 @@
     outline: 3px solid var(--rw-focus);
     outline-offset: 3px;
   }
+}
+
+@layer runway-ui.observatory {
   .rw-observatory__decision-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -4570,6 +4611,9 @@
     border: 1px solid var(--rw-danger);
     border-radius: var(--rw-radius);
   }
+}
+
+@layer runway-ui.observatory {
   @container rw-observatory (inline-size < 1050px) {
     .rw-trend {
       padding: 12px;
@@ -4636,6 +4680,7 @@
     }
   }
 }
+
 
 /* Tactile instruments for management games. Generic signals, no domain rules. */
 @layer runway-ui.observatory {
