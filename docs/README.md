@@ -35,6 +35,7 @@ New to Runway UI? Follow **Install → Components → Compose**. Use Storybook w
 - [Storybook workflow](STORYBOOK.md): local development and argument-driven stories.
 - [Status and verification limits](STATUS.md): implemented scope and recorded checks.
 - [Changelog](CHANGELOG.md): release and migration history.
+- [Source ownership and CI](MODULES.md) and [ten-pass audit](AUDIT.md).
 - [Contributing and source layout](../CONTRIBUTING.md): where to make changes.
 
 Source Markdown guides live alongside the interactive documentation. The site build renders them as HTML and rewrites their guide links. Existing guide filenames remain stable so external links continue working.

@@ -14,14 +14,24 @@ Contributions are provided under the project's MIT license. There is no separate
 
 ```sh
 pnpm install --frozen-lockfile
+pnpm check
+pnpm check-boundaries
+pnpm test-boundaries
+pnpm test-dialog
 pnpm run build
 pnpm run build-site
+pnpm check-docs
 pnpm pack --dry-run
 ```
 
 `build-site` builds Storybook and the allowlisted static documentation; it does not deploy. Keep generated CSS in sync, check local documentation links, and inspect changed examples at both desktop sizes. Publishing packages, creating releases and changing hosting require an explicit request.
 
 Document new public patterns in the component guides, shared-track example and argument-driven Storybook where applicable. Add capability and degradation notes to [MODERN-CSS.md](docs/MODERN-CSS.md) for picker, chart, disclosure or dialog enhancements. Preserve existing exports and percentage units unless documenting an intentional breaking migration in the changelog. Historical migration notes stay in the changelog; current recipes use `rw-` throughout.
+
+After committing intended source and generated CSS changes, run `pnpm check-generated`.
+It rebuilds both the icon CSS and bundle and compares them to `HEAD`, so it is
+expected to fail before those generated changes are committed. See
+[source ownership and CI](docs/MODULES.md) and the [audit record](docs/AUDIT.md).
 
 ## Biome and pnpm
 

@@ -16,9 +16,17 @@ Prior focused desktop Chromium passes covered 1440 × 900 and 1366 × 768 layout
 
 Build and packaging checks establish generated artifacts and package contents only. See [Storybook development](STORYBOOK.md#develop-and-deploy) for current local commands. They do not establish publication or deployment.
 
+## Recent focused verification
+
+The dialog update was checked in Chrome 154 at 1440 × 900 and 1366 × 768:
+compact/wide layouts, native light dismissal, required-decision Escape/backdrop
+guards, reduced-motion surface/backdrop transitions and a visible forced-color
+border. This is a focused check, not coverage of all components or browsers.
+The [ten-pass audit](AUDIT.md) records subsequent documentation and tooling checks.
+
 ## Remaining limitations
 
-- Firefox, Safari, screen readers, forced colors and physical controller hardware still need direct validation before broader support claims.
+- Firefox, Safari, screen readers, comprehensive forced-color coverage and physical controller hardware still need direct validation before broader support claims.
 - Virtual inventories require fixed row heights. Off-screen items are absent from the DOM and may limit screen-reader browse mode. No drag/drop, stacking or server pagination is supplied.
 - The direct history renderer supports up to 366 observations; the optional time-series module draws a bounded window of a longer host-owned series. Its overview averages bins and its exact table covers only the visible window. No general zoom/brush, automatic tick engine or irregular-time interpolation is provided.
 - Namespaced CSS is not Shadow DOM isolation; host styles can override it.

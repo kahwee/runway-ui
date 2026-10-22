@@ -28,10 +28,27 @@ const { readdir, readFile } = await import("node:fs/promises");
 // Keep the guide distinct from the hand-authored chart lab on case-insensitive disks.
 const htmlPath = (path) =>
   path.endsWith("CHARTS") ? `${path.slice(0, -6)}charts-guide.html` : `${path}.html`;
+const headingIds = new Map();
+marked.use({
+  renderer: {
+    heading({ tokens, depth }) {
+      const text = this.parser.parseInline(tokens);
+      const base = text
+        .replace(/<[^>]*>/g, "")
+        .toLowerCase()
+        .replace(/[^\p{L}\p{N}_\s-]/gu, "")
+        .replace(/\s/g, "-");
+      const count = headingIds.get(base) ?? 0;
+      headingIds.set(base, count + 1);
+      return `<h${depth} id="${base}${count ? `-${count}` : ""}">${text}</h${depth}>\n`;
+    },
+  },
+});
 const rewriteLinks = (html) =>
-  html.replace(
-    /href="([^":]*?)\.md(#[^"]*)?"/g,
-    (_, path, hash = "") => `href="${htmlPath(path)}${hash}"`,
+  html.replace(/href="([^":]*?)\.md(#[^"]*)?"/g, (_, path, hash = "") =>
+    ["../README", "../CONTRIBUTING"].includes(path)
+      ? `href="https://github.com/kahwee/runway-ui/blob/main/${path.slice(3)}.md${hash}"`
+      : `href="${htmlPath(path)}${hash}"`,
   );
 for (const file of await readdir(new URL("docs/", output))) {
   if (!file.endsWith(".md")) continue;
@@ -40,6 +57,7 @@ for (const file of await readdir(new URL("docs/", output))) {
     /[&<>"']/g,
     (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c],
   );
+  headingIds.clear();
   const body = rewriteLinks(marked.parse(source));
   await writeFile(
     new URL(`docs/${htmlPath(file.replace(/\.md$/, ""))}`, output),

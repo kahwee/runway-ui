@@ -4,6 +4,7 @@
 
 - Framework-independent HTML/CSS library for generic management and simulation interfaces.
 - Keep runtime dependencies at zero. Browser behaviors are optional ES modules with TypeScript declarations and explicit teardown.
+- For current dialog/browser requirements, follow [docs/DIALOG.md](docs/DIALOG.md); `bindDialog` requires native `requestClose()` and `closedBy`, with no emulation. Record breaking changes in [docs/CHANGELOG.md](docs/CHANGELOG.md).
 - Use native HTML dialog behavior and browser focus/inertness. Preserve Escape/cancel guards for required decisions.
 - Use modern CSS: cascade layers, subgrid for aligned production rows, container queries for panel layout, logical properties, reduced-motion and forced-color support.
 - Preserve the rw- class vocabulary and existing exports unless documenting an intentional breaking change.
@@ -27,5 +28,6 @@
 ## Tooling
 
 - Use the pinned pnpm version and `pnpm-lock.yaml`; do not add npm or Yarn lockfiles.
+- Validate imports with `pnpm check-boundaries`, checker fixtures with `pnpm test-boundaries`, and dialog policy with `pnpm test-dialog`. Rebuild CSS before committing; run `pnpm check-generated` after committing, since it compares against `HEAD`.
 - Run `pnpm check` before committing. Use `pnpm check-fix` for safe lint fixes and formatting; review any behavior changes before applying unsafe fixes.
 - Biome covers authored JavaScript, TypeScript declarations, JSON, CSS and HTML. Keep generated bundles, generated icons, dependency trees and build output outside its scope.

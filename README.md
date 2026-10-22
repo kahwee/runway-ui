@@ -91,7 +91,7 @@ Runway UI is not an API-compatible replacement for another UI framework. Existin
 - **@starting-style and discrete transitions** enhance dialog motion when supported.
 - **Reduced motion and forced colors** adjust animation and state indicators.
 
-Targets current desktop Chromium, Firefox and Safari with subgrid and container-query support. Newer dialog APIs have fallbacks. Desktop Chromium checks are documented in [STATUS.md](docs/STATUS.md); broader browser and assistive-technology validation remains work in progress.
+Targets current desktop Chromium, Firefox and Safari with subgrid and container-query support. The optional dialog helper requires native `requestClose()` and `closedBy`; dialog CSS uses `:open`. It provides no older-browser emulation. See [dialog requirements](docs/DIALOG.md). Desktop Chromium checks are documented in [STATUS.md](docs/STATUS.md); broader browser and assistive-technology validation remains work in progress.
 
 ## Documentation
 
@@ -106,11 +106,16 @@ Targets current desktop Chromium, Firefox and Safari with subgrid and container-
 ## Development
 
 ```sh
+pnpm install --frozen-lockfile
+pnpm check
+pnpm check-boundaries
+pnpm test-boundaries
+pnpm test-dialog
 pnpm run build
 pnpm pack --dry-run
 ```
 
-There are no third-party runtime dependencies and no font or asset downloads. The CSS bundle is generated from `index.css` and `styles/`; edit source modules and rebuild the bundle. Type declarations accompany every optional behavior.
+The library has no third-party runtime dependencies or remote font/asset requests. Development installation downloads tooling and icon/font inputs; Storybook bundles its local font dependencies. The CSS bundle is generated from `index.css` and `styles/`; edit source modules and rebuild the bundle. Type declarations accompany every optional behavior.
 
 Early-stage API: improvements should keep markup predictable, effects modest and boundaries explicit. Suggestions and small, focused contributions are welcome.
 
@@ -118,7 +123,7 @@ Early-stage API: improvements should keep markup predictable, effects modest and
 
 See the [Storybook guide](docs/STORYBOOK.md). Run `pnpm install --frozen-lockfile`, then `pnpm run storybook` for the HTML component explorer. `pnpm run build-site` creates the public allowlisted `.site/` folder with Storybook under `/storybook/`. GitHub Actions deploys it to GitHub Pages on pushes to `main`. npm package publication is separate.
 
-Native dialog stories use HTML invoker commands (`commandfor`, `command="show-modal"`) and `form method="dialog"`. Older browsers can use the optional dialog helper. Native disclosures and form controls need no event handlers.
+Native dialog stories use HTML invoker commands (`commandfor`, `command="show-modal"`) and `form method="dialog"`. The optional dialog helper adds dynamic dismissal policy on browsers with native `requestClose()` and `closedBy`; it is not a polyfill. Native disclosures and form controls need no event handlers.
 
 Dialog styling is opt-in with `rw-dialog`, structured `rw-dialog__header`, `__body` and `__footer` classes, plus compact/wide/danger modifiers. See the [dialog class guide](docs/DIALOG.md) and [dialog playground](https://kahwee.github.io/runway-ui/storybook/?path=/story/foundations-dialog--playground).
 

@@ -19,6 +19,8 @@ Each implementation declares its existing cascade layer, so splitting a file doe
 not change specificity or layer precedence. These are the only implementations;
 there are no duplicate compatibility styles.
 
+`styles/dialog.css` owns the dialog surface, backdrop, motion and modifiers in
+the `runway-ui.dialog` layer. Its helper and declarations remain in `behaviors/`.
 Other styles already have dedicated feature files. Keep behaviors and their type
 declarations together in `behaviors/`, and examples in the corresponding
 Storybook feature. A new variant of an existing component belongs with that
@@ -55,8 +57,9 @@ the checker with valid and invalid fixtures so enforcement changes are checked t
 
 The Package GitHub Actions workflow runs lint, boundary checks/tests and package
 build verification as independent jobs on pull requests and pushes to `main`.
-Pull requests also build Storybook in parallel. On `main`, the existing Pages
-workflow already builds Storybook; its deployment behavior is unchanged. New
+Pull requests also build Storybook and the documentation site in parallel, then
+run `pnpm check-docs` to verify generated local links, anchors and assets. On `main`, the existing Pages
+workflow builds Storybook and checks documentation links before deployment. New
 commits cancel superseded Package runs for the same branch or pull request.
 These jobs report check results; repository branch-protection settings determine
 whether GitHub requires those checks before a merge.

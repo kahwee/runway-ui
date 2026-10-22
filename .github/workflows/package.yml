@@ -53,7 +53,7 @@ jobs:
         run: pnpm check-generated
       - run: pnpm pack --dry-run
   storybook:
-    name: Storybook build
+    name: Storybook and docs
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -65,4 +65,5 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run build-storybook
+      - run: pnpm run build-site
+      - run: pnpm check-docs

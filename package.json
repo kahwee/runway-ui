@@ -91,6 +91,7 @@
     "check-fix": "biome check --write .",
     "format": "biome format --write .",
     "lint": "biome lint --error-on-warnings .",
+    "check-docs": "node scripts/check-docs.mjs",
     "check-generated": "node scripts/check-generated.mjs",
     "check-boundaries": "node scripts/check-boundaries.mjs",
     "test-dialog": "node --test tests/dialog.test.mjs",

@@ -23,6 +23,7 @@ jobs:
       - run: git diff --exit-code -- dist/
       - run: pnpm run build-storybook
       - run: node scripts/build-site.mjs
+      - run: pnpm check-docs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

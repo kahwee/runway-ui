@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+- **Breaking dialog migration:** import `dialog.css` with tokens when selecting
+  individual modules; `primitives.css` and `simulation.css` no longer supply the
+  dialog surface or motion. The full entry and bundle already include it.
+- **Breaking browser requirement:** `bindDialog` requires native `requestClose()`
+  and `closedBy`; synthetic close and backdrop-click emulation are removed. Dialog
+  CSS uses `:open`. Keep explicit confirmation actions and call `refresh()` when
+  dismissal policy changes. Existing controller method names remain unchanged.
+- Dialog container queries stack compact action rows; balanced headings, pretty
+  body wrapping and scroll containment improve layout. Reduced motion disables
+  surface/backdrop transitions and close-button transforms.
+- Add parallel lint, module-boundary and package checks, with Storybook on PRs.
+  Generated CSS verification checks both `styles/icons.css` and the bundle.
+
 - Add `rw-segmented` / `rw-segment`, `rw-avatar`, `rw-person-chip` and `rw-leaderboard` (with `rw-rank` and `rw-outlook`), each with a bouncy selection animation, reduced-motion and forced-colors support, a Storybook playground and stress cases.
 
 - Make `rw-view-tabs` and `rw-dock` bouncier: a tray for illustrated tabs, squash-and-stretch pop when a tab or dock action becomes selected, hopping artwork, pill buttons and keycap-style `rw-shortcut` hints. All motion is disabled under `prefers-reduced-motion`.
