@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.0 — tactile history instruments
+
+- Add generic signed history markup with explicit gaps, up to 366 observations, grouped native event popovers and exact-value disclosures.
+- Add typed history export and instrument CSS export, a shared impact subgrid, and an opt-in Play material for more tactile panels and controls.
+- Add a configurable signed/zero/missing/custom instrument playground and material toolbar.
+- Keep source/demo data generic; no runtime dependencies or domain-specific simulation rules.
+
+Source and Pages update; no npm registry publication.
+
+
 ## 0.4.0 — Simulation Observatory
 
 - Add a generic desktop reference composition with six CSS trend cards, a fixed-scale annotated history, striped projected observations, explicit missing readings and a target line.

@@ -2,8 +2,9 @@ import "../index.css";
 import "../styles/native.css";
 import "./preview.css";
 export default {
-  initialGlobals: { theme: "studio", density: "comfortable", depth:"raised" },
+  initialGlobals: { theme: "studio", density: "comfortable", depth:"raised", skin:"play" },
   globalTypes: {
+    skin:{description:"Interface material",toolbar:{icon:"circlehollow",items:["classic","play"],dynamicTitle:true}},
     theme: {
       description: "Art direction",
       toolbar: {
@@ -49,6 +50,7 @@ export default {
       root.dataset.theme = context.globals.theme;
       root.dataset.density = context.globals.density;
       root.dataset.depth = context.globals.depth;
+      root.dataset.skin = context.globals.skin;
       const content = story();
       if (typeof content === "string") root.innerHTML = content;
       else root.append(content);
@@ -57,6 +59,7 @@ export default {
         dialog.dataset.theme = context.globals.theme;
         dialog.dataset.density = context.globals.density;
         dialog.dataset.depth = context.globals.depth;
+        dialog.dataset.skin = context.globals.skin;
       });
       return root;
     },

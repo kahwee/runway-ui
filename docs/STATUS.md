@@ -1,6 +1,6 @@
 # Status
 
-Version 0.4.0 is early-stage source available on GitHub. It is not yet published to the npm registry. Public API changes are possible while the library matures.
+Version 0.5.0 is early-stage source available on GitHub. It is not yet published to the npm registry. Public API changes are possible while the library matures.
 
 ## Supported scope
 
@@ -73,3 +73,11 @@ These are focused desktop Chromium observations. They do not establish physical-
 
 These are focused manual Chromium observations and build/packaging results. Forced-color rules are supplied but this pass does not certify their rendering, screen-reader behavior or Safari/Firefox compatibility. The reference has no simulation backend or persistent game state.
 - Follow-up manager review: the Observatory declares a 1366 × 900 viewport. A manager-only flex-shrink correction preserves that 900px iframe height with Controls open; the manager scrolls the fixed desktop canvas instead of triggering the unsupported-screen notice. This does not change runtime component sizing.
+
+## 0.5.0 focused instrument pass
+
+- Shared signed history rendered in the HTML Storybook with positive and negative marks on the same zero baseline. Zero samples measured zero height; negative marks extend below zero. Native notes and complete tables remain available with compact labels.
+- The history playground exposes 16 arguments, including signed/zero/missing/custom inputs, negative-value meaning and a native comparison table. Play/Classic material is a global toolbar choice; flat depth removes outer instrument/panel shadows.
+- The native comparison table shares parent columns through table section and row subgrids. No domain rules are included in the renderer or material styles.
+- Existing Observatory composes the tactile frame and Play surfaces. The shared renderer supplies escaped strings, explicit finite-range validation, custom visible/axis/exact formatters and raw data values.
+- CSS/site/Storybook builds, JavaScript syntax checks and a package dry run completed. These are focused source and Chromium observations, not cross-browser or accessibility certification.

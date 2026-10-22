@@ -6,6 +6,10 @@ Resource HUDs, production ledgers, economy charts, equipment grids, objectives a
 
 **MIT licensed. Free for personal and commercial projects, including closed-source games.** Keep the license notice in redistributed copies. No attribution in your interface is required. See [LICENSE](LICENSE).
 
+## Tactile history instruments
+
+[Explore signed history instruments](https://kahwee.github.io/runway-ui/storybook/?path=/story/charts-history-instruments--playground): real observation arrays, explicit missing values, grouped native notes and exact tables. Add `data-skin="play"` to a `g-ui` root for deeper, more playful surfaces. [Contracts](docs/INSTRUMENTS.md).
+
 ## Simulation Observatory
 
 [Open the polished desktop reference screen](https://kahwee.github.io/runway-ui/examples/observatory.html) · [Storybook playground](https://kahwee.github.io/runway-ui/storybook/?path=/story/compositions-simulation-observatory--playground) · [Data and capability contracts](docs/OBSERVATORY.md). Six CSS trend cards, observed/projected history, a target, anchored native event notes and an inspectable resource ledger. Generic synthetic data; no chart runtime.

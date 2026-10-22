@@ -38,6 +38,10 @@ Use `g-layout` for a named inline-size container. Preferred columns come from `-
 
 Internal row spacing uses `--g-content-gap` (10px, compact 8px), independently of the 14px/10px group gap `--g-space`. A chart figure containing a direct `g-series-list` shares intrinsic label, plot and value columns through two levels of subgrid. Its adjacent scale occupies the actual plot column; no label-width offsets are needed. Long labels and values wrap within bounded tracks. Keep the scale immediately after the list.
 
+## Signed instruments
+
+[History instruments](INSTRUMENTS.md) add signed zero-baseline CSS geometry, typed numeric attributes with absolute-value enhancement, reusable four-column impact subgrids and a tactile Play material. Host custom properties remain the numeric fallback.
+
 ## Observatory composition
 
 The [Simulation Observatory](OBSERVATORY.md) adds native event popovers with implicit CSS anchors and position fallback, an opt-in named scroll timeline for ledger progress, and declarative native dialog commands with a small optional bridge for engines without command support. Its shared-row metric cards and shared-column ledger extend the subgrid baseline. Read its contract for exact degradation and data semantics.
