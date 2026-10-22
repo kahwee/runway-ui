@@ -72,42 +72,6 @@
   .rw-panel:has(.rw-choice[aria-pressed="true"]) {
     border-color: var(--rw-accent);
   }
-  .rw-dialog {
-    opacity: 0;
-    translate: 0 8px;
-    scale: 0.97;
-    transition:
-      opacity 140ms,
-      translate 240ms var(--rw-spring, ease),
-      scale 240ms var(--rw-spring, ease),
-      display 140ms allow-discrete,
-      overlay 140ms allow-discrete;
-  }
-  .rw-dialog[open] {
-    opacity: 1;
-    translate: 0;
-    scale: 1;
-  }
-  .rw-dialog:not([open])::backdrop {
-    opacity: 0;
-  }
-  @starting-style {
-    .rw-dialog[open] {
-      opacity: 0;
-      translate: 0 8px;
-      scale: 0.97;
-    }
-    .rw-dialog[open]::backdrop {
-      opacity: 0;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .rw-dialog {
-      transition: none;
-      translate: none;
-      scale: none;
-    }
-  }
   @media (forced-colors: active) {
     .rw-chart__plot,
     .rw-meter__fill {

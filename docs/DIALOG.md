@@ -54,9 +54,9 @@ Use native HTML with explicit CSS classes. The library never styles every `dialo
 | `rw-dialog__footer--stacked` | Vertically stacked actions, primary above cancel                            |
 | `rw-dialog__close`           | Focus-visible native close button                                           |
 
-Use one size modifier and one footer modifier at a time. All original `rw-dialog` markup remains valid; structured child classes are additive. Set `--rw-dialog-width` in your own CSS to customize a size. Theme and density live on `rw-ui`; a nested dialog root must receive the application's chosen theme and density too.
+Use one size modifier and one footer modifier at a time. Set `--rw-dialog-width` in your own CSS to customize a size. Theme and density live on `rw-ui`; a nested dialog root must receive the application's chosen theme and density too.
 
-The complete `index.css` or bundle includes this component. The `runway-ui/dialog.css` module contains the additive structure and modifiers; it requires the tokens and existing primitive/native-dialog styles, or the complete stylesheet, for the base surface. It is independent of the optional `runway-ui/dialog` JavaScript helper.
+The complete `index.css` or bundle includes this component. The `runway-ui/dialog.css` module owns the base surface, backdrop, structure and modifiers in the `runway-ui.dialog` layer. Import tokens alongside it when selecting modules. `primitives.css` no longer includes dialog styles; consumers importing it directly must also import `dialog.css`. It is independent of the optional `runway-ui/dialog` JavaScript helper.
 
 ## HTML owns interaction
 
@@ -66,4 +66,4 @@ The complete `index.css` or bundle includes this component. The `runway-ui/dialo
 - Keep an enabled explicit exit action even when dismissal is restricted. Disabling every action can trap users.
 - Put autofocus on a safe initial choice. Do not focus a disabled or absent control.
 
-Invoker commands and `closedby` need current browser support. Older browsers can use the optional `bindDialog` helper for opening and dismissal policy. Styling uses the same classes in either case. The class API adds no JavaScript dependency.
+Invoker commands and `closedby` need current browser support. The optional `bindDialog` helper manages opening and dismissal policy and requires native `HTMLDialogElement.requestClose()`; it does not emulate that API. Cancel listeners can still veto a request, and `canDismiss` protects required decisions. Styling uses the same classes in either case. The class API adds no JavaScript dependency.

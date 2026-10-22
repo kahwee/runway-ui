@@ -36,6 +36,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm check-boundaries
       - run: pnpm test-boundaries
+      - run: pnpm test-dialog
   build:
     name: Package build
     runs-on: ubuntu-latest

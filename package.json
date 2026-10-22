@@ -93,6 +93,7 @@
     "lint": "biome lint --error-on-warnings .",
     "check-generated": "node scripts/check-generated.mjs",
     "check-boundaries": "node scripts/check-boundaries.mjs",
+    "test-dialog": "node --test tests/dialog.test.mjs",
     "test-boundaries": "node --test tests/boundaries.test.mjs"
   },
   "engines": {

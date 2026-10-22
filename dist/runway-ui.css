@@ -1316,7 +1316,6 @@
       .rw-choice,
       .rw-input,
       .rw-panel,
-      .rw-dialog,
       .rw-badge,
       .rw-resource,
       .rw-dock
@@ -1376,26 +1375,6 @@
     border-radius: 999px;
     background: var(--rw-soft);
     color: var(--rw-accent);
-  }
-  .rw-dialog {
-    color: var(--rw-ink);
-    background: var(--rw-surface);
-    border: 1px solid var(--rw-line);
-    border-radius: var(--rw-radius);
-    padding: calc(var(--rw-panel-padding) + 10px);
-    inline-size: var(--rw-dialog-width, 520px);
-    max-inline-size: calc(100vi - 64px);
-    max-block-size: calc(100dvb - 64px);
-    overflow: auto;
-    box-shadow: var(--rw-shadow);
-  }
-  .rw-dialog::backdrop {
-    background: color-mix(in oklch, var(--rw-ink, #14251e) 78%, transparent);
-    backdrop-filter: blur(5px);
-    transition:
-      opacity 0.2s,
-      overlay 0.2s allow-discrete,
-      display 0.2s allow-discrete;
   }
   .rw-panel[data-elevation="flat"] {
     box-shadow: none;
@@ -3122,42 +3101,6 @@
   }
   .rw-panel:has(.rw-choice[aria-pressed="true"]) {
     border-color: var(--rw-accent);
-  }
-  .rw-dialog {
-    opacity: 0;
-    translate: 0 8px;
-    scale: 0.97;
-    transition:
-      opacity 140ms,
-      translate 240ms var(--rw-spring, ease),
-      scale 240ms var(--rw-spring, ease),
-      display 140ms allow-discrete,
-      overlay 140ms allow-discrete;
-  }
-  .rw-dialog[open] {
-    opacity: 1;
-    translate: 0;
-    scale: 1;
-  }
-  .rw-dialog:not([open])::backdrop {
-    opacity: 0;
-  }
-  @starting-style {
-    .rw-dialog[open] {
-      opacity: 0;
-      translate: 0 8px;
-      scale: 0.97;
-    }
-    .rw-dialog[open]::backdrop {
-      opacity: 0;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .rw-dialog {
-      transition: none;
-      translate: none;
-      scale: none;
-    }
   }
   @media (forced-colors: active) {
     .rw-chart__plot,
@@ -5058,9 +5001,65 @@
   }
 }
 
-/* Optional structure and modifiers for native <dialog class="rw-dialog">.
-   The existing base surface remains in primitives.css for compatibility. */
+/* Native dialog surface, structure and modifiers. */
 @layer runway-ui.dialog {
+  .rw-dialog {
+    box-sizing: border-box;
+    color: var(--rw-ink);
+    background: var(--rw-surface);
+    border: 1px solid var(--rw-line);
+    border-radius: var(--rw-radius);
+    padding: calc(var(--rw-panel-padding) + 10px);
+    inline-size: var(--rw-dialog-width, 520px);
+    max-inline-size: calc(100vi - 64px);
+    max-block-size: calc(100dvb - 64px);
+    overflow: auto;
+    box-shadow: var(--rw-shadow);
+  }
+  .rw-dialog::backdrop {
+    background: color-mix(in oklch, var(--rw-ink, #14251e) 78%, transparent);
+    backdrop-filter: blur(5px);
+    transition:
+      opacity 0.2s,
+      overlay 0.2s allow-discrete,
+      display 0.2s allow-discrete;
+  }
+  .rw-dialog {
+    opacity: 0;
+    translate: 0 8px;
+    scale: 0.97;
+    transition:
+      opacity 140ms,
+      translate 240ms var(--rw-spring, ease),
+      scale 240ms var(--rw-spring, ease),
+      display 140ms allow-discrete,
+      overlay 140ms allow-discrete;
+  }
+  .rw-dialog[open] {
+    opacity: 1;
+    translate: 0;
+    scale: 1;
+  }
+  .rw-dialog:not([open])::backdrop {
+    opacity: 0;
+  }
+  @starting-style {
+    .rw-dialog[open] {
+      opacity: 0;
+      translate: 0 8px;
+      scale: 0.97;
+    }
+    .rw-dialog[open]::backdrop {
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rw-dialog {
+      transition: none;
+      translate: none;
+      scale: none;
+    }
+  }
   .rw-dialog--compact {
     --rw-dialog-width: 380px;
   }
