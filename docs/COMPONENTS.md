@@ -151,7 +151,11 @@ Use `nav.rw-section-tabs` containing `.rw-button` toggles for switching sibling 
 
 ```html
 <nav class="rw-section-tabs" data-sticky aria-label="Workspace sections">
-  <button type="button" class="rw-button" data-variant="primary" aria-pressed="true">Overview</button>
-  <button type="button" class="rw-button" data-variant="secondary" aria-pressed="false">Reports</button>
+  <button type="button" class="rw-button" data-variant="primary" aria-pressed="true">
+    Overview
+  </button>
+  <button type="button" class="rw-button" data-variant="secondary" aria-pressed="false">
+    Reports
+  </button>
 </nav>
 ```
