@@ -72,3 +72,4 @@ These are focused desktop Chromium observations. They do not establish physical-
 - Out-of-scale data displays an alert instead of a clipped chart. The observed current Chromium uses the dialog-command bridge; native command attributes remain available for supporting engines.
 
 These are focused manual Chromium observations and build/packaging results. Forced-color rules are supplied but this pass does not certify their rendering, screen-reader behavior or Safari/Firefox compatibility. The reference has no simulation backend or persistent game state.
+- Follow-up manager review: the Observatory declares a 1366 × 900 viewport. A manager-only flex-shrink correction preserves that 900px iframe height with Controls open; the manager scrolls the fixed desktop canvas instead of triggering the unsupported-screen notice. This does not change runtime component sizing.

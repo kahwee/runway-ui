@@ -57,6 +57,8 @@ Forced colors retain solid observed marks, outlined/dashed projected marks and t
 
 The Playground exposes heading/copy, six scenario choices, unit, maximum, target, plot height, custom data and labels, forecast count, event visibility/location/text, grid, exact-table state, row count, selection, long labels, scroll cue, available credits, upfront and recurring costs, expected effect, disabled decision and whimsy. Theme/density/depth remain global toolbar settings.
 
+Storybook fixes this composition’s viewport at 1366 × 900 so an open Controls panel does not reduce its CSS viewport below the desktop minimum. Use preview zoom or open Canvas in a new tab to inspect the whole workspace. The standalone page keeps its normal unsupported-screen notice.
+
 Three companion fixtures exercise shortage with insufficient budget, missing readings with long labels, and full/zero/missing boundary values with an event at the chart edge. Control changes remount the composition and dispose its previous controller. They reset selected-resource and pinned-plan feedback. The pin action acknowledges a preview choice only: no purchase, resource deduction or forecast change occurs.
 
 ## Quality scope

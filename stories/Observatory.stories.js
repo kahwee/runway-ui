@@ -5,7 +5,8 @@ import {demoHost} from './host.js';
 import {text,flag,range,select,object,withDefaults} from './helpers.js';
 export default {
   title:'Compositions/Simulation Observatory', tags:['autodocs'], args:defaults,
-  parameters:{layout:'fullscreen',controls:{expanded:true},docs:{description:{component:'A generic desktop reference composition: six CSS small multiples, observed/projected history, target line, native anchored event popover, shared-track resource ledger and an inspectable decision. No simulation rules, chart runtime, canvas or SVG chart. Use a desktop preview at least 1100 × 640; open Canvas in a new tab for the full workspace. The toolbar controls theme, density and depth. All fixtures are synthetic. Changes to args remount and reset the local pinned-plan state.'}}},
+  globals:{viewport:{value:'observatoryDesk',isRotated:false}},
+  parameters:{layout:'fullscreen',viewport:{options:{observatoryDesk:{name:'Observatory · 1366 × 900',styles:{width:'1366px',height:'900px'},type:'desktop'}}},controls:{expanded:true},docs:{description:{component:'A generic desktop reference composition: six CSS small multiples, observed/projected history, target line, native anchored event popover, shared-track resource ledger and an inspectable decision. No simulation rules, chart runtime, canvas or SVG chart. The manager uses a fixed 1366 × 900 desktop viewport so the Controls panel cannot trigger the unsupported-screen notice. Use zoom or open Canvas in a new tab for the full workspace. The toolbar controls theme, density and depth. All fixtures are synthetic. Changes to args remount and reset the local pinned-plan state.'}}},
   argTypes:withDefaults(defaults,{
     title:text('Workspace heading.'),subtitle:text('One-line introduction.'),
     scenario:select(['steady','recovery','shortage','zero','missing','custom'],'Synthetic data scenario. Presets use an absolute 0–100 dataset; a smaller maximum is rejected when values exceed it.','Data'),

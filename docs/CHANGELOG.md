@@ -5,7 +5,7 @@
 - Add a generic desktop reference composition with six CSS trend cards, a fixed-scale annotated history, striped projected observations, explicit missing readings and a target line.
 - Add history/observatory CSS exports, subgrid metric/ledger layouts and a modular independent example renderer/controller.
 - Add native anchored event popovers, a named CSS scroll-timeline cue and declarative dialog commands with an optional native bridge.
-- Add a Storybook playground with 26 arguments plus shortage, missing and boundary fixtures; document data/capability contracts and exact tables.
+- Add a Storybook playground with 26 arguments plus shortage, missing and boundary fixtures, using a fixed desktop viewport alongside Controls; document data/capability contracts and exact tables.
 - Maintain zero runtime dependencies, generic public material, reduced-motion/forced-color rules and desktop-only reference layouts.
 
 Source and Pages update; no npm registry publication.

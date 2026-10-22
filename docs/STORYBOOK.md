@@ -23,7 +23,7 @@ Chart data is validated before rendering. Values, labels, CSS inputs and exact-d
 
 ## Simulation Observatory
 
-The [Observatory playground](../storybook/?path=/story/compositions-simulation-observatory--playground) exposes 26 arguments with grouped descriptions and conditional custom data/event editors. Three companion fixtures exercise shortage, missing values and scale boundaries. This is a composed quality reference: inspect selection, native event popovers, scroll progress and the decision dialog alongside the charts. Use the toolbar for themes, density and depth; open the full Canvas for a desktop preview. Argument changes dispose and remount its optional demo controller.
+The [Observatory playground](../storybook/?path=/story/compositions-simulation-observatory--playground) exposes 26 arguments with grouped descriptions and conditional custom data/event editors. Three companion fixtures exercise shortage, missing values and scale boundaries. This is a composed quality reference: inspect selection, native event popovers, scroll progress and the decision dialog alongside the charts. These stories use a fixed 1366 × 900 desktop viewport so the Controls panel cannot shrink the preview into its unsupported-screen notice. Use the toolbar for themes, density, depth and zoom; open Canvas in a new tab for the full workspace. Argument changes dispose and remount its optional demo controller.
 
 ## Native HTML and class-based CSS
 
