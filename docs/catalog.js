@@ -13,7 +13,7 @@ export const catalog = [
     ['--g-panel-padding','CSS length','Default: 22px, or 16px in compact density.'],
   ], snippet:'<section class="g-panel" data-elevation="flat" aria-labelledby="heading">\n  <h2 id="heading">Production</h2>\n</section>' },
   { id:'input', name:'Input', description:'Style native input, select or textarea elements.', options:[
-    ['disabled','native boolean','Retains native disabled semantics.'],['readonly','native boolean','For supported input/textarea types.'],
+    ['--g-select-inset','CSS length','Default: 16px arrow inset, with a separate text gutter; RTL-aware.'],['data-picker','enhanced','Opt-in base-select picker where supported; otherwise the padded native dropdown.'],['disabled','native boolean','Retains native disabled semantics.'],['readonly','native boolean','For supported input/textarea types.'],
     ['aria-invalid','true | false','Apply after validation, alongside an associated text error.'],
     ['aria-describedby','element ID','Connect hint or validation text; never rely on color alone.'],
   ], snippet:'<label for="colony">Colony name</label>\n<input class="g-input" id="colony" aria-describedby="hint">\n<small id="hint">Use a name your crew will recognize.</small>' },

@@ -2,7 +2,7 @@ import "../index.css";
 import "../styles/native.css";
 import "./preview.css";
 export default {
-  initialGlobals: { theme: "studio", density: "comfortable" },
+  initialGlobals: { theme: "studio", density: "comfortable", depth:"raised" },
   globalTypes: {
     theme: {
       description: "Art direction",
@@ -12,6 +12,7 @@ export default {
         dynamicTitle: true,
       },
     },
+    depth:{description:"Control depth",toolbar:{icon:"circlehollow",items:["raised","flat"],dynamicTitle:true}},
     density: {
       description: "Control spacing",
       toolbar: {
@@ -47,6 +48,7 @@ export default {
       root.className = "g-ui story-surface";
       root.dataset.theme = context.globals.theme;
       root.dataset.density = context.globals.density;
+      root.dataset.depth = context.globals.depth;
       const content = story();
       if (typeof content === "string") root.innerHTML = content;
       else root.append(content);
@@ -54,6 +56,7 @@ export default {
       root.querySelectorAll("dialog").forEach((dialog) => {
         dialog.dataset.theme = context.globals.theme;
         dialog.dataset.density = context.globals.density;
+        dialog.dataset.depth = context.globals.depth;
       });
       return root;
     },

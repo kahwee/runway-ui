@@ -1,12 +1,17 @@
 @layer game-ui.tokens {
   :where(.g-ui) {
-    --g-bg:#f0efe7; --g-surface:#fffdf6; --g-raised:#f7f6ed;
-    --g-ink:#263e3b; --g-muted:#586b60; --g-line:#d8ddce;
+    --g-bg:#e9eadc; --g-surface:#fffbee; --g-raised:#f5f0df;
+    --g-ink:#2d4640; --g-muted:#5d6e5c; --g-line:#cdd2b9;
     --g-accent:#355c4b; --g-on-accent:#fffdf6; --g-soft:#edf0e4;
     --g-gold:#8a6326; --g-danger:#a34f3f; --g-focus:#bb662e;
-    --g-radius:10px; --g-shadow:0 6px 0 #263e3b0a,0 16px 40px #263e3b0b;
+    --g-radius:12px;
+    --g-highlight:color-mix(in oklch,var(--g-surface) 65%,white);
+    --g-control-edge:color-mix(in oklch,var(--g-line) 82%,var(--g-ink));
+    --g-control-depth:3px; --g-select-inset:16px;
+    --g-shadow:inset 0 1px var(--g-highlight),0 3px 0 color-mix(in oklch,var(--g-line) 80%,transparent),0 12px 28px color-mix(in oklch,var(--g-ink) 8%,transparent);
     --g-font:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    --g-control-font:11px; --g-control-block:11px; --g-control-inline:15px;
+    --g-display-font:ui-rounded,"Avenir Next",var(--g-font);
+    --g-control-font:13px; --g-control-block:11px; --g-control-inline:15px;
     --g-control-gap:15px; --g-panel-padding:22px; --g-field-padding:10px;
     --g-space:14px; --g-choice-padding:15px;
     color:var(--g-ink); font-family:var(--g-font); color-scheme:light;

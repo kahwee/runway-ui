@@ -1,0 +1,12 @@
+/* Native details retains behavior; supported engines animate its intrinsic size. */
+@layer game-ui.primitives {
+  .g-disclosure { interpolate-size:allow-keywords; }
+  @supports selector(::details-content) {
+    .g-disclosure::details-content {
+      block-size:0; opacity:0; overflow:clip;
+      transition:block-size .2s,opacity .2s,content-visibility .2s allow-discrete;
+    }
+    .g-disclosure[open]::details-content { block-size:auto; opacity:1; }
+    @media(prefers-reduced-motion:reduce) { .g-disclosure::details-content { transition:none; } }
+  }
+}

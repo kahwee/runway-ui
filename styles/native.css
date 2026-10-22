@@ -1,14 +1,4 @@
-/* Optional opt-in form skin: add g-ui g-native to a container. No global reset. */
-@layer game-ui.native {
-  :where(.g-native) :where(button,input[type=submit],input[type=button]) {
-    box-sizing:border-box; padding:var(--g-control-block) var(--g-control-inline); border:1px solid var(--g-line); border-radius:var(--g-radius);
-    color:var(--g-ink); background:var(--g-soft); font:550 var(--g-control-font)/1.2 var(--g-font); cursor:pointer;
-  }
-  :where(.g-native) :where(button[type=submit],input[type=submit]) { background:var(--g-accent); color:var(--g-on-accent); }
-  :where(.g-native) :where(input:not([type=button],[type=submit],[type=checkbox],[type=radio],[type=range]),select,textarea) {
-    box-sizing:border-box; border:1px solid var(--g-line); border-radius:var(--g-radius); padding:var(--g-field-padding);
-    font:inherit; color:var(--g-ink); background:var(--g-raised);
-  }
-  :where(.g-native) :where(button,input,select,textarea):focus-visible { outline:3px solid var(--g-focus); outline-offset:3px; }
-  :where(.g-native) :where(button,input,select,textarea):disabled { opacity:.45; cursor:not-allowed; }
-}
+/* Optional standalone native-form entry. The same recipes power explicit g- classes. */
+@import url('./tokens.css');
+@import url('./controls.css');
+@import url('./fields.css');

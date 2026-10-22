@@ -35,7 +35,7 @@
     overflow-wrap: anywhere;
   }
   .g-dialog__body {
-    max-block-size: 50dvh;
+    max-block-size: 50dvb;
     overflow: auto;
     overscroll-behavior: contain;
     scrollbar-gutter: stable;

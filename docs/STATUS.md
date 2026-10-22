@@ -1,6 +1,6 @@
 # Status
 
-Version 0.2.0 is early-stage source available on GitHub. It is not yet published to the npm registry. Public API changes are possible while the library matures.
+Version 0.3.0 is early-stage source available on GitHub. It is not yet published to the npm registry. Public API changes are possible while the library matures.
 
 ## Supported scope
 

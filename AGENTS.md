@@ -9,3 +9,10 @@
 - Keep all public material generic. Do not include private projects, personal naming discussions, local machine paths or consumer-specific adapters.
 - MIT is the only license for original code, styles, documentation and examples. Keep LICENSE in redistributions and package archives. Do not add attribution-in-UI requirements.
 - Build the self-contained CSS with npm run build. Do not publish npm packages, create releases or change hosting unless requested.
+
+## CSS direction
+
+- Modern CSS is the baseline: use native nesting, logical sizing, cascade layers, container queries and perceptual color mixing.
+- Use subgrid when children need shared parent alignment. Prefer the documented form, card, stat and choice layouts over duplicated track sizes or fixed-height alignment.
+- Add new layout patterns to the shared-track example and argument-driven Storybook playground. Keep native labels, controls and semantic wrappers.
+- Newer picker, chart, disclosure and dialog enhancements must have explicit capability/degradation notes in docs/MODERN-CSS.md. Prefer native CSS behavior to extra layout JavaScript.

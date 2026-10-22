@@ -198,5 +198,29 @@ export const Disclosure = {
     `<details class="g-disclosure story-width"${a.open ? " open" : ""}><summary>${e(a.summary)}</summary><p>${e(a.content)}</p></details>`,
 };
 
-for (const story of [Button, Panel, Badge, Input, Progress, Disclosure])
+export const Select = {
+  args: {
+    label:"Who gets the good clipboard?", options:"Research & improbable inventions\nOperations & tea logistics\nAccounts & biscuit procurement",
+    selected:0, hint:"A native select with a little breathing room.", width:420,
+    arrowInset:16, direction:"ltr", disabled:false, invalid:false, required:false,
+    multiple:false, nativeSkin:false, picker:"native",
+  },
+  argTypes: {
+    label:text("Associated native label."), options:text("One option per line, at most 12."),
+    selected:range(0,11,1,"Initial selected option index.","Data"),
+    hint:text("Help associated with the field."), width:range(180,700,10,"Field width; try long labels at 180px."),
+    arrowInset:range(10,28,1,"--g-select-inset. Distance between arrow and inline edge."),
+    direction:select(["ltr","rtl"],"Direction changes arrow placement and text alignment.","HTML"),
+    disabled:flag("Native disabled control."),invalid:flag("aria-invalid and border state."),required:flag("Native required constraint."),
+    multiple:flag("Native multi-select/listbox; never draws a dropdown arrow.","HTML"),
+    nativeSkin:flag("Use g-native instead of an explicit g-input class.","HTML"),
+    picker:select(["native","enhanced"],"Opt into base-select where supported; fallback remains native.","HTML"),
+  },
+  render:a=>{
+    const id=uniqueId("select"),options=String(a.options).split("\n").map(v=>v.trim()).filter(Boolean).slice(0,12);
+    const index=Math.trunc(bounded(a.selected,0,Math.max(0,options.length-1)));
+    return `<div class="g-stack${a.nativeSkin?' g-native':''}" dir="${e(a.direction)}" style="max-inline-size:${bounded(a.width,180,700)}px;--g-select-inset:${bounded(a.arrowInset,10,28)}px"><label for="${id}">${e(a.label)}</label><select id="${id}"${a.nativeSkin?'':' class="g-input"'} data-picker="${e(a.picker)}" aria-describedby="${id}-hint"${a.disabled?' disabled':''}${a.required?' required':''}${a.invalid?' aria-invalid="true"':''}${a.multiple?' multiple size="3"':''}>${options.map((v,i)=>`<option${i===index?' selected':''}>${e(v)}</option>`).join('')}</select><small class="g-muted" id="${id}-hint">${e(a.hint)}</small></div>`;
+  },
+};
+for (const story of [Button, Panel, Badge, Input, Select, Progress, Disclosure])
   story.argTypes = withDefaults(story.args, story.argTypes);

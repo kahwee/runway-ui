@@ -11,4 +11,5 @@
     --g-soft:#e7d5ab; --g-gold:#896010; --g-danger:#a0412e; --g-focus:#a0412e;
     --g-radius:2px; --g-shadow:3px 3px 0 #72573524; --g-font:Georgia,serif;
   }
+  .g-ui[data-depth=flat] { --g-control-depth:0px; --g-shadow:none; }
 }

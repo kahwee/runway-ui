@@ -1,0 +1,41 @@
+/* Native form behavior, with a comfortable and direction-aware arrow gutter. */
+@layer game-ui.primitives {
+  :where(.g-input,.g-native input:not([type=button],[type=submit],[type=checkbox],[type=radio],[type=range]),.g-native select,.g-native textarea) {
+    box-sizing:border-box; min-inline-size:0; max-inline-size:100%;
+    color:var(--g-ink); background-color:var(--g-raised); border:1px solid var(--g-line);
+    border-radius:var(--g-radius); padding:var(--g-field-padding); font:inherit; line-height:1.4;
+    box-shadow:inset 0 2px 3px color-mix(in oklch,var(--g-ink) 5%,transparent),0 1px var(--g-highlight);
+  }
+  :where(.g-input,.g-native input,.g-native select,.g-native textarea):focus-visible { outline:3px solid var(--g-focus); outline-offset:3px; }
+  :where(.g-input,.g-native input,.g-native select,.g-native textarea):disabled { opacity:.55; cursor:not-allowed; }
+  :where(.g-input,.g-native input,.g-native textarea)[readonly] { background-color:var(--g-soft); }
+  :where(.g-input,.g-native input,.g-native select,.g-native textarea):is([aria-invalid=true],:user-invalid) { border-color:var(--g-danger); }
+  :where(select.g-input,.g-native select):not([multiple]):is(:not([size]),[size="1"]) {
+    appearance:none; padding-inline-end:calc(var(--g-select-inset) + 24px);
+    background-image:linear-gradient(45deg,transparent 50%,var(--g-muted) 50%),linear-gradient(135deg,var(--g-muted) 50%,transparent 50%);
+    background-position:right calc(var(--g-select-inset) + 5px) center,right var(--g-select-inset) center;
+    background-size:5px 5px; background-repeat:no-repeat;
+    text-overflow:ellipsis; white-space:nowrap; cursor:pointer;
+  }
+  :where(select.g-input,.g-native select):not([multiple]):is(:not([size]),[size="1"]):dir(rtl) {
+    background-position:left var(--g-select-inset) center,left calc(var(--g-select-inset) + 5px) center;
+  }
+  :where(select.g-input,.g-native select):disabled { cursor:not-allowed; }
+  /* Opt-in newer picker: unsupported browsers keep the native dropdown above. */
+  @supports (appearance:base-select) {
+    :where(select.g-input,.g-native select)[data-picker=enhanced]:not([multiple]):is(:not([size]),[size="1"]),
+    :where(select.g-input,.g-native select)[data-picker=enhanced]:not([multiple]):is(:not([size]),[size="1"])::picker(select) { appearance:base-select; }
+    :where(select.g-input,.g-native select)[data-picker=enhanced]:not([multiple]):is(:not([size]),[size="1"]) { background-image:none; padding-inline-end:var(--g-select-inset); justify-content:space-between; align-items:center; }
+    :where(select.g-input,.g-native select)[data-picker=enhanced]::picker-icon { color:var(--g-muted); margin-inline-start:18px; transition:rotate .16s; }
+    :where(select.g-input,.g-native select)[data-picker=enhanced]:open::picker-icon { rotate:180deg; }
+    :where(select.g-input,.g-native select)[data-picker=enhanced]::picker(select) { background:var(--g-surface); color:var(--g-ink); border:1px solid var(--g-line); border-radius:var(--g-radius); padding:6px; box-shadow:var(--g-shadow); }
+    :where(select.g-input,.g-native select)[data-picker=enhanced] option { padding:10px 12px; border-radius:calc(var(--g-radius) * .6); }
+    :where(select.g-input,.g-native select)[data-picker=enhanced] option:hover { background:var(--g-soft); }
+    :where(select.g-input,.g-native select)[data-picker=enhanced] option:checked { background:var(--g-soft); font-weight:650; }
+  }
+  @media (prefers-reduced-motion:reduce) { :where(select.g-input,.g-native select)::picker-icon { transition:none; } }
+  @media (forced-colors:active) {
+    :where(.g-input,.g-native input,.g-native select,.g-native textarea) { box-shadow:none; }
+    :where(select.g-input,.g-native select):not([multiple]):is(:not([size]),[size="1"]) { appearance:auto; background-image:none; padding-inline-end:var(--g-field-padding); }
+  }
+}

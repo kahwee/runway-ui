@@ -6,6 +6,16 @@ Resource HUDs, production ledgers, economy charts, equipment grids, objectives a
 
 **MIT licensed. Free for personal and commercial projects, including closed-source games.** Keep the license notice in redistributed copies. No attribution in your interface is required. See [LICENSE](LICENSE).
 
+## Modern CSS foundation
+
+Subgrid aligns cards, fields, stat tiles, choices, objectives, production rows and chart series. Native nesting, container queries, logical sizing, OKLCH colors, typed meter properties and CSS-driven native disclosures are part of the implementation. Newer picker/chart/dialog capabilities use feature-aware enhancement. See the [modern CSS contract](docs/MODERN-CSS.md) and [shared-track workshop](examples/layouts.html).
+
+## Comfortable defaults
+
+Warm Studio colors, tactile controls and softly raised panels are the default. Add `data-depth="flat"` on a `g-ui` root for quieter surfaces. `select.g-input` reserves a 16px arrow inset and a separate text gutter, including RTL. `data-picker="enhanced"` progressively enables the newer native picker where supported. No JavaScript is needed for field styling.
+
+See [the Clipboard Club](examples/controls.html) and [field documentation](docs/FIELDS.md), or tune the Select playground in Storybook. The bundle now includes the `g-native` opt-in selectors; `native.css` remains a compatible standalone form entry.
+
 ## Explore the library
 
 - [Live workshop](https://kahwee.github.io/runway-ui/)

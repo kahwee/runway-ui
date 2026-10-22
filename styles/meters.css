@@ -1,8 +1,9 @@
+@property --g-value { syntax:"<percentage>"; inherits:true; initial-value:0%; }
 @layer game-ui.meters {
-  .g-meter { margin-top:9px; }
-  .g-meter__label { display:flex; justify-content:space-between; gap:12px; font-size:10px; color:var(--g-muted); margin-bottom:5px; }
-  .g-meter__track { height:var(--g-meter-height,6px); border-radius:4px; background:var(--g-soft); overflow:hidden; }
-  .g-meter__fill { height:100%; width:clamp(0%,var(--g-value,0%),100%); border-radius:inherit; background:var(--g-meter-color,var(--g-accent)); transition:width .4s; }
+  .g-meter { margin-block-start:9px; }
+  .g-meter__label { display:flex; justify-content:space-between; gap:12px; font-size:10px; color:var(--g-muted); margin-block-end:5px; }
+  .g-meter__track { block-size:var(--g-meter-height,6px); border-radius:4px; background:var(--g-soft); overflow:hidden; }
+  .g-meter__fill { block-size:100%; inline-size:clamp(0%,var(--g-value,0%),100%); border-radius:inherit; background:var(--g-meter-color,var(--g-accent)); transition:--g-value .4s; }
   .g-meter[data-tone=warning] { --g-meter-color:var(--g-gold); }
   .g-meter[data-tone=danger] { --g-meter-color:var(--g-danger); }
   .g-meter[data-tone=design] { --g-meter-color:#9577af; }

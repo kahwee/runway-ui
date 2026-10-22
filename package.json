@@ -1,6 +1,6 @@
 {
   "name": "runway-ui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Modern HTML/CSS interface primitives for simulation and management games",
   "type": "module",
   "sideEffects": [
@@ -24,7 +24,10 @@
     "./native.css": "./styles/native.css",
     "./bundle.css": "./dist/runway-ui.css",
     "./charts.css": "./styles/charts.css",
-    "./dialog.css": "./styles/dialog.css"
+    "./dialog.css": "./styles/dialog.css",
+    "./controls.css": "./styles/controls.css",
+    "./fields.css": "./styles/fields.css",
+    "./layout.css": "./styles/layout.css"
   },
   "files": [
     "index.css",
