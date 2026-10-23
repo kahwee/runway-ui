@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Quiet fields retain the fallback single-select chevron. Surface color no longer
+  resets the field background image; native and enhanced pickers keep their own
+  arrow and reserved text space. Browser contracts cover this theme combination.
+
 - Dialog stacked actions now follow DOM order instead of reversing it; place
   controls in the intended reading and keyboard order. Long-content typography,
   paragraph spacing and close targets are tightened. Add compact, long-content

@@ -66,3 +66,17 @@ The fixture is available at `tests/browser-contracts.html` for local reproductio
 CI runs Node contracts and type checks, not native browser automation. Storybook/site,
 309 documentation links, frozen install, package checks and Biome passed. This review
 does not claim cross-browser certification or a new performance benchmark.
+
+## Quiet single-select fallback (2026-10-22)
+
+Changed the quiet field surface to set background-color instead of resetting the
+entire background. The fallback single-select skin retains its CSS chevron and
+reserved arrow space; enhanced pickers retain their native picker icon. Added a
+browser contract that checks the actual computed fallback appearance, chevron
+image and end padding inside a quiet root.
+
+Passed 29 Node tests, boundary checks, generated type verification, CSS/package
+build, static Storybook/site build, 309 documentation links and pack dry-run.
+Native Chromium 154 browser contracts passed all nine behavior modules, including
+the new computed-style assertion, at 1440×900 and 1366×768. No browser behavior API
+or dependency changed. This is a Chromium result, not cross-browser certification.

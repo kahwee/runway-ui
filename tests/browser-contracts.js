@@ -19,6 +19,20 @@ export async function runBehaviorContracts() {
   document.body.append(root);
   root.innerHTML =
     '<label for="review-range">Level</label><input class="rw-range" type="range" id="review-range" min="0" max="100" value="25"><output for="review-range"></output><nav><button aria-pressed="true">First</button><button>Second</button></nav><div class="inventory" style="height:220px;overflow:auto"></div><div class="chart"></div>';
+  const quietFields = document.createElement("section");
+  quietFields.className = "rw-ui";
+  quietFields.dataset.appearance = "quiet";
+  quietFields.innerHTML =
+    '<label>Display<select class="rw-input" data-picker="native"><option>Summary</option></select></label>';
+  root.append(quietFields);
+  const fallbackStyle = getComputedStyle(quietFields.querySelector("select"));
+  assert(fallbackStyle.appearance === "none", "Fallback select uses the shared field skin");
+  assert(
+    fallbackStyle.backgroundImage.includes("linear-gradient"),
+    "Quiet fallback keeps both chevron strokes",
+  );
+  assert(parseFloat(fallbackStyle.paddingInlineEnd) >= 24, "Fallback text reserves arrow space");
+  quietFields.remove();
   const rangeBinding = forms.bindRanges(root, {
     format: (value, input) => `${input.id}: ${value}`,
   });

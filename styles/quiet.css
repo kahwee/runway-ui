@@ -116,7 +116,7 @@
     }
   }
   & .rw-input {
-    background: var(--rw-surface);
+    background-color: var(--rw-surface);
     box-shadow: none;
     border-color: var(--rw-line);
     border-radius: 5px;
