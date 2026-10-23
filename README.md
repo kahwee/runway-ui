@@ -45,7 +45,7 @@ import "runway-ui/bundle.css";
 import { bindDialog } from "runway-ui/dialog";
 ```
 
-This project is available on GitHub; **it has not been published to the npm registry**. GitHub installation is shown intentionally. The committed CSS bundle is ready to use without a build step. Node 22+ is needed only to rebuild it.
+This project is available on GitHub; **it has not been published to the npm registry**. GitHub installation is shown intentionally. The committed CSS bundle is ready to use without a build step. Node 22.18+ (or 24.11+) is needed only for development and rebuilding.
 
 ## Explore locally
 

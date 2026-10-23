@@ -80,3 +80,16 @@ build, static Storybook/site build, 309 documentation links and pack dry-run.
 Native Chromium 154 browser contracts passed all nine behavior modules, including
 the new computed-style assertion, at 1440×900 and 1366×768. No browser behavior API
 or dependency changed. This is a Chromium result, not cross-browser certification.
+
+## Dependency refresh — 2026-10-23
+
+Upgraded the development-only Babel parser from 7.29.9 to 8.0.7, preserving the
+AST-based module boundary checker and its fixtures. Other direct dependencies
+were already at current stable registry versions. The Node development minimum
+now reflects Babel 8's supported engines. Runtime dependencies remain zero.
+
+Validation passed: frozen install, lint, boundary checks/fixtures, native-dialog
+contracts, generated declarations and consumer types, behavior tests, CSS build,
+Storybook/static documentation build, 309 local documentation links and package
+dry run. The registry audit reported zero advisories before this update; it is
+not the reason for changing the parser version. No runtime CSS/API changes.
