@@ -3,7 +3,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 
 const bold =
-  "arrows-clockwise x check plus minus caret-down caret-up caret-right caret-left arrow-right arrow-left arrow-up-right arrow-up arrow-down sparkle heart star warning info check-circle x-circle circle smiley coins users flask sun rocket package lightning drop leaf trophy flag target clock magnifying-glass gear bell terminal-window keyboard coffee lock chart-line-up cube compass planet lightbulb confetti".split(
+  "arrows-clockwise x check plus minus caret-down caret-up caret-right caret-left arrow-right arrow-left arrow-up-right arrow-up arrow-down sparkle heart star warning info check-circle x-circle circle smiley coins users flask sun rocket package lightning drop leaf trophy flag target clock magnifying-glass gear bell terminal-window keyboard coffee lock arrows-out book-open play pause fast-forward crosshair storefront desktop buildings armchair hard-drives arrow-clockwise arrow-counter-clockwise chart-line-up cube compass planet lightbulb confetti".split(
     " ",
   );
 const duotone =
