@@ -125,6 +125,8 @@ copy; engines without those text enhancements use ordinary wrapping. Container
 queries and `:open` are the modern baseline; no JavaScript layout fallback is
 provided. Scroll containment prevents a long dialog from chaining to its page.
 
-The optional policy helper requires native `requestClose()` and `closedBy` and
-uses browser-owned light dismissal. It retains a cancel guard for dynamic required
-decisions. Call `refresh()` when policy changes to update `closedby`.
+The optional policy helper requires native `showModal()` and `close()`. Native
+`requestClose()` and `closedBy` are progressive enhancements. When missing, the
+helper routes close requests through a cancelable event and recognizes matching
+backdrop pointer gestures locally. Native focus and inertness remain unchanged;
+required decisions retain a live cancel guard. Call `refresh()` when policy changes.

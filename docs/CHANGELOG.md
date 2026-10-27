@@ -18,10 +18,11 @@
 - **Breaking dialog migration:** import `dialog.css` with tokens when selecting
   individual modules; `primitives.css` and `simulation.css` no longer supply the
   dialog surface or motion. The full entry and bundle already include it.
-- **Breaking browser requirement:** `bindDialog` requires native `requestClose()`
-  and `closedBy`; synthetic close and backdrop-click emulation are removed. Dialog
-  CSS uses `:open`. Keep explicit confirmation actions and call `refresh()` when
-  dismissal policy changes. Existing controller method names remain unchanged.
+- `bindDialog` now tolerates missing `requestClose()` and `closedBy` while still
+  requiring native `showModal()` and `close()`. Local cancelable close requests and
+  matching backdrop pointer gestures preserve vetoes and required-decision guards.
+  Modern browsers retain native dismissal. No global polyfill, focus trap, runtime
+  dependency or controller API change is introduced. Dialog CSS still uses `:open`.
 - Dialog container queries stack compact action rows; balanced headings, pretty
   body wrapping and scroll containment improve layout. Reduced motion disables
   surface/backdrop transitions and close-button transforms.

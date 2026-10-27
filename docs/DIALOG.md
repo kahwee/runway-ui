@@ -66,7 +66,7 @@ The complete `index.css` or bundle includes this component. The `runway-ui/dialo
 - Keep an enabled explicit exit action even when dismissal is restricted. Disabling every action can trap users.
 - Put autofocus on a safe initial choice. Do not focus a disabled or absent control.
 
-Invoker commands and `closedby` need current browser support. The optional `bindDialog` helper manages opening and dismissal policy and requires native `HTMLDialogElement.requestClose()` and `closedBy`; it uses `closedby="any"` for native light dismiss and `none` for required decisions, without synthetic backdrop click handling. Cancel listeners can still veto a request, and `canDismiss` protects required decisions. Styling uses the same classes in either case. The class API adds no JavaScript dependency.
+Invoker commands and `closedby` need current browser support. The optional `bindDialog` helper requires native `showModal()` and `close()`. It uses native `requestClose()` and `closedBy` when available. Without `requestClose()`, it dispatches a cancelable `cancel` event before calling native `close()`; every cancel listener can veto closure. Without `closedBy`, it recognizes a primary pointer gesture that begins and ends on the backdrop, then makes the same guarded close request. Dragging from inside the dialog, cancelled gestures and secondary pointers do not dismiss it. Required decisions retain the live `canDismiss` guard and cancel protection. No global prototype patch, custom focus trap or runtime dependency is introduced; the browser still owns focus, inertness, Escape and form return values.
 
 
 ## Action order and safe decisions

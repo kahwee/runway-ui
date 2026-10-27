@@ -110,8 +110,9 @@ export async function runBehaviorContracts() {
   let allowed = false;
   const policy = dialogs.bindDialog(dialog, { canDismiss: () => allowed });
   policy.open();
-  dialog.requestClose();
-  assert(dialog.open && dialog.closedBy === "none", "Native required decision");
+  if (typeof dialog.requestClose === "function") dialog.requestClose();
+  else dialog.dispatchEvent(new Event("cancel", { cancelable: true }));
+  assert(dialog.open && dialog.getAttribute("closedby") === "none", "Native required decision");
   allowed = true;
   policy.refresh();
   assert(policy.requestClose("done"), "Native optional close request");

@@ -20,6 +20,13 @@ function nativeDialog() {
       this.open = true;
       this.modal = true;
     },
+    close(value) {
+      this.open = false;
+      this.modal = false;
+      if (value !== undefined) this.returnValue = value;
+      this.dispatchEvent(new Event("close"));
+    },
+    getBoundingClientRect: () => ({ left: 100, top: 100, right: 300, bottom: 300 }),
     requestClose(value) {
       if (this.dispatchEvent(new Event("cancel", { cancelable: true }))) {
         this.open = false;
@@ -92,14 +99,124 @@ test("destroy restores policy and removes the cancellation guard", () => {
   assert.equal(controller.requestClose(), false);
 });
 
-test("unsupported dialog implementations fail before binding listeners", () => {
-  const dialog = nativeDialog();
-  dialog.requestClose = undefined;
-  assert.throws(() => bindDialog(dialog), /requestClose/);
+test("native showModal and close remain required", () => {
+  for (const name of ["showModal", "close"]) {
+    const dialog = nativeDialog();
+    dialog[name] = undefined;
+    assert.throws(() => bindDialog(dialog), /native HTMLDialogElement/);
+  }
 });
 
-test("native light-dismiss capability is required", () => {
+test("missing light-dismiss support binds without changing native modal opening", () => {
   const dialog = nativeDialog();
   delete dialog.closedBy;
-  assert.throws(() => bindDialog(dialog), /closedBy/);
+  const policy = bindDialog(dialog);
+  policy.open();
+  assert.equal(dialog.modal, true);
+  assert.equal(dialog.getAttribute("closedby"), "closerequest");
+  policy.destroy();
+});
+
+test("missing requestClose preserves cancellation, dynamic guards and return values", () => {
+  const dialog = nativeDialog();
+  delete dialog.requestClose;
+  delete dialog.closedBy;
+  let allowed = false;
+  const policy = bindDialog(dialog, { canDismiss: () => allowed });
+  policy.open();
+  assert.equal(policy.requestClose("blocked"), false);
+  assert.equal(dialog.dispatchEvent(new Event("cancel", { cancelable: true })), false);
+  assert.equal(dialog.open, true);
+  allowed = true;
+  policy.refresh();
+  let cancels = 0;
+  dialog.addEventListener(
+    "cancel",
+    (event) => {
+      cancels++;
+      event.preventDefault();
+    },
+    { once: true },
+  );
+  assert.equal(policy.requestClose("vetoed"), true);
+  assert.equal(cancels, 1);
+  assert.equal(dialog.open, true);
+  assert.equal(dialog.returnValue, "");
+  assert.equal(policy.requestClose("accepted"), true);
+  assert.equal(dialog.open, false);
+  assert.equal(dialog.returnValue, "accepted");
+  policy.open();
+  policy.requestClose();
+  assert.equal(dialog.returnValue, "accepted", "omitted return value stays native");
+  policy.destroy();
+});
+
+function pointer(dialog, type, overrides = {}) {
+  dialog.dispatchEvent(
+    Object.assign(new Event(type), {
+      clientX: 50,
+      clientY: 50,
+      pointerId: 1,
+      button: 0,
+      isPrimary: true,
+      ...overrides,
+    }),
+  );
+}
+
+test("fallback backdrop requires the same outside primary pointer gesture and respects policy", () => {
+  const dialog = nativeDialog();
+  delete dialog.closedBy;
+  delete dialog.requestClose;
+  let allowed = false;
+  const policy = bindDialog(dialog, { canDismiss: () => allowed });
+  const gesture = (down = {}, up = {}) => {
+    pointer(dialog, "pointerdown", down);
+    pointer(dialog, "pointerup", up);
+  };
+  policy.open();
+  gesture();
+  assert.equal(dialog.open, true, "mandatory decision cannot light-dismiss");
+  allowed = true;
+  policy.refresh();
+  gesture({ clientX: 150, clientY: 150 });
+  assert.equal(dialog.open, true, "drag from dialog padding to backdrop stays open");
+  gesture({}, { clientX: 150, clientY: 150 });
+  assert.equal(dialog.open, true, "drag from backdrop into dialog stays open");
+  gesture({}, { pointerId: 2 });
+  gesture({ button: 2 });
+  gesture({ isPrimary: false });
+  pointer(dialog, "pointerdown");
+  pointer(dialog, "pointercancel");
+  pointer(dialog, "pointerup");
+  assert.equal(dialog.open, true, "mismatched, secondary and cancelled gestures stay open");
+  dialog.addEventListener("cancel", (event) => event.preventDefault(), { once: true });
+  gesture();
+  assert.equal(dialog.open, true, "another listener can veto backdrop dismissal");
+  gesture();
+  assert.equal(dialog.open, false);
+  policy.destroy();
+});
+
+test("destroy removes fallback listeners, restores policy and cannot disturb a replacement binding", () => {
+  const dialog = nativeDialog();
+  delete dialog.closedBy;
+  delete dialog.requestClose;
+  dialog.setAttribute("closedby", "any");
+  const retired = bindDialog(dialog);
+  retired.open();
+  retired.destroy();
+  assert.equal(dialog.getAttribute("closedby"), "any");
+  const current = bindDialog(dialog, { canDismiss: () => false });
+  current.refresh();
+  retired.destroy();
+  assert.equal(dialog.getAttribute("closedby"), "none");
+  pointer(dialog, "pointerdown");
+  pointer(dialog, "pointerup");
+  assert.equal(dialog.open, true);
+  current.destroy();
+  assert.equal(dialog.dispatchEvent(new Event("cancel", { cancelable: true })), true);
+  pointer(dialog, "pointerdown");
+  pointer(dialog, "pointerup");
+  assert.equal(dialog.open, true, "destroy never closes the native dialog");
 });
