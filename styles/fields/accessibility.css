@@ -22,12 +22,15 @@
     :where(.rw-input, .rw-native input, .rw-native select, .rw-native textarea) {
       box-shadow: none;
     }
-    :where(select.rw-input, .rw-native select):not([multiple]):is(:not([size]), [size="1"]) {
+    /* Outrank the customizable-picker recipe, including its appearance on the picker. */
+    :is(select.rw-input, .rw-native select):not([multiple]):is(:not([size]), [size="1"]) {
       appearance: auto;
       background-image: none;
       padding-inline-end: var(--rw-field-padding);
     }
-    :where(select.rw-input, .rw-native select)::picker(select) {
+    :is(select.rw-input, .rw-native select):not([multiple]):is(:not([size]), [size="1"])::picker(
+        select
+      ) {
       appearance: auto;
       background: Canvas;
       color: CanvasText;

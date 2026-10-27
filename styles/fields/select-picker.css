@@ -23,6 +23,7 @@
       gap: 12px;
       min-block-size: 38px;
       white-space: normal;
+      overflow-wrap: anywhere;
       text-align: start;
     }
     :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(
@@ -169,6 +170,7 @@
       display: flex;
       align-items: center;
       inline-size: 100%;
+      min-inline-size: 0;
       cursor: inherit;
     }
     :where(select.rw-input, .rw-native select):not([data-picker="native"]):not([multiple]):is(

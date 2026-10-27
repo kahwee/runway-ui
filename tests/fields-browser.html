@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Field layout contracts · Runway UI</title>
+    <link rel="stylesheet" href="../dist/runway-ui.css">
+  </head>
+  <body class="rw-ui" style="margin: 32px; font: 14px / 1.5 system-ui">
+    <h1>Field layout contracts</h1>
+    <p>220px containers within a desktop viewport. Tab and arrow keys use native controls.</p>
+    <p id="result" role="status">Running…</p>
+    <script type="module">
+    import { runFieldContracts } from "./fields-browser.js";
+
+    const result = document.querySelector("#result");
+    try {
+      const receipt = await runFieldContracts();
+      result.textContent = `${receipt.checks} checks passed · forced colors: ${receipt.forcedColors}`;
+      result.dataset.result = "passed";
+    } catch (error) {
+      result.textContent = String(error);
+      result.dataset.result = "failed";
+      throw error;
+    }
+    </script>
+  </body>
+</html>
