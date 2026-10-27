@@ -138,5 +138,21 @@ function search() {
   $("#no-results").hidden = count !== 0;
 }
 $("#search").addEventListener("input", search);
+$("#search").addEventListener("keydown", (event) => {
+  if (
+    event.key !== "Enter" ||
+    event.isComposing ||
+    event.keyCode === 229 ||
+    !$("#search").value.trim()
+  )
+    return;
+  search();
+  const first = cards.find((card) => !card.article.hidden);
+  if (!first) return;
+  event.preventDefault();
+  const link = first.article.querySelector("a");
+  link.click();
+  link.focus({ preventScroll: true });
+});
 update();
 search();
