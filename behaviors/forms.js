@@ -3,6 +3,7 @@
 /** @param {ParentNode} [root] @param {RangeBindingOptions} [options] */
 export function bindRanges(root = document, { format = (value) => String(value) } = {}) {
   const abort = new AbortController();
+  let destroyed = false;
   /** @param {HTMLInputElement} input */
   const sync = (input) => {
     const min = Number(input.min || 0),
@@ -32,6 +33,8 @@ export function bindRanges(root = document, { format = (value) => String(value) 
   ).forEach(sync);
   return {
     destroy() {
+      if (destroyed) return;
+      destroyed = true;
       abort.abort();
       /** @type {NodeListOf<HTMLInputElement>} */ (
         root.querySelectorAll("input[type=range].rw-range")
