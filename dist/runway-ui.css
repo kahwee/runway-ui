@@ -1169,6 +1169,7 @@
     display: grid;
     gap: var(--rw-content-gap, 10px);
     min-inline-size: 0;
+    overflow-wrap: anywhere;
   }
   .rw-options > legend {
     padding: 0;

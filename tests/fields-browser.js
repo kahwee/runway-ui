@@ -1,6 +1,6 @@
 /** Run against the built CSS in a real browser, including --force-high-contrast. */
 export async function runFieldContracts() {
-  document.querySelector("[data-field-contract]")?.remove();
+  for (const fixture of document.querySelectorAll("[data-field-contract]")) fixture.remove();
   const root = document.createElement("section");
   root.dataset.fieldContract = "";
   root.style.cssText = "display:grid;grid-template-columns:repeat(3,220px);gap:32px";
@@ -77,6 +77,56 @@ export async function runFieldContracts() {
     document.elementFromPoint(rect.x + rect.width / 2, rect.y + rect.height / 2) === neighbor,
     "Adjacent action remains reachable",
   );
+  const labels = document.createElement("section");
+  labels.style.cssText = root.style.cssText;
+  labels.style.marginBlockStart = "32px";
+  labels.dataset.fieldContract = "";
+  const labelCases = [
+    [
+      "required-label",
+      `<input class="rw-input" id="required-label" value="Current value" required>`,
+    ],
+    ["native-label", `<input id="native-label" value="Native value">`],
+    ["textarea-label", `<textarea class="rw-input" id="textarea-label">Notes</textarea>`],
+    ["disabled-label", `<input class="rw-input" id="disabled-label" value="Locked" disabled>`],
+    ["ordinary-label", `<input class="rw-input" id="ordinary-label" value="Ordinary">`],
+    [
+      "group-label",
+      `<div class="rw-input-group"><input class="rw-input" id="group-label" value="Query"><button class="rw-button" type="button">Search</button></div>`,
+    ],
+  ];
+  labels.innerHTML = labelCases
+    .map(
+      ([id, control]) =>
+        `<div class="rw-field rw-native"><label for="${id}"><span>${id === "ordinary-label" ? "Ordinary label" : long}</span></label>${control}<small>${id === "ordinary-label" ? "Short hint" : long}</small></div>`,
+    )
+    .join("");
+  root.after(labels);
+  for (const [id] of labelCases) {
+    const input = labels.querySelector(`#${id}`);
+    const field = input.closest(".rw-field");
+    field.scrollIntoView({ block: "center", behavior: "instant" });
+    const label = field.querySelector("label");
+    assert(label.scrollWidth <= label.clientWidth + 1, `${id}: label stays inside field`);
+    assert(
+      input.getBoundingClientRect().width <= field.clientWidth + 1,
+      `${id}: label does not enlarge control`,
+    );
+    assert(field.scrollWidth <= field.clientWidth + 1, `${id}: hint stays inside field`);
+    const bounds = input.getBoundingClientRect();
+    assert(
+      document.elementFromPoint(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2) ===
+        input,
+      `${id}: adjacent label does not cover input`,
+    );
+    if (input.disabled) {
+      input.focus();
+      assert(document.activeElement !== input, `${id}: disabled semantics retained`);
+    } else {
+      input.focus();
+      assert(document.activeElement === input, `${id}: native control retains focus`);
+    }
+  }
   native.focus();
   return { checks, forcedColors, browser: navigator.userAgent };
 }
