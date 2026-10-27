@@ -42,7 +42,8 @@ export function bindDialog(dialog, { canDismiss = () => true } = {}) {
     open() {
       if (destroyed) return;
       refresh();
-      if (!dialog.open) dialog.showModal();
+      // Native showModal rejects nonmodal state and is idempotent when already modal.
+      dialog.showModal();
     },
     refresh,
     requestClose,
