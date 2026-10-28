@@ -1,10 +1,12 @@
+import type { Meta, StoryObj } from "@storybook/html-vite";
+import type { PreferencesFormProps } from "./preferences-form.tsx";
 import { expect, userEvent, waitFor, within } from "storybook/test";
 import { flag, meta, range, select, text } from "../helpers.js";
-import { PreferencesForm } from "./preferences-form.js";
+import { PreferencesForm } from "./preferences-form.tsx";
 import { renderReactStory } from "./story-host.js";
 import "./forms.css";
 
-const args = {
+const args: PreferencesFormProps = {
   heading: "Workspace preferences",
   workspaceName: "Orchard",
   mode: "steady",
@@ -16,9 +18,7 @@ const args = {
   showUnavailable: true,
   width: 420,
 };
-export default {
-  title: "React/Base UI forms",
-  tags: ["autodocs"],
+const storyMeta: Meta<PreferencesFormProps> = {
   ...meta(
     "React/Base UI forms",
     "Real React 19 and Base UI controls. Args set the starting form state; preview edits stay local. Changing args remounts the form and clears its receipt. Toolbar themes also apply to the select portal.",
@@ -36,13 +36,17 @@ export default {
       width: range(220, 640, 20, "Maximum form width; shrinks to the available canvas."),
     },
   ),
+  title: "React/Base UI forms",
+  tags: ["autodocs"],
   render: (values) => renderReactStory(PreferencesForm, values),
 };
 
 // Keep the original story URL while making its previously fixed values editable.
-export const Preferences = {};
-export const Disabled = { args: { disabled: true, reminders: true, mode: "care" } };
-export const Narrow = {
+export default storyMeta;
+type Story = StoryObj<PreferencesFormProps>;
+export const Preferences: Story = {};
+export const Disabled: Story = { args: { disabled: true, reminders: true, mode: "care" } };
+export const Narrow: Story = {
   args: {
     width: 220,
     heading: "Preferences for the shared workspace",
@@ -50,7 +54,7 @@ export const Narrow = {
     showUnavailable: false,
   },
 };
-export const KeyboardFlow = {
+export const KeyboardFlow: Story = {
   args: { showUnavailable: false },
   play: async ({ canvasElement, args: values }) => {
     const canvas = within(canvasElement);

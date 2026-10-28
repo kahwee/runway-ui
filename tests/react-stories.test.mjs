@@ -2,8 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { ButtonExample, InputExample } from "../stories/react/controls.js";
-import { PreferencesForm } from "../stories/react/preferences-form.js";
+import { ButtonExample, InputExample } from "../stories/react/controls.tsx";
+import { PreferencesForm } from "../stories/react/preferences-form.tsx";
 
 const form = {
   heading: "Workspace preferences",

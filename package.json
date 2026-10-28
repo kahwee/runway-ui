@@ -115,7 +115,7 @@
     "test-boundaries": "bun test ./tests/boundaries.test.mjs",
     "test-behaviors": "bun test ./tests/*.test.mjs",
     "build-types": "bun scripts/build-types.mjs",
-    "check-types": "bun scripts/build-types.mjs --check && bun scripts/build-react-types.mjs --check && bun check --no-script -p tsconfig.behaviors.json && bun check --no-script -p tsconfig.react.json && bun check --no-script -p tsconfig.consumer.json",
+    "check-types": "bun scripts/build-types.mjs --check && bun scripts/build-react-types.mjs --check && bun check --no-script -p tsconfig.behaviors.json && bun check --no-script -p tsconfig.react.json && bun check --no-script -p tsconfig.consumer.json && bun check --no-script -p tsconfig.stories.json",
     "build-dependency-map": "bun scripts/build-dependency-map.mjs",
     "check-dependency-map": "bun scripts/build-dependency-map.mjs --check",
     "build-react-types": "bun scripts/build-react-types.mjs",

@@ -1,18 +1,20 @@
+import type { StoryObj } from "@storybook/html-vite";
+import type { ButtonExampleProps, InputExampleProps } from "./controls.tsx";
 import { expect, userEvent, within } from "storybook/test";
 import { flag, meta, range, select, text } from "../helpers.js";
-import { ButtonExample, InputExample } from "./controls.js";
+import { ButtonExample, InputExample } from "./controls.tsx";
 import { renderReactStory } from "./story-host.js";
 import "./forms.css";
 
 export default { title: "React/Controls", tags: ["autodocs"] };
-const buttonArgs = {
+const buttonArgs: ButtonExampleProps = {
   label: "Continue",
   variant: "primary",
   size: "md",
   disabled: false,
   width: 420,
 };
-export const Button = {
+export const Button: StoryObj<ButtonExampleProps> = {
   ...meta(
     "React/Controls",
     "Styled Base UI Button with native disabled state and a real activation counter.",
@@ -28,15 +30,15 @@ export const Button = {
   parameters: {
     docs: {
       source: {
-        language: "jsx",
-        transform: (_source, { args }) =>
+        language: "tsx",
+        transform: (_source: string, { args }: { args: ButtonExampleProps }) =>
           `import { Button } from "runway-ui/react";\n\n<Button data-variant=${JSON.stringify(args.variant)} data-size=${JSON.stringify(args.size)} disabled={${args.disabled}} onClick={handleClick}>\n  {${JSON.stringify(args.label)}}\n</Button>`,
       },
     },
   },
   render: (args) => renderReactStory(ButtonExample, args),
 };
-const inputArgs = {
+const inputArgs: InputExampleProps = {
   label: "Workspace name",
   value: "Orchard",
   placeholder: "Enter a name",
@@ -47,7 +49,7 @@ const inputArgs = {
   type: "text",
   width: 420,
 };
-export const Input = {
+export const Input: StoryObj<InputExampleProps> = {
   ...meta(
     "React/Controls",
     "Styled Base UI Input with Field label and help association.",
@@ -67,15 +69,15 @@ export const Input = {
   parameters: {
     docs: {
       source: {
-        language: "jsx",
-        transform: (_source, { args }) =>
+        language: "tsx",
+        transform: (_source: string, { args }: { args: InputExampleProps }) =>
           `import { Field, Input } from "runway-ui/react";\n\n<Field.Root className="rw-field" disabled={${args.disabled}}>\n  <Field.Label>{${JSON.stringify(args.label)}}</Field.Label>\n  <Input defaultValue={${JSON.stringify(args.value)}} type=${JSON.stringify(args.type)} placeholder={${JSON.stringify(args.placeholder)}} readOnly={${args.readOnly}} required={${args.required}} />\n  <Field.Description>{${JSON.stringify(args.description)}}</Field.Description>\n</Field.Root>`,
       },
     },
   },
   render: (args) => renderReactStory(InputExample, args),
 };
-export const ButtonKeyboard = {
+export const ButtonKeyboard: StoryObj<ButtonExampleProps> = {
   ...Button,
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);

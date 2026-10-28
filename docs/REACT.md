@@ -9,7 +9,7 @@ bun add react@^19 react-dom@^19 @base-ui/react@^1.9
 bun add -D @types/react@^19 @types/react-dom@^19
 ```
 
-```jsx
+```tsx
 import "runway-ui/bundle.css";
 import { Button, Field, Input } from "runway-ui/react";
 
@@ -38,7 +38,9 @@ Provide a label for every checkbox and selection control.
 Try **React / Base UI forms** in Storybook: controlled input, keyboard select,
 checkbox, disabled action and a save result all run in an actual React root. The
 example unmounts its root when Storybook removes the canvas, avoiding stale roots
-and duplicate callbacks on remount. Its layout CSS is example-owned.
+and duplicate callbacks on remount. Its layout CSS is example-owned. Components and args-driven stories are authored in
+TSX with explicit prop types. `bun run check-types` checks these examples alongside
+the published API; the distributed entry remains ready-to-import JavaScript.
 
 ## Portals and themes
 
