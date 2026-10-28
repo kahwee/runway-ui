@@ -51,3 +51,25 @@ differ (`styles/cozy/night.css`). Cozy surfaces use `--rw-cozy-paper`, `--rw-coz
 `--rw-cozy-shade`, `--rw-cozy-bar` and `--rw-cozy-on-pastel` instead of fixed colors, so a custom theme
 can restyle them. Corners use `corner-shape: squircle` where supported. Touch devices get 48px
 targets, hover lifts only on hover-capable devices, and a sticky thumb-reach action bar under 700px.
+
+## Scale tokens
+
+Use these instead of literal pixel values in components and apps, so themes and density apply everywhere.
+
+| Token | Default | Meaning |
+| --- | --- | --- |
+| `--rw-space-unit` | `4px` (`3px` compact) | Base step. Every spacing token is a multiple of it. |
+| `--rw-space-1` ... `--rw-space-6`, `--rw-space-8` | 1×, 2×, 3×, 4×, 5×, 6×, 8× the unit | Padding, gaps and margins. |
+| `--rw-radius-sm`, `-md`, `-lg`, `-xl` | 0.5×, 0.875×, 1.125×, 1.5× `--rw-radius` | Corner radii that follow the theme: a theme with square corners squares them all. |
+| `--rw-tap-target` | `44px` | Minimum touch target height. |
+| `--rw-measure` | `760px` | Readable column width for lists and forms on wide screens. |
+| `--rw-border-width` | `1px` | Standard border. |
+
+```css
+.roster-card {
+  padding: var(--rw-space-3) var(--rw-space-4);
+  border: var(--rw-border-width) solid var(--rw-line);
+  border-radius: var(--rw-radius-lg);
+  min-block-size: var(--rw-tap-target);
+}
+```

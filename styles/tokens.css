@@ -33,6 +33,22 @@
     --rw-content-gap: 10px;
     --rw-space: 14px;
     --rw-choice-padding: 15px;
+    /* Scale tokens. Prefer these over literal pixel values so themes and density apply everywhere. */
+    --rw-space-unit: 4px;
+    --rw-space-1: var(--rw-space-unit);
+    --rw-space-2: calc(var(--rw-space-unit) * 2);
+    --rw-space-3: calc(var(--rw-space-unit) * 3);
+    --rw-space-4: calc(var(--rw-space-unit) * 4);
+    --rw-space-5: calc(var(--rw-space-unit) * 5);
+    --rw-space-6: calc(var(--rw-space-unit) * 6);
+    --rw-space-8: calc(var(--rw-space-unit) * 8);
+    --rw-radius-sm: calc(var(--rw-radius) * 0.5);
+    --rw-radius-md: calc(var(--rw-radius) * 0.875);
+    --rw-radius-lg: calc(var(--rw-radius) * 1.125);
+    --rw-radius-xl: calc(var(--rw-radius) * 1.5);
+    --rw-tap-target: 44px;
+    --rw-measure: 760px;
+    --rw-border-width: 1px;
     color: var(--rw-ink);
     font-family: var(--rw-font);
     color-scheme: light;
@@ -46,5 +62,6 @@
     --rw-content-gap: 8px;
     --rw-space: 10px;
     --rw-choice-padding: 11px;
+    --rw-space-unit: 3px;
   }
 }

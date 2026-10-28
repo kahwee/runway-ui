@@ -12,6 +12,13 @@ The deployed website retains its browser JavaScript URLs. Type checks cover the
 full source tree, with strict public APIs and strict React stories.
 
 
+## 1.2.0
+
+- Add scale tokens: `--rw-space-unit` and `--rw-space-1` to `--rw-space-8`, theme-following radii
+  (`--rw-radius-sm`, `-md`, `-lg`, `-xl`), `--rw-tap-target`, `--rw-measure` and `--rw-border-width`.
+  Compact density shrinks the spacing unit. Existing tokens and classes are unchanged. See
+  [theming](THEMING.md#scale-tokens).
+
 ## 1.1.0
 
 - Add the `cozy-night` theme and the `Icon` component. `CommandBar` stats, `FolioTabs` items and
