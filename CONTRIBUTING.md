@@ -63,3 +63,17 @@ or accessibility review.
 ## Behavior types
 
 Author public types in the owning JavaScript JSDoc, then run `bun run build-types`, `bun run check-types` and `bun run test-behaviors`. Declarations are generated, formatted and committed. Add positive and expected-error consumer examples when changing public contracts. `bun run check-generated` checks declarations as well as CSS after commit. See [type generation](docs/TYPES.md).
+
+## A useful first contribution
+
+Start with one component and one reproducible problem. Improvements to copy,
+keyboard behavior, long labels, dependency recipes and browser evidence are as
+valuable as new components. The issue templates help describe a bug or proposal.
+
+For a new primitive, add a minimal isolated recipe and its checks. For a composition,
+reuse existing primitives and keep application-specific rules in the example.
+Use the five-theme gallery to consider contrasting visual contexts, then check
+relevant stories at both desktop sizes. Avoid claiming support from screenshots alone.
+
+Run `bun run clean` when you need a fresh site build. It preserves committed
+library assets and installed dependencies. See [build ownership](docs/TOOLING.md#build-ownership-and-cleanup).

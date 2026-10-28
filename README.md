@@ -1,10 +1,28 @@
 # Runway UI
 
+[![Package checks](https://github.com/kahwee/runway-ui/actions/workflows/package.yml/badge.svg)](https://github.com/kahwee/runway-ui/actions/workflows/package.yml) [![MIT license](https://img.shields.io/badge/license-MIT-355c4b)](LICENSE)
+
 **Modern HTML/CSS interfaces for management and simulation games.**
 
 Resource HUDs, production ledgers, economy charts, equipment grids, objectives and native dialogs. The vanilla core is framework-independent, themeable, and has zero runtime dependencies. An [optional React 19 entry](docs/REACT.md) composes Base UI primitives. Optional ES modules add keyboard navigation, controller input and virtual inventories.
 
 **MIT licensed. Free for personal and commercial projects, including closed-source games.** Keep the license notice in redistributed copies. No attribution in your interface is required. See [LICENSE](LICENSE).
+
+[![Five Runway UI themes showing workshop, orbital, settlement, creative team and field-office interfaces](docs/assets/runway-worlds.png)](https://kahwee.github.io/runway-ui/storybook/?path=/story/start-here-many-worlds--gallery)
+
+## Choose your world
+
+The same components can serve a workshop, space station, settlement or field office.
+[Explore the five-theme gallery](https://kahwee.github.io/runway-ui/storybook/?path=/story/start-here-many-worlds--gallery) to compare their character side by side.
+
+| Explore | What it demonstrates |
+| --- | --- |
+| [Paper studio](https://kahwee.github.io/runway-ui/examples/studio.html) | Warm surfaces, illustrated season cover and native controls |
+| [Simulation Observatory](https://kahwee.github.io/runway-ui/examples/observatory.html) | Metrics, history, resource inspection and decisions |
+| [Colony](https://kahwee.github.io/runway-ui/examples/colony.html) | Production and a large virtual inventory |
+| [Isolated components](https://kahwee.github.io/runway-ui/storybook/?path=/story/isolation-components--fields) | Minimal imports verified without the full stylesheet |
+| [Dependency recipes](docs/DEPENDENCIES.md) | Copyable markup and exact CSS requirements |
+| [Optional React](docs/REACT.md) | React 19 integration using Base UI |
 
 ## Find your way
 
@@ -69,7 +87,7 @@ The examples target desktop windows at least 1100 × 640. The CSS library itself
 | Game patterns      | Resource HUD, equipment slots, objectives, choices, action dock                                                                                        |
 | CSS charts         | Columns, stacked bars, diverging bars, six-point areas, percentage-based HTML-table bars; [API and scale rules](docs/CHARTS.md)                        |
 | Simulation         | Subgrid production ledger and container-aware panels                                                                                                   |
-| Themes             | Warm Studio, dark Orbital, Parchment and playful Whimsy; identical markup                                                                              |
+| Themes             | Warm Studio, dark Orbital, Parchment, playful Whimsy and Ledger; identical markup                                                                              |
 | Optional behaviors | Native dialog dismissal policy, roving keyboard focus, standard controller adapter, fixed-height virtual inventory, range outputs and windowed history |
 
 All component classes use `rw-`; the root `rw-ui` supplies inherited tokens without a global reset. Application styles can override the cascade layers. This is a CSS namespace, not Shadow DOM isolation.
@@ -91,7 +109,7 @@ Runway UI is not an API-compatible replacement for another UI framework. Existin
 - **@starting-style and discrete transitions** enhance dialog motion when supported.
 - **Reduced motion and forced colors** adjust animation and state indicators.
 
-Targets current desktop Chromium, Firefox and Safari with subgrid and container-query support. The optional dialog helper requires native `requestClose()` and `closedBy`; dialog CSS uses `:open`. It provides no older-browser emulation. See [dialog requirements](docs/DIALOG.md). Desktop Chromium checks are documented in [STATUS.md](docs/STATUS.md); broader browser and assistive-technology validation remains work in progress.
+Targets current desktop Chromium, Firefox and Safari with subgrid and container-query support. The optional dialog helper requires native `showModal()` and `close()`. Newer dismissal APIs are optional; the helper provides local fallbacks while keeping focus and inertness native. Dialog CSS uses `:open`. See [dialog requirements](docs/DIALOG.md). Desktop Chromium checks are documented in [STATUS.md](docs/STATUS.md); broader browser and assistive-technology validation remains work in progress.
 
 ## Documentation
 
