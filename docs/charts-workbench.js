@@ -11,7 +11,7 @@ function update() {
   if (dataset !== "normal") {
     document.querySelectorAll(".chart-card").forEach((card) => {
       const kind = card.dataset.chart;
-      card.querySelectorAll("[data-value]").forEach((mark, _i) => {
+      card.querySelectorAll("[data-value]").forEach((mark) => {
         const value =
           dataset === "zero"
             ? 0
