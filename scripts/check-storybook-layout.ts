@@ -132,7 +132,9 @@ try {
           actionsVisible: [...dialog.querySelectorAll('button')].every(b => {
             const r = b.getBoundingClientRect();
             return r.top >= rect.top && r.bottom <= rect.bottom && r.left >= rect.left && r.right <= rect.right;
-          }), initialFocus: document.activeElement.value };
+          }), footerTargets: [...dialog.querySelectorAll('.rw-dialog__footer > .rw-button')]
+            .map(b => ({ text: b.textContent.trim(), height: b.getBoundingClientRect().height })),
+          initialFocus: document.activeElement.value };
       })()`,
       );
       results.push({ id: `dialog-open-${variant}`, width, ...result });
@@ -142,6 +144,9 @@ try {
         `${width}px ${variant}: dialog actions are outside the visible surface`,
       );
       assert.equal(result.initialFocus, "cancel", `${variant}: initial safe focus changed`);
+      assert.ok(result.footerTargets.length > 0, `${variant}: missing footer targets`);
+      for (const target of result.footerTargets)
+        assert.ok(target.height >= 44, `${width}px ${variant}: ${target.text} is below 44px`);
       await browser("press", "Escape");
       if (variant === "required-decision") {
         assert.equal((await browser("eval", "document.querySelector('dialog').open")).result, true);

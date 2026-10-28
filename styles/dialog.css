@@ -132,6 +132,9 @@
     padding-block-start: 20px;
     border-block-start: 1px solid var(--rw-line);
   }
+  .rw-dialog__footer > .rw-button {
+    min-block-size: 44px;
+  }
   .rw-dialog__footer--split {
     justify-content: space-between;
   }
