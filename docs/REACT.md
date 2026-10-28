@@ -7,7 +7,7 @@ use Base UI primitives.
 ## Install
 
 ```sh
-bun add @kahwee/runway-ui@next react@^19 react-dom@^19 @base-ui/react@^1.9 @tanstack/charts
+bun add @kahwee/runway-ui react@^19 react-dom@^19 @base-ui/react@^1.9 @tanstack/charts
 ```
 
 ```tsx

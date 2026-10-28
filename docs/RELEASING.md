@@ -60,8 +60,8 @@ report the commit and workflow links without claiming package publication.
 
 ## Package readiness and publication
 
-The package is `@kahwee/runway-ui`. Pre-releases use a `-beta.N` version and the `next`
-dist-tag (set in `publishConfig`), so `latest` stays empty until a stable release.
+The package is `@kahwee/runway-ui`. Stable releases publish to `latest`. For a pre-release, use a `-beta.N` version and publish with
+`--tag next` so `latest` is unaffected.
 
 ```sh
 bun run build
@@ -73,7 +73,7 @@ bun publish --dry-run
 Only after explicit publication authorization, confirm the version is unused
 (`bun pm view @kahwee/runway-ui versions`), publish with `bun publish` (the scope is public via
 `publishConfig.access`), then verify the archive and a consumer install:
-`bun add @kahwee/runway-ui@next` in a scratch project, import `@kahwee/runway-ui/react`,
+`bun add @kahwee/runway-ui` in a scratch project, import `@kahwee/runway-ui/react`,
 and load `@kahwee/runway-ui/bundle.css`. A tarball cannot be republished under the same
 version; bump `package.json` and `bun.lock` for fixes. Promote to stable by publishing a
 plain version and moving the `latest` tag.

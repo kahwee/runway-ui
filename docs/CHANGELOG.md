@@ -12,9 +12,11 @@ The deployed website retains its browser JavaScript URLs. Type checks cover the
 full source tree, with strict public APIs and strict React stories.
 
 
-## Unreleased
+## 0.7.0
 
-- Version `0.6.0-beta.2` (not yet published). Toasts now use Base UI Toast. **Breaking within the beta:** `Toaster` is removed; mount `ToastProvider`
+First stable release under `@kahwee/runway-ui`, rolling up the 0.6.0 betas.
+
+- Toasts now use Base UI Toast. **Breaking since 0.6.0-beta.1:** `Toaster` is removed; mount `ToastProvider`
   inside `Runway` and call `useToasts().push(message, tone)`. Toast tone styling keys on `data-type`.
 
 - Fix React `Range` controlled values and consumer styles; use the shared range
@@ -27,7 +29,7 @@ full source tree, with strict public APIs and strict React stories.
 - Match React `Meter` accessible values to its clamped visual range, including
   nonfinite inputs and invalid maxima. Add interactive React control stories.
 
-- Version `0.6.0-beta.1` (published to npm, `next`). Motion and delight: `AnimatedNumber`, `Confetti`, `Toaster` and `useToasts`;
+- Motion and delight: `AnimatedNumber`, `Confetti`, `Toaster` and `useToasts`;
   `Meter` flashes on change and pulses when low; staggered cozy entrances, bouncier hover and a
   `data-attention` ring; new `styles/feedback.css`. Cozy polish: readable rare tags, a cream dock and
   meter highlights. The desk example celebrates hires and counts up credits, with whole-day chart ticks.

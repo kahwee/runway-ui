@@ -39,7 +39,7 @@ The docs explain usage and contracts. Storybook is the interactive component exp
 ## Start with React
 
 ```sh
-bun add @kahwee/runway-ui@next react react-dom @base-ui/react @tanstack/charts
+bun add @kahwee/runway-ui react react-dom @base-ui/react @tanstack/charts
 ```
 
 ```tsx
@@ -60,7 +60,7 @@ export function Briefing() {
 
 The component list, props and chart usage are in the [React guide](docs/REACT.md). Coming from the vanilla modules? See [migration](docs/MIGRATION.md). Themes (`cozy`, `ledger`, `orbital`, `parchment`, `whimsy`, `midnight`) are in [theming](docs/THEMING.md).
 
-**Release status:** `@kahwee/runway-ui@0.6.0-beta.1` is published on npm under the `next` tag, so install with `bun add @kahwee/runway-ui@next`. It is a pre-release while the remaining vanilla modules are ported. You can also install from GitHub with `bun add github:kahwee/runway-ui`. Development uses Bun 1.4.4; Node 22.18+ remains available for Storybook.
+**Release status:** `@kahwee/runway-ui@0.7.0` is the current release on npm. The remaining vanilla modules (`dialog`, `navigation`, `inventory`) are deprecated and will be removed once the documentation site moves to React. You can also install from GitHub with `bun add github:kahwee/runway-ui`. Development uses Bun 1.4.4; Node 22.18+ remains available for Storybook.
 
 ### CSS only
 
