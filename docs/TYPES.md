@@ -5,7 +5,7 @@ examples, tests and build tools use TypeScript or TSX. Bun runs the tooling and
 unit tests directly. `bun run lint` rejects JavaScript source files and inline
 HTML scripts outside generated output.
 
-The nine optional vanilla behaviors and React entry are strictly checked. Their
+The three remaining vanilla compatibility modules and the React entry are strictly checked. Their
 public types are declared in source and emitted to `dist/behaviors` and
 `dist/react`. The docs, tooling and test doubles are also type-checked, with
 inferred parameters allowed. React stories have an additional strict check.
@@ -37,4 +37,4 @@ compiles its TypeScript and TSX directly.
   declarations are generated under ignored `dist/behaviors` and `dist/react`.
 
 Consumer type fixtures retain negative assertions for unsupported controls and
-incorrect callbacks. Optional React peers do not enter the vanilla runtime.
+incorrect callbacks. Required React peers do not enter the standalone CSS or vanilla runtime. Component props live with their named owners; the public facade re-exports them unchanged.

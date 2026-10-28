@@ -11,10 +11,12 @@
       border: 2px solid var(--rw-line);
       background: var(--rw-surface);
       box-shadow: 0 4px 0 var(--rw-line);
-      &:hover:not(:disabled) {
-        translate: 0 -4px;
-        filter: none;
-        box-shadow: 0 8px 0 var(--rw-line);
+      @media (hover: hover) {
+        &:hover:not(:disabled) {
+          translate: 0 -4px;
+          filter: none;
+          box-shadow: 0 8px 0 var(--rw-line);
+        }
       }
       &:active:not(:disabled) {
         translate: 0 3px;

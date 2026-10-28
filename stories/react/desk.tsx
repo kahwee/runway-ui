@@ -14,6 +14,7 @@ import {
   Dossier,
   DossierList,
   FolioTabs,
+  haptic,
   Meter,
   Runway,
   Sheet,
@@ -37,7 +38,10 @@ const roles = ["Operations lead", "Research lead"];
 /** Small playable simulation: each day earns credits and tires the team. */
 function DeskBody({ title, startingCash }: DeskExampleProps) {
   const [section, setSection] = useState<Section>("overview");
-  const [history, setHistory] = useState([{ day: 1, cash: startingCash }]);
+  const [history, setHistory] = useState([
+    { day: 0, cash: startingCash - 1100 },
+    { day: 1, cash: startingCash },
+  ]);
   const [hired, setHired] = useState<string[]>([]);
   const [celebrate, setCelebrate] = useState(false);
   const { push } = useToasts();
@@ -76,6 +80,7 @@ function DeskBody({ title, startingCash }: DeskExampleProps) {
       return [...days, { day: last.day + 1, cash: last.cash + income - 400 }];
     });
   const endDay = () => {
+    haptic("tap");
     nextDay();
     push(
       `Day ${today.day + 1}: the bakery earned ${(1500 + hired.length * 900 - 400).toLocaleString("en-US")} credits.`,
@@ -85,6 +90,7 @@ function DeskBody({ title, startingCash }: DeskExampleProps) {
   const hire = (role: string) => {
     setHired((list) => [...list, role]);
     setCelebrate(true);
+    haptic("success");
     push(`${role} joined the team!`, "success");
   };
   return (
@@ -155,7 +161,13 @@ export function DeskExample(props: DeskExampleProps) {
   return (
     <Runway
       theme={props.theme}
-      style={{ display: "grid", gap: 20, padding: 20, maxInlineSize: 1200 }}
+      style={{
+        display: "grid",
+        gridTemplateColumns: "minmax(0, 1fr)",
+        gap: 20,
+        padding: 16,
+        maxInlineSize: 1200,
+      }}
     >
       <ToastProvider>
         <DeskBody {...props} />

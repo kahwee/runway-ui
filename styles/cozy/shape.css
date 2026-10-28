@@ -1,0 +1,43 @@
+/* Smoother silhouettes: squircle corners where supported, softer feathered lips, no hairline seams. */
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    &
+      :is(
+        .rw-panel,
+        .rw-sheet,
+        .rw-dossier,
+        .rw-slot,
+        .rw-choice,
+        .rw-toast,
+        .rw-folio-tab,
+        .rw-input,
+        .rw-dialog
+      ) {
+      /* Soft, continuous edge shading instead of a single hard step. */
+      --rw-cozy-feather: 0 10px 18px -8px color-mix(in oklch, var(--rw-accent) 18%, transparent);
+    }
+    & :is(.rw-panel, .rw-sheet) {
+      box-shadow:
+        0 4px 0 var(--rw-line),
+        var(--rw-cozy-feather),
+        0 24px 36px -16px color-mix(in oklch, var(--rw-accent) 14%, transparent);
+    }
+  }
+  @supports (corner-shape: squircle) {
+    .rw-ui[data-theme="cozy"]
+      :is(
+        .rw-panel,
+        .rw-sheet,
+        .rw-dossier,
+        .rw-slot,
+        .rw-choice,
+        .rw-toast,
+        .rw-folio-tab,
+        .rw-input,
+        .rw-dialog,
+        .rw-dossier__body
+      ) {
+      corner-shape: squircle;
+    }
+  }
+}

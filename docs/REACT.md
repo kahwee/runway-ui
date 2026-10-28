@@ -92,7 +92,7 @@ values automatically. `Meter` flashes when its value changes and pulses at 25% o
 (`data-low`). `Confetti` bursts when `active` turns true, then calls `onDone`. Toasts use
 Base UI's Toast (swipe to dismiss, hover to pause, stacking): mount `ToastProvider` once inside `Runway`, then call `useToasts().push(message, tone)` from any child. Give the main action `data-attention` for a
 soft pulsing ring in the cozy theme. All of it is skipped under `prefers-reduced-motion`.
-See **React / Feedback** in Storybook.
+`haptic("tap" | "success" | "warning" | pattern)` vibrates touch devices and returns `false` where unsupported, so it is always safe to call. See **React / Feedback** in Storybook.
 
 ## Charts
 

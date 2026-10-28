@@ -8,5 +8,7 @@
 @import url("./cozy/workspace.css");
 @import url("./cozy/charts.css");
 @import url("./cozy/motion.css");
+@import url("./cozy/shape.css");
+@import url("./cozy/mobile.css");
 @import url("./cozy/dialog.css");
 @import url("./cozy/accessibility.css");

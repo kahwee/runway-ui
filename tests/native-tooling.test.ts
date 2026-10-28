@@ -12,6 +12,10 @@ async function declarationFixture(source, run) {
       Bun.file(join(root, "scripts/build-types.ts")),
     );
     await Bun.write(
+      join(directory, "scripts/lib/generated-files.ts"),
+      Bun.file(join(root, "scripts/lib/generated-files.ts")),
+    );
+    await Bun.write(
       join(directory, "tsconfig.behaviors.json"),
       Bun.file(join(root, "tsconfig.behaviors.json")),
     );
@@ -48,6 +52,15 @@ test("native declaration tools handle spaces and Unicode paths and leave generat
       expect(before).toContain("example: (value: number) => number");
       expect(invoke("--check").success).toBe(true);
       expect(await file.text()).toBe(before);
+      const outside = Bun.spawnSync(
+        [process.execPath, join(directory, "scripts/build-types.ts"), "--check"],
+        {
+          cwd: tmpdir(),
+          stdout: "pipe",
+          stderr: "pipe",
+        },
+      );
+      expect(outside.success).toBe(true);
       expect([...new Bun.Glob("*").scanSync({ cwd: temporary })]).toEqual([]);
     },
   );
@@ -66,6 +79,35 @@ test("native compiler failures preserve existing declarations and clean temporar
       );
       expect(await Bun.file(destination).text()).toBe("existing declaration must survive\n");
       expect([...new Bun.Glob("*").scanSync({ cwd: temporary })]).toEqual([]);
+    },
+  );
+});
+
+test("declaration builds retain nested owners and prune retired declarations without touching runtime", async () => {
+  await declarationFixture(
+    'export type { Item } from "./nested/owner.ts";\n',
+    async ({ directory, invoke }) => {
+      await Bun.write(
+        join(directory, "behaviors/nested/owner.ts"),
+        "export type Item = { id: string };\n",
+      );
+      await Bun.write(join(directory, "dist/behaviors/nested/retired.d.ts"), "obsolete types");
+      await Bun.write(join(directory, "dist/behaviors/retired.js"), "runtime owned elsewhere");
+      expect(invoke().success).toBe(true);
+      expect(await Bun.file(join(directory, "dist/behaviors/nested/owner.d.ts")).text()).toContain(
+        "id: string",
+      );
+      expect(await Bun.file(join(directory, "dist/behaviors/nested/retired.d.ts")).exists()).toBe(
+        false,
+      );
+      expect(await Bun.file(join(directory, "dist/behaviors/retired.js")).text()).toBe(
+        "runtime owned elsewhere",
+      );
+      await Bun.write(join(directory, "dist/behaviors/nested/retired.d.ts"), "obsolete types");
+      expect(invoke("--check").success).toBe(false);
+      expect(await Bun.file(join(directory, "dist/behaviors/nested/retired.d.ts")).text()).toBe(
+        "obsolete types",
+      );
     },
   );
 });

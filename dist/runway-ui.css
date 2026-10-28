@@ -2222,7 +2222,6 @@
 }
 
 
-/* Number bumps, toasts and confetti. Structure and motion only; themes add the sweetness. */
 @layer runway-ui.patterns {
   .rw-number {
     display: inline-block;
@@ -2231,15 +2230,24 @@
       animation: rw-number-bump 0.45s var(--rw-spring, ease);
     }
   }
+}
+
+@layer runway-ui.patterns {
   .rw-toasts {
     position: fixed;
-    inset-block-end: 20px;
-    inset-inline-end: 20px;
+    inset-block-end: max(20px, env(safe-area-inset-bottom));
+    inset-inline-end: max(20px, env(safe-area-inset-right));
     z-index: 50;
     display: grid;
     gap: 10px;
     max-inline-size: min(360px, calc(100vw - 40px));
     pointer-events: none;
+    @media (width < 700px) {
+      /* Full width, lifted above the sticky action bar. */
+      inset-inline: 12px;
+      inset-block-end: calc(max(10px, env(safe-area-inset-bottom)) + 84px);
+      max-inline-size: none;
+    }
   }
   .rw-toast {
     pointer-events: auto;
@@ -2299,6 +2307,9 @@
       border-inline-start: 6px solid var(--rw-danger);
     }
   }
+}
+
+@layer runway-ui.patterns {
   .rw-confetti {
     position: fixed;
     inset: 0;
@@ -2328,12 +2339,14 @@
       }
     }
   }
+}
+
+@layer runway-ui.patterns {
   @keyframes rw-number-bump {
     40% {
       scale: 1.14;
     }
   }
-  /* Burst up and out, then fall with a spin. */
   @keyframes rw-confetti-fly {
     0% {
       translate: 0 0;
@@ -2350,6 +2363,9 @@
       opacity: 0;
     }
   }
+}
+
+@layer runway-ui.patterns {
   @media (prefers-reduced-motion: reduce) {
     .rw-number[data-trend] {
       animation: none;
@@ -2362,6 +2378,7 @@
     }
   }
 }
+
 
 /* Social composition. Keep component order stable. */
 @layer runway-ui.patterns {
@@ -4192,6 +4209,9 @@
       flex-wrap: wrap;
     }
   }
+}
+
+@layer runway-ui.charts {
   @media (forced-colors: active) {
     .rw-column-mark,
     .rw-stack-mark,
@@ -5432,6 +5452,9 @@
       grid-template-columns: 1fr;
     }
   }
+}
+
+@layer runway-ui.observatory {
   @media (forced-colors: active) {
     .rw-instrument {
       box-shadow: none;
@@ -5897,6 +5920,68 @@
     --rw-cozy-mint: #8fdcb8;
     --rw-cozy-sky: #a2d2ff;
     --rw-cozy-lilac: #cbb8ff;
+    --rw-spring: linear(
+      0,
+      0.04,
+      0.141,
+      0.276,
+      0.424,
+      0.569,
+      0.701,
+      0.815,
+      0.907,
+      0.978,
+      1.028,
+      1.06,
+      1.077,
+      1.083,
+      1.081,
+      1.074,
+      1.063,
+      1.05,
+      1.038,
+      1.027,
+      1.017,
+      1.009,
+      1.003,
+      0.998,
+      0.995,
+      0.994,
+      0.993,
+      0.993,
+      1
+    );
+    --rw-spring-gentle: linear(
+      0,
+      0.02,
+      0.073,
+      0.146,
+      0.231,
+      0.321,
+      0.411,
+      0.498,
+      0.579,
+      0.653,
+      0.719,
+      0.777,
+      0.826,
+      0.868,
+      0.903,
+      0.931,
+      0.954,
+      0.972,
+      0.986,
+      0.996,
+      1.004,
+      1.009,
+      1.012,
+      1.014,
+      1.015,
+      1.015,
+      1.014,
+      1.013,
+      1
+    );
     --rw-cozy-lip: color-mix(in oklch, var(--rw-ink) 28%, var(--rw-line));
     --rw-font:
       "Nunito Variable", Nunito, ui-rounded, "SF Pro Rounded", "Varela Round",
@@ -5918,6 +6003,8 @@
       auto,
       24px 24px;
     font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    text-wrap: pretty;
   }
 }
 
@@ -5939,9 +6026,11 @@
         0 var(--rw-control-depth) 0 var(--rw-cozy-lip),
         0 calc(var(--rw-control-depth) + 6px) 14px
           color-mix(in oklch, var(--rw-cozy-lip) 30%, transparent);
-      &:hover:not(:disabled) {
-        translate: 0 -3px;
-        scale: 1.03;
+      @media (hover: hover) {
+        &:hover:not(:disabled) {
+          translate: 0 -3px;
+          scale: 1.03;
+        }
       }
       &:active:not(:disabled) {
         translate: 0 var(--rw-control-depth);
@@ -6052,10 +6141,12 @@
       border: 2px solid var(--rw-line);
       background: var(--rw-surface);
       box-shadow: 0 4px 0 var(--rw-line);
-      &:hover:not(:disabled) {
-        translate: 0 -4px;
-        filter: none;
-        box-shadow: 0 8px 0 var(--rw-line);
+      @media (hover: hover) {
+        &:hover:not(:disabled) {
+          translate: 0 -4px;
+          filter: none;
+          box-shadow: 0 8px 0 var(--rw-line);
+        }
       }
       &:active:not(:disabled) {
         translate: 0 3px;
@@ -6136,8 +6227,10 @@
       &:nth-child(4) {
         --rw-tab-accent: var(--rw-cozy-sky);
       }
-      &:hover {
-        translate: 0 -3px;
+      @media (hover: hover) {
+        &:hover {
+          translate: 0 -3px;
+        }
       }
       &:is([aria-current="page"], [aria-selected="true"]) {
         border: 2px solid color-mix(in oklch, var(--rw-tab-accent) 70%, var(--rw-ink));
@@ -6184,8 +6277,10 @@
       &:nth-child(even)::before {
         background: var(--rw-cozy-mint);
       }
-      &:hover {
-        translate: 0 -2px;
+      @media (hover: hover) {
+        &:hover {
+          translate: 0 -2px;
+        }
       }
       & h3 {
         font: 600 20px / 1.2 var(--rw-display-font);
@@ -6334,6 +6429,173 @@
       100% {
         scale: 1.14;
         opacity: 0;
+      }
+    }
+  }
+}
+
+/* Smoother silhouettes: squircle corners where supported, softer feathered lips, no hairline seams. */
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    &
+      :is(
+        .rw-panel,
+        .rw-sheet,
+        .rw-dossier,
+        .rw-slot,
+        .rw-choice,
+        .rw-toast,
+        .rw-folio-tab,
+        .rw-input,
+        .rw-dialog
+      ) {
+      /* Soft, continuous edge shading instead of a single hard step. */
+      --rw-cozy-feather: 0 10px 18px -8px color-mix(in oklch, var(--rw-accent) 18%, transparent);
+    }
+    & :is(.rw-panel, .rw-sheet) {
+      box-shadow:
+        0 4px 0 var(--rw-line),
+        var(--rw-cozy-feather),
+        0 24px 36px -16px color-mix(in oklch, var(--rw-accent) 14%, transparent);
+    }
+  }
+  @supports (corner-shape: squircle) {
+    .rw-ui[data-theme="cozy"]
+      :is(
+        .rw-panel,
+        .rw-sheet,
+        .rw-dossier,
+        .rw-slot,
+        .rw-choice,
+        .rw-toast,
+        .rw-folio-tab,
+        .rw-input,
+        .rw-dialog,
+        .rw-dossier__body
+      ) {
+      corner-shape: squircle;
+    }
+  }
+}
+
+/* Touch and small screens: big targets, no sticky hover, safe areas, a scrolling tab row and a thumb-reach action bar. */
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    & :is(.rw-button, .rw-slot, .rw-choice, .rw-folio-tab, .rw-dock, .rw-toast__close) {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      user-select: none;
+    }
+  }
+  /* Touch devices keep :hover after a tap; do not leave controls lifted. Pressing still squishes. */
+  @media (hover: none) {
+    .rw-ui[data-theme="cozy"]
+      :is(.rw-button, .rw-slot, .rw-choice, .rw-folio-tab):hover:not(:active, :disabled) {
+      translate: none;
+      scale: none;
+      filter: none;
+    }
+  }
+  @media (pointer: coarse) {
+    .rw-ui[data-theme="cozy"] {
+      --rw-control-block: 14px;
+      & .rw-button {
+        min-block-size: 48px;
+        &[data-size="sm"] {
+          min-block-size: 40px;
+        }
+      }
+      & .rw-input {
+        min-block-size: 48px;
+      }
+      & .rw-folio-tab {
+        min-block-size: 48px;
+      }
+      & .rw-slot {
+        min-block-size: 76px;
+      }
+      & .rw-toast__close {
+        inline-size: 36px;
+        block-size: 36px;
+      }
+    }
+  }
+  @media (width < 700px) {
+    .rw-ui[data-theme="cozy"] {
+      --rw-panel-padding: 16px;
+      --rw-radius: 20px;
+      & .rw-command-bar {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 28px;
+        & .rw-command-bar__identity {
+          flex: 1 1 100%;
+          padding-inline-start: 4px;
+        }
+        & .rw-command-bar__metrics {
+          flex: 1 1 100%;
+          gap: 8px;
+        }
+        & .rw-command-stat {
+          flex: 1 1 0;
+          min-inline-size: 0;
+          padding: 6px 12px;
+        }
+      }
+      /* Section tabs become a swipeable row; the active tab stays put instead of sliding sideways. */
+      & .rw-folio-tabs {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 8px;
+        padding-block: 2px 8px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        & > .rw-folio-tab {
+          flex: 0 0 auto;
+          min-block-size: 48px;
+          padding-inline: 18px;
+          scroll-snap-align: start;
+          &:is([aria-current="page"], [aria-selected="true"]) {
+            translate: 0 -2px;
+          }
+        }
+      }
+      & .rw-sheet {
+        padding: 16px;
+        border-radius: 24px;
+        & > :is(h1, h2) {
+          font-size: 24px;
+        }
+      }
+      & .rw-dossier {
+        padding: 16px 16px 16px 22px;
+      }
+      /* The main action sits at the bottom, in thumb reach, above the home indicator. */
+      & .rw-control-console {
+        position: sticky;
+        inset-block-end: max(10px, env(safe-area-inset-bottom));
+        z-index: 5;
+        flex-wrap: nowrap;
+        gap: 12px;
+        padding: 10px 10px 10px 18px;
+        background: color-mix(in oklch, var(--rw-surface) 92%, transparent);
+        backdrop-filter: blur(10px) saturate(1.2);
+        & > span {
+          display: none;
+        }
+        & > .rw-button:last-child {
+          flex: 1;
+          min-block-size: 52px;
+          margin-inline-start: 0;
+          font-size: 15px;
+        }
       }
     }
   }

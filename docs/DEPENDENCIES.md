@@ -183,6 +183,7 @@ Internal stylesheet imports (already loaded by the entries above):
 - [styles/charts/area.css](../styles/charts/area.css)
 - [styles/charts/data.css](../styles/charts/data.css)
 - [styles/charts/density.css](../styles/charts/density.css)
+- [styles/charts/responsive.css](../styles/charts/responsive.css)
 - [styles/charts/accessibility.css](../styles/charts/accessibility.css)
 
 ## Native dialog

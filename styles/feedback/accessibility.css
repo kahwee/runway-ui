@@ -1,0 +1,13 @@
+@layer runway-ui.patterns {
+  @media (prefers-reduced-motion: reduce) {
+    .rw-number[data-trend] {
+      animation: none;
+    }
+    .rw-toast {
+      transition: none;
+    }
+    .rw-confetti {
+      display: none;
+    }
+  }
+}

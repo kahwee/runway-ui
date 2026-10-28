@@ -46,8 +46,10 @@
       &:nth-child(4) {
         --rw-tab-accent: var(--rw-cozy-sky);
       }
-      &:hover {
-        translate: 0 -3px;
+      @media (hover: hover) {
+        &:hover {
+          translate: 0 -3px;
+        }
       }
       &:is([aria-current="page"], [aria-selected="true"]) {
         border: 2px solid color-mix(in oklch, var(--rw-tab-accent) 70%, var(--rw-ink));
@@ -94,8 +96,10 @@
       &:nth-child(even)::before {
         background: var(--rw-cozy-mint);
       }
-      &:hover {
-        translate: 0 -2px;
+      @media (hover: hover) {
+        &:hover {
+          translate: 0 -2px;
+        }
       }
       & h3 {
         font: 600 20px / 1.2 var(--rw-display-font);

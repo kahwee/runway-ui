@@ -13,6 +13,6 @@
     "skipLibCheck": false,
     "rewriteRelativeImportExtensions": true
   },
-  "include": ["behaviors/*.ts"],
-  "exclude": ["behaviors/*.d.ts"]
+  "include": ["behaviors/**/*.ts"],
+  "exclude": ["behaviors/**/*.d.ts"]
 }

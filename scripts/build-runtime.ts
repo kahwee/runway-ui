@@ -1,6 +1,7 @@
-import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { readdir, readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { parse } from "@babel/parser";
+import { syncGeneratedFiles } from "./lib/generated-files.ts";
 
 /** Rewrite module specifiers only; never alter displayed strings or user data. */
 export function browserImports(source: string): string {
@@ -60,23 +61,27 @@ export function browserImports(source: string): string {
 }
 export async function compileDirectory(source: string, destination: string) {
   const compiler = new Bun.Transpiler({ loader: "ts", target: "browser" });
-  for (const entry of await readdir(source, { withFileTypes: true })) {
-    const input = join(source, entry.name),
-      output = join(destination, entry.name);
-    if (entry.isDirectory()) await compileDirectory(input, output);
-    else if (entry.name.endsWith(".ts") && !entry.name.endsWith(".d.ts")) {
-      const target = output.replace(/\.ts$/, ".js");
-      await mkdir(dirname(target), { recursive: true });
-      await writeFile(
-        target,
-        browserImports(compiler.transformSync(await readFile(input, "utf8"))),
-      );
+  const files = new Map<string, string>();
+  async function compile(directory: string, prefix = "") {
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
+      const input = join(directory, entry.name);
+      const name = join(prefix, entry.name);
+      if (entry.isDirectory()) await compile(input, name);
+      else if (entry.name.endsWith(".ts") && !entry.name.endsWith(".d.ts"))
+        files.set(
+          name.replace(/\.ts$/, ".js"),
+          browserImports(compiler.transformSync(await readFile(input, "utf8"))),
+        );
     }
   }
+  // Compile everything before replacing files: a syntax error must preserve the last build.
+  await compile(source);
+  await syncGeneratedFiles(destination, files, ".js");
 }
 if (import.meta.main) {
+  const root = Bun.fileURLToPath(new URL("../", import.meta.url));
   await Promise.all([
-    compileDirectory("behaviors", "dist/behaviors"),
-    compileDirectory("react", "dist/react"),
+    compileDirectory(join(root, "behaviors"), join(root, "dist/behaviors")),
+    compileDirectory(join(root, "react"), join(root, "dist/react")),
   ]);
 }

@@ -1,7 +1,7 @@
 # Contributing
 
-Small, focused improvements are welcome. Include the component, expected behavior and an example that demonstrates the change. Keep runtime dependencies at zero and avoid adding a framework requirement.
-- Edit `styles/` and optional `behaviors/`; regenerate `dist/runway-ui.css` with `bun run build`.
+Small, focused improvements are welcome. Include the component, expected behavior and an example that demonstrates the change. Use the established React, Base UI and TanStack peers; keep standalone CSS and vanilla behaviors dependency-free.
+- Edit the component owner in `react/` or `styles/`; keep the React facade and CSS aggregates import/export-only. See [module ownership](docs/MODULES.md). Regenerate package outputs with `bun run build`.
 - Give interactive controls accessible names, visible focus and native HTML semantics where possible.
 - Keep `rw-` classes stable, theme through tokens and include teardown for browser behaviors.
 - Check desktop examples at 1440 × 900 and 1366 × 768 for relevant visual changes. Do not hide features to fit a phone layout.
@@ -53,9 +53,9 @@ or accessibility review.
 
 ## Repository layout
 
-- `styles/` and `behaviors/` contain the public library; `index.css` is its entry point and `dist/` holds generated CSS, runtime modules and declarations.
+- `react/` contains the primary component API, `styles/` the independent CSS, and `behaviors/` the remaining vanilla compatibility modules; `index.css` is its entry point and `dist/` holds generated CSS, runtime modules and declarations.
 - `workshop/` contains assets for the root `index.html` demo.
-- `stories/` groups Storybook stories by their sidebar category: `start-here/`, `foundations/`, `charts/`, `game-patterns/`, `behaviors/` and `compositions/`. Shared helpers stay at the top level. Use kebab-case filenames and preserve story titles and export names so existing story links keep working.
+- `stories/` groups Storybook stories by their sidebar category: `start-here/`, `foundations/`, `charts/`, `game-patterns/`, `behaviors/`, `react/`, `isolation/` and `compositions/`. Shared helpers stay at the top level. Use kebab-case filenames and preserve story titles and export names so existing story links keep working.
 - `examples/` contains standalone compositions and their supporting assets.
 - `docs/` contains guides and the documentation workbench; `scripts/` contains build tooling.
 - `.storybook/` configures the component explorer. `storybook-static/` and `.site/` are generated and ignored.

@@ -278,3 +278,45 @@ test("optional React layer allows primitives but cannot enter vanilla or depend 
     /React modules may only import/,
   );
 });
+
+test("React entry points re-export owners and implementations cannot depend on the barrel", async (t) => {
+  assert.deepEqual(
+    await problems(t, {
+      "react/index.ts": '"use client"; export { Button } from "./button.ts";',
+      "react/button.ts": "export const Button = () => null;",
+    }),
+    [],
+  );
+  contains(
+    await problems(t, {
+      "react/index.ts": "export function Button() { return null; }",
+    }),
+    /React entry point must only re-export/,
+  );
+  contains(
+    await problems(t, {
+      "react/index.ts": 'export { Field } from "@base-ui/react/field";',
+      "react/button.ts": 'import { Field } from "./index.ts"; export { Field };',
+    }),
+    /import component owners, not the public barrel/,
+  );
+});
+
+test("CSS aggregate entries cannot accumulate component implementations", async (t) => {
+  for (const name of ["charts", "instruments", "feedback", "forms"]) {
+    contains(
+      await problems(t, {
+        [`styles/${name}.css`]: "@layer runway-ui.patterns { .rw-example { display: grid; } }",
+      }),
+      /CSS aggregate must contain imports only/,
+    );
+    assert.deepEqual(
+      await problems(t, {
+        [`styles/${name}.css`]: `@import url("./${name}/owner.css");`,
+        [`styles/${name}/owner.css`]:
+          "@layer runway-ui.patterns { .rw-example { display: grid; } }",
+      }),
+      [],
+    );
+  }
+});

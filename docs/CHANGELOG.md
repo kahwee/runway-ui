@@ -90,6 +90,17 @@ First stable release under `@kahwee/runway-ui`, rolling up the 0.6.0 betas.
 
 ## Unreleased
 
+- Give React components named source owners behind the same export-only public
+  facade. Preserve all runtime exports, props, Base UI identity and CSS classes.
+- Split chart, instrument and feedback styles into ordered component owners,
+  keeping their existing aggregate imports, cascade layers and responsive states.
+- Synchronize generated JavaScript and declarations by file type so successful
+  rebuilds remove retired modules without deleting sibling outputs. Failed
+  compilation preserves the last successful output; declaration check mode also
+  detects retired files. Build scripts work from outside the repository directory.
+- Enforce export-only React entry points and import-only CSS aggregates. Update
+  contributor guidance and `AGENTS.md` with ownership and validation contracts.
+
 - Add Bold icons for playback, fullscreen, guides, camera controls, stores and
   workplace equipment. All masks are embedded; consumers need no separate SVG files.
 

@@ -1,0 +1,76 @@
+@layer runway-ui.patterns {
+  .rw-toasts {
+    position: fixed;
+    inset-block-end: max(20px, env(safe-area-inset-bottom));
+    inset-inline-end: max(20px, env(safe-area-inset-right));
+    z-index: 50;
+    display: grid;
+    gap: 10px;
+    max-inline-size: min(360px, calc(100vw - 40px));
+    pointer-events: none;
+    @media (width < 700px) {
+      /* Full width, lifted above the sticky action bar. */
+      inset-inline: 12px;
+      inset-block-end: calc(max(10px, env(safe-area-inset-bottom)) + 84px);
+      max-inline-size: none;
+    }
+  }
+  .rw-toast {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px 12px 16px;
+    border: 1px solid var(--rw-line);
+    border-radius: var(--rw-radius);
+    background: var(--rw-surface);
+    color: var(--rw-ink);
+    box-shadow: var(--rw-shadow);
+    font: 600 13px / 1.4 var(--rw-font);
+    transition:
+      translate 0.45s var(--rw-spring, ease),
+      scale 0.45s var(--rw-spring, ease),
+      opacity 0.25s;
+    &[data-starting-style] {
+      translate: 0 28px;
+      scale: 0.9;
+      opacity: 0;
+    }
+    &[data-ending-style] {
+      translate: 0 14px;
+      scale: 0.95;
+      opacity: 0;
+    }
+    & .rw-toast__title {
+      flex: 1;
+      min-inline-size: 0;
+      margin: 0;
+      font: inherit;
+    }
+    & .rw-toast__close {
+      flex: none;
+      inline-size: 26px;
+      block-size: 26px;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--rw-muted);
+      font: inherit;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      &:hover {
+        background: var(--rw-soft);
+      }
+    }
+    &[data-type="success"] {
+      border-inline-start: 6px solid var(--rw-accent);
+    }
+    &[data-type="warning"] {
+      border-inline-start: 6px solid var(--rw-gold);
+    }
+    &[data-type="danger"] {
+      border-inline-start: 6px solid var(--rw-danger);
+    }
+  }
+}

@@ -21,6 +21,68 @@
     --rw-cozy-mint: #8fdcb8;
     --rw-cozy-sky: #a2d2ff;
     --rw-cozy-lilac: #cbb8ff;
+    --rw-spring: linear(
+      0,
+      0.04,
+      0.141,
+      0.276,
+      0.424,
+      0.569,
+      0.701,
+      0.815,
+      0.907,
+      0.978,
+      1.028,
+      1.06,
+      1.077,
+      1.083,
+      1.081,
+      1.074,
+      1.063,
+      1.05,
+      1.038,
+      1.027,
+      1.017,
+      1.009,
+      1.003,
+      0.998,
+      0.995,
+      0.994,
+      0.993,
+      0.993,
+      1
+    );
+    --rw-spring-gentle: linear(
+      0,
+      0.02,
+      0.073,
+      0.146,
+      0.231,
+      0.321,
+      0.411,
+      0.498,
+      0.579,
+      0.653,
+      0.719,
+      0.777,
+      0.826,
+      0.868,
+      0.903,
+      0.931,
+      0.954,
+      0.972,
+      0.986,
+      0.996,
+      1.004,
+      1.009,
+      1.012,
+      1.014,
+      1.015,
+      1.015,
+      1.014,
+      1.013,
+      1
+    );
     --rw-cozy-lip: color-mix(in oklch, var(--rw-ink) 28%, var(--rw-line));
     --rw-font:
       "Nunito Variable", Nunito, ui-rounded, "SF Pro Rounded", "Varela Round",
@@ -42,5 +104,7 @@
       auto,
       24px 24px;
     font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    text-wrap: pretty;
   }
 }

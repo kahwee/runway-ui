@@ -24,3 +24,4 @@ export { Range, type RangeProps } from "./range.ts";
 export { AnimatedNumber, type AnimatedNumberProps } from "./animated-number.ts";
 export { Confetti, type ConfettiProps } from "./confetti.ts";
 export { ToastProvider, useToasts, type ToastTone } from "./toast.ts";
+export { haptic, type HapticPattern } from "./haptics.ts";

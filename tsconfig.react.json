@@ -13,6 +13,6 @@
     "skipLibCheck": false,
     "rewriteRelativeImportExtensions": true
   },
-  "include": ["react/*.ts"],
-  "exclude": ["react/*.d.ts"]
+  "include": ["react/**/*.ts"],
+  "exclude": ["react/**/*.d.ts"]
 }

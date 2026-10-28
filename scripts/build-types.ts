@@ -1,6 +1,9 @@
-import { mkdir, mkdtemp, rm } from "node:fs/promises";
+import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { syncGeneratedFiles } from "./lib/generated-files.ts";
+
+const root = Bun.fileURLToPath(new URL("../", import.meta.url));
 
 /** Emit package declarations from the authoritative TypeScript sources. */
 export async function buildDeclarations(kind: "behaviors" | "react", checking = false) {
@@ -17,6 +20,7 @@ export async function buildDeclarations(kind: "behaviors" | "react", checking = 
         "--noEmitOnError",
       ],
       {
+        cwd: root,
         stdin: "inherit",
         stdout: "inherit",
         stderr: "inherit",
@@ -26,17 +30,13 @@ export async function buildDeclarations(kind: "behaviors" | "react", checking = 
       throw new Error(
         `${kind === "behaviors" ? "Behavior" : "React"} declaration compilation failed`,
       );
-    await mkdir(`dist/${kind}`, { recursive: true });
-    const names = [...new Bun.Glob("*.d.ts").scanSync({ cwd: output, onlyFiles: true })].sort();
+    const names = [...new Bun.Glob("**/*.d.ts").scanSync({ cwd: output, onlyFiles: true })].sort();
     if (!names.length) throw new Error(`No ${kind} declarations emitted`);
+    const files = new Map<string, string>();
     for (const name of names) {
-      const emitted = await Bun.file(join(output, name)).text();
-      const target = `dist/${kind}/${name}`;
-      if (checking) {
-        if (!(await Bun.file(target).exists()) || (await Bun.file(target).text()) !== emitted)
-          throw new Error(`Stale ${target}; run bun run build.`);
-      } else await Bun.write(target, emitted);
+      files.set(name, await Bun.file(join(output, name)).text());
     }
+    await syncGeneratedFiles(join(root, "dist", kind), files, ".d.ts", checking);
   } finally {
     await rm(output, { recursive: true, force: true });
   }

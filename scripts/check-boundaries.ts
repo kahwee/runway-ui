@@ -1,26 +1,17 @@
 import { access } from "node:fs/promises";
-import { dirname, extname, relative, resolve } from "node:path";
+import { dirname, relative, resolve } from "node:path";
 import { parse } from "@babel/parser";
 import { parse as parseHtml } from "parse5";
 import postcss from "postcss";
 
-const sourceDirectories = [
-  "behaviors",
-  "react",
-  "styles",
-  "examples",
-  "stories",
-  ".storybook",
-  "scripts",
-  "tests",
-  "docs",
-  "workshop",
-];
-const sourceExtensions = new Set([".js", ".mjs", ".ts", ".tsx", ".css", ".html"]);
-const runtime = (path) => path === "index.css" || /^(behaviors|styles)\//.test(path);
-// Foundations may compose foundations, but never workspace or game patterns.
-const foundationStyle = (path) =>
-  /^styles\/(?:tokens|primitives|controls|panels|native|fields|forms)(?:\.css|\/)/.test(path);
+import { sourceFiles } from "./boundaries/source-files.ts";
+import {
+  allowedReactPeer,
+  cssAggregate,
+  foundationStyle,
+  vanillaRuntime as runtime,
+} from "./boundaries/policy.ts";
+
 const external = (path) => !path.startsWith(".") && !path.startsWith("/");
 const literal = (node) => {
   if (["StringLiteral", "NumericLiteral"].includes(node?.type)) return String(node.value);
@@ -34,28 +25,6 @@ function walk(node, visit) {
     if (Array.isArray(value)) for (const child of value) walk(child, visit);
     else if (value && typeof value === "object") walk(value, visit);
   }
-}
-async function sources(root) {
-  const result = [];
-  async function scan(directory, recursive) {
-    const pattern = `${recursive ? "**/" : ""}*`;
-    try {
-      for await (const path of new Bun.Glob(pattern).scan({
-        cwd: directory,
-        absolute: true,
-        onlyFiles: true,
-        dot: true,
-        followSymlinks: false,
-      })) {
-        if (sourceExtensions.has(extname(path))) result.push(path);
-      }
-    } catch (error) {
-      if (error.code !== "ENOENT") throw error;
-    }
-  }
-  await scan(root, false);
-  for (const directory of sourceDirectories) await scan(resolve(root, directory), true);
-  return result.sort();
 }
 function declaredNames(node) {
   if (!node) return [];
@@ -102,6 +71,15 @@ export async function checkBoundaries(root) {
     } catch (error) {
       report(file, error.message);
       return;
+    }
+    if (file === "react/index.ts") {
+      for (const node of ast.program.body)
+        if (!["ExportNamedDeclaration", "ExportAllDeclaration"].includes(node.type) || !node.source)
+          report(
+            file,
+            "React entry point must only re-export component owners",
+            node.loc?.start.line,
+          );
     }
     walk(ast, (node) => {
       if (
@@ -166,7 +144,16 @@ export async function checkBoundaries(root) {
   }
   function css(source, file) {
     try {
-      postcss.parse(source, { from: file }).walkAtRules("import", (node) => {
+      const ast = postcss.parse(source, { from: file });
+      if (cssAggregate(file))
+        for (const node of ast.nodes)
+          if (node.type !== "comment" && !(node.type === "atrule" && node.name === "import"))
+            report(
+              file,
+              "CSS aggregate must contain imports only; edit the component owner",
+              node.source?.start?.line,
+            );
+      ast.walkAtRules("import", (node) => {
         const match = node.params.match(
           /^(?:url\(\s*(?:"([^"]+)"|'([^']+)'|([^\s)]+))\s*\)|"([^"]+)"|'([^']+)')/,
         );
@@ -183,7 +170,7 @@ export async function checkBoundaries(root) {
       report(file, error.message);
     }
   }
-  for (const path of await sources(root)) {
+  for (const path of await sourceFiles(root)) {
     const file = label(path);
     graph.set(file, new Set());
     const source = await Bun.file(path).text();
@@ -222,16 +209,7 @@ export async function checkBoundaries(root) {
     if (remote || packageImport) {
       if (runtime(file))
         report(file, `Runtime modules cannot import external dependency "${value}"`, line);
-      if (
-        file.startsWith("react/") &&
-        !(
-          value === "react" ||
-          value.startsWith("react/") ||
-          value.startsWith("@base-ui/react/") ||
-          value === "@tanstack/charts" ||
-          value.startsWith("@tanstack/charts/")
-        )
-      )
+      if (file.startsWith("react/") && !allowedReactPeer(value))
         report(
           file,
           `React modules may only import React, Base UI primitives and TanStack Charts: "${value}"`,
@@ -244,6 +222,12 @@ export async function checkBoundaries(root) {
       report(file, `Import escapes the package: ${value}`, line);
       continue;
     }
+    if (file.startsWith("react/") && destination === "react/index.ts")
+      report(
+        file,
+        "React implementations must import component owners, not the public barrel",
+        line,
+      );
     if (file.startsWith("react/") && !destination.startsWith("react/"))
       report(file, `React boundary violation: ${file} → ${destination}`, line);
     if (runtime(file)) {

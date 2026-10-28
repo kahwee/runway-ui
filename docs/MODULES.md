@@ -12,7 +12,9 @@ The public CSS entry points compose component files in a fixed order:
 | `styles/forms.css`       | `styles/forms/`          | Switch, checkbox/radio, range, fields, choices, accessibility                                  |
 | `styles/social.css`      | `styles/social/`         | Segmented control, avatar, person chip, leaderboard, accessibility, pace                       |
 | `styles/cozy.css`        | `styles/cozy/`           | Cozy theme tokens, controls, surfaces, badges, meters, patterns, desk workspace, charts, dialog, accessibility |
-| `styles/feedback.css`    | none (single file)       | Number bump, toasts and confetti structure and motion                                          |
+| `styles/charts.css` | `styles/charts/` | Frames, columns, series, area, data tables, density, responsive behavior and forced colors |
+| `styles/instruments.css` | `styles/instruments/` | Console, range and line history, impact, appearance, timeline, responsive behavior and forced colors |
+| `styles/feedback.css` | `styles/feedback/` | Animated numbers, toast surfaces, confetti, keyframes and reduced motion |
 | `styles/observatory.css` | `styles/observatory/`    | Workspace, resource ledger, context popover, decisions, responsive behavior                    |
 
 Edit the component that owns the selector. The entry points contain imports only;
@@ -113,9 +115,51 @@ remain scoped to `rw-paper-*`; observatory placement rules remain scoped to
 `rw-observatory*`. Neither redefines an unscoped button, field or panel recipe.
 Use **Isolation / Panels** in Storybook to verify the independent panel entry.
 
-## Optional React boundary
+## React component ownership
 
-`react/` owns the optional React 19 / Base UI source; declarations compile to `dist/react/`. It
-may import React and Base UI primitive subpaths; vanilla runtime modules may not
-import it. `stories/react/` owns example layout and React root teardown. See
-[React usage](REACT.md). Do not duplicate upstream component state machines.
+`react/index.ts` is the public, export-only facade. Named component owners contain
+implementation and props together; no owner imports the facade. Internal files
+are not additional package entry points. Consumers keep importing
+`@kahwee/runway-ui/react`. The client boundary remains explicit in component
+modules. Do not duplicate upstream component state machines.
+
+| Owner | Responsibility |
+| --- | --- |
+| `root.ts` | Theme and density root |
+| `button.ts`, `input.ts` | Styled Base UI primitives; preserve upstream refs and state-dependent classes |
+| `progress.ts`, `meter.ts` | Native progress and labelled bounded meter |
+| `panel.ts`, `badge.ts`, `resource.ts` | Surfaces, status and resource readouts |
+| `command-bar.ts`, `control-console.ts` | Workspace status and workflow controls |
+| `folio-tabs.ts`, `sheet.ts` | Section navigation and paper sections |
+| `dossier.ts` | Dossier and its aligned list; these share one component contract |
+| `animated-number.ts`, `confetti.ts`, `reduced-motion.ts` | Value animation, celebrations and shared motion preference |
+| `toast.ts` | Base UI toast provider, stack and hook |
+| `dialog.ts`, `inventory.ts`, `range.ts` | Native modal policy, roving slot focus and slider state |
+| `chart.ts` | TanStack Charts exports and chart card |
+| `classes.ts` | Plain and state-dependent class composition |
+
+React owners may import other owners and the approved React, Base UI and TanStack
+peers. They cannot import vanilla behaviors, styles, stories or tooling. Vanilla
+behaviors and CSS cannot depend on React. `stories/react/` owns example state,
+layout and React root teardown. See [React usage](REACT.md).
+
+## Tooling ownership
+
+`scripts/check-boundaries.ts` coordinates parsing, import validation, cycle
+checks and public behavior export checks. `scripts/boundaries/source-files.ts`
+owns source inventory; `policy.ts` owns dependency and aggregate rules. The
+checker rejects component implementations in the React facade, imports of that
+facade from owners, and declarations inside import-only CSS aggregates. Fixtures
+exercise permitted and forbidden dependencies.
+
+`scripts/lib/generated-files.ts` synchronizes one generated file type within one
+output directory. Runtime compilation owns `.js`; declaration compilation owns
+`.d.ts`. Both compile before synchronizing and remove retired output only after
+successful compilation. Concurrent generators never delete one another's file
+types. Declaration check mode detects stale or retired files without writing.
+Nested source owners retain their relative paths in generated output.
+
+`dist/behaviors` and `dist/react` are disposable package outputs. `dist/runway-ui.css`
+and `styles/icons.css` remain committed assets. A rebuild must not ship deleted
+features merely because their old generated files exist locally. See
+[build ownership](TOOLING.md#build-ownership-and-cleanup).

@@ -28,3 +28,22 @@ test("every public runtime export has generated executable JavaScript and declar
   const { bindDialog } = await import("@kahwee/runway-ui/dialog");
   assert.equal(typeof bindDialog, "function");
 });
+
+test("package runtime and declaration inventories exactly match current source owners", () => {
+  for (const kind of ["behaviors", "react"]) {
+    const owners = [...new Bun.Glob("**/*.ts").scanSync({ cwd: kind, onlyFiles: true })].filter(
+      (name) => !name.endsWith(".d.ts"),
+    );
+    for (const extension of [".js", ".d.ts"]) {
+      const expected = owners.map((name) => name.replace(/\.ts$/, extension)).sort();
+      const actual = [
+        ...new Bun.Glob(`**/*${extension}`).scanSync({ cwd: `dist/${kind}`, onlyFiles: true }),
+      ].sort();
+      assert.deepEqual(
+        actual,
+        expected,
+        `${kind} ${extension}: missing or retired generated owner`,
+      );
+    }
+  }
+});

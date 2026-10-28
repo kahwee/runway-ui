@@ -1,0 +1,7 @@
+@layer runway-ui.observatory {
+  @container rw-console (inline-size < 820px) {
+    .rw-console__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

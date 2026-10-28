@@ -3,6 +3,7 @@ import {
   AnimatedNumber,
   Button,
   Confetti,
+  haptic,
   Meter,
   Panel,
   Runway,
@@ -40,12 +41,19 @@ function FeedbackBody({ startingValue }: FeedbackExampleProps) {
           <Button
             onClick={() => {
               setBurst(true);
+              haptic("success");
               push("You reached a milestone!", "success");
             }}
           >
             Celebrate
           </Button>
-          <Button data-variant="danger" onClick={() => push("The oven needs repairs.", "danger")}>
+          <Button
+            data-variant="danger"
+            onClick={() => {
+              haptic("warning");
+              push("The oven needs repairs.", "danger");
+            }}
+          >
             Problem
           </Button>
         </div>

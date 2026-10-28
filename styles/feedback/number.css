@@ -1,0 +1,9 @@
+@layer runway-ui.patterns {
+  .rw-number {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+    &[data-trend] {
+      animation: rw-number-bump 0.45s var(--rw-spring, ease);
+    }
+  }
+}

@@ -53,7 +53,7 @@ test("React and chart peers are required and runtime dependencies remain empty",
   assert.equal(pkg.exports["./dialog"].default, "./dist/behaviors/dialog.js");
 });
 
-test("a Button-only consumer drops unused optional entry exports", async () => {
+test("a Button-only consumer drops unrelated component and peer implementations", async () => {
   const result = await build({
     configFile: false,
     logLevel: "silent",
@@ -87,6 +87,10 @@ test("a Button-only consumer drops unused optional entry exports", async () => {
     !modules.some((id) => /base-ui.*\/(select|checkbox|field|input)\//.test(id)),
     "Unused primitive implementations are removed",
   );
+  assert.ok(
+    !modules.some((id) => /\/react\/(meter|animated-number|confetti|toast|chart)\.ts$/.test(id)),
+    "Unrelated Runway components are removed",
+  );
 });
 
 test("native progress keeps its name, units, indeterminate state and consumer props", () => {
@@ -109,4 +113,40 @@ test("native progress keeps its name, units, indeterminate state and consumer pr
   assert.match(progress, /id="experiment-progress"/);
   const unknown = renderToStaticMarkup(h(Progress, { "aria-label": "Loading" }));
   assert.doesNotMatch(unknown, / value=|aria-valuenow=/);
+});
+
+test("component ownership refactors retain every supported React runtime export", async () => {
+  const entry = await import("@kahwee/runway-ui/react");
+  const supported = [
+    "AnimatedNumber",
+    "Badge",
+    "Button",
+    "Chart",
+    "ChartCard",
+    "Checkbox",
+    "CommandBar",
+    "Confetti",
+    "ControlConsole",
+    "Dialog",
+    "Dossier",
+    "DossierList",
+    "Field",
+    "FolioTabs",
+    "Input",
+    "Inventory",
+    "Meter",
+    "Panel",
+    "Progress",
+    "Range",
+    "Resource",
+    "Runway",
+    "Select",
+    "Sheet",
+    "ToastProvider",
+    "cx",
+    "defineChart",
+    "useToasts",
+  ];
+  for (const name of supported)
+    assert.ok(Object.hasOwn(entry, name), `Missing public export: ${name}`);
 });

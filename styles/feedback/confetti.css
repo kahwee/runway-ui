@@ -1,0 +1,31 @@
+@layer runway-ui.patterns {
+  .rw-confetti {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    overflow: hidden;
+    pointer-events: none;
+    & > i {
+      position: absolute;
+      inset-inline-start: 50%;
+      inset-block-start: 45%;
+      inline-size: 10px;
+      block-size: 14px;
+      border-radius: 3px;
+      background: var(--rw-accent);
+      animation: rw-confetti-fly 1.2s cubic-bezier(0.2, 0.7, 0.3, 1) var(--delay, 0ms) both;
+      &:nth-child(4n + 2) {
+        background: var(--rw-gold);
+      }
+      &:nth-child(4n + 3) {
+        background: var(--rw-focus);
+      }
+      &:nth-child(4n) {
+        background: var(--rw-danger);
+        border-radius: 50%;
+        inline-size: 10px;
+        block-size: 10px;
+      }
+    }
+  }
+}

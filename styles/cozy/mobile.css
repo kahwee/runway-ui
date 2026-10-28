@@ -1,0 +1,122 @@
+/* Touch and small screens: big targets, no sticky hover, safe areas, a scrolling tab row and a thumb-reach action bar. */
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    & :is(.rw-button, .rw-slot, .rw-choice, .rw-folio-tab, .rw-dock, .rw-toast__close) {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      user-select: none;
+    }
+  }
+  /* Touch devices keep :hover after a tap; do not leave controls lifted. Pressing still squishes. */
+  @media (hover: none) {
+    .rw-ui[data-theme="cozy"]
+      :is(.rw-button, .rw-slot, .rw-choice, .rw-folio-tab):hover:not(:active, :disabled) {
+      translate: none;
+      scale: none;
+      filter: none;
+    }
+  }
+  @media (pointer: coarse) {
+    .rw-ui[data-theme="cozy"] {
+      --rw-control-block: 14px;
+      & .rw-button {
+        min-block-size: 48px;
+        &[data-size="sm"] {
+          min-block-size: 40px;
+        }
+      }
+      & .rw-input {
+        min-block-size: 48px;
+      }
+      & .rw-folio-tab {
+        min-block-size: 48px;
+      }
+      & .rw-slot {
+        min-block-size: 76px;
+      }
+      & .rw-toast__close {
+        inline-size: 36px;
+        block-size: 36px;
+      }
+    }
+  }
+  @media (width < 700px) {
+    .rw-ui[data-theme="cozy"] {
+      --rw-panel-padding: 16px;
+      --rw-radius: 20px;
+      & .rw-command-bar {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 28px;
+        & .rw-command-bar__identity {
+          flex: 1 1 100%;
+          padding-inline-start: 4px;
+        }
+        & .rw-command-bar__metrics {
+          flex: 1 1 100%;
+          gap: 8px;
+        }
+        & .rw-command-stat {
+          flex: 1 1 0;
+          min-inline-size: 0;
+          padding: 6px 12px;
+        }
+      }
+      /* Section tabs become a swipeable row; the active tab stays put instead of sliding sideways. */
+      & .rw-folio-tabs {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 8px;
+        padding-block: 2px 8px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        & > .rw-folio-tab {
+          flex: 0 0 auto;
+          min-block-size: 48px;
+          padding-inline: 18px;
+          scroll-snap-align: start;
+          &:is([aria-current="page"], [aria-selected="true"]) {
+            translate: 0 -2px;
+          }
+        }
+      }
+      & .rw-sheet {
+        padding: 16px;
+        border-radius: 24px;
+        & > :is(h1, h2) {
+          font-size: 24px;
+        }
+      }
+      & .rw-dossier {
+        padding: 16px 16px 16px 22px;
+      }
+      /* The main action sits at the bottom, in thumb reach, above the home indicator. */
+      & .rw-control-console {
+        position: sticky;
+        inset-block-end: max(10px, env(safe-area-inset-bottom));
+        z-index: 5;
+        flex-wrap: nowrap;
+        gap: 12px;
+        padding: 10px 10px 10px 18px;
+        background: color-mix(in oklch, var(--rw-surface) 92%, transparent);
+        backdrop-filter: blur(10px) saturate(1.2);
+        & > span {
+          display: none;
+        }
+        & > .rw-button:last-child {
+          flex: 1;
+          min-block-size: 52px;
+          margin-inline-start: 0;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}

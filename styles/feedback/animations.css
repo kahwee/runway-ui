@@ -1,0 +1,23 @@
+@layer runway-ui.patterns {
+  @keyframes rw-number-bump {
+    40% {
+      scale: 1.14;
+    }
+  }
+  @keyframes rw-confetti-fly {
+    0% {
+      translate: 0 0;
+      rotate: 0deg;
+      opacity: 1;
+    }
+    40% {
+      translate: calc(var(--x) * 0.7) var(--y);
+      opacity: 1;
+    }
+    100% {
+      translate: var(--x) calc(var(--y) + 280px);
+      rotate: var(--r);
+      opacity: 0;
+    }
+  }
+}
