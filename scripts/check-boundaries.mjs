@@ -1,6 +1,5 @@
-import { access, readdir, readFile } from "node:fs/promises";
+import { access } from "node:fs/promises";
 import { dirname, extname, relative, resolve } from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
 import { parse } from "@babel/parser";
 import { parse as parseHtml } from "parse5";
 import postcss from "postcss";
@@ -37,17 +36,19 @@ function walk(node, visit) {
 async function sources(root) {
   const result = [];
   async function scan(directory, recursive) {
-    let entries;
+    const pattern = `${recursive ? "**/" : ""}*`;
     try {
-      entries = await readdir(directory, { withFileTypes: true });
+      for await (const path of new Bun.Glob(pattern).scan({
+        cwd: directory,
+        absolute: true,
+        onlyFiles: true,
+        dot: true,
+        followSymlinks: false,
+      })) {
+        if (sourceExtensions.has(extname(path))) result.push(path);
+      }
     } catch (error) {
-      if (error.code === "ENOENT") return;
-      throw error;
-    }
-    for (const entry of entries) {
-      const path = resolve(directory, entry.name);
-      if (entry.isDirectory() && recursive) await scan(path, true);
-      else if (entry.isFile() && sourceExtensions.has(extname(path))) result.push(path);
+      if (error.code !== "ENOENT") throw error;
     }
   }
   await scan(root, false);
@@ -183,7 +184,7 @@ export async function checkBoundaries(root) {
   for (const path of await sources(root)) {
     const file = label(path);
     graph.set(file, new Set());
-    const source = await readFile(path, "utf8");
+    const source = await Bun.file(path).text();
     if (file.endsWith(".css")) css(source, file);
     else if (file.endsWith(".html")) {
       function html(node) {
@@ -275,7 +276,7 @@ export async function checkBoundaries(root) {
   for (const file of graph.keys()) visit(file);
 
   const publicModules = new Set();
-  const pkg = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
+  const pkg = await Bun.file(resolve(root, "package.json")).json();
   function publicTargets(value) {
     if (typeof value === "string" && /^\.\/behaviors\/.*\.js$/.test(value))
       publicModules.add(value.slice(2));
@@ -305,8 +306,8 @@ export async function checkBoundaries(root) {
   return diagnostics.sort();
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const root = fileURLToPath(new URL("../", import.meta.url));
+if (process.argv[1] && import.meta.url === Bun.pathToFileURL(resolve(process.argv[1])).href) {
+  const root = Bun.fileURLToPath(new URL("../", import.meta.url));
   const diagnostics = await checkBoundaries(root);
   if (diagnostics.length) {
     console.error(diagnostics.join("\n"));

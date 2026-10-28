@@ -81,3 +81,17 @@ output. It preserves committed CSS, icons, declarations and installed dependenci
 Then `bun run build-site` recreates the package, Storybook and documentation site.
 Storybook runs after package generation so it never reads icons while they are
 being regenerated. No build-speed improvement is claimed without measurement.
+
+## Native build APIs
+
+Generators and checks use `Bun.file`, `Bun.write`, `Bun.Glob`, native URL/path
+conversion and checked `Bun.spawnSync` subprocesses. Generated CSS, declarations
+and site contents must remain unchanged when changing these implementation APIs.
+Failed compilers must not replace an existing declaration, and temporary source
+copies must be removed on success or failure.
+
+Directory copying, temporary-directory creation, recursive cleanup and path
+normalization still use Bun's Node-compatible standard-library APIs where there
+is no equivalent direct Bun file operation. These run inside Bun; they do not
+launch Node. Third-party tooling may still require Node. Browser modules continue
+to use browser APIs, not Bun globals.

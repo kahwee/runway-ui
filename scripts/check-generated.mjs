@@ -1,32 +1,41 @@
-import { execFileSync } from "node:child_process";
-import { readdir, readFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
-
-const root = fileURLToPath(new URL("../", import.meta.url));
+const root = Bun.fileURLToPath(new URL("../", import.meta.url));
 const outputs = [
   "dist/runway-ui.css",
   "react/index.d.ts",
   "styles/icons.css",
-  ...(await readdir(new URL("../behaviors/", import.meta.url)))
-    .filter((name) => name.endsWith(".js"))
+  ...[
+    ...new Bun.Glob("*.js").scanSync({
+      cwd: Bun.fileURLToPath(new URL("../behaviors/", import.meta.url)),
+      onlyFiles: true,
+      dot: true,
+    }),
+  ]
+    .sort()
     .map((name) => `behaviors/${name.replace(/\.js$/, ".d.ts")}`),
 ];
 // Read the commit first: rebuilding must not hide a missing committed output.
 const committed = outputs.map((path) => {
-  try {
-    return execFileSync("git", ["show", `HEAD:${path}`], {
-      cwd: root,
-      stdio: ["ignore", "pipe", "pipe"],
-    });
-  } catch {
-    return null;
-  }
+  const result = Bun.spawnSync(["git", "show", `HEAD:${path}`], {
+    cwd: root,
+    stdin: "ignore",
+    stdout: "pipe",
+    stderr: "ignore",
+  });
+  return result.success ? result.stdout : null;
 });
-execFileSync(process.execPath, ["scripts/run-build.mjs"], { cwd: root, stdio: "inherit" });
+const build = Bun.spawnSync([process.execPath, "scripts/run-build.mjs"], {
+  cwd: root,
+  stdin: "inherit",
+  stdout: "inherit",
+  stderr: "inherit",
+});
+if (!build.success) throw new Error("Generated-output build failed");
 let failed = false;
 for (const [index, path] of outputs.entries()) {
-  const generated = await readFile(new URL(`../${path}`, import.meta.url));
-  if (!committed[index]?.equals(generated)) {
+  const generated = new Uint8Array(
+    await Bun.file(new URL(`../${path}`, import.meta.url)).arrayBuffer(),
+  );
+  if (!committed[index] || !Bun.deepEquals(committed[index], generated)) {
     console.error(`Generated output differs from the commit or is not committed: ${path}`);
     failed = true;
   }

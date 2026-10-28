@@ -1,6 +1,4 @@
-import { fileURLToPath } from "node:url";
-
-const root = fileURLToPath(new URL("../", import.meta.url));
+const root = Bun.fileURLToPath(new URL("../", import.meta.url));
 // These generators own disjoint outputs. Wait for every child before reporting failure.
 const tasks = ["build-types.mjs", "build-react-types.mjs", "build.mjs"];
 const results = await Promise.allSettled(

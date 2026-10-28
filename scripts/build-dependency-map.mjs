@@ -1,15 +1,13 @@
-import { readFile, writeFile } from "node:fs/promises";
 import { dirname, relative, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
 import postcss from "postcss";
 import { recipes } from "../stories/isolation/recipes.js";
 
-const root = fileURLToPath(new URL("../", import.meta.url));
+const root = Bun.fileURLToPath(new URL("../", import.meta.url));
 const output = resolve(root, "docs/DEPENDENCIES.md");
 async function children(file, chain = new Set()) {
   if (chain.has(file)) throw new Error(`Circular stylesheet dependency: ${file}`);
   const next = new Set(chain).add(file);
-  const css = postcss.parse(await readFile(resolve(root, file), "utf8"));
+  const css = postcss.parse(await Bun.file(resolve(root, file)).text());
   const result = [];
   for (const node of css.nodes) {
     if (node.type !== "atrule" || node.name !== "import") continue;
@@ -45,10 +43,10 @@ const formatted = Bun.spawnSync(
 if (formatted.exitCode !== 0) throw new Error(new TextDecoder().decode(formatted.stderr));
 content = new TextDecoder().decode(formatted.stdout);
 if (process.argv.includes("--check")) {
-  if ((await readFile(output, "utf8")) !== content)
+  if ((await Bun.file(output).text()) !== content)
     throw new Error("Dependency guide is stale; run bun run build-dependency-map");
   console.log("Dependency guide matches isolated recipes and resolved CSS imports.");
 } else {
-  await writeFile(output, content);
+  await Bun.write(output, content);
   console.log("Generated docs/DEPENDENCIES.md from isolated recipes.");
 }

@@ -1,9 +1,8 @@
-import { readdir, readFile, stat } from "node:fs/promises";
+import { stat } from "node:fs/promises";
 import { relative, resolve, sep } from "node:path";
-import { fileURLToPath } from "node:url";
 import { parse } from "parse5";
 
-const root = fileURLToPath(new URL("../.site/", import.meta.url));
+const root = Bun.fileURLToPath(new URL("../.site/", import.meta.url));
 const cache = new Map();
 async function page(path) {
   if (cache.has(path)) return cache.get(path);
@@ -15,20 +14,23 @@ async function page(path) {
     }
     for (const child of node.childNodes ?? []) walk(child);
   }
-  walk(parse(await readFile(path, "utf8")));
+  walk(parse(await Bun.file(path).text()));
   cache.set(path, result);
   return result;
 }
 const failures = [];
 let checked = 0;
-for (const name of await readdir(resolve(root, "docs"))) {
-  if (!name.endsWith(".html")) continue;
+for await (const name of new Bun.Glob("*.html").scan({
+  cwd: resolve(root, "docs"),
+  onlyFiles: true,
+  dot: true,
+})) {
   const source = resolve(root, "docs", name);
   for (const link of (await page(source)).links) {
     if (/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(link)) continue;
     checked++;
     const url = new URL(link, `file://${source}`);
-    let target = fileURLToPath(url);
+    let target = Bun.fileURLToPath(url);
     try {
       if (!target.startsWith(root.endsWith(sep) ? root : root + sep))
         throw new Error("outside generated site");

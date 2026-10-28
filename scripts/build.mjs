@@ -1,12 +1,10 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, relative, resolve, sep } from "node:path";
-import { fileURLToPath } from "node:url";
 
-const root = fileURLToPath(new URL("../", import.meta.url));
+const root = Bun.fileURLToPath(new URL("../", import.meta.url));
 async function inline(path, ancestors = new Set()) {
   if (ancestors.has(path)) throw new Error(`Circular CSS import: ${relative(root, path)}`);
   const chain = new Set(ancestors).add(path);
-  const source = await readFile(path, "utf8");
+  const source = await Bun.file(path).text();
   const pattern = /@import\s+url\(['"]([^'"]+)['"]\);/g;
   let cursor = 0,
     output = "";
@@ -21,8 +19,7 @@ async function inline(path, ancestors = new Set()) {
 }
 await import("./icons.mjs");
 const css = await inline(resolve(root, "index.css"));
-await mkdir(resolve(root, "dist"), { recursive: true });
-await writeFile(
+await Bun.write(
   resolve(root, "dist/runway-ui.css"),
   `/*! Runway UI | MIT License | https://github.com/kahwee/runway-ui */\n${css.trimEnd()}\n`,
 );
