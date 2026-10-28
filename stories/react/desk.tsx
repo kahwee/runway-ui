@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { areaY, lineY } from "@tanstack/charts";
 import { scaleLinear } from "@tanstack/charts/scales/linear";
 import { tooltip } from "@tanstack/charts/tooltip";
@@ -15,6 +15,7 @@ import {
   DossierList,
   FolioTabs,
   haptic,
+  Icon,
   Meter,
   Runway,
   Sheet,
@@ -25,13 +26,13 @@ import {
 export type DeskExampleProps = {
   title: string;
   startingCash: number;
-  theme: "cozy" | "ledger" | "whimsy";
+  theme: "cozy" | "cozy-night" | "ledger" | "whimsy";
 };
 type Section = "overview" | "people" | "projects";
-const sections: { id: Section; label: string }[] = [
-  { id: "overview", label: "Overview" },
-  { id: "people", label: "People" },
-  { id: "projects", label: "Projects" },
+const sections: { id: Section; label: string; icon: ReactNode }[] = [
+  { id: "overview", label: "Overview", icon: <Icon name="sun" /> },
+  { id: "people", label: "People", icon: <Icon name="users" /> },
+  { id: "projects", label: "Projects", icon: <Icon name="rocket" /> },
 ];
 const roles = ["Operations lead", "Research lead"];
 
@@ -98,8 +99,8 @@ function DeskBody({ title, startingCash }: DeskExampleProps) {
       <CommandBar
         title={title}
         stats={[
-          { label: "Credits", value: today.cash.toLocaleString("en-US") },
-          { label: "Team", value: 4 + hired.length },
+          { label: "Credits", icon: <Icon name="coins" />, value: today.cash },
+          { label: "Team", icon: <Icon name="users" />, value: 4 + hired.length },
         ]}
       />
       <div className="story-workspace-grid">
@@ -136,8 +137,18 @@ function DeskBody({ title, startingCash }: DeskExampleProps) {
             </DossierList>
           ) : (
             <div style={{ display: "grid", gap: 16 }}>
-              <Meter label="Team energy" value={energy} tone={energy < 40 ? "danger" : "morale"} />
-              <Meter label="Projects on track" value={60 + hired.length * 15} tone="pm" />
+              <Meter
+                icon={<Icon name="lightning" />}
+                label="Team energy"
+                value={energy}
+                tone={energy < 40 ? "danger" : "morale"}
+              />
+              <Meter
+                icon={<Icon name="rocket" />}
+                label="Projects on track"
+                value={60 + hired.length * 15}
+                tone="pm"
+              />
               <ChartCard title="Credits by day" caption="Hire people to grow the curve.">
                 <Chart definition={chart} height={240} ariaLabel="Credits by day" />
               </ChartCard>

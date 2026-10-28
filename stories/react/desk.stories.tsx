@@ -15,7 +15,7 @@ export const Playable: StoryObj<DeskExampleProps> = {
     {
       title: text("Workspace identity."),
       startingCash: range(0, 200000, 1000, "Starting credits."),
-      theme: select(["cozy", "ledger", "whimsy"], "Runway theme."),
+      theme: select(["cozy", "cozy-night", "ledger", "whimsy"], "Runway theme."),
     },
   ),
   render: (props) => renderReactStory(DeskExample, props),

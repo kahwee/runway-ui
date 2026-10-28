@@ -1,6 +1,6 @@
 /* Cozy: a soft, sweet little sim-game look. Warm paper, pastel candy, gentle springs. */
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     --rw-bg: #fdeede;
     --rw-surface: #fffdf8;
     --rw-raised: #fff4e6;
@@ -83,6 +83,12 @@
       1.013,
       1
     );
+    --rw-cozy-paper: #fff;
+    --rw-cozy-gloss: #ffffff80;
+    --rw-cozy-shade: #3d1f33;
+    --rw-cozy-on-pastel: #54384a;
+    --rw-cozy-bar: #54384a;
+    --rw-cozy-bar-ink: #fff8ee;
     --rw-cozy-lip: color-mix(in oklch, var(--rw-ink) 28%, var(--rw-line));
     --rw-font:
       "Nunito Variable", Nunito, ui-rounded, "SF Pro Rounded", "Varela Round",

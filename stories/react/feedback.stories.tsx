@@ -13,7 +13,7 @@ export const Playground: StoryObj<FeedbackExampleProps> = {
     "AnimatedNumber, Meter change flash, Confetti and Base UI toasts. All motion is skipped under prefers-reduced-motion.",
     args,
     {
-      theme: select(["cozy", "ledger", "whimsy"], "Runway theme."),
+      theme: select(["cozy", "cozy-night", "ledger", "whimsy"], "Runway theme."),
       startingValue: range(0, 100000, 500, "Starting credits."),
     },
   ),

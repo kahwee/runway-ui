@@ -1,6 +1,6 @@
 /* Palette for @tanstack/charts and native Runway charts: pastel marks, plum text. */
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     --ts-chart-1: #e0607e;
     --ts-chart-2: #f2b134;
     --ts-chart-3: #3fb98a;

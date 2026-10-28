@@ -1,14 +1,14 @@
 /* The desk: a command bar, sticky-note tabs, a paper sheet and a calm control console. */
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     & .rw-command-bar {
-      --rw-command-bg: var(--rw-ink);
-      --rw-command-ink: #fff8ee;
+      --rw-command-bg: var(--rw-cozy-bar);
+      --rw-command-ink: var(--rw-cozy-bar-ink);
       --rw-command-muted: #f0d9e4;
       padding: 14px 20px;
       border: 0;
       border-radius: 999px;
-      box-shadow: 0 5px 0 color-mix(in oklch, var(--rw-ink) 55%, black);
+      box-shadow: 0 5px 0 color-mix(in oklch, var(--rw-cozy-bar) 55%, black);
       & .rw-command-bar__identity {
         font: 600 20px / 1.1 var(--rw-display-font);
         padding-inline-start: 8px;
@@ -54,7 +54,7 @@
       &:is([aria-current="page"], [aria-selected="true"]) {
         border: 2px solid color-mix(in oklch, var(--rw-tab-accent) 70%, var(--rw-ink));
         background: var(--rw-tab-accent);
-        color: var(--rw-ink);
+        color: var(--rw-cozy-on-pastel);
         translate: 6px 0;
       }
     }

@@ -4,7 +4,7 @@ import { createElement, type ComponentProps } from "react";
 import { cx } from "./classes.ts";
 
 export type RunwayProps = ComponentProps<"div"> & {
-  theme?: "cozy" | "ledger" | "orbital" | "parchment" | "whimsy" | "midnight";
+  theme?: "cozy" | "cozy-night" | "ledger" | "orbital" | "parchment" | "whimsy" | "midnight";
   density?: "compact";
 };
 

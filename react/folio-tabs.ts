@@ -5,7 +5,7 @@ import { cx } from "./classes.ts";
 
 export type FolioTabsProps<Id extends string> = {
   label: string;
-  items: { id: Id; label: ReactNode }[];
+  items: { id: Id; label: ReactNode; icon?: ReactNode }[];
   value: Id;
   onValueChange: (id: Id) => void;
   className?: string;
@@ -32,6 +32,7 @@ export function FolioTabs<Id extends string>({
           "aria-current": item.id === value ? "page" : undefined,
           onClick: () => onValueChange(item.id),
         },
+        item.icon,
         item.label,
       ),
     ),

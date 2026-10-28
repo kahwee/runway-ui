@@ -16,6 +16,7 @@ export default {
         icon: "paintbrush",
         items: [
           { value: "cozy", title: "Cozy / Sweet sim" },
+          { value: "cozy-night", title: "Cozy night / Lamplight" },
           { value: "studio", title: "Studio / Light" },
           { value: "orbital", title: "Orbital / Dark" },
           { value: "midnight", title: "Midnight / Black" },

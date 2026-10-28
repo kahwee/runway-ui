@@ -1,7 +1,11 @@
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     & .rw-button {
-      --rw-cozy-lip: color-mix(in oklch, var(--rw-button-bg, var(--rw-soft)) 68%, #3d1f33);
+      --rw-cozy-lip: color-mix(
+        in oklch,
+        var(--rw-button-bg, var(--rw-soft)) 68%,
+        var(--rw-cozy-shade)
+      );
       border: 2px solid var(--rw-cozy-lip);
       border-radius: var(--rw-pill);
       background-image: linear-gradient(
@@ -12,7 +16,7 @@
       font-family: var(--rw-display-font);
       font-weight: 600;
       box-shadow:
-        inset 0 2px #ffffff80,
+        inset 0 2px var(--rw-cozy-gloss),
         0 var(--rw-control-depth) 0 var(--rw-cozy-lip),
         0 calc(var(--rw-control-depth) + 6px) 14px
           color-mix(in oklch, var(--rw-cozy-lip) 30%, transparent);
@@ -24,7 +28,7 @@
       }
       &:active:not(:disabled) {
         translate: 0 var(--rw-control-depth);
-        box-shadow: inset 0 3px 0 #3d1f3322;
+        box-shadow: inset 0 3px 0 color-mix(in oklch, var(--rw-cozy-shade) 14%, transparent);
       }
       &[data-variant="secondary"] {
         --rw-button-bg: var(--rw-surface);

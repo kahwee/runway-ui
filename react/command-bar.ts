@@ -4,7 +4,7 @@ import { createElement, type ComponentProps, type ReactNode } from "react";
 import { cx } from "./classes.ts";
 import { AnimatedNumber } from "./animated-number.ts";
 
-export type CommandStat = { label: string; value: ReactNode; note?: ReactNode };
+export type CommandStat = { label: string; value: ReactNode; note?: ReactNode; icon?: ReactNode };
 
 /** Top status bar: identity on the left, aligned stats on the right. */
 export function CommandBar({
@@ -28,7 +28,7 @@ export function CommandBar({
         createElement(
           "div",
           { className: "rw-command-stat", key: stat.label },
-          createElement("span", null, stat.label),
+          createElement("span", null, stat.icon, stat.label),
           createElement(
             "strong",
             null,

@@ -1,5 +1,5 @@
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] .rw-meter {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) .rw-meter {
     --rw-meter-height: 14px;
     --rw-meter-color: var(--rw-cozy-mint);
     & .rw-meter__label {
@@ -9,7 +9,7 @@
     }
     & .rw-meter__track {
       border: 2px solid var(--rw-line);
-      background: #fff;
+      background: var(--rw-cozy-paper);
       box-shadow: inset 0 2px 0 color-mix(in oklch, var(--rw-ink) 10%, transparent);
     }
     & .rw-meter__fill {

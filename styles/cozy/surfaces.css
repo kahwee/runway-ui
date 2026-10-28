@@ -1,5 +1,5 @@
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     & .rw-panel {
       border: 2px solid var(--rw-line);
       background: var(--rw-surface);

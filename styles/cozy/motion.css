@@ -1,6 +1,6 @@
 /* Sweet motion: staggered rises, a flash when meters change, and a gentle ring on the main action. */
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     --rw-stagger: 55ms;
     & .rw-toast {
       border: 2px solid var(--rw-line);
@@ -45,7 +45,7 @@
     }
   }
   @media (prefers-reduced-motion: no-preference) {
-    .rw-ui[data-theme="cozy"] {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
       /* Children of the same parent rise one after another. */
       &
         :is(
@@ -77,7 +77,7 @@
       }
     }
     @supports (animation-delay: calc(sibling-index() * 1ms)) {
-      .rw-ui[data-theme="cozy"]
+      .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"])
         :is(.rw-panel, .rw-sheet, .rw-dossier, .rw-slot, .rw-choice, .rw-folio-tab, .rw-resource) {
         animation-delay: calc((sibling-index() - 1) * var(--rw-stagger));
       }

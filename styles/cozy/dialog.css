@@ -1,6 +1,6 @@
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] .rw-dialog,
-  .rw-dialog[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) .rw-dialog,
+  .rw-dialog:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     border: 2px solid var(--rw-line);
     border-radius: 28px;
     box-shadow:

@@ -1,6 +1,6 @@
 /* Touch and small screens: big targets, no sticky hover, safe areas, a scrolling tab row and a thumb-reach action bar. */
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     & :is(.rw-button, .rw-slot, .rw-choice, .rw-folio-tab, .rw-dock, .rw-toast__close) {
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
@@ -10,7 +10,7 @@
   }
   /* Touch devices keep :hover after a tap; do not leave controls lifted. Pressing still squishes. */
   @media (hover: none) {
-    .rw-ui[data-theme="cozy"]
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"])
       :is(.rw-button, .rw-slot, .rw-choice, .rw-folio-tab):hover:not(:active, :disabled) {
       translate: none;
       scale: none;
@@ -18,7 +18,7 @@
     }
   }
   @media (pointer: coarse) {
-    .rw-ui[data-theme="cozy"] {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
       --rw-control-block: 14px;
       & .rw-button {
         min-block-size: 48px;
@@ -42,7 +42,7 @@
     }
   }
   @media (width < 700px) {
-    .rw-ui[data-theme="cozy"] {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
       --rw-panel-padding: 16px;
       --rw-radius: 20px;
       & .rw-command-bar {

@@ -12,7 +12,7 @@ import {
 } from "../../react/index.ts";
 
 export type FeedbackExampleProps = {
-  theme: "cozy" | "ledger" | "whimsy";
+  theme: "cozy" | "cozy-night" | "ledger" | "whimsy";
   startingValue: number;
 };
 

@@ -1,18 +1,18 @@
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] .rw-badge {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) .rw-badge {
     border: 2px solid color-mix(in oklch, var(--rw-cozy-butter) 60%, var(--rw-ink));
     background: var(--rw-cozy-butter);
-    color: var(--rw-ink);
+    color: var(--rw-cozy-on-pastel);
     font-weight: 800;
     &[data-tone="warning"] {
       border-color: color-mix(in oklch, #ffb27a 60%, var(--rw-ink));
       background: #ffb27a;
-      color: var(--rw-ink);
+      color: var(--rw-cozy-on-pastel);
     }
     &[data-tone="danger"] {
       border-color: color-mix(in oklch, var(--rw-cozy-rose) 60%, var(--rw-ink));
       background: var(--rw-cozy-rose);
-      color: var(--rw-ink);
+      color: var(--rw-cozy-on-pastel);
     }
   }
 }

@@ -1,5 +1,5 @@
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     & .rw-resource__icon {
       color: var(--rw-accent);
     }

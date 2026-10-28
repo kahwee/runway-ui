@@ -23,7 +23,7 @@ export const GameCard: StoryObj<ComponentsExampleProps> = {
       energy: range(0, 100, 1, "Meter value from 0 to 100.", "State"),
       tone: select(["morale", "energy", "warning", "danger", "design", "pm"], "Meter color tone."),
       badge: text("Badge label."),
-      theme: select(["cozy", "ledger", "whimsy"], "Runway theme."),
+      theme: select(["cozy", "cozy-night", "ledger", "whimsy"], "Runway theme."),
     },
   ),
   render: (props) => renderReactStory(ComponentsExample, props),

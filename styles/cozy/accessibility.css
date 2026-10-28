@@ -1,6 +1,6 @@
 @layer runway-ui.themes {
   @media (prefers-reduced-motion: no-preference) {
-    .rw-ui[data-theme="cozy"] {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
       & .rw-badge {
         animation: rw-cozy-pop 0.5s var(--rw-spring) backwards;
       }
@@ -9,10 +9,10 @@
         animation: rw-cozy-pop 0.45s var(--rw-spring);
       }
     }
-    .rw-ui[data-theme="cozy"] .rw-slot[aria-pressed="true"] {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) .rw-slot[aria-pressed="true"] {
       animation: rw-cozy-select 0.5s var(--rw-spring);
     }
-    .rw-ui[data-theme="cozy"] .rw-meter[data-low] .rw-meter__track {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) .rw-meter[data-low] .rw-meter__track {
       animation: rw-cozy-pulse 1.6s ease-in-out infinite;
     }
     @keyframes rw-cozy-select {
@@ -39,13 +39,15 @@
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .rw-ui[data-theme="cozy"] :is(.rw-folio-tab, .rw-dossier, .rw-slot, .rw-choice) {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"])
+      :is(.rw-folio-tab, .rw-dossier, .rw-slot, .rw-choice) {
       transition: none;
       translate: none !important;
     }
   }
   @media (forced-colors: active) {
-    .rw-ui[data-theme="cozy"] :is(.rw-command-bar, .rw-folio-tab, .rw-sheet, .rw-dossier) {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"])
+      :is(.rw-command-bar, .rw-folio-tab, .rw-sheet, .rw-dossier) {
       border: 2px solid CanvasText;
       background: Canvas;
       color: CanvasText;

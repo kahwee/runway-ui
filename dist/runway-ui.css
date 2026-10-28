@@ -5899,7 +5899,7 @@
 /* Composition entry: keep component order stable. */
 /* Cozy: a soft, sweet little sim-game look. Warm paper, pastel candy, gentle springs. */
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     --rw-bg: #fdeede;
     --rw-surface: #fffdf8;
     --rw-raised: #fff4e6;
@@ -5982,6 +5982,12 @@
       1.013,
       1
     );
+    --rw-cozy-paper: #fff;
+    --rw-cozy-gloss: #ffffff80;
+    --rw-cozy-shade: #3d1f33;
+    --rw-cozy-on-pastel: #54384a;
+    --rw-cozy-bar: #54384a;
+    --rw-cozy-bar-ink: #fff8ee;
     --rw-cozy-lip: color-mix(in oklch, var(--rw-ink) 28%, var(--rw-line));
     --rw-font:
       "Nunito Variable", Nunito, ui-rounded, "SF Pro Rounded", "Varela Round",
@@ -6008,10 +6014,66 @@
   }
 }
 
+/* Cozy night: the same shapes and motion under lamplight. Plum paper, warm glow, soft stars. */
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui[data-theme="cozy-night"] {
+    --rw-bg: #241a2e;
+    --rw-surface: #33253f;
+    --rw-raised: #3d2d4a;
+    --rw-ink: #fbeee6;
+    --rw-muted: #c9b4c7;
+    --rw-line: #5a4468;
+    --rw-accent: #ff8fa8;
+    --rw-on-accent: #3a1426;
+    --rw-soft: #4a3858;
+    --rw-gold: #ffd980;
+    --rw-danger: #ff9b8f;
+    --rw-focus: #9cc9ff;
+    --rw-highlight: #ffffff26;
+    --rw-shadow:
+      inset 0 2px #ffffff14, 0 4px 0 var(--rw-line),
+      0 16px 30px color-mix(in oklch, black 35%, transparent);
+    --rw-cozy-paper: #2a1e35;
+    --rw-cozy-gloss: #ffffff2e;
+    --rw-cozy-shade: #12091a;
+    --rw-cozy-on-pastel: #3a2535;
+    --rw-cozy-bar: #170e1f;
+    --rw-cozy-bar-ink: #fbeee6;
+    --rw-cozy-feather-tint: #000;
+    --ts-chart-1: #ff8fa8;
+    --ts-chart-2: #ffd980;
+    --ts-chart-3: #7fe0b8;
+    --ts-chart-4: #8ec5ff;
+    --ts-chart-5: #c1a8ff;
+    --ts-chart-6: #ffb27a;
+    color-scheme: dark;
+    /* Warm lamp glow from the top right, a cool glow from the left, and two offset layers of faint stars. */
+    background-image:
+      radial-gradient(circle at 85% -5%, #ffb87a30, transparent 42%),
+      radial-gradient(circle at 8% 0%, #c1a8ff1f, transparent 38%),
+      radial-gradient(circle, #ffe9b358 1px, transparent 1.4px),
+      radial-gradient(circle, #ffe9b330 1.2px, transparent 1.6px);
+    background-size:
+      auto,
+      auto,
+      97px 83px,
+      61px 71px;
+    background-position:
+      0 0,
+      0 0,
+      13px 29px,
+      41px 7px;
+  }
+}
+
+@layer runway-ui.themes {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     & .rw-button {
-      --rw-cozy-lip: color-mix(in oklch, var(--rw-button-bg, var(--rw-soft)) 68%, #3d1f33);
+      --rw-cozy-lip: color-mix(
+        in oklch,
+        var(--rw-button-bg, var(--rw-soft)) 68%,
+        var(--rw-cozy-shade)
+      );
       border: 2px solid var(--rw-cozy-lip);
       border-radius: var(--rw-pill);
       background-image: linear-gradient(
@@ -6022,7 +6084,7 @@
       font-family: var(--rw-display-font);
       font-weight: 600;
       box-shadow:
-        inset 0 2px #ffffff80,
+        inset 0 2px var(--rw-cozy-gloss),
         0 var(--rw-control-depth) 0 var(--rw-cozy-lip),
         0 calc(var(--rw-control-depth) + 6px) 14px
           color-mix(in oklch, var(--rw-cozy-lip) 30%, transparent);
@@ -6034,7 +6096,7 @@
       }
       &:active:not(:disabled) {
         translate: 0 var(--rw-control-depth);
-        box-shadow: inset 0 3px 0 #3d1f3322;
+        box-shadow: inset 0 3px 0 color-mix(in oklch, var(--rw-cozy-shade) 14%, transparent);
       }
       &[data-variant="secondary"] {
         --rw-button-bg: var(--rw-surface);
@@ -6054,7 +6116,7 @@
 }
 
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     & .rw-panel {
       border: 2px solid var(--rw-line);
       background: var(--rw-surface);
@@ -6071,26 +6133,61 @@
 }
 
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] .rw-badge {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) .rw-badge {
     border: 2px solid color-mix(in oklch, var(--rw-cozy-butter) 60%, var(--rw-ink));
     background: var(--rw-cozy-butter);
-    color: var(--rw-ink);
+    color: var(--rw-cozy-on-pastel);
     font-weight: 800;
     &[data-tone="warning"] {
       border-color: color-mix(in oklch, #ffb27a 60%, var(--rw-ink));
       background: #ffb27a;
-      color: var(--rw-ink);
+      color: var(--rw-cozy-on-pastel);
     }
     &[data-tone="danger"] {
       border-color: color-mix(in oklch, var(--rw-cozy-rose) 60%, var(--rw-ink));
       background: var(--rw-cozy-rose);
-      color: var(--rw-ink);
+      color: var(--rw-cozy-on-pastel);
+    }
+  }
+}
+
+/* Icon accents: stat chips, folio tabs, meter names and resource badges. */
+@layer runway-ui.themes {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
+    & .rw-command-stat > span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      & .rw-icon {
+        color: var(--rw-cozy-butter);
+        font-size: 1.35em;
+      }
+    }
+    & .rw-folio-tab .rw-icon {
+      font-size: 26px;
+      color: color-mix(in oklch, var(--rw-ink) 55%, var(--rw-tab-accent));
+    }
+    & .rw-folio-tab:is([aria-current="page"], [aria-selected="true"]) .rw-icon {
+      color: var(--rw-cozy-on-pastel);
+    }
+    & .rw-meter__name {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      & .rw-icon {
+        font-size: 1.3em;
+        color: var(--rw-meter-color);
+        filter: saturate(1.4) brightness(0.85);
+      }
+    }
+    & .rw-resource__icon .rw-icon {
+      font-size: 30px;
     }
   }
 }
 
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] .rw-meter {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) .rw-meter {
     --rw-meter-height: 14px;
     --rw-meter-color: var(--rw-cozy-mint);
     & .rw-meter__label {
@@ -6100,7 +6197,7 @@
     }
     & .rw-meter__track {
       border: 2px solid var(--rw-line);
-      background: #fff;
+      background: var(--rw-cozy-paper);
       box-shadow: inset 0 2px 0 color-mix(in oklch, var(--rw-ink) 10%, transparent);
     }
     & .rw-meter__fill {
@@ -6129,7 +6226,7 @@
 }
 
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     & .rw-resource__icon {
       color: var(--rw-accent);
     }
@@ -6181,15 +6278,15 @@
 
 /* The desk: a command bar, sticky-note tabs, a paper sheet and a calm control console. */
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     & .rw-command-bar {
-      --rw-command-bg: var(--rw-ink);
-      --rw-command-ink: #fff8ee;
+      --rw-command-bg: var(--rw-cozy-bar);
+      --rw-command-ink: var(--rw-cozy-bar-ink);
       --rw-command-muted: #f0d9e4;
       padding: 14px 20px;
       border: 0;
       border-radius: 999px;
-      box-shadow: 0 5px 0 color-mix(in oklch, var(--rw-ink) 55%, black);
+      box-shadow: 0 5px 0 color-mix(in oklch, var(--rw-cozy-bar) 55%, black);
       & .rw-command-bar__identity {
         font: 600 20px / 1.1 var(--rw-display-font);
         padding-inline-start: 8px;
@@ -6235,7 +6332,7 @@
       &:is([aria-current="page"], [aria-selected="true"]) {
         border: 2px solid color-mix(in oklch, var(--rw-tab-accent) 70%, var(--rw-ink));
         background: var(--rw-tab-accent);
-        color: var(--rw-ink);
+        color: var(--rw-cozy-on-pastel);
         translate: 6px 0;
       }
     }
@@ -6306,7 +6403,7 @@
 
 /* Palette for @tanstack/charts and native Runway charts: pastel marks, plum text. */
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     --ts-chart-1: #e0607e;
     --ts-chart-2: #f2b134;
     --ts-chart-3: #3fb98a;
@@ -6321,7 +6418,7 @@
 
 /* Sweet motion: staggered rises, a flash when meters change, and a gentle ring on the main action. */
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     --rw-stagger: 55ms;
     & .rw-toast {
       border: 2px solid var(--rw-line);
@@ -6366,7 +6463,7 @@
     }
   }
   @media (prefers-reduced-motion: no-preference) {
-    .rw-ui[data-theme="cozy"] {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
       /* Children of the same parent rise one after another. */
       &
         :is(
@@ -6398,7 +6495,7 @@
       }
     }
     @supports (animation-delay: calc(sibling-index() * 1ms)) {
-      .rw-ui[data-theme="cozy"]
+      .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"])
         :is(.rw-panel, .rw-sheet, .rw-dossier, .rw-slot, .rw-choice, .rw-folio-tab, .rw-resource) {
         animation-delay: calc((sibling-index() - 1) * var(--rw-stagger));
       }
@@ -6436,7 +6533,7 @@
 
 /* Smoother silhouettes: squircle corners where supported, softer feathered lips, no hairline seams. */
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     &
       :is(
         .rw-panel,
@@ -6460,7 +6557,7 @@
     }
   }
   @supports (corner-shape: squircle) {
-    .rw-ui[data-theme="cozy"]
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"])
       :is(
         .rw-panel,
         .rw-sheet,
@@ -6480,7 +6577,7 @@
 
 /* Touch and small screens: big targets, no sticky hover, safe areas, a scrolling tab row and a thumb-reach action bar. */
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     & :is(.rw-button, .rw-slot, .rw-choice, .rw-folio-tab, .rw-dock, .rw-toast__close) {
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
@@ -6490,7 +6587,7 @@
   }
   /* Touch devices keep :hover after a tap; do not leave controls lifted. Pressing still squishes. */
   @media (hover: none) {
-    .rw-ui[data-theme="cozy"]
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"])
       :is(.rw-button, .rw-slot, .rw-choice, .rw-folio-tab):hover:not(:active, :disabled) {
       translate: none;
       scale: none;
@@ -6498,7 +6595,7 @@
     }
   }
   @media (pointer: coarse) {
-    .rw-ui[data-theme="cozy"] {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
       --rw-control-block: 14px;
       & .rw-button {
         min-block-size: 48px;
@@ -6522,7 +6619,7 @@
     }
   }
   @media (width < 700px) {
-    .rw-ui[data-theme="cozy"] {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
       --rw-panel-padding: 16px;
       --rw-radius: 20px;
       & .rw-command-bar {
@@ -6602,8 +6699,8 @@
 }
 
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] .rw-dialog,
-  .rw-dialog[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) .rw-dialog,
+  .rw-dialog:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     border: 2px solid var(--rw-line);
     border-radius: 28px;
     box-shadow:
@@ -6622,7 +6719,7 @@
 
 @layer runway-ui.themes {
   @media (prefers-reduced-motion: no-preference) {
-    .rw-ui[data-theme="cozy"] {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
       & .rw-badge {
         animation: rw-cozy-pop 0.5s var(--rw-spring) backwards;
       }
@@ -6631,10 +6728,10 @@
         animation: rw-cozy-pop 0.45s var(--rw-spring);
       }
     }
-    .rw-ui[data-theme="cozy"] .rw-slot[aria-pressed="true"] {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) .rw-slot[aria-pressed="true"] {
       animation: rw-cozy-select 0.5s var(--rw-spring);
     }
-    .rw-ui[data-theme="cozy"] .rw-meter[data-low] .rw-meter__track {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) .rw-meter[data-low] .rw-meter__track {
       animation: rw-cozy-pulse 1.6s ease-in-out infinite;
     }
     @keyframes rw-cozy-select {
@@ -6661,13 +6758,15 @@
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .rw-ui[data-theme="cozy"] :is(.rw-folio-tab, .rw-dossier, .rw-slot, .rw-choice) {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"])
+      :is(.rw-folio-tab, .rw-dossier, .rw-slot, .rw-choice) {
       transition: none;
       translate: none !important;
     }
   }
   @media (forced-colors: active) {
-    .rw-ui[data-theme="cozy"] :is(.rw-command-bar, .rw-folio-tab, .rw-sheet, .rw-dossier) {
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"])
+      :is(.rw-command-bar, .rw-folio-tab, .rw-sheet, .rw-dossier) {
       border: 2px solid CanvasText;
       background: Canvas;
       color: CanvasText;

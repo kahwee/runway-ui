@@ -1,6 +1,6 @@
 /* Smoother silhouettes: squircle corners where supported, softer feathered lips, no hairline seams. */
 @layer runway-ui.themes {
-  .rw-ui[data-theme="cozy"] {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     &
       :is(
         .rw-panel,
@@ -24,7 +24,7 @@
     }
   }
   @supports (corner-shape: squircle) {
-    .rw-ui[data-theme="cozy"]
+    .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"])
       :is(
         .rw-panel,
         .rw-sheet,

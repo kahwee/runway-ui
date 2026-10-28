@@ -1,12 +1,21 @@
 "use client";
 
-import { createElement, useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  createElement,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
 import { cx } from "./classes.ts";
 
 export type Tone = "warning" | "danger" | "energy" | "morale" | "design" | "pm";
 
 export type MeterProps = {
   label: string;
+  /** Optional icon shown before the label. */
+  icon?: ReactNode;
   /** Current value from 0 to `max`. */
   value: number;
   max?: number;
@@ -15,7 +24,7 @@ export type MeterProps = {
 };
 
 /** Labelled progress capsule with an accessible `meter` role. */
-export function Meter({ label, value, max = 100, tone, className }: MeterProps) {
+export function Meter({ label, icon, value, max = 100, tone, className }: MeterProps) {
   const limit = Number.isFinite(max) && max > 0 ? max : 100;
   const current = Number.isFinite(value) ? Math.min(limit, Math.max(0, value)) : 0;
   const percent = (current / limit) * 100;
@@ -44,7 +53,7 @@ export function Meter({ label, value, max = 100, tone, className }: MeterProps) 
     createElement(
       "div",
       { className: "rw-meter__label", "aria-hidden": true },
-      createElement("span", null, label),
+      createElement("span", { className: "rw-meter__name" }, icon, label),
       createElement("span", null, `${Math.round(percent)}%`),
     ),
     createElement(

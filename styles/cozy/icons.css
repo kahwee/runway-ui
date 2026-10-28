@@ -1,0 +1,34 @@
+/* Icon accents: stat chips, folio tabs, meter names and resource badges. */
+@layer runway-ui.themes {
+  .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
+    & .rw-command-stat > span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      & .rw-icon {
+        color: var(--rw-cozy-butter);
+        font-size: 1.35em;
+      }
+    }
+    & .rw-folio-tab .rw-icon {
+      font-size: 26px;
+      color: color-mix(in oklch, var(--rw-ink) 55%, var(--rw-tab-accent));
+    }
+    & .rw-folio-tab:is([aria-current="page"], [aria-selected="true"]) .rw-icon {
+      color: var(--rw-cozy-on-pastel);
+    }
+    & .rw-meter__name {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      & .rw-icon {
+        font-size: 1.3em;
+        color: var(--rw-meter-color);
+        filter: saturate(1.4) brightness(0.85);
+      }
+    }
+    & .rw-resource__icon .rw-icon {
+      font-size: 30px;
+    }
+  }
+}
