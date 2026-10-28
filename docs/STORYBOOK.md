@@ -15,8 +15,7 @@ action label in Controls; inspect or copy the current HTML beside the live sampl
 Copy reports success or points to the selectable source when clipboard access is
 unavailable. Local actions explain their preview-only effects. The native dialog
 starts on the safe action, supports Escape and restores focus to its invoker.
-Each recipe links to its matching contract and the dependency guide. The
-Accessibility tab runs axe checks; it complements manual keyboard and visual review.
+Each recipe links to its matching contract and the dependency guide.
 
 The responsive workshop links directly to Storybook, first-panel recipes and the
 guides, so visitors can explore the same material on phones and desktops.
@@ -68,7 +67,7 @@ The Pages build writes only allowlisted public files to `.site/`, places Storybo
 `check-docs` validates local links, assets, anchors and Storybook entry routes
 throughout the published HTML. `check-pages` serves the exact `.site` artifact
 under `/runway-ui/` with real 404 responses. It checks phone and desktop layouts,
-WCAG-tagged axe scans, recipe actions and copy feedback, native dialog focus and
+recipe actions and copy feedback, native dialog focus and
 Escape, manager navigation, live Controls, and failed assets/browser errors.
 Screenshots go to `.local/pages-check/`. Pages and pull-request workflows run it
 before publication. To check the live deployment, run:

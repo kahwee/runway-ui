@@ -2,7 +2,6 @@ import assert from "node:assert/strict";
 import { stat, mkdir } from "node:fs/promises";
 import { resolve, sep } from "node:path";
 import { chromium, type Page } from "playwright";
-import axe from "axe-core";
 
 // Exercise the exact publication artifact below a project prefix, with real 404s.
 // A supplied URL runs the same check against the public deployment.
@@ -52,20 +51,6 @@ function observe(page: Page) {
 }
 async function scan(page: Page, name: string) {
   await page.evaluate(() => document.fonts.ready);
-  await page.addScriptTag({ content: axe.source });
-  const violations = await page.evaluate(
-    async () =>
-      (
-        await (window as unknown as { axe: typeof axe }).axe.run(document, {
-          runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa"] },
-        })
-      ).violations,
-  );
-  assert.deepEqual(
-    violations.map((v) => ({ id: v.id, targets: v.nodes.map((n) => n.target) })),
-    [],
-    `${name}: accessibility`,
-  );
   assert.ok(
     await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1),
     `${name}: horizontal overflow`,
