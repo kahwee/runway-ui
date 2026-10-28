@@ -14,7 +14,7 @@ full source tree, with strict public APIs and strict React stories.
 
 ## Unreleased
 
-- Version `0.6.0-beta.1`. Motion and delight: `AnimatedNumber`, `Confetti`, `Toaster` and `useToasts`;
+- Version `0.6.0-beta.1` (published to npm, `next`). Motion and delight: `AnimatedNumber`, `Confetti`, `Toaster` and `useToasts`;
   `Meter` flashes on change and pulses when low; staggered cozy entrances, bouncier hover and a
   `data-attention` ring; new `styles/feedback.css`. Cozy polish: readable rare tags, a cream dock and
   meter highlights. The desk example celebrates hires and counts up credits, with whole-day chart ticks.
