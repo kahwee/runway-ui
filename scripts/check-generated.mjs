@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const outputs = [
   "dist/runway-ui.css",
+  "react/index.d.ts",
   "styles/icons.css",
   ...(await readdir(new URL("../behaviors/", import.meta.url)))
     .filter((name) => name.endsWith(".js"))
@@ -21,6 +22,7 @@ const committed = outputs.map((path) => {
     return null;
   }
 });
+execFileSync(process.execPath, ["scripts/build-react-types.mjs"], { cwd: root, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/build-types.mjs"], { cwd: root, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/build.mjs"], { cwd: root, stdio: "inherit" });
 let failed = false;

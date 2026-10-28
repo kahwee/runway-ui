@@ -59,6 +59,10 @@
     "./actions": {
       "types": "./behaviors/actions.d.ts",
       "default": "./behaviors/actions.js"
+    },
+    "./react": {
+      "types": "./react/index.d.ts",
+      "default": "./react/index.js"
     }
   },
   "files": [
@@ -70,7 +74,8 @@
     "README.md",
     "docs",
     "examples",
-    "scripts"
+    "scripts",
+    "react"
   ],
   "style": "index.css",
   "license": "MIT",
@@ -94,7 +99,7 @@
     "inventory"
   ],
   "scripts": {
-    "build": "pnpm build-types && node scripts/build.mjs",
+    "build": "pnpm build-types && pnpm build-react-types && node scripts/build.mjs",
     "prepack": "pnpm run build",
     "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build --disable-telemetry",
@@ -110,7 +115,8 @@
     "test-boundaries": "node --test tests/boundaries.test.mjs",
     "test-behaviors": "node --test tests/*.test.mjs",
     "build-types": "node scripts/build-types.mjs",
-    "check-types": "node scripts/build-types.mjs --check && tsc -p tsconfig.consumer.json"
+    "check-types": "node scripts/build-types.mjs --check && node scripts/build-react-types.mjs --check && tsc -p tsconfig.consumer.json",
+    "build-react-types": "node scripts/build-react-types.mjs"
   },
   "engines": {
     "node": "^22.18.0 || >=24.11.0"
@@ -128,7 +134,28 @@
     "postcss": "^8.5.31",
     "storybook": "10.6.3",
     "typescript": "7.0.2",
-    "vite": "8.3.5"
+    "vite": "8.3.5",
+    "@base-ui/react": "1.9.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0"
   },
-  "packageManager": "pnpm@12.14.0"
+  "packageManager": "pnpm@12.14.0",
+  "peerDependencies": {
+    "@base-ui/react": "^1.9.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@base-ui/react": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  }
 }

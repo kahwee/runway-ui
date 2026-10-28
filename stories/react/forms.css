@@ -1,0 +1,55 @@
+.react-form-example {
+  display: grid;
+  gap: 16px;
+  max-inline-size: 420px;
+  padding: 20px;
+  margin: auto;
+}
+.react-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-block-size: 44px;
+}
+.react-checkbox {
+  display: inline-grid;
+  place-content: center;
+  inline-size: 28px;
+  block-size: 28px;
+  border: 2px solid var(--rw-line);
+  border-radius: 6px;
+  color: var(--rw-ink);
+  background: var(--rw-raised);
+}
+.react-checkbox:focus-visible {
+  outline: 3px solid var(--rw-focus);
+  outline-offset: 3px;
+}
+.react-select-popup {
+  padding: 8px;
+  min-inline-size: var(--anchor-width);
+  max-block-size: var(--available-height);
+  overflow-y: auto;
+}
+.react-select-option {
+  min-block-size: 44px;
+  padding: 10px;
+}
+.react-select-option[data-highlighted] {
+  background: var(--rw-soft);
+  outline: 2px solid var(--rw-focus);
+  outline-offset: -2px;
+}
+@media (forced-colors: active) {
+  .react-checkbox {
+    border-color: ButtonText;
+  }
+  .react-select-option[data-highlighted] {
+    outline-color: Highlight;
+  }
+}
+@media (width <= 600px) {
+  .react-form-example :is(.rw-button, .rw-input) {
+    min-block-size: 44px;
+  }
+}

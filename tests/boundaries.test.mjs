@@ -221,3 +221,32 @@ test("inline HTML modules participate in dependency checks", async (t) => {
     [],
   );
 });
+
+test("optional React layer allows primitives but cannot enter vanilla or depend on stories", async (t) => {
+  assert.deepEqual(
+    await problems(t, {
+      "react/index.js": 'export { Field } from "@base-ui/react/field";',
+    }),
+    [],
+  );
+  contains(
+    await problems(t, {
+      "behaviors/native.js": 'import "../react/index.js";',
+      "react/index.js": 'export { Field } from "@base-ui/react/field";',
+    }),
+    /Library boundary violation/,
+  );
+  contains(
+    await problems(t, {
+      "react/index.js": 'import "../stories/demo.js";',
+      "stories/demo.js": "export const demo = true;",
+    }),
+    /React boundary violation/,
+  );
+  contains(
+    await problems(t, {
+      "react/index.js": 'import "some-app";',
+    }),
+    /React modules may only import/,
+  );
+});

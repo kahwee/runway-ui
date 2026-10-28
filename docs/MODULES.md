@@ -81,3 +81,10 @@ imports retain the `runway-ui.patterns` layer and original cascade order;
 `accessibility.css` owns shared dock and inventory motion preferences. Import
 the aggregate for the complete patterns set, or choose component files through
 `runway-ui/styles/patterns/*.css` alongside the base tokens and primitives.
+
+## Optional React boundary
+
+`react/` owns the optional React 19 / Base UI entry and generated declarations. It
+may import React and Base UI primitive subpaths; vanilla runtime modules may not
+import it. `stories/react/` owns example layout and React root teardown. See
+[React usage](REACT.md). Do not duplicate upstream component state machines.

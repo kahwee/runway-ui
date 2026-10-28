@@ -7,6 +7,7 @@ import postcss from "postcss";
 
 const sourceDirectories = [
   "behaviors",
+  "react",
   "styles",
   "examples",
   "stories",
@@ -215,6 +216,15 @@ export async function checkBoundaries(root) {
     if (remote || packageImport) {
       if (runtime(file))
         report(file, `Runtime modules cannot import external dependency "${value}"`, line);
+      if (
+        file.startsWith("react/") &&
+        !(value === "react" || value.startsWith("react/") || value.startsWith("@base-ui/react/"))
+      )
+        report(
+          file,
+          `React modules may only import React and Base UI primitives: "${value}"`,
+          line,
+        );
       continue;
     }
     const destination = target(file, value);
@@ -222,6 +232,8 @@ export async function checkBoundaries(root) {
       report(file, `Import escapes the package: ${value}`, line);
       continue;
     }
+    if (file.startsWith("react/") && !destination.startsWith("react/"))
+      report(file, `React boundary violation: ${file} → ${destination}`, line);
     if (runtime(file)) {
       const allowed = file.startsWith("behaviors/")
         ? destination.startsWith("behaviors/")
