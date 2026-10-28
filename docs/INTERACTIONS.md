@@ -49,6 +49,6 @@ Default row height is 92px; cells are 84px inside padded rows. The rowHeight opt
 
 The 10,000-item example demonstrates bounded DOM count, not a 10,000-unit simulation. No frame-rate benchmark is claimed.
 
-## Forms and time series
+## Forms and charts
 
-`bindRanges` synchronizes native slider outputs and visual fill; call its `destroy()` on unmount. `mountHistoryWindow` owns a dedicated root, renders one bounded window and returns paging state plus teardown. See the [API](API.md), [fields](FIELDS.md) and [history guide](INSTRUMENTS.md) for options, data ownership and exact-table scope. `renderHistory` itself returns escaped HTML and installs no listeners.
+Use the React `Range` component for slider fill and output, and `@tanstack/charts` (through `Chart`) for time series.

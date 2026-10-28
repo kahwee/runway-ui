@@ -20,6 +20,12 @@ full source tree, with strict public APIs and strict React stories.
   `Sheet`, `Dossier`, `DossierList`, `ControlConsole`, `Chart` and `ChartCard`. Vanilla
   behavior modules are deprecated and will be removed in a later release; the CSS stays
   standalone.
+- Add React `Dialog` (native modal with a cancel veto for required decisions), `Inventory`
+  (slot grid with arrow-key roving focus) and `Range` (filled track and live output).
+- **Removed** the vanilla `runway-ui/forms`, `history`, `timeseries`, `resource`, `styles`
+  and `actions` modules, the lazy-workspace example and the history instrument story.
+  Use `Range`, `@tanstack/charts` through `Chart`, and React/bundler lazy loading instead.
+  `dialog`, `navigation` and `inventory` remain until the doc site and workshop are ported.
 - Add the `cozy` theme (`styles/cozy.css`, one file per component in `styles/cozy/`):
   soft pastel surfaces, pill buttons with a candy lip, sticker badges, sticky-note
   folio tabs, a rounded command bar and console, and a `--ts-chart-*` palette for

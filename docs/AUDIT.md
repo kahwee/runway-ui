@@ -32,7 +32,6 @@ No package release or branch-protection change is implied by a passing workflow.
 
 Added independent resource, deferred stylesheet and action-routing modules with
 TypeScript declarations, no runtime dependencies and no automatic feature imports.
-The standalone lazy-workspace example keeps its simulation state in the host.
 Automated coverage includes concurrent/retried loads, falsy results, duplicate and
 mismatched action ownership, recycled controls and stylesheet listener cleanup.
 Chromium checks at 1440 × 900 and 1366 × 768 opened the deferred panel and ordered

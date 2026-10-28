@@ -16,7 +16,6 @@ const pages = [
   "/examples/view-tabs.html",
   "/examples/drop-in.html",
   "/examples/studio.html",
-  "/examples/lazy-workspace/",
   "/examples/observatory.html",
 ];
 const results = [];

@@ -1,6 +1,6 @@
 # React components
 
-React is required. Components are in `runway-ui/react`; wrap them in `Runway` (defaults to the `cozy` theme). Charts use `@tanstack/charts` through `Chart` and `ChartCard`; see **React / Desk** in Storybook for a playable example.
+React is required. Components are in `runway-ui/react`; wrap them in `Runway` (defaults to the `cozy` theme). Charts use `@tanstack/charts` through `Chart` and `ChartCard`; see **React / Desk** in Storybook for a playable example. `Dialog` wraps a native `<dialog>`: pass `canDismiss={() => false}` for required decisions. `Inventory` renders slot buttons with arrow-key navigation and `Range` renders a filled native slider with an `<output>`.
 
 The `runway-ui/react` entry uses React 19 and real Base UI primitives. The existing
 HTML/CSS and `runway-ui/dialog` behavior remain independent of React, with no

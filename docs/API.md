@@ -24,24 +24,13 @@ All modules ship TypeScript declarations and have no runtime dependencies. Use t
 | `runway-ui/dialog`     | `bindDialog`                    | `destroy()` restores the dismissal attribute and removes listeners           |
 | `runway-ui/navigation` | `bindNavigation`, `bindGamepad` | Destroy both handles when unmounting                                         |
 | `runway-ui/inventory`  | `createInventory`               | Owns its root contents; `destroy()` clears owned markup                      |
-| `runway-ui/forms`      | `bindRanges`                    | `destroy()` removes range listeners                                          |
-| `runway-ui/history`    | `renderHistory`                 | Pure escaped HTML renderer; no mounted listeners                             |
-| `runway-ui/timeseries` | `mountHistoryWindow`            | Owns its root contents; `destroy()` cancels pending work and clears the root |
 
 ### Range outputs
 
-```js
-import { bindRanges } from "runway-ui/forms";
-const ranges = bindRanges(root, { format: (value) => `${value}%` });
-// On unmount:
-ranges.destroy();
-```
-
-Use native `.rw-range` inputs and associated `output[for]` elements. Without the helper, native range interaction remains available; output text and the custom fill are host-owned. See [fields](FIELDS.md).
+Use the React `Range` component from `runway-ui/react`; it mirrors the value into an `<output>` and sets `--rw-fill`.
 
 ### History
 
-`renderHistory(options)` accepts signed finite observations, explicit null gaps, matching labels, scales spanning zero, annotations and value formatters. It returns HTML rather than mounting a controller. See [history contracts and recipes](INSTRUMENTS.md).
 
 `mountHistoryWindow(root, options)` adds a full-series overview and native paging controls. Supply matching `values`/`labels`, a finite valid scale and integer window sizes from 1–366. It returns `state`, `setWindow(start, size?)` and `destroy()`. Indexes are zero-based and `state.end` is exclusive. Keep starts and sizes valid in programmatic calls; this is not an input-sanitization boundary. Only the visible window has an exact-data table; the host retains the full dataset.
 
@@ -49,6 +38,6 @@ Use native `.rw-range` inputs and associated `output[for]` elements. Without the
 
 `runway-ui` loads modular CSS; `runway-ui/bundle.css` is self-contained. Named style aliases are `native.css`, `charts.css`, `dialog.css`, `controls.css`, `fields.css`, `layout.css`, `history.css`, `observatory.css`, `forms.css`, `icons.css`, `instruments.css`, `workspace.css`, `quiet.css` and `studio.css`. Source modules are also exposed through `runway-ui/styles/*`. Individual modules may require tokens and related styles; an alias does not imply a standalone bundle. Native form styling imports its prerequisites.
 
-Feature loading: `runway-ui/resource` exports `createLazyResource` and `resourceUrl`; `runway-ui/styles` exports `loadStylesheet`; `runway-ui/actions` exports `createActionRouter` and `createLazyActionRouter`. See [loading contracts](LOADING.md).
+Lazy loading uses React and your bundler (`React.lazy`, dynamic `import()`); Runway no longer ships loaders.
 
 Declarations are generated from strict TypeScript in each behavior. See [type generation and consumer contracts](TYPES.md); public object type names remain available as generated aliases.

@@ -19,7 +19,6 @@ New to Runway UI? Follow **Install → Components → Compose**. Use Storybook w
 | Dialog structure and dismissal                 | [Dialog](DIALOG.md)                   | [Storybook dialog](../storybook/?path=/story/foundations-dialog--playground)           |
 | Icons and weights                              | [Icons](ICONS.md)                     | [Component reference](index.html#reference)                                            |
 | Charts and numeric scales                      | [Charts](CHARTS.md)                   | [Chart lab](charts.html)                                                               |
-| Signed histories and event notes               | [History instruments](INSTRUMENTS.md) | [History playground](../storybook/?path=/story/charts-history-instruments--playground) |
 | Keyboard navigation, inventories and lifecycle | [Interactions](INTERACTIONS.md)       | [Inventory example](../examples/colony.html)                                           |
 - [Component dependency map](DEPENDENCIES.md): exact isolated CSS imports and copyable minimal markup.
 
@@ -44,6 +43,5 @@ New to Runway UI? Follow **Install → Components → Compose**. Use Storybook w
 - [Contributing and source layout](../CONTRIBUTING.md): where to make changes.
 
 Source Markdown guides live alongside the interactive documentation. The site build renders them as HTML and rewrites their guide links. Existing guide filenames remain stable so external links continue working.
-- [Lazy game features and reusable action routing](LOADING.md), with the [supply desk example](../examples/lazy-workspace/index.html).
 
 - [Generated types and behavior ownership](TYPES.md): source of truth, consumer contracts and module map.

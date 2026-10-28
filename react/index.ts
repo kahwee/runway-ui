@@ -60,3 +60,6 @@ export function Progress({ className, ...props }: ComponentProps<"progress">) {
     className: `rw-progress ${className ?? ""}`.trim(),
   });
 }
+export { Dialog, type DialogProps } from "./dialog.ts";
+export { Inventory, type InventoryItem, type InventoryProps } from "./inventory.ts";
+export { Range, type RangeProps } from "./range.ts";

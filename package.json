@@ -30,36 +30,12 @@
     "./layout.css": "./styles/layout.css",
     "./history.css": "./styles/history.css",
     "./observatory.css": "./styles/observatory.css",
-    "./forms": {
-      "types": "./dist/behaviors/forms.d.ts",
-      "default": "./dist/behaviors/forms.js"
-    },
-    "./timeseries": {
-      "types": "./dist/behaviors/timeseries.d.ts",
-      "default": "./dist/behaviors/timeseries.js"
-    },
-    "./history": {
-      "types": "./dist/behaviors/history.d.ts",
-      "default": "./dist/behaviors/history.js"
-    },
     "./forms.css": "./styles/forms.css",
     "./icons.css": "./styles/icons.css",
     "./instruments.css": "./styles/instruments.css",
     "./workspace.css": "./styles/workspace.css",
     "./quiet.css": "./styles/quiet.css",
     "./studio.css": "./styles/studio.css",
-    "./resource": {
-      "types": "./dist/behaviors/resource.d.ts",
-      "default": "./dist/behaviors/resource.js"
-    },
-    "./styles": {
-      "types": "./dist/behaviors/styles.d.ts",
-      "default": "./dist/behaviors/styles.js"
-    },
-    "./actions": {
-      "types": "./dist/behaviors/actions.d.ts",
-      "default": "./dist/behaviors/actions.js"
-    },
     "./react": {
       "types": "./dist/react/index.d.ts",
       "default": "./dist/react/index.js"

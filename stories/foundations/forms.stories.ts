@@ -1,4 +1,3 @@
-import { bindRanges } from "../../behaviors/forms.ts";
 import { flag, range, select } from "../helpers.ts";
 export default {
   title: "Foundations/Forms",
@@ -31,7 +30,7 @@ export default {
     docs: {
       description: {
         component:
-          "Native switch, slider, checkbox, radio, option cards, input groups and fields. Every control is a real form element; classes add the skin. Optional `bindRanges` mirrors slider values into an `<output>`.",
+          "Native switch, slider, checkbox, radio, option cards, input groups and fields. Every control is a real form element; classes add the skin. The React `Range` component mirrors slider values into an `<output>`.",
       },
     },
   },
@@ -72,7 +71,14 @@ export const Settings = {
 </div></form>`;
     const indeterminate = root.querySelector<HTMLInputElement>("#f-all");
     indeterminate.indeterminate = true;
-    bindRanges(root, { format: (v) => `${v}%` });
+    root.addEventListener("input", (event) => {
+      const input = event.target as HTMLInputElement;
+      if (input.type !== "range") return;
+      const [min, max] = [Number(input.min || 0), Number(input.max || 100)];
+      input.style.setProperty("--rw-fill", `${((Number(input.value) - min) / (max - min)) * 100}%`);
+      const out = input.id && root.querySelector(`output[for~="${CSS.escape(input.id)}"]`);
+      if (out) (out as HTMLOutputElement).value = `${input.value}%`;
+    });
     root.querySelector<HTMLOutputElement>("#f-volume-out").value = `${a.sliderValue}%`;
     return root;
   },

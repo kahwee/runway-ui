@@ -1,5 +1,5 @@
 @layer runway-ui.primitives {
-  /* Slider: native range. Optional behaviors/forms.ts sets --rw-fill and the <output>. */
+  /* Slider: native range. The React Range component sets --rw-fill and the <output>. */
   .rw-range {
     --_track: 10px;
     --_thumb: 26px;
