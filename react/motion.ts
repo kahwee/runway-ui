@@ -1,12 +1,4 @@
-import {
-  createElement,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-  type ReactNode,
-} from "react";
+import { createElement, useEffect, useRef, useState, type CSSProperties } from "react";
 import { cx } from "./classes.ts";
 
 const reducedMotion = () =>
@@ -95,53 +87,5 @@ export function Confetti({ active, onDone, count = 22 }: ConfettiProps) {
     "div",
     { className: "rw-confetti", "aria-hidden": true },
     pieces.map((style, i) => createElement("i", { key: i, style })),
-  );
-}
-
-export type Toast = { id: number; message: ReactNode; tone?: "success" | "warning" | "danger" };
-
-/** Toast queue with auto-dismiss. Keeps the four newest. */
-export function useToasts(duration = 3600) {
-  const [toasts, setToasts] = useState<Toast[]>([]);
-  const next = useRef(1);
-  const dismiss = useCallback(
-    (id: number) => setToasts((list) => list.filter((t) => t.id !== id)),
-    [],
-  );
-  const push = useCallback(
-    (message: ReactNode, tone?: Toast["tone"]) => {
-      const id = next.current++;
-      setToasts((list) => [...list.slice(-3), { id, message, tone }]);
-      setTimeout(() => dismiss(id), duration);
-      return id;
-    },
-    [dismiss, duration],
-  );
-  return { toasts, push, dismiss };
-}
-
-/** Bottom-corner stack of toasts. Announced politely to assistive technology. */
-export function Toaster({
-  toasts,
-  onDismiss,
-}: {
-  toasts: Toast[];
-  onDismiss: (id: number) => void;
-}) {
-  return createElement(
-    "div",
-    { className: "rw-toasts", role: "status", "aria-live": "polite" },
-    toasts.map((toast) =>
-      createElement(
-        "div",
-        { key: toast.id, className: "rw-toast", "data-tone": toast.tone },
-        createElement("span", null, toast.message),
-        createElement(
-          "button",
-          { type: "button", "aria-label": "Dismiss", onClick: () => onDismiss(toast.id) },
-          "×",
-        ),
-      ),
-    ),
   );
 }

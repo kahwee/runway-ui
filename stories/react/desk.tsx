@@ -17,7 +17,7 @@ import {
   Meter,
   Runway,
   Sheet,
-  Toaster,
+  ToastProvider,
   useToasts,
 } from "../../react/index.ts";
 
@@ -35,12 +35,12 @@ const sections: { id: Section; label: string }[] = [
 const roles = ["Operations lead", "Research lead"];
 
 /** Small playable simulation: each day earns credits and tires the team. */
-export function DeskExample({ title, startingCash, theme }: DeskExampleProps) {
+function DeskBody({ title, startingCash }: DeskExampleProps) {
   const [section, setSection] = useState<Section>("overview");
   const [history, setHistory] = useState([{ day: 1, cash: startingCash }]);
   const [hired, setHired] = useState<string[]>([]);
   const [celebrate, setCelebrate] = useState(false);
-  const { toasts, push, dismiss } = useToasts();
+  const { push } = useToasts();
   const today = history[history.length - 1];
   const energy = Math.max(10, 100 - (today.day - 1) * 7);
   const chart = useMemo(
@@ -56,6 +56,7 @@ export function DeskExample({ title, startingCash, theme }: DeskExampleProps) {
             axis: {
               label: "Day",
               ticks: {
+                format: (value: number) => String(value),
                 values: history
                   .filter((_, i) => i % Math.ceil(history.length / 8) === 0)
                   .map((row) => row.day),
@@ -87,7 +88,7 @@ export function DeskExample({ title, startingCash, theme }: DeskExampleProps) {
     push(`${role} joined the team!`, "success");
   };
   return (
-    <Runway theme={theme} style={{ display: "grid", gap: 20, padding: 20, maxInlineSize: 1200 }}>
+    <>
       <CommandBar
         title={title}
         stats={[
@@ -146,7 +147,19 @@ export function DeskExample({ title, startingCash, theme }: DeskExampleProps) {
         </Button>
       </ControlConsole>
       <Confetti active={celebrate} onDone={() => setCelebrate(false)} />
-      <Toaster toasts={toasts} onDismiss={dismiss} />
+    </>
+  );
+}
+
+export function DeskExample(props: DeskExampleProps) {
+  return (
+    <Runway
+      theme={props.theme}
+      style={{ display: "grid", gap: 20, padding: 20, maxInlineSize: 1200 }}
+    >
+      <ToastProvider>
+        <DeskBody {...props} />
+      </ToastProvider>
     </Runway>
   );
 }

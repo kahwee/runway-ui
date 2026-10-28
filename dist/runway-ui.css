@@ -2253,12 +2253,27 @@
     color: var(--rw-ink);
     box-shadow: var(--rw-shadow);
     font: 600 13px / 1.4 var(--rw-font);
-    animation: rw-toast-in 0.5s var(--rw-spring, ease) backwards;
-    & > span {
+    transition:
+      translate 0.45s var(--rw-spring, ease),
+      scale 0.45s var(--rw-spring, ease),
+      opacity 0.25s;
+    &[data-starting-style] {
+      translate: 0 28px;
+      scale: 0.9;
+      opacity: 0;
+    }
+    &[data-ending-style] {
+      translate: 0 14px;
+      scale: 0.95;
+      opacity: 0;
+    }
+    & .rw-toast__title {
       flex: 1;
       min-inline-size: 0;
+      margin: 0;
+      font: inherit;
     }
-    & > button {
+    & .rw-toast__close {
       flex: none;
       inline-size: 26px;
       block-size: 26px;
@@ -2274,13 +2289,13 @@
         background: var(--rw-soft);
       }
     }
-    &[data-tone="success"] {
+    &[data-type="success"] {
       border-inline-start: 6px solid var(--rw-accent);
     }
-    &[data-tone="warning"] {
+    &[data-type="warning"] {
       border-inline-start: 6px solid var(--rw-gold);
     }
-    &[data-tone="danger"] {
+    &[data-type="danger"] {
       border-inline-start: 6px solid var(--rw-danger);
     }
   }
@@ -2318,13 +2333,6 @@
       scale: 1.14;
     }
   }
-  @keyframes rw-toast-in {
-    from {
-      translate: 0 28px;
-      scale: 0.9;
-      opacity: 0;
-    }
-  }
   /* Burst up and out, then fall with a spin. */
   @keyframes rw-confetti-fly {
     0% {
@@ -2343,9 +2351,11 @@
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .rw-number[data-trend],
-    .rw-toast {
+    .rw-number[data-trend] {
       animation: none;
+    }
+    .rw-toast {
+      transition: none;
     }
     .rw-confetti {
       display: none;
@@ -6187,13 +6197,13 @@
       border: 2px solid var(--rw-line);
       border-radius: 20px;
       box-shadow: 0 4px 0 var(--rw-line);
-      &[data-tone="success"] {
+      &[data-type="success"] {
         border-inline-start: 6px solid var(--rw-cozy-mint);
       }
-      &[data-tone="warning"] {
+      &[data-type="warning"] {
         border-inline-start: 6px solid var(--rw-cozy-butter);
       }
-      &[data-tone="danger"] {
+      &[data-type="danger"] {
         border-inline-start: 6px solid var(--rw-cozy-rose);
       }
     }

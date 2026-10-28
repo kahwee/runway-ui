@@ -6,13 +6,13 @@
       border: 2px solid var(--rw-line);
       border-radius: 20px;
       box-shadow: 0 4px 0 var(--rw-line);
-      &[data-tone="success"] {
+      &[data-type="success"] {
         border-inline-start: 6px solid var(--rw-cozy-mint);
       }
-      &[data-tone="warning"] {
+      &[data-type="warning"] {
         border-inline-start: 6px solid var(--rw-cozy-butter);
       }
-      &[data-tone="danger"] {
+      &[data-type="danger"] {
         border-inline-start: 6px solid var(--rw-cozy-rose);
       }
     }

@@ -14,7 +14,7 @@ full source tree, with strict public APIs and strict React stories.
 
 ## Unreleased
 
-- Toasts now use Base UI Toast. **Breaking within the beta:** `Toaster` is removed; mount `ToastProvider`
+- Version `0.6.0-beta.2` (not yet published). Toasts now use Base UI Toast. **Breaking within the beta:** `Toaster` is removed; mount `ToastProvider`
   inside `Runway` and call `useToasts().push(message, tone)`. Toast tone styling keys on `data-type`.
 
 - Fix React `Range` controlled values and consumer styles; use the shared range

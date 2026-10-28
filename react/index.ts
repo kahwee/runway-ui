@@ -66,9 +66,7 @@ export { Range, type RangeProps } from "./range.ts";
 export {
   AnimatedNumber,
   Confetti,
-  Toaster,
-  useToasts,
   type AnimatedNumberProps,
   type ConfettiProps,
-  type Toast,
 } from "./motion.ts";
+export { ToastProvider, useToasts, type ToastTone } from "./toast.ts";

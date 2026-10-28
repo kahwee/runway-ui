@@ -6,7 +6,7 @@ import {
   Meter,
   Panel,
   Runway,
-  Toaster,
+  ToastProvider,
   useToasts,
 } from "../../react/index.ts";
 
@@ -16,13 +16,13 @@ export type FeedbackExampleProps = {
 };
 
 /** Every bit of juice in one place: counting numbers, meter flash, confetti and toasts. */
-export function FeedbackExample({ theme, startingValue }: FeedbackExampleProps) {
+function FeedbackBody({ startingValue }: FeedbackExampleProps) {
   const [credits, setCredits] = useState(startingValue);
   const [energy, setEnergy] = useState(70);
   const [burst, setBurst] = useState(false);
-  const { toasts, push, dismiss } = useToasts();
+  const { push } = useToasts();
   return (
-    <Runway theme={theme} style={{ padding: 20, maxInlineSize: 560 }}>
+    <>
       <Panel kicker="Playground" title="Feedback and motion">
         <p className="rw-muted" style={{ margin: "8px 0 16px" }}>
           Credits{" "}
@@ -51,7 +51,16 @@ export function FeedbackExample({ theme, startingValue }: FeedbackExampleProps) 
         </div>
       </Panel>
       <Confetti active={burst} onDone={() => setBurst(false)} />
-      <Toaster toasts={toasts} onDismiss={dismiss} />
+    </>
+  );
+}
+
+export function FeedbackExample(props: FeedbackExampleProps) {
+  return (
+    <Runway theme={props.theme} style={{ padding: 20, maxInlineSize: 560 }}>
+      <ToastProvider>
+        <FeedbackBody {...props} />
+      </ToastProvider>
     </Runway>
   );
 }
