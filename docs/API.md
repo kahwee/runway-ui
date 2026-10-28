@@ -21,13 +21,13 @@ All modules ship TypeScript declarations and have no runtime dependencies. Use t
 
 | Package entry          | Exports                         | Lifecycle                                                                    |
 | ---------------------- | ------------------------------- | ---------------------------------------------------------------------------- |
-| `runway-ui/dialog`     | `bindDialog`                    | `destroy()` restores the dismissal attribute and removes listeners           |
-| `runway-ui/navigation` | `bindNavigation`, `bindGamepad` | Destroy both handles when unmounting                                         |
-| `runway-ui/inventory`  | `createInventory`               | Owns its root contents; `destroy()` clears owned markup                      |
+| `@kahwee/runway-ui/dialog`     | `bindDialog`                    | `destroy()` restores the dismissal attribute and removes listeners           |
+| `@kahwee/runway-ui/navigation` | `bindNavigation`, `bindGamepad` | Destroy both handles when unmounting                                         |
+| `@kahwee/runway-ui/inventory`  | `createInventory`               | Owns its root contents; `destroy()` clears owned markup                      |
 
 ### Range outputs
 
-Use the React `Range` component from `runway-ui/react`; it mirrors the value into an `<output>` and sets `--rw-fill`.
+Use the React `Range` component from `@kahwee/runway-ui/react`; it mirrors the value into an `<output>` and sets `--rw-fill`.
 
 ### History
 
@@ -36,7 +36,7 @@ Use the React `Range` component from `runway-ui/react`; it mirrors the value int
 
 ## Stylesheet entries
 
-`runway-ui` loads modular CSS; `runway-ui/bundle.css` is self-contained. Named style aliases are `native.css`, `charts.css`, `dialog.css`, `controls.css`, `fields.css`, `layout.css`, `history.css`, `observatory.css`, `forms.css`, `icons.css`, `instruments.css`, `workspace.css`, `quiet.css` and `studio.css`. Source modules are also exposed through `runway-ui/styles/*`. Individual modules may require tokens and related styles; an alias does not imply a standalone bundle. Native form styling imports its prerequisites.
+`@kahwee/runway-ui` loads modular CSS; `@kahwee/runway-ui/bundle.css` is self-contained. Named style aliases are `native.css`, `charts.css`, `dialog.css`, `controls.css`, `fields.css`, `layout.css`, `history.css`, `observatory.css`, `forms.css`, `icons.css`, `instruments.css`, `workspace.css`, `quiet.css` and `studio.css`. Source modules are also exposed through `@kahwee/runway-ui/styles/*`. Individual modules may require tokens and related styles; an alias does not imply a standalone bundle. Native form styling imports its prerequisites.
 
 Lazy loading uses React and your bundler (`React.lazy`, dynamic `import()`); Runway no longer ships loaders.
 

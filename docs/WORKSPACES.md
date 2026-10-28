@@ -1,6 +1,6 @@
 # Desktop workspaces
 
-Use the `ledger` theme for warm paper surfaces, green actions, restrained brass borders and serif display type. Workspace components are included in the full bundle; `runway-ui/workspace.css` exposes the modular styles and requires the usual tokens and control styles.
+Use the `ledger` theme for warm paper surfaces, green actions, restrained brass borders and serif display type. Workspace components are included in the full bundle; `@kahwee/runway-ui/workspace.css` exposes the modular styles and requires the usual tokens and control styles.
 
 These components are ordinary semantic HTML and CSS. They introduce no runtime dependencies, automatic navigation, simulation behavior, or viewport gate. Applications own placement, images, state and actions.
 

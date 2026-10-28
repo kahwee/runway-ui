@@ -15,7 +15,7 @@ No `@ts-nocheck` migration escape hatch is used.
 
 Run `bun install --frozen-lockfile` and `bun run build` after cloning or downloading
 a source archive. JavaScript and declarations are generated, not maintained as
-second copies. Package entry names such as `runway-ui/dialog` and `runway-ui/react`
+second copies. Package entry names such as `@kahwee/runway-ui/dialog` and `@kahwee/runway-ui/react`
 are unchanged; they now resolve to compiled files under `dist/`. The package
 prepack hook creates those files. Source archive consumers must build first;
 direct source paths now end in `.ts`.

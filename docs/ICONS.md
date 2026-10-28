@@ -14,7 +14,7 @@ Runway UI draws icons with CSS masks from [Phosphor Icons](https://phosphoricons
 
 Icons take `currentColor`, so theme and state colours apply. They are decorative by default: keep `aria-hidden="true"` and give the control an accessible name. Forced colors maps them to `CanvasText`.
 
-Built-in uses: the select picker caret and check badge, the disclosure badge, the switch thumb check, checkboxes, the dialog close button, history event markers, timeseries paging, trend arrows and inventory slots. `runway-ui/inventory` accepts an icon name (or any text) as `item.icon`.
+Built-in uses: the select picker caret and check badge, the disclosure badge, the switch thumb check, checkboxes, the dialog close button, history event markers, timeseries paging, trend arrows and inventory slots. `@kahwee/runway-ui/inventory` accepts an icon name (or any text) as `item.icon`.
 
 The generated icon stylesheet embeds the SVG masks. Selective consumers who import individual styles can skip it, but the select, disclosure, switch and checkbox skins use its custom properties.
 

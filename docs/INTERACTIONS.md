@@ -5,7 +5,7 @@ The CSS entry has no JavaScript side effects. Import each behavior explicitly, r
 ## Roving focus
 
 ```js
-import { bindNavigation } from "runway-ui/navigation";
+import { bindNavigation } from "@kahwee/runway-ui/navigation";
 const navigation = bindNavigation(document.querySelector("[role=toolbar]"), {
   selector: "button",
   columns: 3,
@@ -21,7 +21,7 @@ Hidden or disabled native buttons are skipped. The helper owns tabindex while mo
 ## Controller
 
 ```js
-import { bindGamepad } from "runway-ui/navigation";
+import { bindGamepad } from "@kahwee/runway-ui/navigation";
 const controller = bindGamepad(root, navigation);
 // controller.destroy() stops requestAnimationFrame polling.
 ```
@@ -31,7 +31,7 @@ Opt in from a visible user action. The adapter uses the first connected **standa
 ## Fixed-height virtual inventory
 
 ```js
-import { createInventory } from "runway-ui/inventory";
+import { createInventory } from "@kahwee/runway-ui/inventory";
 const inventory = createInventory(root, {
   items: [{ id: 1, label: "Copper ore", icon: "◇" }],
   columns: 8,

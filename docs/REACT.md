@@ -1,48 +1,82 @@
 # React components
 
-React is required. Components are in `runway-ui/react`; wrap them in `Runway` (defaults to the `cozy` theme). Charts use `@tanstack/charts` through `Chart` and `ChartCard`; see **React / Desk** in Storybook for a playable example. `Dialog` wraps a native `<dialog>`: pass `canDismiss={() => false}` for required decisions. `Inventory` renders slot buttons with arrow-key navigation and `Range` renders a filled native slider with an `<output>`.
+React is required. Components are in `@kahwee/runway-ui/react`. Wrap them in `Runway`, which
+sets the theme root (`cozy` by default). Charts use `@tanstack/charts`; form controls
+use Base UI primitives.
 
-The `runway-ui/react` entry uses React 19 and real Base UI primitives. The existing
-HTML/CSS and `runway-ui/dialog` behavior remain independent of React, with no
-runtime dependencies. Install the optional peers only in React consumers:
+## Install
 
 ```sh
-bun add react@^19 react-dom@^19 @base-ui/react@^1.9
-bun add -D @types/react@^19 @types/react-dom@^19
+bun add @kahwee/runway-ui@next react@^19 react-dom@^19 @base-ui/react@^1.9 @tanstack/charts
 ```
 
 ```tsx
-import "runway-ui/bundle.css";
-import { Button, Field, Input } from "runway-ui/react";
+import "@kahwee/runway-ui/bundle.css";
+import { Button, Meter, Panel, Runway } from "@kahwee/runway-ui/react";
 
-export function Preferences() {
+export function Briefing() {
   return (
-    <section className="rw-ui" data-theme="orbital">
-      <Field.Root className="rw-field">
-        <Field.Label>Workspace name</Field.Label>
-        <Input defaultValue="Orchard" />
-        <Field.Description>Used to identify this workspace.</Field.Description>
-      </Field.Root>
-      <Button type="button">Save preferences</Button>
-    </section>
+    <Runway theme="cozy">
+      <Panel kicker="Today" title="Morning briefing">
+        <Meter label="Team energy" value={72} tone="morale" />
+        <Button data-variant="primary">Next day</Button>
+      </Panel>
+    </Runway>
   );
 }
 ```
 
-`Button` and `Input` add `rw-button` and `rw-input`. They preserve Base UI props,
-React 19 refs, `render` composition, disabled behavior and state-dependent
-`className` functions. `Field`, `Checkbox` and `Select` are the upstream compound
-primitives, without copied behavior or opinionated value adapters. Their APIs and
-accessibility contracts are documented at [Base UI](https://base-ui.com/react/overview/quick-start).
-Use `Field.Label` and `Field.Description` for programmatic input association.
-Provide a label for every checkbox and selection control.
+Import `@kahwee/runway-ui/bundle.css` once (self-contained) or `@kahwee/runway-ui` for the
+modular entry. `@kahwee/runway-ui/cozy.css` is the theme on its own. Try **React / Desk** and
+**React / Components** in Storybook for playable examples.
 
-Try **React / Base UI forms** in Storybook: controlled input, keyboard select,
-checkbox, disabled action and a save result all run in an actual React root. The
-example unmounts its root when Storybook removes the canvas, avoiding stale roots
-and duplicate callbacks on remount. Its layout CSS is example-owned. Components and args-driven stories are authored in
-TSX with explicit prop types. `bun run check-types` checks these examples alongside
-the published API; the distributed entry remains ready-to-import JavaScript.
+## Component reference
+
+| Component | Renders | Key props |
+| --- | --- | --- |
+| `Runway` | Theme root `div.rw-ui` | `theme` (`cozy`, `ledger`, `orbital`, `parchment`, `whimsy`, `midnight`), `density` |
+| `Panel` | `section.rw-panel` | `title`, `kicker`, `actions` |
+| `Badge` | `span.rw-badge` | `tone` (`warning`, `danger`) |
+| `Meter` | `div[role=meter]` capsule | `label`, `value`, `max`, `tone` |
+| `Progress` | native `<progress>` | native props |
+| `Resource` | Resource bar entry | `icon`, `label`, `value` |
+| `Button`, `Input` | Base UI Button and Input with Runway classes | Base UI props, `data-variant`, `data-size` |
+| `Field`, `Checkbox`, `Select` | Base UI compound primitives | See Base UI docs |
+| `Range` | Native slider with filled track and `<output>` | `label`, `format`, `onValueChange`, native range props |
+| `Dialog` | Native `<dialog>` modal | `open`, `onClose`, `canDismiss` |
+| `Inventory` | Slot grid with roving focus | `items`, `columns`, `selected`, `onSelect` |
+| `CommandBar` | Desk status bar | `title`, `stats` |
+| `FolioTabs` | Vertical section navigation | `label`, `items`, `value`, `onValueChange` |
+| `Sheet` | Paper section | `title`, `description` |
+| `DossierList`, `Dossier` | Aligned record rows | `kicker`, `status`, `title`, `description`, `actions` |
+| `ControlConsole` | Time and workflow controls | children |
+| `Chart`, `ChartCard`, `defineChart` | TanStack Charts adapter and card | `definition`, `height`, `ariaLabel` |
+
+`Meter` clamps `value` to `0..max` and exposes `aria-valuenow`. `Dialog` keeps the browser
+in charge of focus and inertness. Pass `canDismiss={() => false}` to veto Escape and
+backdrop dismissal while a decision is required; the policy is reapplied on every render.
+`Inventory` moves focus with arrows, Home and End; it does not virtualize, so keep lists
+to a few hundred slots.
+
+## Charts
+
+`Chart` is the `@tanstack/charts/react` adapter. Build a definition with `defineChart`, memoize
+it, and render it inside a `Runway` root so the cozy palette (`--ts-chart-1` to `-6`) applies:
+
+```tsx
+const chart = useMemo(
+  () =>
+    defineChart({
+      marks: [lineY(history, { x: "day", y: "cash" })],
+      scales: { x: { scale: scaleLinear }, y: { scale: scaleLinear, nice: true, grid: true } },
+    }),
+  [history],
+);
+<ChartCard title="Credits by day"><Chart definition={chart} height={240} ariaLabel="Credits by day" /></ChartCard>;
+```
+
+Marks, scales and tooltips come from `@tanstack/charts` subpaths. See its
+[documentation](https://tanstack.com/charts) for the full grammar.
 
 ## Portals and themes
 
@@ -65,8 +99,7 @@ retains CSS side effects. A tested Button-only bundle drops other primitive impo
 
 Run `bun run build-react-types`, `bun run check-types`, `bun run test-behaviors`,
 `bun run check-boundaries`, and `bun run build-storybook`. `bun run check-generated` also
-verifies the committed React declaration. The vanilla boundary checker continues to
-reject React or any other external runtime dependency in `behaviors/` and `styles/`.
+verifies the committed React declaration. The boundary checker rejects React and other external dependencies in `behaviors/` and `styles/`.
 
 ## Progress
 

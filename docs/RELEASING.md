@@ -30,8 +30,7 @@ Storybook consumes generated library assets.
 For a requested versioned release, choose the version using the
 [compatibility policy](STABILITY.md), update `package.json` and the lockfile
 consistently, and record changes and migration instructions in
-[CHANGELOG.md](CHANGELOG.md). Preserve public exports, the zero-runtime-dependency
-vanilla entry and the isolated optional React peers. Review relevant browser,
+[CHANGELOG.md](CHANGELOG.md). Preserve public exports, the zero-runtime-dependency CSS and the required React, Base UI and TanStack Charts peers. Review relevant browser,
 keyboard, forced-color and reduced-motion behavior; passing tooling alone does
 not establish browser support.
 
@@ -61,12 +60,25 @@ report the commit and workflow links without claiming package publication.
 
 ## Package readiness and publication
 
-Inspect `bun pm pack --dry-run` output for the public exports, generated runtime
-JavaScript, declarations, CSS and MIT license. The `prepack` hook rebuilds the
-library. Source archive consumers must install and run `bun run build` before
-using runtime exports: authored TypeScript is not a prebuilt JavaScript archive.
+The package is `@kahwee/runway-ui`. Pre-releases use a `-beta.N` version and the `next`
+dist-tag (set in `publishConfig`), so `latest` stays empty until a stable release.
 
-Only after explicit publication authorization, verify the requested version is
-not already published, use the approved registry/trust workflow, and verify the
-published archive and consumer imports. Do not add credentials, alter workflow
+```sh
+bun run build
+bun pm pack --dry-run   # inspect: dist/, styles/, docs/, LICENSE, README.md
+npm login               # once; npm whoami should print your account
+bun publish --dry-run
+```
+
+Only after explicit publication authorization, confirm the version is unused
+(`bun pm view @kahwee/runway-ui versions`), publish with `bun publish` (the scope is public via
+`publishConfig.access`), then verify the archive and a consumer install:
+`bun add @kahwee/runway-ui@next` in a scratch project, import `@kahwee/runway-ui/react`,
+and load `@kahwee/runway-ui/bundle.css`. A tarball cannot be republished under the same
+version; bump `package.json` and `bun.lock` for fixes. Promote to stable by publishing a
+plain version and moving the `latest` tag.
+
+Update the README release-status line and the changelog in the same change that
+publishes. The `prepack` hook rebuilds the library. Source archive consumers must install
+and run `bun run build` before using runtime exports. Do not add credentials, alter workflow
 permissions or publish tags as an incidental cleanup step.

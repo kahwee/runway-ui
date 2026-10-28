@@ -6,7 +6,7 @@ It brings together six small-multiple trend cards, an annotated observed/project
 
 ## Use the parts
 
-The complete stylesheet is `dist/runway-ui.css`. Selective consumers can combine tokens, primitives, layout, charts, `styles/history.css`, `styles/observatory.css` and themes. Package aliases `runway-ui/history.css` and `runway-ui/observatory.css` export the new style modules. They do not automatically load prerequisite modules.
+The complete stylesheet is `dist/runway-ui.css`. Selective consumers can combine tokens, primitives, layout, charts, `styles/history.css`, `styles/observatory.css` and themes. Package aliases `@kahwee/runway-ui/history.css` and `@kahwee/runway-ui/observatory.css` export the new style modules. They do not automatically load prerequisite modules.
 
 The composition's renderer is an example, not a promised application framework API:
 

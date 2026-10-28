@@ -1,6 +1,11 @@
-import { bindDialog, type DialogController } from "runway-ui/dialog";
-import { createInventory, type InventoryItem } from "runway-ui/inventory";
-import { bindGamepad, bindNavigation, type Direction, type Navigation } from "runway-ui/navigation";
+import { bindDialog, type DialogController } from "@kahwee/runway-ui/dialog";
+import { createInventory, type InventoryItem } from "@kahwee/runway-ui/inventory";
+import {
+  bindGamepad,
+  bindNavigation,
+  type Direction,
+  type Navigation,
+} from "@kahwee/runway-ui/navigation";
 
 const root = document.createElement("section");
 const modal: DialogController = bindDialog(document.createElement("dialog"), {

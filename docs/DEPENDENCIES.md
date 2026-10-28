@@ -12,7 +12,7 @@ Keep the `rw-ui` root. For direct HTML loading, link the same files from your
 local copy of Runway UI in the same order. Do not also load the full bundle
 when testing a minimal recipe.
 
-Optional themes: load `runway-ui/styles/themes.css` after these entries and add
+Optional themes: load `@kahwee/runway-ui/styles/themes.css` after these entries and add
 `data-theme` to the root. Theme fonts and host artwork are separate concerns.
 These minimal fixtures deliberately use base tokens and system fonts.
 
@@ -21,8 +21,8 @@ These minimal fixtures deliberately use base tokens and system fonts.
 Native buttons need no behavior module. Shortcut hints do not bind keys; toggle state is application-owned.
 
 ```js
-import "runway-ui/styles/tokens.css";
-import "runway-ui/styles/controls.css";
+import "@kahwee/runway-ui/styles/tokens.css";
+import "@kahwee/runway-ui/styles/controls.css";
 ```
 
 ```html
@@ -40,8 +40,8 @@ No internal stylesheet imports.
 Panels do not style child controls. Add controls.css or fields.css when those components are used.
 
 ```js
-import "runway-ui/styles/tokens.css";
-import "runway-ui/styles/panels.css";
+import "@kahwee/runway-ui/styles/tokens.css";
+import "@kahwee/runway-ui/styles/panels.css";
 ```
 
 ```html
@@ -57,10 +57,10 @@ No internal stylesheet imports.
 Controls own pressed colors and shortcut hints; the dock adds arrangement and motion. The accessibility entry provides reduced-motion rules.
 
 ```js
-import "runway-ui/styles/tokens.css";
-import "runway-ui/styles/controls.css";
-import "runway-ui/styles/patterns/dock.css";
-import "runway-ui/styles/patterns/accessibility.css";
+import "@kahwee/runway-ui/styles/tokens.css";
+import "@kahwee/runway-ui/styles/controls.css";
+import "@kahwee/runway-ui/styles/patterns/dock.css";
+import "@kahwee/runway-ui/styles/patterns/accessibility.css";
 ```
 
 ```html
@@ -78,8 +78,8 @@ No internal stylesheet imports.
 Inputs, selects and textareas use native editing and validation. Modern select pickers enhance supported browsers; native controls remain the fallback. Field wrapper layouts belong to forms.css.
 
 ```js
-import "runway-ui/styles/tokens.css";
-import "runway-ui/styles/fields.css";
+import "@kahwee/runway-ui/styles/tokens.css";
+import "@kahwee/runway-ui/styles/fields.css";
 ```
 
 ```html
@@ -100,10 +100,10 @@ Internal stylesheet imports (already loaded by the entries above):
 icons.css supplies checkbox check and minus masks. fields.css styles text inputs; forms.css supplies wrappers, switches, checks, radios, ranges and choice cards. Add controls.css for styled submit buttons. Optional runway-ui/forms binds range output and fill updates; retain its handle and destroy it on unmount. This fixture uses a fixed fill value and native inputs only.
 
 ```js
-import "runway-ui/styles/tokens.css";
-import "runway-ui/styles/icons.css";
-import "runway-ui/styles/fields.css";
-import "runway-ui/styles/forms.css";
+import "@kahwee/runway-ui/styles/tokens.css";
+import "@kahwee/runway-ui/styles/icons.css";
+import "@kahwee/runway-ui/styles/fields.css";
+import "@kahwee/runway-ui/styles/forms.css";
 ```
 
 ```html
@@ -130,8 +130,8 @@ Internal stylesheet imports (already loaded by the entries above):
 Links keep native focus and navigation; view-tabs.css includes its own reduced-motion and forced-color rules. Artwork is optional and host-owned. Routing and aria-current updates belong to the application; no behavior module is required for links.
 
 ```js
-import "runway-ui/styles/tokens.css";
-import "runway-ui/styles/patterns/view-tabs.css";
+import "@kahwee/runway-ui/styles/tokens.css";
+import "@kahwee/runway-ui/styles/patterns/view-tabs.css";
 ```
 
 ```html
@@ -147,9 +147,9 @@ No internal stylesheet imports.
 section-tabs.css supplies the container; controls.css supplies the button appearance and focus rules. Links need no script. For application-owned toggle buttons, update aria-pressed and displayed content together. Optional runway-ui/navigation provides roving focus, not routing.
 
 ```js
-import "runway-ui/styles/tokens.css";
-import "runway-ui/styles/controls.css";
-import "runway-ui/styles/patterns/section-tabs.css";
+import "@kahwee/runway-ui/styles/tokens.css";
+import "@kahwee/runway-ui/styles/controls.css";
+import "@kahwee/runway-ui/styles/patterns/section-tabs.css";
 ```
 
 ```html
@@ -165,8 +165,8 @@ No internal stylesheet imports.
 CSS draws marks without JavaScript, panels or icons. Column amounts are numbers on the declared positive maximum; table bars use percentage values. Labels and exact values remain readable HTML. The same entry contains stacked, diverging and area primitives; see CHARTS.md for their data contracts.
 
 ```js
-import "runway-ui/styles/tokens.css";
-import "runway-ui/styles/charts.css";
+import "@kahwee/runway-ui/styles/tokens.css";
+import "@kahwee/runway-ui/styles/charts.css";
 ```
 
 ```html
@@ -182,9 +182,9 @@ No internal stylesheet imports.
 dialog.css owns the surface; controls.css styles the buttons. Native showModal(), close() and method="dialog" provide modality and results. Invoker commands require browser support; older hosts can call showModal() from their event handler. Optional runway-ui/dialog adds dismissal policy and requires explicit teardown.
 
 ```js
-import "runway-ui/styles/tokens.css";
-import "runway-ui/styles/controls.css";
-import "runway-ui/styles/dialog.css";
+import "@kahwee/runway-ui/styles/tokens.css";
+import "@kahwee/runway-ui/styles/controls.css";
+import "@kahwee/runway-ui/styles/dialog.css";
 ```
 
 ```html
@@ -200,10 +200,10 @@ No internal stylesheet imports.
 disclosure.css supplies the native details surface and motion; icons.css supplies its caret mask. controls.css supplies the shared summary focus ring. Opening and closing require no JavaScript.
 
 ```js
-import "runway-ui/styles/tokens.css";
-import "runway-ui/styles/controls.css";
-import "runway-ui/styles/icons.css";
-import "runway-ui/styles/disclosure.css";
+import "@kahwee/runway-ui/styles/tokens.css";
+import "@kahwee/runway-ui/styles/controls.css";
+import "@kahwee/runway-ui/styles/icons.css";
+import "@kahwee/runway-ui/styles/disclosure.css";
 ```
 
 ```html
@@ -219,9 +219,9 @@ No internal stylesheet imports.
 resource.css owns the value, label and spacing. Icons are optional; this fixture includes icons.css for the package mark. Values and updates belong to the host; no behavior module is required.
 
 ```js
-import "runway-ui/styles/tokens.css";
-import "runway-ui/styles/icons.css";
-import "runway-ui/styles/patterns/resource.css";
+import "@kahwee/runway-ui/styles/tokens.css";
+import "@kahwee/runway-ui/styles/icons.css";
+import "@kahwee/runway-ui/styles/patterns/resource.css";
 ```
 
 ```html
@@ -237,10 +237,10 @@ No internal stylesheet imports.
 inventory.css supplies slots and selection appearance. controls.css supplies shared focus and disabled rules; accessibility.css supplies reduced-motion rules. Selection is application-owned. Optional runway-ui/inventory provides fixed-height virtual inventories, and runway-ui/navigation supplies roving focus; destroy their handles on unmount.
 
 ```js
-import "runway-ui/styles/tokens.css";
-import "runway-ui/styles/controls.css";
-import "runway-ui/styles/patterns/inventory.css";
-import "runway-ui/styles/patterns/accessibility.css";
+import "@kahwee/runway-ui/styles/tokens.css";
+import "@kahwee/runway-ui/styles/controls.css";
+import "@kahwee/runway-ui/styles/patterns/inventory.css";
+import "@kahwee/runway-ui/styles/patterns/accessibility.css";
 ```
 
 ```html

@@ -111,7 +111,7 @@ The host maps quantities to a declared scale; actual values remain readable HTML
 ```
 
 ```js
-import { bindDialog } from "runway-ui/dialog";
+import { bindDialog } from "@kahwee/runway-ui/dialog";
 const modal = bindDialog(document.querySelector("#decision"));
 // Open from a user action: modal.open();
 // Request policy-aware dismissal: modal.requestClose();

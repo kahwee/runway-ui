@@ -4,7 +4,7 @@
 
 ## Load
 
-Use `index.css` or `dist/runway-ui.css` for the full library. For selective loading, import `styles/tokens.css` and `styles/charts.css`, with a `rw-ui` ancestor supplying tokens. The package alias `runway-ui/charts.css` exports the chart module. See [package status](STATUS.md) and the repository installation instructions.
+Use `index.css` or `dist/runway-ui.css` for the full library. For selective loading, import `styles/tokens.css` and `styles/charts.css`, with a `rw-ui` ancestor supplying tokens. The package alias `@kahwee/runway-ui/charts.css` exports the chart module. See [package status](STATUS.md) and the repository installation instructions.
 
 ## Common contract
 

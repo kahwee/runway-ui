@@ -32,7 +32,7 @@ export const Button: StoryObj<ButtonExampleProps> = {
       source: {
         language: "tsx",
         transform: (_source: string, { args }: { args: ButtonExampleProps }) =>
-          `import { Button } from "runway-ui/react";\n\n<Button data-variant=${JSON.stringify(args.variant)} data-size=${JSON.stringify(args.size)} disabled={${args.disabled}} onClick={handleClick}>\n  {${JSON.stringify(args.label)}}\n</Button>`,
+          `import { Button } from "@kahwee/runway-ui/react";\n\n<Button data-variant=${JSON.stringify(args.variant)} data-size=${JSON.stringify(args.size)} disabled={${args.disabled}} onClick={handleClick}>\n  {${JSON.stringify(args.label)}}\n</Button>`,
       },
     },
   },
@@ -71,7 +71,7 @@ export const Input: StoryObj<InputExampleProps> = {
       source: {
         language: "tsx",
         transform: (_source: string, { args }: { args: InputExampleProps }) =>
-          `import { Field, Input } from "runway-ui/react";\n\n<Field.Root className="rw-field" disabled={${args.disabled}}>\n  <Field.Label>{${JSON.stringify(args.label)}}</Field.Label>\n  <Input defaultValue={${JSON.stringify(args.value)}} type=${JSON.stringify(args.type)} placeholder={${JSON.stringify(args.placeholder)}} readOnly={${args.readOnly}} required={${args.required}} />\n  <Field.Description>{${JSON.stringify(args.description)}}</Field.Description>\n</Field.Root>`,
+          `import { Field, Input } from "@kahwee/runway-ui/react";\n\n<Field.Root className="rw-field" disabled={${args.disabled}}>\n  <Field.Label>{${JSON.stringify(args.label)}}</Field.Label>\n  <Input defaultValue={${JSON.stringify(args.value)}} type=${JSON.stringify(args.type)} placeholder={${JSON.stringify(args.placeholder)}} readOnly={${args.readOnly}} required={${args.required}} />\n  <Field.Description>{${JSON.stringify(args.description)}}</Field.Description>\n</Field.Root>`,
       },
     },
   },

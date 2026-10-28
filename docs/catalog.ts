@@ -192,7 +192,7 @@ export const catalog = [
       ],
     ],
     snippet:
-      "import { bindNavigation } from 'runway-ui/navigation';\nconst nav = bindNavigation(toolbar, { columns:3, wrap:false });\n// On unmount: nav.destroy();",
+      "import { bindNavigation } from '@kahwee/runway-ui/navigation';\nconst nav = bindNavigation(toolbar, { columns:3, wrap:false });\n// On unmount: nav.destroy();",
   },
   {
     id: "inventory",
@@ -229,7 +229,7 @@ export const catalog = [
       ],
     ],
     snippet:
-      "import { createInventory } from 'runway-ui/inventory';\nconst grid = createInventory(root, {\n  items, columns:8, rowHeight:64, overscan:1,\n  onSelect(item) { showItem(item); }\n});\n// grid.setItems(filteredItems);\n// On unmount: grid.destroy();",
+      "import { createInventory } from '@kahwee/runway-ui/inventory';\nconst grid = createInventory(root, {\n  items, columns:8, rowHeight:64, overscan:1,\n  onSelect(item) { showItem(item); }\n});\n// grid.setItems(filteredItems);\n// On unmount: grid.destroy();",
   },
   {
     id: "ledger",

@@ -56,7 +56,7 @@ Use native HTML with explicit CSS classes. The library never styles every `dialo
 
 Use one size modifier and one footer modifier at a time. Set `--rw-dialog-width` in your own CSS to customize a size. Theme and density live on `rw-ui`; a nested dialog root must receive the application's chosen theme and density too.
 
-The complete `index.css` or bundle includes this component. The `runway-ui/dialog.css` module owns the base surface, backdrop, structure and modifiers in the `runway-ui.dialog` layer. Import tokens alongside it when selecting modules. `primitives.css` no longer includes dialog styles; consumers importing it directly must also import `dialog.css`. It is independent of the optional `runway-ui/dialog` JavaScript helper.
+The complete `index.css` or bundle includes this component. The `@kahwee/runway-ui/dialog.css` module owns the base surface, backdrop, structure and modifiers in the `runway-ui.dialog` layer. Import tokens alongside it when selecting modules. `primitives.css` no longer includes dialog styles; consumers importing it directly must also import `dialog.css`. It is independent of the optional `@kahwee/runway-ui/dialog` JavaScript helper.
 
 ## HTML owns interaction
 

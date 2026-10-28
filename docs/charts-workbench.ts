@@ -54,7 +54,8 @@ function update() {
             .style.setProperty(`--rw-y${i}`, dataset === "zero" ? "100%" : "0%");
     });
   }
-  $("#chart-recipe").textContent = `<link rel="stylesheet" href="runway-ui/dist/runway-ui.css">
+  $("#chart-recipe").textContent =
+    `<link rel="stylesheet" href="@kahwee/runway-ui/dist/runway-ui.css">
 <section class="rw-ui">
 ${document.querySelector('[data-chart="columns"] figure').outerHTML}
 </section>`;

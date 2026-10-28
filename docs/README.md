@@ -38,6 +38,7 @@ New to Runway UI? Follow **Install → Components → Compose**. Use Storybook w
 - [Storybook workflow](STORYBOOK.md): local development and argument-driven stories.
 - [Status and verification limits](STATUS.md): implemented scope and recorded checks.
 - [Changelog](CHANGELOG.md): release and migration history.
+- [Migrating to the React API](MIGRATION.md): replacements for each vanilla behavior.
 - [Release checklist](RELEASING.md): validation, source builds, Pages and package publication.
 - [Source ownership and CI](MODULES.md) and [ten-pass audit](AUDIT.md).
 - [Contributing and source layout](../CONTRIBUTING.md): where to make changes.

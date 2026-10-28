@@ -2,9 +2,9 @@
 
 [![Package checks](https://github.com/kahwee/runway-ui/actions/workflows/package.yml/badge.svg)](https://github.com/kahwee/runway-ui/actions/workflows/package.yml) [![MIT license](https://img.shields.io/badge/license-MIT-355c4b)](LICENSE)
 
-**Modern HTML/CSS interfaces for management and simulation games.**
+**React components and a cozy theme for management and simulation games.**
 
-Resource HUDs, production ledgers, economy charts, equipment grids, objectives and native dialogs. The vanilla core is framework-independent, themeable, and has zero runtime dependencies. An [optional React 19 entry](docs/REACT.md) composes Base UI primitives. Optional ES modules add keyboard navigation, controller input and virtual inventories.
+Resource HUDs, desk workspaces, meters, inventories, native dialogs and charts, in a soft sweet-sim style. React 19 is required, with Base UI for form controls and [TanStack Charts](https://tanstack.com/charts) for charts. The CSS is also usable on its own.
 
 **MIT licensed. Free for personal and commercial projects, including closed-source games.** Keep the license notice in redistributed copies. No attribution in your interface is required. See [LICENSE](LICENSE).
 
@@ -36,32 +36,42 @@ Start with the installation below, then choose the resource for your task:
 
 The docs explain usage and contracts. Storybook is the interactive component explorer. Examples demonstrate compositions with synthetic data; they do not run a simulation.
 
-## Start with one stylesheet
+## Start with React
 
-Download this repository and link the self-contained bundle:
+```sh
+bun add @kahwee/runway-ui react react-dom @base-ui/react @tanstack/charts
+```
+
+```tsx
+import "@kahwee/runway-ui/bundle.css";
+import { Button, Meter, Panel, Runway } from "@kahwee/runway-ui/react";
+
+export function Briefing() {
+  return (
+    <Runway theme="cozy">
+      <Panel kicker="Today" title="Morning briefing">
+        <Meter label="Team energy" value={72} tone="morale" />
+        <Button data-variant="primary">Next day</Button>
+      </Panel>
+    </Runway>
+  );
+}
+```
+
+The component list, props and chart usage are in the [React guide](docs/REACT.md). Coming from the vanilla modules? See [migration](docs/MIGRATION.md). Themes (`cozy`, `ledger`, `orbital`, `parchment`, `whimsy`, `midnight`) are in [theming](docs/THEMING.md).
+
+**Release status:** `@kahwee/runway-ui` is a pre-release (`0.6.0-beta.0`, npm tag `next`) and has not been published to the npm registry yet. Until it is, install from GitHub with `bun add github:kahwee/runway-ui`. Development uses Bun 1.4.4; Node 22.18+ remains available for Storybook.
+
+### CSS only
+
+The committed bundle works without React or a build step:
 
 ```html
 <link rel="stylesheet" href="./runway-ui/dist/runway-ui.css">
-
-<section class="rw-ui rw-panel" data-theme="orbital" aria-labelledby="mission">
-  <h2 id="mission">Prepare the expedition</h2>
+<section class="rw-ui rw-panel" data-theme="cozy">
   <button class="rw-button" data-variant="primary">Launch</button>
 </section>
 ```
-
-Or install directly from GitHub:
-
-```sh
-bun add github:kahwee/runway-ui
-```
-
-```js
-import "runway-ui/bundle.css";
-// Optional modular entry: import 'runway-ui';
-import { bindDialog } from "runway-ui/dialog";
-```
-
-This project is available on GitHub; **it has not been published to the npm registry**. GitHub installation is shown intentionally. The committed CSS bundle is ready to use without a build step. Development uses Bun 1.4.4. Node 22.18+ (or 24.11+) remains available for third-party tools such as Storybook; consumers need neither runtime for the CSS bundle.
 
 ## Explore locally
 
@@ -93,7 +103,7 @@ All component classes use `rw-`; the root `rw-ui` supplies inherited tokens with
 ## Easy adoption
 
 1. **Components:** add the stylesheet, a `rw-ui` root and documented component classes.
-2. **Existing forms:** add `rw-native` to the root (included in the full bundle; `runway-ui/native.css` is a standalone form entry). Native submission and control semantics stay intact.
+2. **Existing forms:** add `rw-native` to the root (included in the full bundle; `@kahwee/runway-ui/native.css` is a standalone form entry). Native submission and control semantics stay intact.
 3. **Interactions:** import only the optional modules you need; retain their handles and call `destroy()` on unmount.
 
 Runway UI is not an API-compatible replacement for another UI framework. Existing custom widgets may need markup changes. The CSS core does not run a simulation, store saves or render a world.
@@ -147,7 +157,7 @@ For restrained surfaces and controls, see [Quiet appearance](docs/QUIET.md).
 
 ### Paper studio
 
-See [the paper workspace example](examples/studio.html) for reusable warm-paper HUD surfaces, an illustrated season cover, native selects and pace buttons. Import the full bundle or `runway-ui/studio.css` alongside the base tokens and workspace primitives. The Storybook **Game patterns / Paper studio** playground exposes season, rank, artwork and pace controls.
+See [the paper workspace example](examples/studio.html) for reusable warm-paper HUD surfaces, an illustrated season cover, native selects and pace buttons. Import the full bundle or `@kahwee/runway-ui/studio.css` alongside the base tokens and workspace primitives. The Storybook **Game patterns / Paper studio** playground exposes season, rank, artwork and pace controls.
 
 Behavior declarations are generated from strict TypeScript into `dist/`, with
 consumer type fixtures for every optional package entry. See

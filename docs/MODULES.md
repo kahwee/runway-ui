@@ -78,7 +78,7 @@ documentation layouts here and reusable component styles in `styles/`.
 imports retain the `runway-ui.patterns` layer and original cascade order;
 `accessibility.css` owns shared dock and inventory motion preferences. Import
 the aggregate for the complete patterns set, or choose component files through
-`runway-ui/styles/patterns/*.css` alongside the base tokens and primitives.
+`@kahwee/runway-ui/styles/patterns/*.css` alongside the base tokens and primitives.
 
 ## Controls own their shared states
 
@@ -93,8 +93,8 @@ recipe requires importing game patterns.
 Primitives own reusable recipes: `controls.css` owns buttons and shortcuts,
 `fields.css` / `forms.css` own native form controls, and `panels.css` owns the
 panel surface, header, title and elevation. `primitives.css` remains the compatible
-aggregate. A standalone panel can import `runway-ui/styles/tokens.css` and
-`runway-ui/styles/panels.css` without loading buttons, fields or game patterns.
+aggregate. A standalone panel can import `@kahwee/runway-ui/styles/tokens.css` and
+`@kahwee/runway-ui/styles/panels.css` without loading buttons, fields or game patterns.
 The boundary checker rejects imports from these foundational modules into
 composition styles, including imports from their implementation directories.
 

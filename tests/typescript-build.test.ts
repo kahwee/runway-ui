@@ -25,6 +25,6 @@ test("every public runtime export has generated executable JavaScript and declar
     assert.ok((await readFile(target.default, "utf8")).length > 0);
     assert.ok((await readFile(target.types, "utf8")).includes("export"));
   }
-  const { bindDialog } = await import("runway-ui/dialog");
+  const { bindDialog } = await import("@kahwee/runway-ui/dialog");
   assert.equal(typeof bindDialog, "function");
 });
