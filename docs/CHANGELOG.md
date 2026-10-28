@@ -12,6 +12,17 @@ full source tree, with strict public APIs and strict React stories.
 
 ## Unreleased
 
+- **Breaking direction: React is now required.** `react`, `react-dom`, `@base-ui/react`
+  and `@tanstack/charts` are non-optional peers, and `runway-ui/react` is the primary
+  API. Added `Runway`, `Panel`, `Badge`, `Meter`, `Resource`, `CommandBar`, `FolioTabs`,
+  `Sheet`, `Dossier`, `DossierList`, `ControlConsole`, `Chart` and `ChartCard`. Vanilla
+  behavior modules are deprecated and will be removed in a later release; the CSS stays
+  standalone.
+- Add the `cozy` theme (`styles/cozy.css`, one file per component in `styles/cozy/`):
+  soft pastel surfaces, pill buttons with a candy lip, sticker badges, sticky-note
+  folio tabs, a rounded command bar and console, and a `--ts-chart-*` palette for
+  TanStack charts.
+
 - Make the Observatory, workshop, documentation workbench and standalone examples
   responsive. Phone resource cards retain all accessible column headers, values,
   selection and review actions; the previous desktop-only gates are removed.

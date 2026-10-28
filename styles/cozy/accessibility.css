@@ -1,0 +1,33 @@
+@layer runway-ui.themes {
+  @media (prefers-reduced-motion: no-preference) {
+    .rw-ui[data-theme="cozy"] {
+      & .rw-badge {
+        animation: rw-cozy-pop 0.5s var(--rw-spring) backwards;
+      }
+      & .rw-dialog[open],
+      &.rw-dialog[open] {
+        animation: rw-cozy-pop 0.45s var(--rw-spring);
+      }
+    }
+    @keyframes rw-cozy-pop {
+      from {
+        scale: 0.85;
+        translate: 0 14px;
+        opacity: 0;
+      }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rw-ui[data-theme="cozy"] :is(.rw-folio-tab, .rw-dossier, .rw-slot, .rw-choice) {
+      transition: none;
+      translate: none !important;
+    }
+  }
+  @media (forced-colors: active) {
+    .rw-ui[data-theme="cozy"] :is(.rw-command-bar, .rw-folio-tab, .rw-sheet, .rw-dossier) {
+      border: 2px solid CanvasText;
+      background: Canvas;
+      color: CanvasText;
+    }
+  }
+}

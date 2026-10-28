@@ -1,0 +1,46 @@
+/* Cozy: a soft, sweet little sim-game look. Warm paper, pastel candy, gentle springs. */
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    --rw-bg: #fdeede;
+    --rw-surface: #fffdf8;
+    --rw-raised: #fff4e6;
+    --rw-ink: #54384a;
+    --rw-muted: #7d6173;
+    --rw-line: #efd5c0;
+    --rw-accent: #c4456a;
+    --rw-on-accent: #fff;
+    --rw-soft: #ffe6d2;
+    --rw-gold: #8f5b00;
+    --rw-danger: #b9382f;
+    --rw-focus: #3f7de0;
+    --rw-radius: 22px;
+    --rw-control-depth: 4px;
+    --rw-highlight: #ffffff99;
+    --rw-cozy-rose: #ffa5b8;
+    --rw-cozy-butter: #ffd980;
+    --rw-cozy-mint: #8fdcb8;
+    --rw-cozy-sky: #a2d2ff;
+    --rw-cozy-lilac: #cbb8ff;
+    --rw-cozy-lip: color-mix(in oklch, var(--rw-ink) 28%, var(--rw-line));
+    --rw-font:
+      "Nunito Variable", Nunito, ui-rounded, "SF Pro Rounded", "Varela Round",
+      "Hiragino Maru Gothic ProN", "Arial Rounded MT Bold", system-ui, sans-serif;
+    --rw-display-font:
+      "Fredoka Variable", Fredoka, ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold",
+      var(--rw-font);
+    --rw-shadow:
+      inset 0 2px #fff, 0 4px 0 var(--rw-line),
+      0 16px 30px color-mix(in oklch, var(--rw-accent) 12%, transparent);
+    background-color: var(--rw-bg);
+    background-image:
+      radial-gradient(circle at 12% 0%, #ffffffb3, transparent 40%),
+      radial-gradient(
+        color-mix(in oklch, var(--rw-cozy-rose) 40%, transparent) 1.5px,
+        transparent 1.6px
+      );
+    background-size:
+      auto,
+      24px 24px;
+    font-weight: 600;
+  }
+}

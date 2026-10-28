@@ -43,11 +43,13 @@ test("styled controls preserve disabled state, consumer classes and field associ
   // Base UI associates descriptions after mount; real-browser acceptance covers that link.
 });
 
-test("React peers are optional and vanilla runtime dependencies remain empty", async () => {
+test("React and chart peers are required and runtime dependencies remain empty", async () => {
   const pkg = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
   assert.deepEqual(pkg.dependencies ?? {}, {});
-  for (const name of ["react", "react-dom", "@base-ui/react"])
-    assert.equal(pkg.peerDependenciesMeta[name].optional, true);
+  for (const name of ["react", "react-dom", "@base-ui/react", "@tanstack/charts"]) {
+    assert.ok(pkg.peerDependencies[name], `${name} is a peer`);
+    assert.equal(pkg.peerDependenciesMeta?.[name]?.optional, undefined);
+  }
   assert.equal(pkg.exports["./dialog"].default, "./dist/behaviors/dialog.js");
 });
 

@@ -1,0 +1,18 @@
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] .rw-dialog,
+  .rw-dialog[data-theme="cozy"] {
+    border: 2px solid var(--rw-line);
+    border-radius: 28px;
+    box-shadow:
+      0 6px 0 var(--rw-line),
+      0 28px 50px color-mix(in oklch, var(--rw-ink) 25%, transparent);
+    &::backdrop {
+      background: color-mix(in oklch, var(--rw-cozy-lilac) 45%, transparent);
+      backdrop-filter: blur(6px) saturate(1.2);
+    }
+    & .rw-dialog__close {
+      border: 2px solid var(--rw-line);
+      border-radius: 50%;
+    }
+  }
+}

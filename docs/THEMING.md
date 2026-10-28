@@ -28,3 +28,12 @@ Use `data-theme="ledger"` for cream paper surfaces, forest-green actions, brass 
 Set `data-theme="midnight"` on a `rw-ui` root for a neutral black background,
 dark surfaces and pale blue accents. Native controls use `color-scheme: dark`.
 Import `styles/themes.css` after the component entries, or use the full bundle.
+
+## Cozy
+
+Set `data-theme="cozy"` (the default of the React `Runway` root) for a soft, sweet
+sim-game look: warm cream paper, plum ink, pastel rose, butter, mint, sky and lilac
+accents, 22px radius, springy pill buttons and a rounded desk workspace. The palette is
+exposed as `--rw-cozy-rose`, `-butter`, `-mint`, `-sky` and `-lilac`; TanStack charts
+inside the root use `--ts-chart-1` to `--ts-chart-6`. Motion respects
+`prefers-reduced-motion`; forced colors restores system surfaces and borders.

@@ -5667,6 +5667,394 @@
   }
 }
 
+/* Composition entry: keep component order stable. */
+/* Cozy: a soft, sweet little sim-game look. Warm paper, pastel candy, gentle springs. */
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    --rw-bg: #fdeede;
+    --rw-surface: #fffdf8;
+    --rw-raised: #fff4e6;
+    --rw-ink: #54384a;
+    --rw-muted: #7d6173;
+    --rw-line: #efd5c0;
+    --rw-accent: #c4456a;
+    --rw-on-accent: #fff;
+    --rw-soft: #ffe6d2;
+    --rw-gold: #8f5b00;
+    --rw-danger: #b9382f;
+    --rw-focus: #3f7de0;
+    --rw-radius: 22px;
+    --rw-control-depth: 4px;
+    --rw-highlight: #ffffff99;
+    --rw-cozy-rose: #ffa5b8;
+    --rw-cozy-butter: #ffd980;
+    --rw-cozy-mint: #8fdcb8;
+    --rw-cozy-sky: #a2d2ff;
+    --rw-cozy-lilac: #cbb8ff;
+    --rw-cozy-lip: color-mix(in oklch, var(--rw-ink) 28%, var(--rw-line));
+    --rw-font:
+      "Nunito Variable", Nunito, ui-rounded, "SF Pro Rounded", "Varela Round",
+      "Hiragino Maru Gothic ProN", "Arial Rounded MT Bold", system-ui, sans-serif;
+    --rw-display-font:
+      "Fredoka Variable", Fredoka, ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold",
+      var(--rw-font);
+    --rw-shadow:
+      inset 0 2px #fff, 0 4px 0 var(--rw-line),
+      0 16px 30px color-mix(in oklch, var(--rw-accent) 12%, transparent);
+    background-color: var(--rw-bg);
+    background-image:
+      radial-gradient(circle at 12% 0%, #ffffffb3, transparent 40%),
+      radial-gradient(
+        color-mix(in oklch, var(--rw-cozy-rose) 40%, transparent) 1.5px,
+        transparent 1.6px
+      );
+    background-size:
+      auto,
+      24px 24px;
+    font-weight: 600;
+  }
+}
+
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    & .rw-button {
+      --rw-cozy-lip: color-mix(in oklch, var(--rw-button-bg, var(--rw-soft)) 68%, #3d1f33);
+      border: 2px solid var(--rw-cozy-lip);
+      border-radius: var(--rw-pill);
+      background-image: linear-gradient(
+        to bottom,
+        color-mix(in oklch, var(--rw-button-bg, var(--rw-soft)) 80%, white),
+        var(--rw-button-bg, var(--rw-soft))
+      );
+      font-family: var(--rw-display-font);
+      font-weight: 600;
+      box-shadow:
+        inset 0 2px #ffffff80,
+        0 var(--rw-control-depth) 0 var(--rw-cozy-lip),
+        0 calc(var(--rw-control-depth) + 6px) 14px
+          color-mix(in oklch, var(--rw-cozy-lip) 30%, transparent);
+      &:hover:not(:disabled) {
+        translate: 0 -3px;
+      }
+      &:active:not(:disabled) {
+        translate: 0 var(--rw-control-depth);
+        box-shadow: inset 0 3px 0 #3d1f3322;
+      }
+      &[data-variant="secondary"] {
+        --rw-button-bg: var(--rw-surface);
+      }
+      &[data-variant="danger"] {
+        --rw-button-border: var(--rw-cozy-lip);
+      }
+    }
+    & .rw-shortcut {
+      border: 2px solid var(--rw-cozy-lip);
+      background: var(--rw-surface);
+      color: var(--rw-ink);
+      opacity: 1;
+      box-shadow: 0 2px 0 var(--rw-cozy-lip);
+    }
+  }
+}
+
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    & .rw-panel {
+      border: 2px solid var(--rw-line);
+      background: var(--rw-surface);
+    }
+    & .rw-panel__title {
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    & .rw-kicker {
+      color: var(--rw-accent);
+      letter-spacing: 0.1em;
+    }
+  }
+}
+
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] .rw-badge {
+    border: 2px solid color-mix(in oklch, var(--rw-cozy-butter) 60%, var(--rw-ink));
+    background: var(--rw-cozy-butter);
+    color: var(--rw-ink);
+    font-weight: 800;
+    &[data-tone="warning"] {
+      border-color: color-mix(in oklch, #ffb27a 60%, var(--rw-ink));
+      background: #ffb27a;
+      color: var(--rw-ink);
+    }
+    &[data-tone="danger"] {
+      border-color: color-mix(in oklch, var(--rw-cozy-rose) 60%, var(--rw-ink));
+      background: var(--rw-cozy-rose);
+      color: var(--rw-ink);
+    }
+  }
+}
+
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] .rw-meter {
+    --rw-meter-height: 14px;
+    --rw-meter-color: var(--rw-cozy-mint);
+    & .rw-meter__label {
+      color: var(--rw-ink);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    & .rw-meter__track {
+      border: 2px solid var(--rw-line);
+      background: #fff;
+      box-shadow: inset 0 2px 0 color-mix(in oklch, var(--rw-ink) 10%, transparent);
+    }
+    & .rw-meter__fill {
+      background: linear-gradient(to bottom, #ffffff66, #ffffff00 70%), var(--rw-meter-color);
+      box-shadow: inset 0 -2px 0 #0000001a;
+    }
+    &[data-tone="warning"],
+    &[data-tone="energy"] {
+      --rw-meter-color: var(--rw-cozy-butter);
+    }
+    &[data-tone="danger"] {
+      --rw-meter-color: var(--rw-cozy-rose);
+    }
+    &[data-tone="design"] {
+      --rw-meter-color: var(--rw-cozy-lilac);
+    }
+    &[data-tone="pm"] {
+      --rw-meter-color: var(--rw-cozy-sky);
+    }
+  }
+}
+
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    & .rw-resource__icon {
+      color: var(--rw-accent);
+    }
+    & .rw-resource strong {
+      font-family: var(--rw-display-font);
+      font-weight: 600;
+    }
+    & :is(.rw-slot, .rw-choice) {
+      border: 2px solid var(--rw-line);
+      background: var(--rw-surface);
+      box-shadow: 0 4px 0 var(--rw-line);
+      &:hover:not(:disabled) {
+        translate: 0 -4px;
+        filter: none;
+        box-shadow: 0 8px 0 var(--rw-line);
+      }
+      &:active:not(:disabled) {
+        translate: 0 3px;
+        box-shadow: 0 1px 0 var(--rw-line);
+      }
+    }
+    & .rw-slot[aria-pressed="true"] {
+      border-color: var(--rw-accent);
+      background: color-mix(in oklch, var(--rw-cozy-rose) 28%, var(--rw-surface));
+      box-shadow: 0 4px 0 var(--rw-accent);
+    }
+    & .rw-slot[data-rarity="rare"] {
+      background: color-mix(in oklch, var(--rw-cozy-lilac) 26%, var(--rw-surface));
+    }
+    & .rw-dock {
+      border: 2px solid var(--rw-line);
+      background: color-mix(in oklch, var(--rw-cozy-sky) 30%, var(--rw-surface));
+    }
+  }
+}
+
+/* The desk: a command bar, sticky-note tabs, a paper sheet and a calm control console. */
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    & .rw-command-bar {
+      --rw-command-bg: var(--rw-ink);
+      --rw-command-ink: #fff8ee;
+      --rw-command-muted: #f0d9e4;
+      padding: 14px 20px;
+      border: 0;
+      border-radius: 999px;
+      box-shadow: 0 5px 0 color-mix(in oklch, var(--rw-ink) 55%, black);
+      & .rw-command-bar__identity {
+        font: 600 20px / 1.1 var(--rw-display-font);
+        padding-inline-start: 8px;
+      }
+      & .rw-command-stat {
+        padding: 6px 16px;
+        border: 0;
+        border-radius: 999px;
+        background: #ffffff1f;
+        & > span {
+          letter-spacing: 0.08em;
+        }
+        & > strong {
+          font: 600 20px / 1.1 var(--rw-display-font);
+        }
+      }
+    }
+    & .rw-folio-tabs > .rw-folio-tab {
+      --rw-tab-accent: var(--rw-cozy-rose);
+      border: 2px solid var(--rw-line);
+      border-radius: 20px;
+      background: color-mix(in oklch, var(--rw-tab-accent) 22%, var(--rw-surface));
+      box-shadow: 0 4px 0 color-mix(in oklch, var(--rw-tab-accent) 55%, var(--rw-line));
+      font-family: var(--rw-display-font);
+      font-weight: 600;
+      transition:
+        translate 0.25s var(--rw-spring),
+        background-color 0.15s;
+      &:nth-child(2) {
+        --rw-tab-accent: var(--rw-cozy-butter);
+      }
+      &:nth-child(3) {
+        --rw-tab-accent: var(--rw-cozy-mint);
+      }
+      &:nth-child(4) {
+        --rw-tab-accent: var(--rw-cozy-sky);
+      }
+      &:hover {
+        translate: 0 -3px;
+      }
+      &:is([aria-current="page"], [aria-selected="true"]) {
+        border: 2px solid color-mix(in oklch, var(--rw-tab-accent) 70%, var(--rw-ink));
+        background: var(--rw-tab-accent);
+        color: var(--rw-ink);
+        translate: 6px 0;
+      }
+    }
+    & .rw-sheet {
+      border: 2px solid var(--rw-line);
+      border-radius: 28px;
+      background:
+        linear-gradient(var(--rw-surface), var(--rw-surface)) padding-box,
+        var(--rw-surface);
+      box-shadow:
+        0 5px 0 var(--rw-line),
+        0 20px 32px color-mix(in oklch, var(--rw-accent) 10%, transparent);
+      & > :is(h1, h2) {
+        margin-block: 0 4px;
+        font: 600 30px / 1.15 var(--rw-display-font);
+        letter-spacing: -0.015em;
+      }
+      & > p {
+        margin-block: 0 18px;
+        color: var(--rw-muted);
+      }
+    }
+    & .rw-dossier {
+      position: relative;
+      padding: 20px 20px 20px 28px;
+      border: 2px solid var(--rw-line);
+      border-radius: 22px;
+      background: var(--rw-raised);
+      overflow: hidden;
+      transition: translate 0.25s var(--rw-spring);
+      &::before {
+        content: "";
+        position: absolute;
+        inset-block: 0;
+        inset-inline-start: 0;
+        inline-size: 8px;
+        background: var(--rw-cozy-rose);
+      }
+      &:nth-child(even)::before {
+        background: var(--rw-cozy-mint);
+      }
+      &:hover {
+        translate: 0 -2px;
+      }
+      & h3 {
+        font: 600 20px / 1.2 var(--rw-display-font);
+      }
+      & p {
+        color: var(--rw-muted);
+      }
+    }
+    & .rw-control-console {
+      padding: 12px 14px 12px 24px;
+      border: 2px solid var(--rw-line);
+      border-radius: 999px;
+      box-shadow: 0 4px 0 var(--rw-line);
+      & > strong {
+        font: 600 18px / 1 var(--rw-display-font);
+      }
+      & > .rw-button:last-child {
+        margin-inline-start: auto;
+      }
+    }
+  }
+}
+
+/* Palette for @tanstack/charts and native Runway charts: pastel marks, plum text. */
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    --ts-chart-1: #e0607e;
+    --ts-chart-2: #f2b134;
+    --ts-chart-3: #3fb98a;
+    --ts-chart-4: #5aa3ee;
+    --ts-chart-5: #9a7ae8;
+    --ts-chart-6: #f28c5a;
+    & :is(.rw-chart, .rw-figure) {
+      color: var(--rw-ink);
+    }
+  }
+}
+
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] .rw-dialog,
+  .rw-dialog[data-theme="cozy"] {
+    border: 2px solid var(--rw-line);
+    border-radius: 28px;
+    box-shadow:
+      0 6px 0 var(--rw-line),
+      0 28px 50px color-mix(in oklch, var(--rw-ink) 25%, transparent);
+    &::backdrop {
+      background: color-mix(in oklch, var(--rw-cozy-lilac) 45%, transparent);
+      backdrop-filter: blur(6px) saturate(1.2);
+    }
+    & .rw-dialog__close {
+      border: 2px solid var(--rw-line);
+      border-radius: 50%;
+    }
+  }
+}
+
+@layer runway-ui.themes {
+  @media (prefers-reduced-motion: no-preference) {
+    .rw-ui[data-theme="cozy"] {
+      & .rw-badge {
+        animation: rw-cozy-pop 0.5s var(--rw-spring) backwards;
+      }
+      & .rw-dialog[open],
+      &.rw-dialog[open] {
+        animation: rw-cozy-pop 0.45s var(--rw-spring);
+      }
+    }
+    @keyframes rw-cozy-pop {
+      from {
+        scale: 0.85;
+        translate: 0 14px;
+        opacity: 0;
+      }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rw-ui[data-theme="cozy"] :is(.rw-folio-tab, .rw-dossier, .rw-slot, .rw-choice) {
+      transition: none;
+      translate: none !important;
+    }
+  }
+  @media (forced-colors: active) {
+    .rw-ui[data-theme="cozy"] :is(.rw-command-bar, .rw-folio-tab, .rw-sheet, .rw-dossier) {
+      border: 2px solid CanvasText;
+      background: Canvas;
+      color: CanvasText;
+    }
+  }
+}
+
+
 /* Explicit opt-in presentation overrides. Unlayered so this can follow host skins. */
 .rw-ui[data-appearance="quiet"] {
   --rw-surface: #fff;

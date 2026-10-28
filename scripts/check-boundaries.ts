@@ -224,11 +224,17 @@ export async function checkBoundaries(root) {
         report(file, `Runtime modules cannot import external dependency "${value}"`, line);
       if (
         file.startsWith("react/") &&
-        !(value === "react" || value.startsWith("react/") || value.startsWith("@base-ui/react/"))
+        !(
+          value === "react" ||
+          value.startsWith("react/") ||
+          value.startsWith("@base-ui/react/") ||
+          value === "@tanstack/charts" ||
+          value.startsWith("@tanstack/charts/")
+        )
       )
         report(
           file,
-          `React modules may only import React and Base UI primitives: "${value}"`,
+          `React modules may only import React, Base UI primitives and TanStack Charts: "${value}"`,
           line,
         );
       continue;

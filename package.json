@@ -1,7 +1,7 @@
 {
   "name": "runway-ui",
   "version": "0.5.0",
-  "description": "Modern HTML/CSS interface primitives for simulation and management games",
+  "description": "React components and CSS for cozy simulation and management games",
   "type": "module",
   "sideEffects": [
     "**/*.css"
@@ -63,7 +63,8 @@
     "./react": {
       "types": "./dist/react/index.d.ts",
       "default": "./dist/react/index.js"
-    }
+    },
+    "./cozy.css": "./styles/cozy.css"
   },
   "files": [
     "index.css",
@@ -135,6 +136,7 @@
     "@storybook/addon-a11y": "10.6.5",
     "@storybook/addon-docs": "10.6.5",
     "@storybook/html-vite": "10.6.5",
+    "@tanstack/charts": "^1.1.0",
     "@types/bun": "1.4.4",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
@@ -155,18 +157,8 @@
   ],
   "peerDependencies": {
     "@base-ui/react": "^1.9.0",
+    "@tanstack/charts": "^1.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@base-ui/react": {
-      "optional": true
-    },
-    "react": {
-      "optional": true
-    },
-    "react-dom": {
-      "optional": true
-    }
   }
 }

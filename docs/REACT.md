@@ -1,4 +1,6 @@
-# Optional React components
+# React components
+
+React is required. Components are in `runway-ui/react`; wrap them in `Runway` (defaults to the `cozy` theme). Charts use `@tanstack/charts` through `Chart` and `ChartCard`; see **React / Desk** in Storybook for a playable example.
 
 The `runway-ui/react` entry uses React 19 and real Base UI primitives. The existing
 HTML/CSS and `runway-ui/dialog` behavior remain independent of React, with no

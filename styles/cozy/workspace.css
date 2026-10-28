@@ -1,0 +1,120 @@
+/* The desk: a command bar, sticky-note tabs, a paper sheet and a calm control console. */
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    & .rw-command-bar {
+      --rw-command-bg: var(--rw-ink);
+      --rw-command-ink: #fff8ee;
+      --rw-command-muted: #f0d9e4;
+      padding: 14px 20px;
+      border: 0;
+      border-radius: 999px;
+      box-shadow: 0 5px 0 color-mix(in oklch, var(--rw-ink) 55%, black);
+      & .rw-command-bar__identity {
+        font: 600 20px / 1.1 var(--rw-display-font);
+        padding-inline-start: 8px;
+      }
+      & .rw-command-stat {
+        padding: 6px 16px;
+        border: 0;
+        border-radius: 999px;
+        background: #ffffff1f;
+        & > span {
+          letter-spacing: 0.08em;
+        }
+        & > strong {
+          font: 600 20px / 1.1 var(--rw-display-font);
+        }
+      }
+    }
+    & .rw-folio-tabs > .rw-folio-tab {
+      --rw-tab-accent: var(--rw-cozy-rose);
+      border: 2px solid var(--rw-line);
+      border-radius: 20px;
+      background: color-mix(in oklch, var(--rw-tab-accent) 22%, var(--rw-surface));
+      box-shadow: 0 4px 0 color-mix(in oklch, var(--rw-tab-accent) 55%, var(--rw-line));
+      font-family: var(--rw-display-font);
+      font-weight: 600;
+      transition:
+        translate 0.25s var(--rw-spring),
+        background-color 0.15s;
+      &:nth-child(2) {
+        --rw-tab-accent: var(--rw-cozy-butter);
+      }
+      &:nth-child(3) {
+        --rw-tab-accent: var(--rw-cozy-mint);
+      }
+      &:nth-child(4) {
+        --rw-tab-accent: var(--rw-cozy-sky);
+      }
+      &:hover {
+        translate: 0 -3px;
+      }
+      &:is([aria-current="page"], [aria-selected="true"]) {
+        border: 2px solid color-mix(in oklch, var(--rw-tab-accent) 70%, var(--rw-ink));
+        background: var(--rw-tab-accent);
+        color: var(--rw-ink);
+        translate: 6px 0;
+      }
+    }
+    & .rw-sheet {
+      border: 2px solid var(--rw-line);
+      border-radius: 28px;
+      background:
+        linear-gradient(var(--rw-surface), var(--rw-surface)) padding-box,
+        var(--rw-surface);
+      box-shadow:
+        0 5px 0 var(--rw-line),
+        0 20px 32px color-mix(in oklch, var(--rw-accent) 10%, transparent);
+      & > :is(h1, h2) {
+        margin-block: 0 4px;
+        font: 600 30px / 1.15 var(--rw-display-font);
+        letter-spacing: -0.015em;
+      }
+      & > p {
+        margin-block: 0 18px;
+        color: var(--rw-muted);
+      }
+    }
+    & .rw-dossier {
+      position: relative;
+      padding: 20px 20px 20px 28px;
+      border: 2px solid var(--rw-line);
+      border-radius: 22px;
+      background: var(--rw-raised);
+      overflow: hidden;
+      transition: translate 0.25s var(--rw-spring);
+      &::before {
+        content: "";
+        position: absolute;
+        inset-block: 0;
+        inset-inline-start: 0;
+        inline-size: 8px;
+        background: var(--rw-cozy-rose);
+      }
+      &:nth-child(even)::before {
+        background: var(--rw-cozy-mint);
+      }
+      &:hover {
+        translate: 0 -2px;
+      }
+      & h3 {
+        font: 600 20px / 1.2 var(--rw-display-font);
+      }
+      & p {
+        color: var(--rw-muted);
+      }
+    }
+    & .rw-control-console {
+      padding: 12px 14px 12px 24px;
+      border: 2px solid var(--rw-line);
+      border-radius: 999px;
+      box-shadow: 0 4px 0 var(--rw-line);
+      & > strong {
+        font: 600 18px / 1 var(--rw-display-font);
+      }
+      & > .rw-button:last-child {
+        margin-inline-start: auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] .rw-meter {
+    --rw-meter-height: 14px;
+    --rw-meter-color: var(--rw-cozy-mint);
+    & .rw-meter__label {
+      color: var(--rw-ink);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    & .rw-meter__track {
+      border: 2px solid var(--rw-line);
+      background: #fff;
+      box-shadow: inset 0 2px 0 color-mix(in oklch, var(--rw-ink) 10%, transparent);
+    }
+    & .rw-meter__fill {
+      background: linear-gradient(to bottom, #ffffff66, #ffffff00 70%), var(--rw-meter-color);
+      box-shadow: inset 0 -2px 0 #0000001a;
+    }
+    &[data-tone="warning"],
+    &[data-tone="energy"] {
+      --rw-meter-color: var(--rw-cozy-butter);
+    }
+    &[data-tone="danger"] {
+      --rw-meter-color: var(--rw-cozy-rose);
+    }
+    &[data-tone="design"] {
+      --rw-meter-color: var(--rw-cozy-lilac);
+    }
+    &[data-tone="pm"] {
+      --rw-meter-color: var(--rw-cozy-sky);
+    }
+  }
+}

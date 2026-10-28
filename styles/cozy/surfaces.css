@@ -1,0 +1,16 @@
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    & .rw-panel {
+      border: 2px solid var(--rw-line);
+      background: var(--rw-surface);
+    }
+    & .rw-panel__title {
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    & .rw-kicker {
+      color: var(--rw-accent);
+      letter-spacing: 0.1em;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    & .rw-resource__icon {
+      color: var(--rw-accent);
+    }
+    & .rw-resource strong {
+      font-family: var(--rw-display-font);
+      font-weight: 600;
+    }
+    & :is(.rw-slot, .rw-choice) {
+      border: 2px solid var(--rw-line);
+      background: var(--rw-surface);
+      box-shadow: 0 4px 0 var(--rw-line);
+      &:hover:not(:disabled) {
+        translate: 0 -4px;
+        filter: none;
+        box-shadow: 0 8px 0 var(--rw-line);
+      }
+      &:active:not(:disabled) {
+        translate: 0 3px;
+        box-shadow: 0 1px 0 var(--rw-line);
+      }
+    }
+    & .rw-slot[aria-pressed="true"] {
+      border-color: var(--rw-accent);
+      background: color-mix(in oklch, var(--rw-cozy-rose) 28%, var(--rw-surface));
+      box-shadow: 0 4px 0 var(--rw-accent);
+    }
+    & .rw-slot[data-rarity="rare"] {
+      background: color-mix(in oklch, var(--rw-cozy-lilac) 26%, var(--rw-surface));
+    }
+    & .rw-dock {
+      border: 2px solid var(--rw-line);
+      background: color-mix(in oklch, var(--rw-cozy-sky) 30%, var(--rw-surface));
+    }
+  }
+}
