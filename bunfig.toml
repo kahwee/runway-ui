@@ -2,6 +2,10 @@
 # Preserve the existing Vite release-age exception; no formatter packages remain.
 minimumReleaseAgeExcludes = ["vite@8.3.5"]
 
+[lint]
+typeAware = true
+typeCheck = true
+
 [fmt]
 printWidth = 100
 tabWidth = 2
