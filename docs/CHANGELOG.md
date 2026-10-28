@@ -14,6 +14,19 @@ full source tree, with strict public APIs and strict React stories.
 
 ## Unreleased
 
+- Toasts now use Base UI Toast. **Breaking within the beta:** `Toaster` is removed; mount `ToastProvider`
+  inside `Runway` and call `useToasts().push(message, tone)`. Toast tone styling keys on `data-type`.
+
+- Fix React `Range` controlled values and consumer styles; use the shared range
+  layout with explicit native label/output associations. Its wrapper is now a
+  `div.rw-field.rw-range-field` with a separate label, output and input; update any
+  consumer selectors that depended on the previous wrapping label.
+- Keep React `Inventory` keyboard focus on enabled slots and retain the Tab entry
+  through item reordering, removal and disabled-state changes. Normalize invalid
+  column counts to keep keyboard movement consistent with the rendered grid.
+- Match React `Meter` accessible values to its clamped visual range, including
+  nonfinite inputs and invalid maxima. Add interactive React control stories.
+
 - Version `0.6.0-beta.1` (published to npm, `next`). Motion and delight: `AnimatedNumber`, `Confetti`, `Toaster` and `useToasts`;
   `Meter` flashes on change and pulses when low; staggered cozy entrances, bouncier hover and a
   `data-attention` ring; new `styles/feedback.css`. Cozy polish: readable rare tags, a cream dock and

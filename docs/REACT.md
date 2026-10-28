@@ -52,21 +52,45 @@ modular entry. `@kahwee/runway-ui/cozy.css` is the theme on its own. Try **React
 | `ControlConsole` | Time and workflow controls | children |
 | `AnimatedNumber` | Counting `span.rw-number` | `value`, `format`, `duration` |
 | `Confetti` | Fixed overlay burst | `active`, `onDone`, `count` |
-| `Toaster`, `useToasts` | Toast stack and queue hook | `toasts`, `onDismiss`; `push(message, tone)` |
+| `ToastProvider`, `useToasts` | Base UI Toast with a Runway-styled stack | `timeout`, `limit`; `push(message, tone)`, `dismiss(id)` |
 | `Chart`, `ChartCard`, `defineChart` | TanStack Charts adapter and card | `definition`, `height`, `ariaLabel` |
 
-`Meter` clamps `value` to `0..max` and exposes `aria-valuenow`. `Dialog` keeps the browser
+`Meter` clamps `value` to `0..max` for both its fill and `aria-valuenow`. Invalid or
+nonpositive maxima use 100; nonfinite values use 0. `Dialog` keeps the browser
 in charge of focus and inertness. Pass `canDismiss={() => false}` to veto Escape and
 backdrop dismissal while a decision is required; the policy is reapplied on every render.
-`Inventory` moves focus with arrows, Home and End; it does not virtualize, so keep lists
-to a few hundred slots.
+`Inventory` moves focus with arrows, Home and End, skipping disabled slots. Focus
+is remembered by item `id`; keep IDs unique and stable when reordering items.
+Removing or disabling the remembered slot makes the first available slot the Tab
+entry. Empty or fully disabled inventories have no slot in the Tab order. It does
+not virtualize, so keep lists to a few hundred slots.
+
+## Range
+
+Use `defaultValue` for local state, or pass `value` and `onValueChange` for a
+controlled slider. The latter lets presets and application state update the native
+thumb, filled track and formatted output together. Consumer styles and native
+input props are forwarded. Keep values within `min` and `max` and aligned to `step`,
+as with a native controlled range input.
+
+```tsx
+const [allocation, setAllocation] = useState(25);
+<Range label="Resource allocation" value={allocation} onValueChange={setAllocation}
+  min={0} max={100} step={5} format={(value) => `${value}%`} />;
+```
+
+The `rw-field rw-range-field` wrapper uses the shared slider layout. A native
+label and output reference the input's supplied `id` (or a generated unique ID),
+so the formatted value does not become part of the slider's accessible name.
+Try **React / Interactions** for presets, keyboard navigation, disabled slots and
+inventory changes.
 
 ## Motion and feedback
 
 `AnimatedNumber` tweens to its new value and bumps; `Resource` and `CommandBar` use it for numeric
 values automatically. `Meter` flashes when its value changes and pulses at 25% or below
-(`data-low`). `Confetti` bursts when `active` turns true, then calls `onDone`. `useToasts()`
-returns `{ toasts, push, dismiss }` for the `Toaster`. Give the main action `data-attention` for a
+(`data-low`). `Confetti` bursts when `active` turns true, then calls `onDone`. Toasts use
+Base UI's Toast (swipe to dismiss, hover to pause, stacking): mount `ToastProvider` once inside `Runway`, then call `useToasts().push(message, tone)` from any child. Give the main action `data-attention` for a
 soft pulsing ring in the cozy theme. All of it is skipped under `prefers-reduced-motion`.
 See **React / Feedback** in Storybook.
 

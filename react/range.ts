@@ -1,5 +1,6 @@
 import {
   createElement,
+  useId,
   useState,
   type ChangeEvent,
   type ComponentProps,
@@ -19,32 +20,41 @@ export function Range({
   format = String,
   onValueChange,
   className,
+  style,
   min = 0,
   max = 100,
   defaultValue,
+  value: controlledValue,
+  id,
   ...props
 }: RangeProps) {
-  const [value, setValue] = useState(Number(defaultValue ?? min));
+  const generatedId = useId();
+  const inputId = id ?? generatedId;
+  const [localValue, setValue] = useState(Number(defaultValue ?? min));
+  const value = Number(controlledValue ?? localValue);
   const fill =
-    Number(max) > Number(min) ? ((value - Number(min)) / (Number(max) - Number(min))) * 100 : 0;
+    Number(max) > Number(min)
+      ? Math.min(100, Math.max(0, ((value - Number(min)) / (Number(max) - Number(min))) * 100))
+      : 0;
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.valueAsNumber);
+    if (controlledValue === undefined) setValue(event.target.valueAsNumber);
     onValueChange?.(event.target.valueAsNumber);
   };
   return createElement(
-    "label",
-    { className: "rw-field" },
-    createElement("span", null, label),
+    "div",
+    { className: "rw-field rw-range-field" },
+    createElement("label", { htmlFor: inputId }, label),
+    createElement("output", { htmlFor: inputId }, format(value)),
     createElement("input", {
       ...props,
+      id: inputId,
       type: "range",
       min,
       max,
       value,
       onChange,
       className: cx("rw-range", className),
-      style: { "--rw-fill": `${fill}%` } as CSSProperties,
+      style: { ...style, "--rw-fill": `${fill}%` } as CSSProperties,
     }),
-    createElement("output", null, format(value)),
   );
 }

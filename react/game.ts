@@ -64,7 +64,9 @@ export type MeterProps = {
 
 /** Labelled progress capsule with an accessible `meter` role. */
 export function Meter({ label, value, max = 100, tone, className }: MeterProps) {
-  const percent = Math.min(100, Math.max(0, (value / max) * 100));
+  const limit = Number.isFinite(max) && max > 0 ? max : 100;
+  const current = Number.isFinite(value) ? Math.min(limit, Math.max(0, value)) : 0;
+  const percent = (current / limit) * 100;
   const previous = useRef(percent);
   const [change, setChange] = useState<"up" | "down">();
   useEffect(() => {
@@ -84,8 +86,8 @@ export function Meter({ label, value, max = 100, tone, className }: MeterProps) 
       role: "meter",
       "aria-label": label,
       "aria-valuemin": 0,
-      "aria-valuemax": max,
-      "aria-valuenow": value,
+      "aria-valuemax": limit,
+      "aria-valuenow": current,
     },
     createElement(
       "div",

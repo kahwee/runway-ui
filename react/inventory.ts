@@ -34,23 +34,31 @@ export function Inventory<T extends InventoryItem>({
   label = "Inventory",
   className,
 }: InventoryProps<T>) {
-  const [active, setActive] = useState(0);
+  const [activeId, setActiveId] = useState<string>();
+  const enabled = items.flatMap((item, index) => (item.disabled ? [] : [index]));
+  const remembered = items.findIndex((item) => item.id === activeId && !item.disabled);
+  const active = remembered >= 0 ? remembered : (enabled[0] ?? -1);
+  const columnCount = Number.isFinite(columns) ? Math.max(1, Math.floor(columns)) : 6;
   const slots = useRef<(HTMLButtonElement | null)[]>([]);
   const focus = (index: number) => {
-    const next = Math.min(items.length - 1, Math.max(0, index));
-    setActive(next);
-    slots.current[next]?.focus();
+    if (index < 0 || !items[index] || items[index].disabled) return;
+    setActiveId(items[index].id);
+    slots.current[index]?.focus();
   };
   const onKeyDown = (event: KeyboardEvent) => {
     const step: Record<string, number> = {
       ArrowLeft: -1,
       ArrowRight: 1,
-      ArrowUp: -columns,
-      ArrowDown: columns,
+      ArrowUp: -columnCount,
+      ArrowDown: columnCount,
     };
-    if (event.key in step) focus(active + step[event.key]);
-    else if (event.key === "Home") focus(0);
-    else if (event.key === "End") focus(items.length - 1);
+    if (event.key in step) {
+      const delta = step[event.key];
+      let next = active + delta;
+      while (next >= 0 && next < items.length && items[next].disabled) next += delta;
+      focus(next);
+    } else if (event.key === "Home") focus(enabled[0] ?? -1);
+    else if (event.key === "End") focus(enabled.at(-1) ?? -1);
     else return;
     event.preventDefault();
   };
@@ -60,7 +68,7 @@ export function Inventory<T extends InventoryItem>({
       className: className ? `rw-slots ${className}` : "rw-slots",
       role: "group",
       "aria-label": label,
-      style: { "--rw-columns": columns } as CSSProperties,
+      style: { "--rw-columns": columnCount } as CSSProperties,
       onKeyDown,
     },
     items.map((item, index) =>
@@ -77,7 +85,7 @@ export function Inventory<T extends InventoryItem>({
           disabled: item.disabled,
           "aria-pressed": index === selected,
           "data-rarity": item.rarity,
-          onFocus: () => setActive(index),
+          onFocus: () => setActiveId(item.id),
           onClick: () => onSelect?.(item, index),
         },
         item.icon &&
