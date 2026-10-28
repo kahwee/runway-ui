@@ -120,6 +120,15 @@ const chart = useMemo(
 <ChartCard title="Credits by day"><Chart definition={chart} height={240} ariaLabel="Credits by day" /></ChartCard>;
 ```
 
+For recorded histories, try **React / Recorded history** in Storybook. The
+recipe keeps zero and negative observations, splits lines at missing/nonfinite
+values, labels the measurement unit and always renders an exact-data table.
+Its gaps/zero/signed/empty/narrow states use synthetic observations, not a
+simulation. Keep this data adapter in your application: the library must not
+infer missing observations, interpolate history or read saves. Retain stable
+chart identity during updates, and preserve keyboard selection by recorded ID
+when remounting is unavoidable; never restore focus after intentional navigation.
+
 Marks, scales and tooltips come from `@tanstack/charts` subpaths. See its
 [documentation](https://tanstack.com/charts) for the full grammar.
 
