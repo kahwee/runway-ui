@@ -69,7 +69,7 @@ resource.value?.count.toFixed();
 resource.attempts = 2;
 // @ts-expect-error No unrelated properties inferred as any.
 resource.value?.missing;
-resourceUrl(new URL("https://example.org/panel.js"), 2);
+resourceUrl(new URL("https://example.org/panel.ts"), 2);
 // @ts-expect-error URL must be a URL object or string.
 resourceUrl(12);
 const ready: Promise<void> = loadStylesheet(document.createElement("link"));

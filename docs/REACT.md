@@ -56,8 +56,8 @@ Do not replace it with a different dialog primitive as an incidental migration.
 
 ## Packaging and validation
 
-The optional entry ships JavaScript and generated declarations, including in GitHub
-archives. It has no JSX compilation requirement, but a consumer bundler must resolve
+The optional entry ships JavaScript and generated declarations, in built package archives. Run `bun install --frozen-lockfile && bun run build`
+after checking out a GitHub source archive. It has no JSX compilation requirement, but a consumer bundler must resolve
 its React/Base UI bare imports. Named imports support tree shaking; the package
 retains CSS side effects. A tested Button-only bundle drops other primitive imports.
 

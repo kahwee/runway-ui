@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/html-vite";
 import type { PreferencesFormProps } from "./preferences-form.tsx";
 import { expect, userEvent, waitFor, within } from "storybook/test";
-import { flag, meta, range, select, text } from "../helpers.js";
+import { flag, meta, range, select, text } from "../helpers.ts";
 import { PreferencesForm } from "./preferences-form.tsx";
-import { renderReactStory } from "./story-host.js";
+import { renderReactStory } from "./story-host.ts";
 import "./forms.css";
 
 const args: PreferencesFormProps = {

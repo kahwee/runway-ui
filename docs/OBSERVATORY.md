@@ -11,8 +11,8 @@ The complete stylesheet is `dist/runway-ui.css`. Selective consumers can combine
 The composition's renderer is an example, not a promised application framework API:
 
 ```js
-import { renderObservatory } from "./examples/observatory/render.js";
-import { bindObservatory } from "./examples/observatory/controller.js";
+import { renderObservatory } from "./examples/observatory/render.ts";
+import { bindObservatory } from "./examples/observatory/controller.ts";
 
 const { root, data } = renderObservatory({ scenario: "recovery" });
 document.querySelector("main").append(root);

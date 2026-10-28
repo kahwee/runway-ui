@@ -29,6 +29,6 @@
 
 - Use the pinned Bun version and `bun.lock`; do not add competing npm, pnpm or Yarn lockfiles.
 - Validate imports with `bun run check-boundaries`, checker fixtures with `bun run test-boundaries`, and dialog policy with `bun run test-dialog`. Rebuild CSS before committing; run `bun run check-generated` after committing, since it compares against `HEAD`.
-- Behavior declarations are generated from strict JSDoc in `behaviors/*.js`; never edit `.d.ts` by hand. Run `bun run build-types`, `bun run check-types` and `bun run test-behaviors` for behavior changes. See [docs/TYPES.md](docs/TYPES.md).
+- All authored modules use TypeScript/TSX. Behavior and React declarations are generated from strict TypeScript into `dist/`; never edit generated `.js` or `.d.ts` by hand. Run `bun run build-types`, `bun run check-types` and `bun run test-behaviors` for behavior changes. See [docs/TYPES.md](docs/TYPES.md).
 - Run `bun run check` before committing. Use `bun run check-fix` for safe lint fixes and formatting; review any behavior changes before applying unsafe fixes.
-- `bun lint` runs module-boundary validation and Bun native format checks. `bun check` runs those checks plus declaration verification and Bun native type checks. Use `bun fmt` to format authored JavaScript, TypeScript, JSON, CSS and HTML; generated artifacts are verified by their owning builders. Do not reintroduce Biome.
+- `bun lint` runs module-boundary validation and Bun native format checks. `bun check` runs those checks plus declaration verification and Bun native type checks. Use `bun fmt` to format authored TypeScript, JSON, CSS and HTML; generated artifacts are verified by their owning builders. Do not reintroduce Biome.

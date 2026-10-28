@@ -40,7 +40,7 @@ bun run build-site
 bun run check-docs
 ```
 
-Story files are grouped by sidebar category under `stories/` (for example, `stories/foundations/` and `stories/game-patterns/`); shared argument metadata and escaping are in `stories/helpers.js`. Keep default CSF exports as object literals with a statically readable title and tags. Storybook's indexer does not execute metadata factory calls. The helper supplies runtime argument descriptions and defaults inside that object.
+Story files are grouped by sidebar category under `stories/` (for example, `stories/foundations/` and `stories/game-patterns/`); shared argument metadata and escaping are in `stories/helpers.ts`. Keep default CSF exports as object literals with a statically readable title and tags. Storybook's indexer does not execute metadata factory calls. The helper supplies runtime argument descriptions and defaults inside that object.
 
 The Pages build writes only allowlisted public files to `.site/`, places Storybook under `/storybook/`, and renders Markdown guides to static HTML at build time. `main` pushes deploy through GitHub Actions. Generated output and local evidence are ignored.
 
@@ -82,7 +82,7 @@ per recipe.
 Build and serve `storybook-static`, then run the explicit browser review tool:
 
 ```sh
-bun scripts/check-storybook-layout.mjs http://127.0.0.1:6006
+bun scripts/check-storybook-layout.ts http://127.0.0.1:6006
 ```
 
 This uses a separately installed `agent-browser`; it is not a package or CI

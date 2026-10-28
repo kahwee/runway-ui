@@ -148,6 +148,6 @@ For restrained surfaces and controls, see [Quiet appearance](docs/QUIET.md).
 
 See [the paper workspace example](examples/studio.html) for reusable warm-paper HUD surfaces, an illustrated season cover, native selects and pace buttons. Import the full bundle or `runway-ui/studio.css` alongside the base tokens and workspace primitives. The Storybook **Game patterns / Paper studio** playground exposes season, rank, artwork and pace controls.
 
-Behavior declarations are generated from strictly checked JavaScript JSDoc, with
+Behavior declarations are generated from strict TypeScript into `dist/`, with
 consumer type fixtures for every optional package entry. See
 [generated types and behavior ownership](docs/TYPES.md) for the workflow.

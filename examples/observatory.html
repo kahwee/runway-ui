@@ -36,14 +36,6 @@
       ></a>
     </nav>
     <main id="observatory"></main>
-    <script type="module">
-      import { bindObservatory } from "./observatory/controller.js";
-      import { renderObservatory } from "./observatory/render.js";
-
-      const { root, data } = renderObservatory();
-      document.querySelector("#observatory").append(root);
-      const controller = bindObservatory(root, data);
-      addEventListener("pagehide", () => controller.destroy(), { once: true });
-    </script>
+    <script type="module" src="./observatory-entry.ts"></script>
   </body>
 </html>

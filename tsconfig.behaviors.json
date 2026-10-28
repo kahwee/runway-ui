@@ -4,15 +4,15 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
-    "allowJs": true,
-    "checkJs": true,
     "strict": true,
     "declaration": true,
     "emitDeclarationOnly": true,
     "outDir": ".types",
     "rootDir": "behaviors",
     "types": [],
-    "skipLibCheck": false
+    "skipLibCheck": false,
+    "rewriteRelativeImportExtensions": true
   },
-  "include": ["behaviors/*.js"]
+  "include": ["behaviors/*.ts"],
+  "exclude": ["behaviors/*.d.ts"]
 }

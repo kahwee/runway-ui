@@ -10,16 +10,16 @@
     ".": "./index.css",
     "./styles/*": "./styles/*",
     "./dialog": {
-      "types": "./behaviors/dialog.d.ts",
-      "default": "./behaviors/dialog.js"
+      "types": "./dist/behaviors/dialog.d.ts",
+      "default": "./dist/behaviors/dialog.js"
     },
     "./navigation": {
-      "types": "./behaviors/navigation.d.ts",
-      "default": "./behaviors/navigation.js"
+      "types": "./dist/behaviors/navigation.d.ts",
+      "default": "./dist/behaviors/navigation.js"
     },
     "./inventory": {
-      "types": "./behaviors/inventory.d.ts",
-      "default": "./behaviors/inventory.js"
+      "types": "./dist/behaviors/inventory.d.ts",
+      "default": "./dist/behaviors/inventory.js"
     },
     "./native.css": "./styles/native.css",
     "./bundle.css": "./dist/runway-ui.css",
@@ -31,16 +31,16 @@
     "./history.css": "./styles/history.css",
     "./observatory.css": "./styles/observatory.css",
     "./forms": {
-      "types": "./behaviors/forms.d.ts",
-      "default": "./behaviors/forms.js"
+      "types": "./dist/behaviors/forms.d.ts",
+      "default": "./dist/behaviors/forms.js"
     },
     "./timeseries": {
-      "types": "./behaviors/timeseries.d.ts",
-      "default": "./behaviors/timeseries.js"
+      "types": "./dist/behaviors/timeseries.d.ts",
+      "default": "./dist/behaviors/timeseries.js"
     },
     "./history": {
-      "types": "./behaviors/history.d.ts",
-      "default": "./behaviors/history.js"
+      "types": "./dist/behaviors/history.d.ts",
+      "default": "./dist/behaviors/history.js"
     },
     "./forms.css": "./styles/forms.css",
     "./icons.css": "./styles/icons.css",
@@ -49,20 +49,20 @@
     "./quiet.css": "./styles/quiet.css",
     "./studio.css": "./styles/studio.css",
     "./resource": {
-      "types": "./behaviors/resource.d.ts",
-      "default": "./behaviors/resource.js"
+      "types": "./dist/behaviors/resource.d.ts",
+      "default": "./dist/behaviors/resource.js"
     },
     "./styles": {
-      "types": "./behaviors/styles.d.ts",
-      "default": "./behaviors/styles.js"
+      "types": "./dist/behaviors/styles.d.ts",
+      "default": "./dist/behaviors/styles.js"
     },
     "./actions": {
-      "types": "./behaviors/actions.d.ts",
-      "default": "./behaviors/actions.js"
+      "types": "./dist/behaviors/actions.d.ts",
+      "default": "./dist/behaviors/actions.js"
     },
     "./react": {
-      "types": "./react/index.d.ts",
-      "default": "./react/index.js"
+      "types": "./dist/react/index.d.ts",
+      "default": "./dist/react/index.js"
     }
   },
   "files": [
@@ -99,27 +99,27 @@
     "inventory"
   ],
   "scripts": {
-    "build": "bun scripts/run-build.mjs",
+    "build": "bun scripts/run-build.ts",
     "prepack": "bun run build",
     "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build --disable-telemetry",
-    "build-site": "bun run build && bun run build-storybook && bun scripts/build-site.mjs",
+    "build-site": "bun run build && bun run build-storybook && bun scripts/build-site.ts",
     "check": "bun run lint && bun run check-types && bun run check-dependency-map",
     "check-fix": "bun fmt",
     "format": "bun fmt",
-    "lint": "bun run check-boundaries && bun fmt --check",
-    "check-docs": "bun scripts/check-docs.mjs",
-    "check-generated": "bun scripts/check-generated.mjs",
-    "check-boundaries": "bun scripts/check-boundaries.mjs",
-    "test-dialog": "bun test ./tests/dialog.test.mjs ./tests/dialog-stories.test.mjs",
-    "test-boundaries": "bun test ./tests/boundaries.test.mjs",
-    "test-behaviors": "bun test ./tests/*.test.mjs",
-    "build-types": "bun scripts/build-types.mjs",
-    "check-types": "bun scripts/build-types.mjs --check && bun scripts/build-react-types.mjs --check && bun check --no-script -p tsconfig.behaviors.json && bun check --no-script -p tsconfig.react.json && bun check --no-script -p tsconfig.consumer.json && bun check --no-script -p tsconfig.stories.json",
-    "build-dependency-map": "bun scripts/build-dependency-map.mjs",
-    "check-dependency-map": "bun scripts/build-dependency-map.mjs --check",
-    "build-react-types": "bun scripts/build-react-types.mjs",
-    "clean": "bun scripts/clean.mjs"
+    "lint": "bun scripts/check-typescript-source.ts && bun run check-boundaries && bun fmt --check",
+    "check-docs": "bun scripts/check-docs.ts",
+    "check-generated": "bun scripts/check-generated.ts",
+    "check-boundaries": "bun scripts/check-boundaries.ts",
+    "test-dialog": "bun test ./tests/dialog.test.ts ./tests/dialog-stories.test.ts",
+    "test-boundaries": "bun test ./tests/boundaries.test.ts",
+    "test-behaviors": "bun scripts/build-runtime.ts && bun run build-types && bun run build-react-types && bun test ./tests/*.test.ts",
+    "build-types": "bun scripts/build-types.ts",
+    "check-types": "bun run build-types && bun run build-react-types && bun check --no-script -p tsconfig.behaviors.json && bun check --no-script -p tsconfig.react.json && bun check --no-script -p tsconfig.consumer.json && bun check --no-script -p tsconfig.stories.json && bun check --no-script -p tsconfig.tooling.json",
+    "build-dependency-map": "bun scripts/build-dependency-map.ts",
+    "check-dependency-map": "bun scripts/build-dependency-map.ts --check",
+    "build-react-types": "bun scripts/build-react-types.ts",
+    "clean": "bun scripts/clean.ts"
   },
   "engines": {
     "node": "^22.18.0 || >=24.11.0",
@@ -127,22 +127,23 @@
   },
   "devDependencies": {
     "@babel/parser": "8.0.7",
+    "@base-ui/react": "1.9.0",
     "@fontsource-variable/fredoka": "^5.3.0",
     "@fontsource-variable/nunito": "^5.3.0",
     "@phosphor-icons/core": "^2.1.1",
     "@storybook/addon-docs": "10.6.3",
     "@storybook/html-vite": "10.6.3",
+    "@types/bun": "1.4.4",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "marked": "18.1.1",
     "parse5": "^8.0.1",
     "postcss": "^8.5.31",
-    "storybook": "10.6.3",
-    "typescript": "7.0.2",
-    "vite": "8.3.5",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "@types/react": "19.3.0",
-    "@types/react-dom": "19.3.0",
-    "@base-ui/react": "1.9.0"
+    "storybook": "10.6.3",
+    "typescript": "7.0.2",
+    "vite": "8.3.5"
   },
   "packageManager": "bun@1.4.4",
   "trustedDependencies": [

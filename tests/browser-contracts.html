@@ -11,19 +11,6 @@
       <h1>Native behavior contracts</h1>
       <p id="result" role="status">Running…</p>
     </main>
-    <script type="module">
-      import { runBehaviorContracts } from "./browser-contracts.js";
-
-      const result = document.querySelector("#result");
-      try {
-        const receipt = await runBehaviorContracts();
-        result.textContent = `${receipt.modules} modules passed · ${receipt.browser}`;
-        result.dataset.result = "passed";
-      } catch (error) {
-        result.textContent = String(error);
-        result.dataset.result = "failed";
-        throw error;
-      }
-    </script>
+    <script type="module" src="./browser-contracts-entry.ts"></script>
   </body>
 </html>

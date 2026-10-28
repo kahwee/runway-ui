@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button, Checkbox, Field, Input, Select } from "../../react/index.js";
-import { bounded } from "../helpers.js";
+import { Button, Checkbox, Field, Input, Select } from "../../react/index.ts";
+import { bounded } from "../helpers.ts";
 
 export interface PreferencesFormProps {
   portal?: HTMLElement;

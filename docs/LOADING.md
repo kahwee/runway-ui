@@ -10,7 +10,7 @@ Try the [standalone supply desk](../examples/lazy-workspace/index.html).
 ```js
 import { createLazyResource, resourceUrl } from "runway-ui/resource";
 const panel = createLazyResource(
-  (attempt) => import(resourceUrl(new URL("./panel.js", import.meta.url), attempt)),
+  (attempt) => import(resourceUrl(new URL("./panel.ts", import.meta.url), attempt)),
 );
 await panel.load();
 ```

@@ -65,7 +65,7 @@ commits cancel superseded Package runs for the same branch or pull request.
 These jobs report check results; repository branch-protection settings determine
 whether GitHub requires those checks before a merge.
 
-Optional loading behavior belongs in `behaviors/resource.js`, stylesheet downloads in `behaviors/styles.js`, and action dispatch in `behaviors/actions.js`. Hosts own feature indexes, relative URL resolution and event listeners. See [loading and reuse](LOADING.md).
+Optional loading behavior belongs in `behaviors/resource.ts`, stylesheet downloads in `behaviors/styles.ts`, and action dispatch in `behaviors/actions.ts`. Hosts own feature indexes, relative URL resolution and event listeners. See [loading and reuse](LOADING.md).
 
 Behavior types are authored as JSDoc in the owning JavaScript module. Generate declarations with `bun run build-types`; verify source and consumer fixtures with `bun run check-types`. Do not edit `.d.ts` output. See [type ownership and the behavior map](TYPES.md).
 

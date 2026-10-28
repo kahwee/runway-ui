@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "strict": false,
+    "skipLibCheck": true,
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": ["bun", "vite/client"]
+  },
+  "include": [
+    "scripts/**/*.ts",
+    "tests/**/*.ts",
+    "stories/**/*.ts",
+    "stories/**/*.tsx",
+    ".storybook/*.ts",
+    "workshop/**/*.ts",
+    "docs/*.ts",
+    "examples/**/*.ts"
+  ],
+  "exclude": ["tests/types/**"]
+}

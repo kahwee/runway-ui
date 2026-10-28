@@ -4,15 +4,15 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
-    "allowJs": true,
-    "checkJs": true,
     "strict": true,
     "declaration": true,
     "emitDeclarationOnly": true,
     "outDir": ".types/react",
     "rootDir": "react",
     "types": ["react", "react-dom"],
-    "skipLibCheck": false
+    "skipLibCheck": false,
+    "rewriteRelativeImportExtensions": true
   },
-  "include": ["react/*.js"]
+  "include": ["react/*.ts"],
+  "exclude": ["react/*.d.ts"]
 }

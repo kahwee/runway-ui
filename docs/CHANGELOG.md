@@ -1,5 +1,15 @@
 # Changelog
 
+## TypeScript source migration
+
+All authored modules, stories, examples, tests and tools now use TypeScript or
+TSX. Public package specifiers and runtime behavior remain unchanged; executable
+JavaScript and declarations are generated under `dist/` by `bun run build`.
+Source archive consumers must install and build before using runtime exports.
+The deployed website retains its browser JavaScript URLs. Type checks cover the
+full source tree, with strict public APIs and strict React stories.
+
+
 ## Unreleased
 
 - Keep structured dialog actions visible while long bodies scroll, with wider

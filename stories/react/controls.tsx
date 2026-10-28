@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button, Field, Input } from "../../react/index.js";
-import { bounded } from "../helpers.js";
+import { Button, Field, Input } from "../../react/index.ts";
+import { bounded } from "../helpers.ts";
 
 export interface ButtonExampleProps {
   label: string;

@@ -5,3 +5,7 @@ node_modules/
 storybook-static/
 .site/
 .types/
+
+# Compiled browser/package modules are generated from TypeScript.
+dist/behaviors/
+dist/react/

@@ -23,7 +23,7 @@ jobs:
       - run: bun run build
       - run: git diff --exit-code -- dist/
       - run: bun run build-storybook
-      - run: bun scripts/build-site.mjs
+      - run: bun scripts/build-site.ts
       - run: bun run check-docs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4

@@ -95,3 +95,7 @@ normalization still use Bun's Node-compatible standard-library APIs where there
 is no equivalent direct Bun file operation. These run inside Bun; they do not
 launch Node. Third-party tooling may still require Node. Browser modules continue
 to use browser APIs, not Bun globals.
+
+All authored tooling now uses `.ts` and runs directly with Bun. `bun run build`
+generates browser JavaScript and package declarations; see [TypeScript](TYPES.md)
+for source-archive and static-site build instructions.

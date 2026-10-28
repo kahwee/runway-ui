@@ -1,9 +1,9 @@
 import type { StoryObj } from "@storybook/html-vite";
 import type { ButtonExampleProps, InputExampleProps } from "./controls.tsx";
 import { expect, userEvent, within } from "storybook/test";
-import { flag, meta, range, select, text } from "../helpers.js";
+import { flag, meta, range, select, text } from "../helpers.ts";
 import { ButtonExample, InputExample } from "./controls.tsx";
-import { renderReactStory } from "./story-host.js";
+import { renderReactStory } from "./story-host.ts";
 import "./forms.css";
 
 export default { title: "React/Controls", tags: ["autodocs"] };
