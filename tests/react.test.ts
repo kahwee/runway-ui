@@ -4,7 +4,7 @@ import test from "node:test";
 import { createElement as h } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { build } from "vite";
-import { Button, Checkbox, Field, Input, Select } from "../react/index.ts";
+import { Button, Checkbox, Field, Input, Progress, Select } from "../react/index.ts";
 
 test("React entry retains Base UI identity for compound primitives", async () => {
   assert.equal(Checkbox, (await import("@base-ui/react/checkbox")).Checkbox);
@@ -87,4 +87,26 @@ test("a Button-only consumer drops unused optional entry exports", async () => {
     !modules.some((id) => /base-ui.*\/(select|checkbox|field|input)\//.test(id)),
     "Unused primitive implementations are removed",
   );
+});
+
+test("native progress keeps its name, units, indeterminate state and consumer props", () => {
+  const progress = renderToStaticMarkup(
+    h(Progress, {
+      value: 3,
+      max: 10,
+      "aria-label": "Experiment",
+      "aria-valuetext": "3 of 10 workdays",
+      className: "consumer-progress",
+      id: "experiment-progress",
+    }),
+  );
+  assert.match(progress, /<progress/);
+  assert.match(progress, /value="3"/);
+  assert.match(progress, /max="10"/);
+  assert.match(progress, /aria-label="Experiment"/);
+  assert.match(progress, /aria-valuetext="3 of 10 workdays"/);
+  assert.match(progress, /class="rw-progress consumer-progress"/);
+  assert.match(progress, /id="experiment-progress"/);
+  const unknown = renderToStaticMarkup(h(Progress, { "aria-label": "Loading" }));
+  assert.doesNotMatch(unknown, / value=|aria-valuenow=/);
 });

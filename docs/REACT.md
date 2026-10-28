@@ -67,3 +67,19 @@ Run `bun run build-react-types`, `bun run check-types`, `bun run test-behaviors`
 `bun run check-boundaries`, and `bun run build-storybook`. `bun run check-generated` also
 verifies the committed React declaration. The vanilla boundary checker continues to
 reject React or any other external runtime dependency in `behaviors/` and `styles/`.
+
+## Progress
+
+`Progress` styles a native `<progress>` with `rw-progress`; it accepts native props
+and React refs. Import the full bundle or `styles/meters.css` with the base tokens.
+Always provide a label (`aria-label`, `aria-labelledby`, or a native `<label>`).
+Pass the original work units with `value` and `max`; use `aria-valuetext` when
+those units matter. Omit `value` for indeterminate work. The browser owns range
+clamping and progress semantics. No live region is added on frequent updates.
+
+```tsx
+<Progress aria-label="Experiment" value={3} max={10} aria-valuetext="3 of 10 workdays" />
+```
+
+The shared meter color/height tokens apply. Forced colors restore native progress
+appearance; indeterminate work retains the browser's native rendering.

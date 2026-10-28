@@ -2,7 +2,7 @@ import type { StoryObj } from "@storybook/html-vite";
 import type { ButtonExampleProps, InputExampleProps } from "./controls.tsx";
 import { expect, userEvent, within } from "storybook/test";
 import { flag, meta, range, select, text } from "../helpers.ts";
-import { ButtonExample, InputExample } from "./controls.tsx";
+import { ButtonExample, InputExample, ProgressExample } from "./controls.tsx";
 import { renderReactStory } from "./story-host.ts";
 import "./forms.css";
 
@@ -92,4 +92,19 @@ export const ButtonKeyboard: StoryObj<ButtonExampleProps> = {
     await user.keyboard("{Enter}");
     await expect(canvas.getByRole("status")).toHaveTextContent("1 activation");
   },
+};
+
+export const Progress: StoryObj<import("./controls.tsx").ProgressExampleProps> = {
+  ...meta(
+    "React/Controls",
+    "Native progress with an accessible name and application-owned units.",
+    { label: "Experiment progress", value: 3, max: 10, indeterminate: false },
+    {
+      label: text("Accessible progress name."),
+      value: range(0, 10, 1, "Completed work."),
+      max: range(1, 10, 1, "Total work."),
+      indeterminate: flag("Omit value while total work is unknown."),
+    },
+  ),
+  render: (args) => renderReactStory(ProgressExample, args),
 };

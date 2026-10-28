@@ -137,3 +137,11 @@ Whimsy badge decoration uses native `@scope` to stop at an explicitly different
 theme root. Current browsers with scoped styles keep each specimen's own badge
 colors. Browsers without `@scope` retain the base badge recipe and theme tokens,
 without the optional Whimsy badge decoration. No script or polyfill is required.
+
+## Native progress
+
+The optional React `Progress` uses native `<progress>` semantics with the shared
+`rw-progress` recipe in `meters.css`. Determinate bars use Chromium/WebKit and
+Firefox progress pseudo-elements; unsupported styling retains native semantics.
+Omitting `value` preserves native indeterminate rendering. Forced colors restores
+native appearance; progress updates introduce no custom animation.

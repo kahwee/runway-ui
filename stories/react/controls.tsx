@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Field, Input } from "../../react/index.ts";
+import { Button, Field, Input, Progress } from "../../react/index.ts";
 import { bounded } from "../helpers.ts";
 
 export interface ButtonExampleProps {
@@ -72,6 +72,21 @@ export function InputExample({
         {description ? <Field.Description>{description}</Field.Description> : null}
       </Field.Root>
       <p className="rw-muted">Edit the preview directly. Args reset the initial value.</p>
+    </section>
+  );
+}
+
+export interface ProgressExampleProps {
+  label: string;
+  value: number;
+  max: number;
+  indeterminate: boolean;
+}
+export function ProgressExample({ label, value, max, indeterminate }: ProgressExampleProps) {
+  return (
+    <section className="react-form-example">
+      <p>{label}</p>
+      <Progress aria-label={label} value={indeterminate ? undefined : value} max={max} />
     </section>
   );
 }

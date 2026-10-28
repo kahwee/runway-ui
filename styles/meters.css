@@ -4,6 +4,36 @@
   initial-value: 0%;
 }
 @layer runway-ui.meters {
+  .rw-progress {
+    display: block;
+    inline-size: 100%;
+    block-size: var(--rw-meter-height, 8px);
+    border: 0;
+    border-radius: var(--rw-pill);
+    overflow: hidden;
+    background: var(--rw-soft);
+    color: var(--rw-meter-color, var(--rw-accent));
+  }
+  .rw-progress[value] {
+    appearance: none;
+  }
+  .rw-progress::-webkit-progress-bar {
+    background: var(--rw-soft);
+    border-radius: inherit;
+  }
+  .rw-progress::-webkit-progress-value {
+    background: var(--rw-meter-color, var(--rw-accent));
+    border-radius: inherit;
+  }
+  .rw-progress::-moz-progress-bar {
+    background: var(--rw-meter-color, var(--rw-accent));
+    border-radius: inherit;
+  }
+  @media (forced-colors: active) {
+    .rw-progress[value] {
+      appearance: auto;
+    }
+  }
   .rw-meter {
     margin-block-start: 9px;
   }

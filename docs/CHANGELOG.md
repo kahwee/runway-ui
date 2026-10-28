@@ -1,5 +1,7 @@
 # Changelog
 
+- Add optional React `Progress`, using labelled native progress semantics and shared meter tokens.
+
 ## TypeScript source migration
 
 All authored modules, stories, examples, tests and tools now use TypeScript or

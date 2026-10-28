@@ -53,3 +53,10 @@ export {
 } from "./desk.ts";
 export { Chart, ChartCard, defineChart } from "./chart.ts";
 export { cx } from "./classes.ts";
+/** Native progress semantics; omit value for indeterminate work. Supply an accessible name. */
+export function Progress({ className, ...props }: ComponentProps<"progress">) {
+  return createElement("progress", {
+    ...props,
+    className: `rw-progress ${className ?? ""}`.trim(),
+  });
+}
