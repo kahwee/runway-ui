@@ -32,6 +32,7 @@ Start with the installation below, then choose the resource for your task:
 | Find classes, defaults and copyable markup | [Component reference](https://kahwee.github.io/runway-ui/docs/#reference)                               |
 | Try component states and theme controls    | [Storybook](https://kahwee.github.io/runway-ui/storybook/)                                              |
 | See components assembled into a screen     | [Workshop](https://kahwee.github.io/runway-ui/) and [Simulation Observatory](examples/observatory.html) |
+| Release a tested package                  | [Release checklist and tag-only npm workflow](docs/RELEASING.md) |
 | Change the library itself                  | [Contributing and repository layout](CONTRIBUTING.md)                                                   |
 
 The docs explain usage and contracts. Storybook is the interactive component explorer. Examples demonstrate compositions with synthetic data; they do not run a simulation.
