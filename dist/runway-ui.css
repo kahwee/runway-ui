@@ -2222,6 +2222,137 @@
 }
 
 
+/* Number bumps, toasts and confetti. Structure and motion only; themes add the sweetness. */
+@layer runway-ui.patterns {
+  .rw-number {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+    &[data-trend] {
+      animation: rw-number-bump 0.45s var(--rw-spring, ease);
+    }
+  }
+  .rw-toasts {
+    position: fixed;
+    inset-block-end: 20px;
+    inset-inline-end: 20px;
+    z-index: 50;
+    display: grid;
+    gap: 10px;
+    max-inline-size: min(360px, calc(100vw - 40px));
+    pointer-events: none;
+  }
+  .rw-toast {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px 12px 16px;
+    border: 1px solid var(--rw-line);
+    border-radius: var(--rw-radius);
+    background: var(--rw-surface);
+    color: var(--rw-ink);
+    box-shadow: var(--rw-shadow);
+    font: 600 13px / 1.4 var(--rw-font);
+    animation: rw-toast-in 0.5s var(--rw-spring, ease) backwards;
+    & > span {
+      flex: 1;
+      min-inline-size: 0;
+    }
+    & > button {
+      flex: none;
+      inline-size: 26px;
+      block-size: 26px;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--rw-muted);
+      font: inherit;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      &:hover {
+        background: var(--rw-soft);
+      }
+    }
+    &[data-tone="success"] {
+      border-inline-start: 6px solid var(--rw-accent);
+    }
+    &[data-tone="warning"] {
+      border-inline-start: 6px solid var(--rw-gold);
+    }
+    &[data-tone="danger"] {
+      border-inline-start: 6px solid var(--rw-danger);
+    }
+  }
+  .rw-confetti {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    overflow: hidden;
+    pointer-events: none;
+    & > i {
+      position: absolute;
+      inset-inline-start: 50%;
+      inset-block-start: 45%;
+      inline-size: 10px;
+      block-size: 14px;
+      border-radius: 3px;
+      background: var(--rw-accent);
+      animation: rw-confetti-fly 1.2s cubic-bezier(0.2, 0.7, 0.3, 1) var(--delay, 0ms) both;
+      &:nth-child(4n + 2) {
+        background: var(--rw-gold);
+      }
+      &:nth-child(4n + 3) {
+        background: var(--rw-focus);
+      }
+      &:nth-child(4n) {
+        background: var(--rw-danger);
+        border-radius: 50%;
+        inline-size: 10px;
+        block-size: 10px;
+      }
+    }
+  }
+  @keyframes rw-number-bump {
+    40% {
+      scale: 1.14;
+    }
+  }
+  @keyframes rw-toast-in {
+    from {
+      translate: 0 28px;
+      scale: 0.9;
+      opacity: 0;
+    }
+  }
+  /* Burst up and out, then fall with a spin. */
+  @keyframes rw-confetti-fly {
+    0% {
+      translate: 0 0;
+      rotate: 0deg;
+      opacity: 1;
+    }
+    40% {
+      translate: calc(var(--x) * 0.7) var(--y);
+      opacity: 1;
+    }
+    100% {
+      translate: var(--x) calc(var(--y) + 280px);
+      rotate: var(--r);
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rw-number[data-trend],
+    .rw-toast {
+      animation: none;
+    }
+    .rw-confetti {
+      display: none;
+    }
+  }
+}
+
 /* Social composition. Keep component order stable. */
 @layer runway-ui.patterns {
   /* Segmented control: a sunken track of mutually exclusive buttons. */
@@ -5765,6 +5896,7 @@
           color-mix(in oklch, var(--rw-cozy-lip) 30%, transparent);
       &:hover:not(:disabled) {
         translate: 0 -3px;
+        scale: 1.03;
       }
       &:active:not(:disabled) {
         translate: 0 var(--rw-control-depth);
@@ -5839,7 +5971,12 @@
     }
     & .rw-meter__fill {
       background: linear-gradient(to bottom, #ffffff66, #ffffff00 70%), var(--rw-meter-color);
-      box-shadow: inset 0 -2px 0 #0000001a;
+      box-shadow:
+        inset 0 -2px 0 #0000001a,
+        inset -3px 0 0 #ffffff59;
+    }
+    &[data-low] .rw-meter__fill {
+      --rw-meter-color: var(--rw-cozy-rose);
     }
     &[data-tone="warning"],
     &[data-tone="energy"] {
@@ -5888,9 +6025,20 @@
     & .rw-slot[data-rarity="rare"] {
       background: color-mix(in oklch, var(--rw-cozy-lilac) 26%, var(--rw-surface));
     }
+    & .rw-slot[data-rarity="rare"]::after {
+      inset-block-start: 6px;
+      inset-inline-end: 6px;
+      padding: 1px 7px;
+      border-radius: 999px;
+      background: var(--rw-cozy-lilac);
+      color: var(--rw-ink);
+      font: 700 10px / 1.4 var(--rw-display-font);
+      letter-spacing: 0.04em;
+    }
     & .rw-dock {
       border: 2px solid var(--rw-line);
-      background: color-mix(in oklch, var(--rw-cozy-sky) 30%, var(--rw-surface));
+      background: color-mix(in oklch, var(--rw-cozy-butter) 22%, var(--rw-surface));
+      box-shadow: 0 4px 0 var(--rw-line);
     }
   }
 }
@@ -6031,6 +6179,121 @@
   }
 }
 
+/* Sweet motion: staggered rises, a flash when meters change, and a gentle ring on the main action. */
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    --rw-stagger: 55ms;
+    & .rw-toast {
+      border: 2px solid var(--rw-line);
+      border-radius: 20px;
+      box-shadow: 0 4px 0 var(--rw-line);
+      &[data-tone="success"] {
+        border-inline-start: 6px solid var(--rw-cozy-mint);
+      }
+      &[data-tone="warning"] {
+        border-inline-start: 6px solid var(--rw-cozy-butter);
+      }
+      &[data-tone="danger"] {
+        border-inline-start: 6px solid var(--rw-cozy-rose);
+      }
+    }
+    & .rw-confetti > i {
+      background: var(--rw-cozy-rose);
+      &:nth-child(5n + 2) {
+        background: var(--rw-cozy-butter);
+      }
+      &:nth-child(5n + 3) {
+        background: var(--rw-cozy-mint);
+      }
+      &:nth-child(5n + 4) {
+        background: var(--rw-cozy-sky);
+      }
+      &:nth-child(5n) {
+        background: var(--rw-cozy-lilac);
+      }
+    }
+    & .rw-button[data-attention] {
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        inset: -5px;
+        border: 3px solid var(--rw-cozy-rose);
+        border-radius: inherit;
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .rw-ui[data-theme="cozy"] {
+      /* Children of the same parent rise one after another. */
+      &
+        :is(
+          .rw-panel,
+          .rw-sheet,
+          .rw-dossier,
+          .rw-slot,
+          .rw-choice,
+          .rw-folio-tab,
+          .rw-resource,
+          .rw-command-bar,
+          .rw-control-console
+        ) {
+        animation: rw-cozy-rise 0.6s var(--rw-spring) backwards;
+      }
+      & .rw-meter[data-change] {
+        & .rw-meter__track {
+          animation: rw-cozy-bounce 0.55s var(--rw-spring);
+        }
+        & .rw-meter__fill {
+          animation: rw-cozy-flash 0.7s ease-out;
+        }
+      }
+      & .rw-button[data-attention]::after {
+        animation: rw-cozy-ring 2.4s ease-out infinite;
+      }
+      & .rw-button[data-attention]:hover::after {
+        animation: none;
+      }
+    }
+    @supports (animation-delay: calc(sibling-index() * 1ms)) {
+      .rw-ui[data-theme="cozy"]
+        :is(.rw-panel, .rw-sheet, .rw-dossier, .rw-slot, .rw-choice, .rw-folio-tab, .rw-resource) {
+        animation-delay: calc((sibling-index() - 1) * var(--rw-stagger));
+      }
+    }
+    @keyframes rw-cozy-rise {
+      from {
+        translate: 0 18px;
+        scale: 0.96;
+        opacity: 0;
+      }
+    }
+    @keyframes rw-cozy-bounce {
+      40% {
+        scale: 1.02 1.35;
+      }
+    }
+    @keyframes rw-cozy-flash {
+      30% {
+        filter: brightness(1.18) saturate(1.2);
+      }
+    }
+    @keyframes rw-cozy-ring {
+      0% {
+        scale: 0.94;
+        opacity: 0.9;
+      }
+      70%,
+      100% {
+        scale: 1.14;
+        opacity: 0;
+      }
+    }
+  }
+}
+
 @layer runway-ui.themes {
   .rw-ui[data-theme="cozy"] .rw-dialog,
   .rw-dialog[data-theme="cozy"] {
@@ -6059,6 +6322,27 @@
       & .rw-dialog[open],
       &.rw-dialog[open] {
         animation: rw-cozy-pop 0.45s var(--rw-spring);
+      }
+    }
+    .rw-ui[data-theme="cozy"] .rw-slot[aria-pressed="true"] {
+      animation: rw-cozy-select 0.5s var(--rw-spring);
+    }
+    .rw-ui[data-theme="cozy"] .rw-meter[data-low] .rw-meter__track {
+      animation: rw-cozy-pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes rw-cozy-select {
+      40% {
+        scale: 1.08;
+        rotate: -2deg;
+      }
+      70% {
+        scale: 0.97;
+        rotate: 1deg;
+      }
+    }
+    @keyframes rw-cozy-pulse {
+      50% {
+        scale: 1 1.18;
       }
     }
     @keyframes rw-cozy-pop {

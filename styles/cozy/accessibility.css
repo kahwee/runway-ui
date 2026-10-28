@@ -9,6 +9,27 @@
         animation: rw-cozy-pop 0.45s var(--rw-spring);
       }
     }
+    .rw-ui[data-theme="cozy"] .rw-slot[aria-pressed="true"] {
+      animation: rw-cozy-select 0.5s var(--rw-spring);
+    }
+    .rw-ui[data-theme="cozy"] .rw-meter[data-low] .rw-meter__track {
+      animation: rw-cozy-pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes rw-cozy-select {
+      40% {
+        scale: 1.08;
+        rotate: -2deg;
+      }
+      70% {
+        scale: 0.97;
+        rotate: 1deg;
+      }
+    }
+    @keyframes rw-cozy-pulse {
+      50% {
+        scale: 1 1.18;
+      }
+    }
     @keyframes rw-cozy-pop {
       from {
         scale: 0.85;

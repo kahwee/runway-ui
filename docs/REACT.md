@@ -50,6 +50,9 @@ modular entry. `@kahwee/runway-ui/cozy.css` is the theme on its own. Try **React
 | `Sheet` | Paper section | `title`, `description` |
 | `DossierList`, `Dossier` | Aligned record rows | `kicker`, `status`, `title`, `description`, `actions` |
 | `ControlConsole` | Time and workflow controls | children |
+| `AnimatedNumber` | Counting `span.rw-number` | `value`, `format`, `duration` |
+| `Confetti` | Fixed overlay burst | `active`, `onDone`, `count` |
+| `Toaster`, `useToasts` | Toast stack and queue hook | `toasts`, `onDismiss`; `push(message, tone)` |
 | `Chart`, `ChartCard`, `defineChart` | TanStack Charts adapter and card | `definition`, `height`, `ariaLabel` |
 
 `Meter` clamps `value` to `0..max` and exposes `aria-valuenow`. `Dialog` keeps the browser
@@ -57,6 +60,15 @@ in charge of focus and inertness. Pass `canDismiss={() => false}` to veto Escape
 backdrop dismissal while a decision is required; the policy is reapplied on every render.
 `Inventory` moves focus with arrows, Home and End; it does not virtualize, so keep lists
 to a few hundred slots.
+
+## Motion and feedback
+
+`AnimatedNumber` tweens to its new value and bumps; `Resource` and `CommandBar` use it for numeric
+values automatically. `Meter` flashes when its value changes and pulses at 25% or below
+(`data-low`). `Confetti` bursts when `active` turns true, then calls `onDone`. `useToasts()`
+returns `{ toasts, push, dismiss }` for the `Toaster`. Give the main action `data-attention` for a
+soft pulsing ring in the cozy theme. All of it is skipped under `prefers-reduced-motion`.
+See **React / Feedback** in Storybook.
 
 ## Charts
 

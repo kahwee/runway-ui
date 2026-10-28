@@ -1,4 +1,13 @@
-import { createElement, type CSSProperties, type ComponentProps, type ReactNode } from "react";
+import {
+  createElement,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ComponentProps,
+  type ReactNode,
+} from "react";
+import { AnimatedNumber } from "./motion.ts";
 import { cx } from "./classes.ts";
 
 export type Tone = "warning" | "danger" | "energy" | "morale" | "design" | "pm";
@@ -56,11 +65,22 @@ export type MeterProps = {
 /** Labelled progress capsule with an accessible `meter` role. */
 export function Meter({ label, value, max = 100, tone, className }: MeterProps) {
   const percent = Math.min(100, Math.max(0, (value / max) * 100));
+  const previous = useRef(percent);
+  const [change, setChange] = useState<"up" | "down">();
+  useEffect(() => {
+    if (previous.current === percent) return;
+    setChange(percent > previous.current ? "up" : "down");
+    previous.current = percent;
+    const timer = setTimeout(() => setChange(undefined), 700);
+    return () => clearTimeout(timer);
+  }, [percent]);
   return createElement(
     "div",
     {
       className: cx("rw-meter", className),
+      "data-change": change,
       "data-tone": tone,
+      "data-low": percent <= 25 ? "" : undefined,
       role: "meter",
       "aria-label": label,
       "aria-valuemin": 0,
@@ -95,7 +115,11 @@ export function Resource({ icon, label, value }: ResourceProps) {
     createElement(
       "div",
       null,
-      createElement("strong", null, value),
+      createElement(
+        "strong",
+        null,
+        typeof value === "number" ? createElement(AnimatedNumber, { value }) : value,
+      ),
       createElement("small", null, label),
     ),
   );

@@ -37,3 +37,7 @@ accents, 22px radius, springy pill buttons and a rounded desk workspace. The pal
 exposed as `--rw-cozy-rose`, `-butter`, `-mint`, `-sky` and `-lilac`; TanStack charts
 inside the root use `--ts-chart-1` to `--ts-chart-6`. Motion respects
 `prefers-reduced-motion`; forced colors restores system surfaces and borders.
+
+Cozy motion (`styles/cozy/motion.css`): siblings rise in one after another (using `sibling-index()` where
+supported, otherwise together), meters bounce and flash on change, and `data-attention` buttons
+pulse a ring. Generic number, toast and confetti styles live in `styles/feedback.css`.

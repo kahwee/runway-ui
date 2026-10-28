@@ -12,6 +12,7 @@ The public CSS entry points compose component files in a fixed order:
 | `styles/forms.css`       | `styles/forms/`          | Switch, checkbox/radio, range, fields, choices, accessibility                                  |
 | `styles/social.css`      | `styles/social/`         | Segmented control, avatar, person chip, leaderboard, accessibility, pace                       |
 | `styles/cozy.css`        | `styles/cozy/`           | Cozy theme tokens, controls, surfaces, badges, meters, patterns, desk workspace, charts, dialog, accessibility |
+| `styles/feedback.css`    | none (single file)       | Number bump, toasts and confetti structure and motion                                          |
 | `styles/observatory.css` | `styles/observatory/`    | Workspace, resource ledger, context popover, decisions, responsive behavior                    |
 
 Edit the component that owns the selector. The entry points contain imports only;

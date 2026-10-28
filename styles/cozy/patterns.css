@@ -29,9 +29,20 @@
     & .rw-slot[data-rarity="rare"] {
       background: color-mix(in oklch, var(--rw-cozy-lilac) 26%, var(--rw-surface));
     }
+    & .rw-slot[data-rarity="rare"]::after {
+      inset-block-start: 6px;
+      inset-inline-end: 6px;
+      padding: 1px 7px;
+      border-radius: 999px;
+      background: var(--rw-cozy-lilac);
+      color: var(--rw-ink);
+      font: 700 10px / 1.4 var(--rw-display-font);
+      letter-spacing: 0.04em;
+    }
     & .rw-dock {
       border: 2px solid var(--rw-line);
-      background: color-mix(in oklch, var(--rw-cozy-sky) 30%, var(--rw-surface));
+      background: color-mix(in oklch, var(--rw-cozy-butter) 22%, var(--rw-surface));
+      box-shadow: 0 4px 0 var(--rw-line);
     }
   }
 }

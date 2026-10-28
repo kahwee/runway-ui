@@ -14,7 +14,12 @@
     }
     & .rw-meter__fill {
       background: linear-gradient(to bottom, #ffffff66, #ffffff00 70%), var(--rw-meter-color);
-      box-shadow: inset 0 -2px 0 #0000001a;
+      box-shadow:
+        inset 0 -2px 0 #0000001a,
+        inset -3px 0 0 #ffffff59;
+    }
+    &[data-low] .rw-meter__fill {
+      --rw-meter-color: var(--rw-cozy-rose);
     }
     &[data-tone="warning"],
     &[data-tone="energy"] {

@@ -1,0 +1,130 @@
+/* Number bumps, toasts and confetti. Structure and motion only; themes add the sweetness. */
+@layer runway-ui.patterns {
+  .rw-number {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+    &[data-trend] {
+      animation: rw-number-bump 0.45s var(--rw-spring, ease);
+    }
+  }
+  .rw-toasts {
+    position: fixed;
+    inset-block-end: 20px;
+    inset-inline-end: 20px;
+    z-index: 50;
+    display: grid;
+    gap: 10px;
+    max-inline-size: min(360px, calc(100vw - 40px));
+    pointer-events: none;
+  }
+  .rw-toast {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px 12px 16px;
+    border: 1px solid var(--rw-line);
+    border-radius: var(--rw-radius);
+    background: var(--rw-surface);
+    color: var(--rw-ink);
+    box-shadow: var(--rw-shadow);
+    font: 600 13px / 1.4 var(--rw-font);
+    animation: rw-toast-in 0.5s var(--rw-spring, ease) backwards;
+    & > span {
+      flex: 1;
+      min-inline-size: 0;
+    }
+    & > button {
+      flex: none;
+      inline-size: 26px;
+      block-size: 26px;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--rw-muted);
+      font: inherit;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      &:hover {
+        background: var(--rw-soft);
+      }
+    }
+    &[data-tone="success"] {
+      border-inline-start: 6px solid var(--rw-accent);
+    }
+    &[data-tone="warning"] {
+      border-inline-start: 6px solid var(--rw-gold);
+    }
+    &[data-tone="danger"] {
+      border-inline-start: 6px solid var(--rw-danger);
+    }
+  }
+  .rw-confetti {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    overflow: hidden;
+    pointer-events: none;
+    & > i {
+      position: absolute;
+      inset-inline-start: 50%;
+      inset-block-start: 45%;
+      inline-size: 10px;
+      block-size: 14px;
+      border-radius: 3px;
+      background: var(--rw-accent);
+      animation: rw-confetti-fly 1.2s cubic-bezier(0.2, 0.7, 0.3, 1) var(--delay, 0ms) both;
+      &:nth-child(4n + 2) {
+        background: var(--rw-gold);
+      }
+      &:nth-child(4n + 3) {
+        background: var(--rw-focus);
+      }
+      &:nth-child(4n) {
+        background: var(--rw-danger);
+        border-radius: 50%;
+        inline-size: 10px;
+        block-size: 10px;
+      }
+    }
+  }
+  @keyframes rw-number-bump {
+    40% {
+      scale: 1.14;
+    }
+  }
+  @keyframes rw-toast-in {
+    from {
+      translate: 0 28px;
+      scale: 0.9;
+      opacity: 0;
+    }
+  }
+  /* Burst up and out, then fall with a spin. */
+  @keyframes rw-confetti-fly {
+    0% {
+      translate: 0 0;
+      rotate: 0deg;
+      opacity: 1;
+    }
+    40% {
+      translate: calc(var(--x) * 0.7) var(--y);
+      opacity: 1;
+    }
+    100% {
+      translate: var(--x) calc(var(--y) + 280px);
+      rotate: var(--r);
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rw-number[data-trend],
+    .rw-toast {
+      animation: none;
+    }
+    .rw-confetti {
+      display: none;
+    }
+  }
+}

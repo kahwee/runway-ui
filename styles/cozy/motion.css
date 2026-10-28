@@ -1,0 +1,114 @@
+/* Sweet motion: staggered rises, a flash when meters change, and a gentle ring on the main action. */
+@layer runway-ui.themes {
+  .rw-ui[data-theme="cozy"] {
+    --rw-stagger: 55ms;
+    & .rw-toast {
+      border: 2px solid var(--rw-line);
+      border-radius: 20px;
+      box-shadow: 0 4px 0 var(--rw-line);
+      &[data-tone="success"] {
+        border-inline-start: 6px solid var(--rw-cozy-mint);
+      }
+      &[data-tone="warning"] {
+        border-inline-start: 6px solid var(--rw-cozy-butter);
+      }
+      &[data-tone="danger"] {
+        border-inline-start: 6px solid var(--rw-cozy-rose);
+      }
+    }
+    & .rw-confetti > i {
+      background: var(--rw-cozy-rose);
+      &:nth-child(5n + 2) {
+        background: var(--rw-cozy-butter);
+      }
+      &:nth-child(5n + 3) {
+        background: var(--rw-cozy-mint);
+      }
+      &:nth-child(5n + 4) {
+        background: var(--rw-cozy-sky);
+      }
+      &:nth-child(5n) {
+        background: var(--rw-cozy-lilac);
+      }
+    }
+    & .rw-button[data-attention] {
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        inset: -5px;
+        border: 3px solid var(--rw-cozy-rose);
+        border-radius: inherit;
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .rw-ui[data-theme="cozy"] {
+      /* Children of the same parent rise one after another. */
+      &
+        :is(
+          .rw-panel,
+          .rw-sheet,
+          .rw-dossier,
+          .rw-slot,
+          .rw-choice,
+          .rw-folio-tab,
+          .rw-resource,
+          .rw-command-bar,
+          .rw-control-console
+        ) {
+        animation: rw-cozy-rise 0.6s var(--rw-spring) backwards;
+      }
+      & .rw-meter[data-change] {
+        & .rw-meter__track {
+          animation: rw-cozy-bounce 0.55s var(--rw-spring);
+        }
+        & .rw-meter__fill {
+          animation: rw-cozy-flash 0.7s ease-out;
+        }
+      }
+      & .rw-button[data-attention]::after {
+        animation: rw-cozy-ring 2.4s ease-out infinite;
+      }
+      & .rw-button[data-attention]:hover::after {
+        animation: none;
+      }
+    }
+    @supports (animation-delay: calc(sibling-index() * 1ms)) {
+      .rw-ui[data-theme="cozy"]
+        :is(.rw-panel, .rw-sheet, .rw-dossier, .rw-slot, .rw-choice, .rw-folio-tab, .rw-resource) {
+        animation-delay: calc((sibling-index() - 1) * var(--rw-stagger));
+      }
+    }
+    @keyframes rw-cozy-rise {
+      from {
+        translate: 0 18px;
+        scale: 0.96;
+        opacity: 0;
+      }
+    }
+    @keyframes rw-cozy-bounce {
+      40% {
+        scale: 1.02 1.35;
+      }
+    }
+    @keyframes rw-cozy-flash {
+      30% {
+        filter: brightness(1.18) saturate(1.2);
+      }
+    }
+    @keyframes rw-cozy-ring {
+      0% {
+        scale: 0.94;
+        opacity: 0.9;
+      }
+      70%,
+      100% {
+        scale: 1.14;
+        opacity: 0;
+      }
+    }
+  }
+}

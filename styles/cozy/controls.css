@@ -18,6 +18,7 @@
           color-mix(in oklch, var(--rw-cozy-lip) 30%, transparent);
       &:hover:not(:disabled) {
         translate: 0 -3px;
+        scale: 1.03;
       }
       &:active:not(:disabled) {
         translate: 0 var(--rw-control-depth);

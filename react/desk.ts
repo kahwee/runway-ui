@@ -1,5 +1,6 @@
 import { createElement, type ComponentProps, type ReactNode } from "react";
 import { cx } from "./classes.ts";
+import { AnimatedNumber } from "./motion.ts";
 
 export type CommandStat = { label: string; value: ReactNode; note?: ReactNode };
 
@@ -26,7 +27,13 @@ export function CommandBar({
           "div",
           { className: "rw-command-stat", key: stat.label },
           createElement("span", null, stat.label),
-          createElement("strong", null, stat.value),
+          createElement(
+            "strong",
+            null,
+            typeof stat.value === "number"
+              ? createElement(AnimatedNumber, { value: stat.value })
+              : stat.value,
+          ),
           stat.note && createElement("small", null, stat.note),
         ),
       ),

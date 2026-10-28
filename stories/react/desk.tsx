@@ -7,6 +7,7 @@ import {
   Button,
   Chart,
   ChartCard,
+  Confetti,
   CommandBar,
   ControlConsole,
   defineChart,
@@ -16,6 +17,8 @@ import {
   Meter,
   Runway,
   Sheet,
+  Toaster,
+  useToasts,
 } from "../../react/index.ts";
 
 export type DeskExampleProps = {
@@ -36,6 +39,8 @@ export function DeskExample({ title, startingCash, theme }: DeskExampleProps) {
   const [section, setSection] = useState<Section>("overview");
   const [history, setHistory] = useState([{ day: 1, cash: startingCash }]);
   const [hired, setHired] = useState<string[]>([]);
+  const [celebrate, setCelebrate] = useState(false);
+  const { toasts, push, dismiss } = useToasts();
   const today = history[history.length - 1];
   const energy = Math.max(10, 100 - (today.day - 1) * 7);
   const chart = useMemo(
@@ -48,7 +53,14 @@ export function DeskExample({ title, startingCash, theme }: DeskExampleProps) {
         scales: {
           x: {
             scale: scaleLinear,
-            axis: { label: "Day", ticks: { format: (value: number) => String(Math.round(value)) } },
+            axis: {
+              label: "Day",
+              ticks: {
+                values: history
+                  .filter((_, i) => i % Math.ceil(history.length / 8) === 0)
+                  .map((row) => row.day),
+              },
+            },
           },
           y: { scale: scaleLinear, nice: true, grid: true, axis: { label: "Credits" } },
         },
@@ -62,6 +74,18 @@ export function DeskExample({ title, startingCash, theme }: DeskExampleProps) {
       const income = 1500 + hired.length * 900;
       return [...days, { day: last.day + 1, cash: last.cash + income - 400 }];
     });
+  const endDay = () => {
+    nextDay();
+    push(
+      `Day ${today.day + 1}: the bakery earned ${(1500 + hired.length * 900 - 400).toLocaleString("en-US")} credits.`,
+      "success",
+    );
+  };
+  const hire = (role: string) => {
+    setHired((list) => [...list, role]);
+    setCelebrate(true);
+    push(`${role} joined the team!`, "success");
+  };
   return (
     <Runway theme={theme} style={{ display: "grid", gap: 20, padding: 20, maxInlineSize: 1200 }}>
       <CommandBar
@@ -95,7 +119,7 @@ export function DeskExample({ title, startingCash, theme }: DeskExampleProps) {
                     <Button
                       data-variant="primary"
                       disabled={hired.includes(role)}
-                      onClick={() => setHired((list) => [...list, role])}
+                      onClick={() => hire(role)}
                     >
                       {hired.includes(role) ? "Welcome aboard" : "Review candidates"}
                     </Button>
@@ -117,10 +141,12 @@ export function DeskExample({ title, startingCash, theme }: DeskExampleProps) {
       <ControlConsole>
         <strong>Day {today.day}</strong>
         <span>Ready for your next decision.</span>
-        <Button data-variant="primary" onClick={nextDay}>
+        <Button data-variant="primary" data-attention onClick={endDay}>
           Next day
         </Button>
       </ControlConsole>
+      <Confetti active={celebrate} onDone={() => setCelebrate(false)} />
+      <Toaster toasts={toasts} onDismiss={dismiss} />
     </Runway>
   );
 }
