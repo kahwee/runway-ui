@@ -45,3 +45,20 @@ Story files are grouped by sidebar category under `stories/` (for example, `stor
 The Pages build writes only allowlisted public files to `.site/`, places Storybook under `/storybook/`, and renders Markdown guides to static HTML at build time. `main` pushes deploy through GitHub Actions. Generated output and local evidence are ignored.
 
 Desktop browser observations remain scoped evidence, not cross-browser or accessibility certification.
+
+## Isolated dependency checks
+
+Open **Isolation / Controls** for examples rendered in separate iframe documents.
+Unlike regular stories, these cannot inherit the full library stylesheet from
+the preview. Toolbar themes, density and material intentionally do not apply.
+- **Standalone controls** loads only `styles/tokens.css` and `styles/controls.css`.
+  It checks pressed versus unpressed colors and keyboard shortcut styling.
+- **Dock composition** adds `styles/patterns/dock.css` and
+  `styles/patterns/accessibility.css` for layout and reduced-motion preferences.
+
+The story imports CSS as Vite inline strings, so the same isolated documents work
+in development and the built Storybook without external asset paths. Each story
+has a play check that inspects computed styles inside its frame and fails when
+required control, shortcut or dock styles are missing. Successful checks mark the
+frame with `data-verified="true"`. The iframe helper is documentation tooling only;
+consumers use ordinary HTML and CSS imports.

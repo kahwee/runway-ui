@@ -81,3 +81,11 @@ imports retain the `runway-ui.patterns` layer and original cascade order;
 `accessibility.css` owns shared dock and inventory motion preferences. Import
 the aggregate for the complete patterns set, or choose component files through
 `runway-ui/styles/patterns/*.css` alongside the base tokens and primitives.
+
+## Controls own their shared states
+
+`styles/controls.css` owns button pressed-state colors and `rw-shortcut`, including
+when controls are used outside a dock. `styles/patterns/dock.css` owns only the
+dock surface, button arrangement and dock-specific animations. Its animation
+preferences remain in `styles/patterns/accessibility.css`. Neither shared control
+recipe requires importing game patterns.

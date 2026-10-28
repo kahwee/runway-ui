@@ -110,6 +110,23 @@
   .rw-button[aria-busy="true"] {
     cursor: progress;
   }
+  .rw-button[aria-pressed="true"] {
+    --rw-button-bg: var(--rw-accent);
+    --rw-button-ink: var(--rw-on-accent);
+    --rw-button-border: var(--rw-accent);
+  }
+  .rw-shortcut {
+    display: inline-grid;
+    place-items: center;
+    min-inline-size: 1.7em;
+    padding: 1px 5px 2px;
+    border: 1px solid color-mix(in oklch, currentColor 45%, transparent);
+    border-radius: 7px;
+    background: color-mix(in oklch, currentColor 12%, transparent);
+    box-shadow: 0 2px 0 color-mix(in oklch, currentColor 30%, transparent);
+    font: 700 10px / 1.4 var(--rw-font);
+    opacity: 0.85;
+  }
   :where(.rw-ui)[data-depth="flat"] :where(.rw-button, .rw-native button) {
     box-shadow: none;
     background-image: none;
