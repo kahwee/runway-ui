@@ -3794,6 +3794,9 @@
     font-size: 10px;
     margin-block: 8px;
   }
+}
+
+@layer runway-ui.charts {
   .rw-columns {
     display: grid;
     grid-auto-columns: minmax(0, 1fr);
@@ -3838,6 +3841,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+}
+
+@layer runway-ui.charts {
   .rw-series-list {
     display: grid;
     grid-template-columns: fit-content(26%) minmax(0, 1fr) fit-content(20%);
@@ -3939,6 +3945,9 @@
     inline-size: clamp(0%, calc(var(--rw-amount, 0) / var(--rw-chart-max) * -50%), 50%);
     background: var(--rw-gold);
   }
+}
+
+@layer runway-ui.charts {
   .rw-area {
     --rw-y0: 100%;
     --rw-y1: 100%;
@@ -3995,6 +4004,9 @@
       --rw-amount: attr(data-value type(<number>), 0);
     }
   }
+}
+
+@layer runway-ui.charts {
   .rw-chart-data {
     margin-block-start: 20px;
     font-size: 11px;
@@ -4014,6 +4026,9 @@
     padding: 7px;
     border-block-end: 1px solid var(--rw-line);
   }
+}
+
+@layer runway-ui.charts {
   /* Dense columns: tiers keyed to item count, no JavaScript and no per-label container units (those force a full restyle on resize). Hidden values and labels stay in the accessibility tree; exact values live in the data table. */
   .rw-columns:has(> li:nth-child(25)):not(:has(> li:nth-child(41))) {
     column-gap: var(--rw-columns-gap, 2px);
@@ -4165,6 +4180,9 @@
   .rw-spark:has(> li:nth-child(201)) {
     gap: 0;
   }
+}
+
+@layer runway-ui.charts {
   .rw-figure[data-grid="off"] .rw-columns,
   .rw-figure[data-grid="off"] .rw-area {
     background: none;
@@ -4198,6 +4216,7 @@
     }
   }
 }
+
 
 /* CSS-only small multiples and annotated history. The host owns the data. */
 @layer runway-ui.charts {
@@ -5176,6 +5195,9 @@
     color: var(--rw-muted);
     font-size: 11px;
   }
+}
+
+@layer runway-ui.observatory {
   .rw-history--range {
     .rw-history__frame {
       grid-template-columns: minmax(42px, max-content) minmax(0, 1fr);
@@ -5247,6 +5269,9 @@
       }
     }
   }
+}
+
+@layer runway-ui.observatory {
   .rw-impact {
     display: grid;
     grid-template-columns: minmax(100px, 1.4fr) repeat(3, minmax(60px, 1fr));
@@ -5299,6 +5324,9 @@
   .rw-impact__row dd:last-child {
     color: var(--rw-accent);
   }
+}
+
+@layer runway-ui.observatory {
   :where(.rw-ui)[data-skin="play"] {
     --rw-control-depth: 4px;
     .rw-panel {
@@ -5323,6 +5351,9 @@
   :where(.rw-ui)[data-depth="flat"] :is(.rw-instrument, .rw-panel) {
     box-shadow: none;
   }
+}
+
+@layer runway-ui.observatory {
   /* Windowed time series: one drawn window plus a whole-series overview. */
   .rw-timeline {
     display: grid;
@@ -5393,6 +5424,9 @@
     font-size: 11px;
     color: var(--rw-muted);
   }
+}
+
+@layer runway-ui.observatory {
   @container rw-console (inline-size < 820px) {
     .rw-console__grid {
       grid-template-columns: 1fr;
@@ -5463,6 +5497,7 @@
     }
   }
 }
+
 
 /* Native dialog surface, structure and modifiers. */
 @layer runway-ui.dialog {

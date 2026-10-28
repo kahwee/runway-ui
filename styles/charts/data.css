@@ -1,0 +1,21 @@
+@layer runway-ui.charts {
+  .rw-chart-data {
+    margin-block-start: 20px;
+    font-size: 11px;
+  }
+  .rw-chart-data summary {
+    cursor: pointer;
+    color: var(--rw-accent);
+  }
+  .rw-chart-data table {
+    inline-size: 100%;
+    border-collapse: collapse;
+    margin-block-start: 10px;
+  }
+  .rw-chart-data th,
+  .rw-chart-data td {
+    text-align: start;
+    padding: 7px;
+    border-block-end: 1px solid var(--rw-line);
+  }
+}

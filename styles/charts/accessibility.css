@@ -1,0 +1,34 @@
+@layer runway-ui.charts {
+  .rw-figure[data-grid="off"] .rw-columns,
+  .rw-figure[data-grid="off"] .rw-area {
+    background: none;
+  }
+  @container rw-chart (inline-size < 380px) {
+    .rw-figure figcaption {
+      flex-wrap: wrap;
+    }
+  }
+  @media (forced-colors: active) {
+    .rw-column-mark,
+    .rw-stack-mark,
+    .rw-diverging-mark,
+    .rw-area::before,
+    .rw-chart__plot {
+      background: Highlight;
+      forced-color-adjust: none;
+    }
+    .rw-stack-mark {
+      border: 1px solid Canvas;
+    }
+    .rw-diverging-track {
+      border-inline: 1px solid CanvasText;
+    }
+    .rw-diverging-track::after {
+      content: "";
+      position: absolute;
+      inset-block: 0;
+      inset-inline-start: 50%;
+      border-inline-start: 1px solid CanvasText;
+    }
+  }
+}

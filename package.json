@@ -1,6 +1,6 @@
 {
   "name": "@kahwee/runway-ui",
-  "version": "0.7.0",
+  "version": "1.0.0",
   "description": "React components and CSS for cozy simulation and management games",
   "type": "module",
   "sideEffects": [

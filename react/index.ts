@@ -1,72 +1,26 @@
 "use client";
 
-import { Button as BaseButton } from "@base-ui/react/button";
-import { Input as BaseInput } from "@base-ui/react/input";
-import { createElement, type ComponentProps } from "react";
-
 export { Checkbox } from "@base-ui/react/checkbox";
 export { Field } from "@base-ui/react/field";
 export { Select } from "@base-ui/react/select";
-
-/** Preserve Base UI's state-dependent classes and consumer refs/props. */
-function classes<State>(
-  base: string,
-  custom: string | ((state: State) => string | undefined) | undefined,
-) {
-  return typeof custom === "function"
-    ? (state: State) => `${base} ${custom(state) ?? ""}`.trim()
-    : `${base} ${custom ?? ""}`.trim();
-}
-
-/** Runway styling with Base UI button semantics, including render/ref composition. */
-export function Button({ className, ...props }: ComponentProps<typeof BaseButton>) {
-  return createElement(BaseButton, { ...props, className: classes("rw-button", className) });
-}
-
-/** Runway styling with Base UI Field association and validation. */
-export function Input({ className, ...props }: ComponentProps<typeof BaseInput>) {
-  return createElement(BaseInput, { ...props, className: classes("rw-input", className) });
-}
-
+export { Button } from "./button.ts";
+export { Input } from "./input.ts";
+export { Progress } from "./progress.ts";
 export { Runway, type RunwayProps } from "./root.ts";
-export {
-  Badge,
-  Meter,
-  Panel,
-  Resource,
-  type BadgeProps,
-  type MeterProps,
-  type PanelProps,
-  type ResourceProps,
-  type Tone,
-} from "./game.ts";
-export {
-  CommandBar,
-  ControlConsole,
-  Dossier,
-  DossierList,
-  FolioTabs,
-  Sheet,
-  type CommandStat,
-  type DossierProps,
-  type FolioTabsProps,
-} from "./desk.ts";
+export { Badge, type BadgeProps } from "./badge.ts";
+export { Meter, type MeterProps, type Tone } from "./meter.ts";
+export { Panel, type PanelProps } from "./panel.ts";
+export { Resource, type ResourceProps } from "./resource.ts";
+export { CommandBar, type CommandStat } from "./command-bar.ts";
+export { ControlConsole } from "./control-console.ts";
+export { Dossier, DossierList, type DossierProps } from "./dossier.ts";
+export { FolioTabs, type FolioTabsProps } from "./folio-tabs.ts";
+export { Sheet } from "./sheet.ts";
 export { Chart, ChartCard, defineChart } from "./chart.ts";
 export { cx } from "./classes.ts";
-/** Native progress semantics; omit value for indeterminate work. Supply an accessible name. */
-export function Progress({ className, ...props }: ComponentProps<"progress">) {
-  return createElement("progress", {
-    ...props,
-    className: `rw-progress ${className ?? ""}`.trim(),
-  });
-}
 export { Dialog, type DialogProps } from "./dialog.ts";
 export { Inventory, type InventoryItem, type InventoryProps } from "./inventory.ts";
 export { Range, type RangeProps } from "./range.ts";
-export {
-  AnimatedNumber,
-  Confetti,
-  type AnimatedNumberProps,
-  type ConfettiProps,
-} from "./motion.ts";
+export { AnimatedNumber, type AnimatedNumberProps } from "./animated-number.ts";
+export { Confetti, type ConfettiProps } from "./confetti.ts";
 export { ToastProvider, useToasts, type ToastTone } from "./toast.ts";

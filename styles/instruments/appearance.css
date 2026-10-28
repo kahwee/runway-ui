@@ -1,0 +1,26 @@
+@layer runway-ui.observatory {
+  :where(.rw-ui)[data-skin="play"] {
+    --rw-control-depth: 4px;
+    .rw-panel {
+      border-radius: calc(var(--rw-radius) + 3px);
+      border-color: color-mix(in oklch, var(--rw-accent) 22%, var(--rw-line));
+      box-shadow:
+        inset 0 2px var(--rw-highlight),
+        0 4px 0 var(--rw-line),
+        0 12px 24px color-mix(in oklch, var(--rw-ink) 9%, transparent);
+    }
+    .rw-trend {
+      border-block-start: 4px solid var(--rw-accent);
+    }
+    .rw-badge {
+      font-weight: 650;
+      box-shadow: inset 0 1px var(--rw-highlight);
+    }
+    .rw-button[data-variant="primary"] {
+      border-block-end-color: color-mix(in oklch, var(--rw-accent) 70%, black);
+    }
+  }
+  :where(.rw-ui)[data-depth="flat"] :is(.rw-instrument, .rw-panel) {
+    box-shadow: none;
+  }
+}

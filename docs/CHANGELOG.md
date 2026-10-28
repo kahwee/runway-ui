@@ -12,6 +12,15 @@ The deployed website retains its browser JavaScript URLs. Type checks cover the
 full source tree, with strict public APIs and strict React stories.
 
 
+## 1.0.0
+
+First stable major release. The public React API (`Runway`, `Panel`, `Badge`, `Meter`, `Resource`,
+`Button`, `Input`, `Range`, `Dialog`, `Inventory`, `CommandBar`, `FolioTabs`, `Sheet`, `Dossier`,
+`ControlConsole`, `AnimatedNumber`, `Confetti`, `ToastProvider`, `useToasts`, `Chart`, `ChartCard`),
+the `rw-` CSS vocabulary and the cozy theme are now under semantic versioning. No API changes from
+0.7.0. Not verified: Firefox and Safari, full assistive-technology review and physical controllers;
+see [stability](STABILITY.md).
+
 ## 0.7.0
 
 First stable release under `@kahwee/runway-ui`, rolling up the 0.6.0 betas.

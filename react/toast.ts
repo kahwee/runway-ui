@@ -1,3 +1,5 @@
+"use client";
+
 import { Toast } from "@base-ui/react/toast";
 import { createElement, type ReactNode } from "react";
 

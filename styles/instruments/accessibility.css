@@ -1,0 +1,25 @@
+@layer runway-ui.observatory {
+  @container rw-console (inline-size < 820px) {
+    .rw-console__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (forced-colors: active) {
+    .rw-instrument {
+      box-shadow: none;
+      border-color: CanvasText;
+      background: Canvas;
+    }
+    .rw-instrument::after {
+      display: none;
+    }
+    .rw-instrument__readout {
+      background: Canvas;
+      color: CanvasText;
+    }
+    .rw-history--range .rw-column-mark[data-negative] {
+      background: Highlight;
+      forced-color-adjust: none;
+    }
+  }
+}

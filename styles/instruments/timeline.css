@@ -1,0 +1,72 @@
+@layer runway-ui.observatory {
+  /* Windowed time series: one drawn window plus a whole-series overview. */
+  .rw-timeline {
+    display: grid;
+    gap: 14px;
+    min-inline-size: 0;
+  }
+  .rw-timeline__nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 12px;
+  }
+  .rw-timeline__size {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-inline-start: auto;
+    font-size: 11px;
+    color: var(--rw-muted);
+  }
+  .rw-timeline__status {
+    font-size: 11px;
+    color: var(--rw-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .rw-timeline__overview {
+    position: relative;
+    padding-block: 4px;
+    border-radius: var(--rw-radius);
+    background: var(--rw-soft);
+    isolation: isolate;
+  }
+  .rw-timeline__overview .rw-spark {
+    block-size: 56px;
+    padding-inline: 6px;
+    gap: 1px;
+    position: relative;
+    z-index: 0;
+  }
+  .rw-timeline__window {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: calc(6px + (100% - 12px) * var(--rw-start, 0) / 100%);
+    inline-size: calc((100% - 12px) * var(--rw-size, 10) / 100%);
+    min-inline-size: 8px;
+    border: 2px solid var(--rw-accent);
+    border-radius: calc(var(--rw-radius) * 0.6);
+    background: color-mix(in oklch, var(--rw-accent) 14%, transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .rw-timeline__overview input[type="range"] {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+    z-index: 2;
+  }
+  .rw-timeline__overview:has(input:focus-visible) {
+    outline: 3px solid var(--rw-focus);
+    outline-offset: 3px;
+  }
+  .rw-timeline__note {
+    margin: 0;
+    font-size: 11px;
+    color: var(--rw-muted);
+  }
+}

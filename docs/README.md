@@ -8,7 +8,7 @@ New to Runway UI? Follow **Install → Components → Compose**. Use Storybook w
 - [Interactive Recipe book](../storybook/?path=/story/start-here-recipe-book--playground): edit a mission card, resource HUD or native dialog and copy its HTML.
 - [Component guide](COMPONENTS.md): the core markup patterns.
 - [Themes and tokens](THEMING.md): theme, density, depth and material.
-- [Compatibility policy](STABILITY.md): what the pre-1.0 contract means.
+- [Compatibility policy](STABILITY.md): the semantic-versioning contract.
 
 ## 2. Find a component or behavior
 

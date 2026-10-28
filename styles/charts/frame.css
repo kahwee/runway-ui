@@ -1,0 +1,65 @@
+/* Original CSS plots. Numeric values and labels remain application-owned HTML. */
+@layer runway-ui.charts {
+  .rw-chart {
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+  .rw-chart caption {
+    text-align: start;
+    font-weight: 600;
+    padding-block-end: 14px;
+  }
+  .rw-chart th,
+  .rw-chart td {
+    text-align: start;
+    padding: 9px 8px;
+    border-block-end: 1px solid var(--rw-line);
+  }
+  .rw-chart td:last-child {
+    text-align: end;
+  }
+  .rw-chart__plot {
+    display: block;
+    block-size: 12px;
+    inline-size: clamp(0%, var(--rw-value, 0%), 100%);
+    background: var(--rw-chart-color, var(--rw-accent));
+    border-radius: 2px;
+  }
+  .rw-chart [data-series="expense"] {
+    --rw-chart-color: var(--rw-gold);
+  }
+  .rw-chart__axis {
+    inline-size: 60%;
+  }
+  .rw-figure {
+    --rw-chart-height: 180px;
+    --rw-chart-max: 100;
+    --rw-chart-color: var(--rw-accent);
+    container: rw-chart / inline-size;
+    margin: 0;
+    min-inline-size: 0;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+  .rw-figure figcaption {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: baseline;
+    margin-block-end: 20px;
+    font-weight: 600;
+  }
+  .rw-figure figcaption small {
+    color: var(--rw-muted);
+    font-weight: 400;
+  }
+  .rw-chart-scale {
+    display: flex;
+    justify-content: space-between;
+    color: var(--rw-muted);
+    font-size: 10px;
+    margin-block: 8px;
+  }
+}

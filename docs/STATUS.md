@@ -1,6 +1,6 @@
 # Status
 
-The package metadata is version 0.5.0; changes after that baseline are listed under [Unreleased](CHANGELOG.md). The library is pre-1.0. This file describes source scope and recorded checks, not a registry or live deployment check.
+The package metadata is version 1.0.0; see the [changelog](CHANGELOG.md) for what changed in each release. This file describes source scope and recorded checks, not a registry or live deployment check.
 
 ## Implemented scope
 

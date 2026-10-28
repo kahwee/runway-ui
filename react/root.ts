@@ -1,3 +1,5 @@
+"use client";
+
 import { createElement, type ComponentProps } from "react";
 import { cx } from "./classes.ts";
 

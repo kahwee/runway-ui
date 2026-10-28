@@ -1,12 +1,15 @@
 # Compatibility contract
 
-Runway UI is pre-1.0. See [Unreleased](CHANGELOG.md) for pending migrations; the source tree may include changes beyond the package version.
-- Preserve existing `rw-` classes, package entry points and documented numeric units during patch releases.
-- Introduce breaking pre-1.0 changes in a minor release with migration notes. Additive options may appear in patches.
-- Defaults work without optional behavior modules. Modules have no runtime dependencies and expose explicit teardown.
+Runway UI follows semantic versioning from 1.0.0. See [the changelog](CHANGELOG.md) for migrations.
+
+- Patch releases fix bugs and keep existing `rw-` classes, package entry points, React component props and documented numeric units.
+- Minor releases add components, props and themes without breaking existing ones.
+- Major releases may break the above, with migration notes in the changelog.
+- The CSS has no JavaScript dependencies. The React entry requires React 19, Base UI and `@tanstack/charts` as peers.
+- The vanilla `dialog`, `navigation` and `inventory` modules are deprecated. They receive no new features and will be removed in a future major release.
 - Keep the existing percentage-based `.rw-chart__plot` API separate from the new numeric chart marks.
 - Native browser semantics own dialog focus, modality and form controls. Helpers supplement those semantics.
 
-Before 1.0: verify current Chrome, Firefox and Safari on desktop; complete keyboard and assistive-technology review; check forced colors and reduced motion; exercise teardown/remount integration and package consumers; validate documentation recipes. Physical controller support remains unverified on hardware. Browser observations are recorded in [status](STATUS.md) with their scope.
+Not verified at 1.0.0: Firefox and Safari behavior on desktop, a full keyboard and assistive-technology review, and physical controller support (the gamepad helper was never tested on hardware). Forced-colors and reduced-motion rules exist but have only had focused Chromium checks. Browser observations are recorded in [status](STATUS.md) with their scope.
 
-The component workshop and HTML Storybook deploy to GitHub Pages from main. The npm package remains unpublished.
+The component workshop and HTML Storybook deploy to GitHub Pages from main. The package is published to npm as `@kahwee/runway-ui`.

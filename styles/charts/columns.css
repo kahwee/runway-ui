@@ -1,0 +1,46 @@
+@layer runway-ui.charts {
+  .rw-columns {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    grid-template-rows: var(--rw-chart-height) auto auto;
+    column-gap: var(--rw-columns-gap, clamp(2px, 1.2cqi, 16px));
+    row-gap: 8px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background: repeating-linear-gradient(to top, var(--rw-line) 0 1px, transparent 1px 25%) top /
+      100% var(--rw-chart-height) no-repeat;
+  }
+  .rw-columns > li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: subgrid;
+    grid-row: 1 / 4;
+    min-inline-size: 0;
+    text-align: center;
+  }
+  .rw-column-track {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    border-block-end: 1px solid var(--rw-line);
+  }
+  .rw-column-mark {
+    display: block;
+    inline-size: min(100%, 48px);
+    block-size: clamp(0%, calc(var(--rw-amount, 0) / var(--rw-chart-max) * 100%), 100%);
+    background: var(--rw-chart-color);
+    border-radius: 3px 3px 0 0;
+  }
+  .rw-columns strong {
+    font-size: 12px;
+  }
+  .rw-columns .rw-category {
+    font-size: 10px;
+    color: var(--rw-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

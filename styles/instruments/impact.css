@@ -1,0 +1,54 @@
+@layer runway-ui.observatory {
+  .rw-impact {
+    display: grid;
+    grid-template-columns: minmax(100px, 1.4fr) repeat(3, minmax(60px, 1fr));
+    gap: 0 12px;
+    margin: 12px 0;
+    font-variant-numeric: tabular-nums;
+  }
+  table.rw-impact {
+    inline-size: 100%;
+    border-collapse: collapse;
+  }
+  table.rw-impact :is(thead, tbody) {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+  }
+  table.rw-impact caption {
+    grid-column: 1 / -1;
+    text-align: start;
+    font-size: 11px;
+    font-weight: 650;
+  }
+  table.rw-impact :is(th, td) {
+    padding: 0;
+    border: 0;
+  }
+  table.rw-impact th {
+    text-align: start;
+  }
+  .rw-impact__row {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    align-items: baseline;
+    padding-block: 9px;
+    border-block-end: 1px solid var(--rw-line);
+    font-size: 12px;
+  }
+  .rw-impact__row > :not(:first-child) {
+    text-align: end;
+    margin: 0;
+  }
+  .rw-impact__row[data-heading] {
+    color: var(--rw-muted);
+    font-size: 10px;
+  }
+  .rw-impact__row dt {
+    font-weight: 600;
+  }
+  .rw-impact__row dd:last-child {
+    color: var(--rw-accent);
+  }
+}

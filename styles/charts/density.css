@@ -1,0 +1,153 @@
+@layer runway-ui.charts {
+  /* Dense columns: tiers keyed to item count, no JavaScript and no per-label container units (those force a full restyle on resize). Hidden values and labels stay in the accessibility tree; exact values live in the data table. */
+  .rw-columns:has(> li:nth-child(25)):not(:has(> li:nth-child(41))) {
+    column-gap: var(--rw-columns-gap, 2px);
+  }
+  .rw-columns:has(> li:nth-child(25)):not(:has(> li:nth-child(41))) :is(strong, .rw-category) {
+    font-size: 9px;
+  }
+  .rw-columns:has(> li:nth-child(41)):not(:has(> li:nth-child(81))) {
+    column-gap: var(--rw-columns-gap, 1px);
+    padding-inline: 24px;
+  }
+  .rw-columns:has(> li:nth-child(41)):not(:has(> li:nth-child(81))) > li > strong {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .rw-columns:has(> li:nth-child(41)):not(:has(> li:nth-child(81)))
+    > li:not(:nth-child(4n + 1))
+    > .rw-category {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .rw-columns:has(> li:nth-child(41)):not(:has(> li:nth-child(81))) > li > .rw-category {
+    justify-self: center;
+    max-inline-size: 48px;
+  }
+  .rw-columns:has(> li:nth-child(81)):not(:has(> li:nth-child(201))) {
+    column-gap: var(--rw-columns-gap, 1px);
+    padding-inline: 24px;
+  }
+  .rw-columns:has(> li:nth-child(81)):not(:has(> li:nth-child(201))) > li > strong {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .rw-columns:has(> li:nth-child(81)):not(:has(> li:nth-child(201)))
+    > li:not(:nth-child(10n + 1))
+    > .rw-category {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .rw-columns:has(> li:nth-child(81)):not(:has(> li:nth-child(201))) > li > .rw-category {
+    justify-self: center;
+    max-inline-size: 48px;
+  }
+  .rw-columns:has(> li:nth-child(201)):not(:has(> li:nth-child(601))) {
+    column-gap: var(--rw-columns-gap, 1px);
+    padding-inline: 24px;
+  }
+  .rw-columns:has(> li:nth-child(201)):not(:has(> li:nth-child(601))) > li > strong {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .rw-columns:has(> li:nth-child(201)):not(:has(> li:nth-child(601)))
+    > li:not(:nth-child(30n + 1))
+    > .rw-category {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .rw-columns:has(> li:nth-child(201)):not(:has(> li:nth-child(601))) > li > .rw-category {
+    justify-self: center;
+    max-inline-size: 48px;
+  }
+  .rw-columns:has(> li:nth-child(601)):not(:has(> li:nth-child(2001))) {
+    column-gap: var(--rw-columns-gap, 0px);
+    padding-inline: 24px;
+  }
+  .rw-columns:has(> li:nth-child(601)):not(:has(> li:nth-child(2001))) > li > strong {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .rw-columns:has(> li:nth-child(601)):not(:has(> li:nth-child(2001)))
+    > li:not(:nth-child(100n + 1))
+    > .rw-category {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .rw-columns:has(> li:nth-child(601)):not(:has(> li:nth-child(2001))) > li > .rw-category {
+    justify-self: center;
+    max-inline-size: 48px;
+  }
+  .rw-columns:has(> li:nth-child(2001)) {
+    column-gap: var(--rw-columns-gap, 0px);
+    padding-inline: 24px;
+  }
+  .rw-columns:has(> li:nth-child(2001)) > li > strong {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .rw-columns:has(> li:nth-child(2001)) > li:not(:nth-child(500n + 1)) > .rw-category {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .rw-columns:has(> li:nth-child(2001)) > li > .rw-category {
+    justify-self: center;
+    max-inline-size: 48px;
+  }
+  .rw-spark:has(> li:nth-child(41)) {
+    gap: 1px;
+  }
+  .rw-spark:has(> li:nth-child(201)) {
+    gap: 0;
+  }
+}
