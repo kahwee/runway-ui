@@ -175,7 +175,15 @@ import "@kahwee/runway-ui/styles/charts.css";
 </main>
 ```
 
-No internal stylesheet imports.
+Internal stylesheet imports (already loaded by the entries above):
+
+- [styles/charts/frame.css](../styles/charts/frame.css)
+- [styles/charts/columns.css](../styles/charts/columns.css)
+- [styles/charts/series.css](../styles/charts/series.css)
+- [styles/charts/area.css](../styles/charts/area.css)
+- [styles/charts/data.css](../styles/charts/data.css)
+- [styles/charts/density.css](../styles/charts/density.css)
+- [styles/charts/accessibility.css](../styles/charts/accessibility.css)
 
 ## Native dialog
 

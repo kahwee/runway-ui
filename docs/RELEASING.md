@@ -84,9 +84,18 @@ server-rendered React component. Only that archive passes to the publishing job;
 its checksum is verified before publishing. Registry version, archive integrity
 and the intended dist-tag are checked afterward.
 
-The package already exists; no bootstrap publication is needed. At setup,
-`next` points to `0.6.0-beta.1` and `latest` to `0.6.0-beta.0`. Enabling this
-workflow does not change either tag or make the current beta a stable release.
+The package already exists; no bootstrap publication is needed. Registry
+verification on 2026-10-28 found `latest` at `0.7.0` and `next` at
+`0.6.0-beta.1`. The `0.7.0` publication predates this workflow's activation;
+registry ownership or release email alone does not establish its publishing
+method or source/archive provenance. Activating the workflow does not republish
+an existing version or change either dist-tag.
+
+A new npm trusted-publisher binding remains pending validation until its first
+successful publication. npm expires an unused new binding after two days; do not
+promise indefinite readiness or create an arbitrary version to validate it.
+Coordinate the binding with a legitimate, authorized release. See
+[npm's trusted-publisher documentation](https://docs.npmjs.com/trusted-publishers/).
 
 The `prepack` hook rebuilds for manual packing. This workflow explicitly builds
 and validates before packing without lifecycle scripts; publication also skips
