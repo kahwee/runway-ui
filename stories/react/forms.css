@@ -53,3 +53,13 @@
     min-block-size: 44px;
   }
 }
+.react-story-host {
+  display: block;
+  min-inline-size: 0;
+}
+.react-form-example :is(h2, p, label) {
+  overflow-wrap: anywhere;
+}
+.react-form-example > .rw-button {
+  white-space: normal;
+}
