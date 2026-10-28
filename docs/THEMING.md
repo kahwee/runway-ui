@@ -22,3 +22,9 @@ Set `data-skin="play"` for tactile instrument surfaces; see [instruments](INSTRU
 ## Ledger
 
 Use `data-theme="ledger"` for cream paper surfaces, forest-green actions, brass borders and serif display type. See [desktop workspaces](WORKSPACES.md) for complementary layout components.
+
+## Midnight
+
+Set `data-theme="midnight"` on a `rw-ui` root for a neutral black background,
+dark surfaces and pale blue accents. Native controls use `color-scheme: dark`.
+Import `styles/themes.css` after the component entries, or use the full bundle.

@@ -98,3 +98,16 @@ illustrated navigation wraps. The Observatory remains a desktop composition and
 shows its documented unsupported-size message on phones. Nested UI scopes follow
 the toolbar unless the specimen explicitly declares its own theme. Isolated
 frames deliberately keep their own tokens and imports.
+## Story quality
+
+Start with **Theme playground**, an argument-driven composition for light Studio,
+dark Orbital and black Midnight. Content, width, status, elevation, progress and
+disabled state are controls; theme, density, material and depth remain global.
+The old static Many worlds gallery was removed. Desk workspace's duplicate Quiet
+story was removed; use its `quiet` argument instead. Stress fixtures and isolated
+import checks remain because they verify distinct failure cases.
+
+The default preview uses Studio and classic material. This avoids imposing the
+Play skin on every theme. Light and dark appearances are explicit theme choices,
+not automatic OS color-scheme overrides. Paper studio intentionally retains its
+paper palette; isolated fixtures intentionally use their declared base tokens.

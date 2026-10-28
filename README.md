@@ -8,12 +8,9 @@ Resource HUDs, production ledgers, economy charts, equipment grids, objectives a
 
 **MIT licensed. Free for personal and commercial projects, including closed-source games.** Keep the license notice in redistributed copies. No attribution in your interface is required. See [LICENSE](LICENSE).
 
-[![Five Runway UI themes showing workshop, orbital, settlement, creative team and field-office interfaces](docs/assets/runway-worlds.png)](https://kahwee.github.io/runway-ui/storybook/?path=/story/start-here-many-worlds--gallery)
+## Explore a real component state
 
-## Choose your world
-
-The same components can serve a workshop, space station, settlement or field office.
-[Explore the five-theme gallery](https://kahwee.github.io/runway-ui/storybook/?path=/story/start-here-many-worlds--gallery) to compare their character side by side.
+[Open the theme playground](https://kahwee.github.io/runway-ui/storybook/?path=/story/start-here-theme-playground--playground). Compare light Studio, dark Orbital and black Midnight using the same markup. Adjust content, width, status, progress and disabled state to inspect actual component behavior.
 
 | Explore | What it demonstrates |
 | --- | --- |
@@ -87,7 +84,7 @@ The examples target desktop windows at least 1100 × 640. The CSS library itself
 | Game patterns      | Resource HUD, equipment slots, objectives, choices, action dock                                                                                        |
 | CSS charts         | Columns, stacked bars, diverging bars, six-point areas, percentage-based HTML-table bars; [API and scale rules](docs/CHARTS.md)                        |
 | Simulation         | Subgrid production ledger and container-aware panels                                                                                                   |
-| Themes             | Warm Studio, dark Orbital, Parchment, playful Whimsy and Ledger; identical markup                                                                              |
+| Themes             | Warm Studio, dark Orbital, Parchment, playful Whimsy Ledger and black Midnight; identical markup                                                                              |
 | Optional behaviors | Native dialog dismissal policy, roving keyboard focus, standard controller adapter, fixed-height virtual inventory, range outputs and windowed history |
 
 All component classes use `rw-`; the root `rw-ui` supplies inherited tokens without a global reset. Application styles can override the cascade layers. This is a CSS namespace, not Shadow DOM isolation.

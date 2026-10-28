@@ -62,5 +62,3 @@ export const Playground = {
     return root;
   },
 };
-
-export const Quiet = { ...Playground, args: { quiet: true } };

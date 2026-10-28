@@ -5523,6 +5523,27 @@
   }
 }
 
+/* Neutral black appearance. Keeps native controls in the dark color scheme. */
+@layer runway-ui.themes {
+  .rw-ui[data-theme="midnight"] {
+    --rw-bg: #08090b;
+    --rw-surface: #121418;
+    --rw-raised: #1c1f25;
+    --rw-ink: #f0f2f5;
+    --rw-muted: #b0b7c3;
+    --rw-line: #464e5c;
+    --rw-accent: #b5c9ff;
+    --rw-on-accent: #111b34;
+    --rw-soft: #242b39;
+    --rw-gold: #f3cd83;
+    --rw-danger: #ffa59d;
+    --rw-focus: #d5e0ff;
+    --rw-radius: 10px;
+    --rw-shadow: 0 8px 24px #0006;
+    color-scheme: dark;
+  }
+}
+
 /* Explicit opt-in presentation overrides. Unlayered so this can follow host skins. */
 .rw-ui[data-appearance="quiet"] {
   --rw-surface: #fff;

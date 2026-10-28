@@ -1,0 +1,42 @@
+.theme-playground {
+  inline-size: 100%;
+}
+.theme-playground .rw-panel {
+  display: grid;
+  gap: 22px;
+}
+.story-surface .theme-playground :is(h1, p) {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.theme-playground .rw-panel__header {
+  flex-wrap: wrap;
+}
+.theme-playground .rw-resource {
+  border: 0;
+  padding-inline: 0;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+.theme-playground .rw-disclosure > div {
+  padding: 0 16px 16px;
+}
+.theme-progress {
+  display: grid;
+  gap: 10px;
+  color: var(--rw-muted);
+}
+.theme-progress progress {
+  inline-size: 100%;
+  accent-color: var(--rw-accent);
+}
+.theme-playground footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+.theme-playground [role="status"] {
+  color: var(--rw-muted);
+  font-size: 12px;
+}

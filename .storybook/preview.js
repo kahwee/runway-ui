@@ -4,7 +4,7 @@ import "../index.css";
 import "../styles/native.css";
 import "./preview.css";
 export default {
-  initialGlobals: { theme: "whimsy", density: "comfortable", depth: "raised", skin: "play" },
+  initialGlobals: { theme: "studio", density: "comfortable", depth: "raised", skin: "classic" },
   globalTypes: {
     skin: {
       description: "Interface material",
@@ -14,7 +14,14 @@ export default {
       description: "Art direction",
       toolbar: {
         icon: "paintbrush",
-        items: ["whimsy", "studio", "orbital", "parchment", "ledger"],
+        items: [
+          { value: "studio", title: "Studio / Light" },
+          { value: "orbital", title: "Orbital / Dark" },
+          { value: "midnight", title: "Midnight / Black" },
+          "whimsy",
+          "parchment",
+          "ledger",
+        ],
         dynamicTitle: true,
       },
     },
