@@ -31,11 +31,27 @@ export const OperationsRoom = {
     root.innerHTML = `<p class="rw-kicker">Management / operations room</p><h1>${e(a.title)}</h1>`;
     const grid = document.createElement("div");
     grid.className = "story-grid";
-    grid.style.gridTemplateColumns = a.columns === "one" ? "1fr" : "repeat(2,minmax(0,1fr))";
+    grid.dataset.columns = a.columns;
     const panels = [...source.querySelectorAll("#simulation .rw-panel")];
     panels.forEach((panel, index) => {
       if ((index === 0 && !a.showProduction) || (index === 1 && !a.showEconomy)) return;
       const copy = panel.cloneNode(true);
+      const heading = copy.querySelector("h3");
+      if (heading) {
+        const title = document.createElement("h2");
+        title.textContent = heading.textContent;
+        heading.replaceWith(title);
+      }
+      const ledger = copy.querySelector(".rw-ledger");
+      if (ledger) {
+        const scroll = document.createElement("div");
+        scroll.className = "story-scroll";
+        scroll.tabIndex = 0;
+        scroll.setAttribute("role", "region");
+        scroll.setAttribute("aria-label", "Production ledger");
+        ledger.replaceWith(scroll);
+        scroll.append(ledger);
+      }
       if (!a.showDescriptions) copy.querySelector("p")?.remove();
       grid.append(copy);
     });

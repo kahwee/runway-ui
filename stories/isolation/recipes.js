@@ -7,13 +7,13 @@ export const recipes = {
   controls: {
     title: "Standalone controls",
     styles: [tokens, "styles/controls.css"],
-    markup: `<div style="display:flex;gap:16px;align-items:center">${buttons}</div>`,
+    markup: `<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">${buttons}</div>`,
     note: "Native buttons need no behavior module. Shortcut hints do not bind keys; toggle state is application-owned.",
   },
   panels: {
     title: "Standalone panels",
     styles: [tokens, "styles/panels.css"],
-    markup: `<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px"><section class="rw-panel"><header class="rw-panel__header"><h2 class="rw-panel__title">Raised panel</h2><span>Overview</span></header><p>Independent surface and header.</p><button type="button" class="rw-button">Control intentionally unstyled</button></section><section class="rw-panel" data-elevation="flat"><h2 class="rw-panel__title">Flat panel</h2><p>No composition dependencies.</p></section></div>`,
+    markup: `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px"><section class="rw-panel"><header class="rw-panel__header"><h2 class="rw-panel__title">Raised panel</h2><span>Overview</span></header><p>Independent surface and header.</p><button type="button" class="rw-button">Control intentionally unstyled</button></section><section class="rw-panel" data-elevation="flat"><h2 class="rw-panel__title">Flat panel</h2><p>No composition dependencies.</p></section></div>`,
     note: "Panels do not style child controls. Add controls.css or fields.css when those components are used.",
   },
   dock: {

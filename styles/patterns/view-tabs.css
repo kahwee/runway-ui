@@ -1,6 +1,7 @@
 @layer runway-ui.patterns {
   .rw-view-tabs {
     display: flex;
+    flex-wrap: wrap;
     align-items: stretch;
     gap: var(--rw-view-gap, 6px);
     inline-size: fit-content;

@@ -5,7 +5,7 @@ export function isolatedFrame({ title, styles, markup }) {
   const frame = document.createElement("iframe");
   frame.title = title;
   frame.style.cssText = "inline-size:100%;block-size:420px;border:0";
-  frame.srcdoc = `<!doctype html><html lang="en"><head><meta charset="utf-8"><base href="about:srcdoc"><title>${escapeHTML(title)}</title><style>${styles.join("\n").replaceAll("</style", "<\\/style")}</style></head><body style="margin:0;padding:32px"><main class="rw-ui">${markup}</main></body></html>`;
+  frame.srcdoc = `<!doctype html><html lang="en"><head><meta charset="utf-8"><base href="about:srcdoc"><title>${escapeHTML(title)}</title><style>${styles.join("\n").replaceAll("</style", "<\\/style")}</style></head><body style="margin:0;padding:clamp(12px,4vw,32px)"><main class="rw-ui"><h1 style="font-size:24px;margin-block:0 20px">${escapeHTML(title)}</h1>${markup}</main></body></html>`;
   return frame;
 }
 
@@ -168,7 +168,11 @@ export async function checkIsolatedRecipe({ canvasElement }, key) {
     opener.focus();
     dialog.showModal();
     expect(dialog.matches(":modal"), "native modal did not open");
-    expect(style("dialog").paddingBlockStart === "32px", "dialog surface missing");
+    expect(
+      style("dialog").paddingBlockStart ===
+        (view.matchMedia("(width < 600px)").matches ? "20px" : "32px"),
+      "dialog surface missing",
+    );
     expect(dialog.contains(doc.activeElement), "modal did not receive focus");
     element('button[value="confirm"]').click();
     expect(!dialog.open && dialog.returnValue === "confirm", "native dialog result failed");

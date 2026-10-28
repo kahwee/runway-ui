@@ -39,6 +39,11 @@
     translate: 0;
     scale: 1;
   }
+  /* Structured dialogs keep actions visible while the body gives up space. */
+  .rw-dialog:open:has(> .rw-dialog__body) {
+    display: flex;
+    flex-direction: column;
+  }
   .rw-dialog:not(:open)::backdrop {
     opacity: 0;
   }
@@ -70,6 +75,7 @@
     border-color: color-mix(in oklch, var(--rw-danger) 50%, var(--rw-line));
   }
   .rw-dialog__header {
+    flex-shrink: 0;
     display: flex;
     justify-content: space-between;
     align-items: start;
@@ -98,6 +104,8 @@
     overflow-wrap: anywhere;
   }
   .rw-dialog__body {
+    min-block-size: 0;
+    flex-shrink: 1;
     max-block-size: 50dvb;
     overflow: auto;
     overscroll-behavior: contain;
@@ -115,6 +123,7 @@
     margin-block-start: 1em;
   }
   .rw-dialog__footer {
+    flex-shrink: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: end;
@@ -139,13 +148,19 @@
       align-items: stretch;
     }
   }
+  @media (width < 600px) {
+    .rw-dialog {
+      max-inline-size: calc(100vi - 32px);
+      padding: 20px;
+    }
+  }
   .rw-dialog__close {
     box-sizing: border-box;
     display: grid;
     place-items: center;
     flex: none;
-    inline-size: 36px;
-    block-size: 36px;
+    inline-size: 44px;
+    block-size: 44px;
     padding: 0;
     border: 1px solid var(--rw-line);
     border-radius: var(--rw-radius);

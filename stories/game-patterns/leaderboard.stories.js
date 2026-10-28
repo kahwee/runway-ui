@@ -71,12 +71,12 @@ export const Playground = {
   render: (a) =>
     !Array.isArray(a.rows) || !a.rows.length || a.rows.length > 12
       ? '<p role="alert">Supply one to twelve rows.</p>'
-      : `<section class="rw-panel"><table class="rw-leaderboard"><caption>${e(a.caption)}</caption><thead><tr><th scope="col">${e(a.columns?.[0] ?? "Rank")}</th><th scope="col">${e(a.columns?.[1] ?? "Name")}</th><th scope="col" data-numeric>${e(a.columns?.[2] ?? "Value")}</th>${a.showTrend ? `<th scope="col">${e(a.columns?.[3] ?? "Outlook")}</th>` : ""}</tr></thead><tbody>${a.rows
+      : `<section class="rw-panel"><div class="story-scroll" role="region" aria-label="Ranked standings" tabindex="0"><table class="rw-leaderboard"><caption>${e(a.caption)}</caption><thead><tr><th scope="col">${e(a.columns?.[0] ?? "Rank")}</th><th scope="col">${e(a.columns?.[1] ?? "Name")}</th><th scope="col" data-numeric>${e(a.columns?.[2] ?? "Value")}</th>${a.showTrend ? `<th scope="col">${e(a.columns?.[3] ?? "Outlook")}</th>` : ""}</tr></thead><tbody>${a.rows
           .map((r, i) => {
             const trend = ["up", "down", "flat"].includes(r.trend) ? r.trend : "flat";
             return `<tr${i === a.you ? " data-you" : ""}${a.animateRows ? ` style="--rw-row:${i}"` : ' style="animation:none"'}><th scope="row"><span class="rw-rank" data-place="${i + 1}">${i + 1}</span></th><td><div class="rw-leaderboard__who"><span class="rw-avatar" style="--rw-avatar-hue:${hues[i % hues.length]}" aria-hidden="true">${e(initial(r.name))}</span><span><strong>${e(r.name)}${i === a.you ? ' <span class="rw-badge">You</span>' : ""}</strong><small>${e(r.detail ?? "")}</small></span></div></td><td data-numeric>${e(r.value)}</td>${a.showTrend ? `<td><span class="rw-outlook" data-direction="${trend}">${e(r.note ?? "")}</span></td>` : ""}</tr>`;
           })
-          .join("")}</tbody></table></section>`,
+          .join("")}</tbody></table></div></section>`,
 };
 export const Stress = {
   name: "Stress cases",

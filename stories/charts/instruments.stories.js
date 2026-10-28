@@ -126,7 +126,7 @@ export const Playground = {
       after = values.at(-1),
       comparable = Number.isFinite(before) && Number.isFinite(after);
     const impact = a.showImpact
-      ? `<section class="rw-panel"><table class="rw-impact"><caption>Latest observation comparison · ${e(a.unit)}</caption><thead><tr class="rw-impact__row" data-heading><th scope="col">Signal</th><th scope="col">Before</th><th scope="col">After</th><th scope="col">Change</th></tr></thead><tbody><tr class="rw-impact__row"><th scope="row">${e(a.title)}</th><td>${before === null || before === undefined ? "Missing" : e(before)}</td><td>${after === null || after === undefined ? "Missing" : e(after)}</td><td>${comparable ? `${after - before > 0 ? "+" : ""}${e(after - before)}` : "Unavailable"}</td></tr></tbody></table></section>`
+      ? `<section class="rw-panel"><div class="story-scroll" role="region" aria-label="Latest observation comparison" tabindex="0"><table class="rw-impact"><caption>Latest observation comparison · ${e(a.unit)}</caption><thead><tr class="rw-impact__row" data-heading><th scope="col">Signal</th><th scope="col">Before</th><th scope="col">After</th><th scope="col">Change</th></tr></thead><tbody><tr class="rw-impact__row"><th scope="row">${e(a.title)}</th><td>${before === null || before === undefined ? "Missing" : e(before)}</td><td>${after === null || after === undefined ? "Missing" : e(after)}</td><td>${comparable ? `${after - before > 0 ? "+" : ""}${e(after - before)}` : "Unavailable"}</td></tr></tbody></table></div></section>`
       : "";
     const long = values.length > 90;
     try {

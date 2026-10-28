@@ -62,12 +62,12 @@ export default {
       const content = story();
       if (typeof content === "string") root.innerHTML = content;
       else root.append(content);
-      // Native dialogs in this story need their own root tokens.
-      root.querySelectorAll("dialog").forEach((dialog) => {
-        dialog.dataset.theme = context.globals.theme;
-        dialog.dataset.density = context.globals.density;
-        dialog.dataset.depth = context.globals.depth;
-        dialog.dataset.skin = context.globals.skin;
+      // Nested UI scopes reset tokens; inherit toolbar choices unless explicitly themed.
+      root.querySelectorAll(".rw-ui, dialog").forEach((dialog) => {
+        dialog.dataset.theme ??= context.globals.theme;
+        dialog.dataset.density ??= context.globals.density;
+        dialog.dataset.depth ??= context.globals.depth;
+        dialog.dataset.skin ??= context.globals.skin;
       });
       return root;
     },

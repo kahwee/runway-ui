@@ -27,7 +27,7 @@ import "runway-ui/styles/controls.css";
 
 ```html
 <main class="rw-ui">
-<div style="display:flex;gap:16px;align-items:center"><button type="button" class="rw-button" aria-pressed="true">Build <kbd class="rw-shortcut">B</kbd></button>
+<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center"><button type="button" class="rw-button" aria-pressed="true">Build <kbd class="rw-shortcut">B</kbd></button>
 <button type="button" class="rw-button" aria-pressed="false">Inspect <kbd class="rw-shortcut">I</kbd></button>
 <button type="button" class="rw-button" disabled>Unavailable</button></div>
 </main>
@@ -46,7 +46,7 @@ import "runway-ui/styles/panels.css";
 
 ```html
 <main class="rw-ui">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px"><section class="rw-panel"><header class="rw-panel__header"><h2 class="rw-panel__title">Raised panel</h2><span>Overview</span></header><p>Independent surface and header.</p><button type="button" class="rw-button">Control intentionally unstyled</button></section><section class="rw-panel" data-elevation="flat"><h2 class="rw-panel__title">Flat panel</h2><p>No composition dependencies.</p></section></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px"><section class="rw-panel"><header class="rw-panel__header"><h2 class="rw-panel__title">Raised panel</h2><span>Overview</span></header><p>Independent surface and header.</p><button type="button" class="rw-button">Control intentionally unstyled</button></section><section class="rw-panel" data-elevation="flat"><h2 class="rw-panel__title">Flat panel</h2><p>No composition dependencies.</p></section></div>
 </main>
 ```
 

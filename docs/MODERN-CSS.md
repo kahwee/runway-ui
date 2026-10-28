@@ -130,3 +130,10 @@ The optional policy helper requires native `showModal()` and `close()`. Native
 helper routes close requests through a cancelable event and recognizes matching
 backdrop pointer gestures locally. Native focus and inertness remain unchanged;
 required decisions retain a live cancel guard. Call `refresh()` when policy changes.
+
+### Nested theme specimens
+
+Whimsy badge decoration uses native `@scope` to stop at an explicitly different
+theme root. Current browsers with scoped styles keep each specimen's own badge
+colors. Browsers without `@scope` retain the base badge recipe and theme tokens,
+without the optional Whimsy badge decoration. No script or polyfill is required.

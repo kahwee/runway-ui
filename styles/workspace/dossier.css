@@ -2,7 +2,7 @@
   .rw-dossier-list {
     container-type: inline-size;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(180px, 0.65fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.65fr);
     gap: 14px 20px;
   }
   .rw-dossier {

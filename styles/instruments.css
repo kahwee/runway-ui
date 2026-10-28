@@ -3,6 +3,7 @@
   .rw-console {
     container: rw-console / inline-size;
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 18px;
   }
   .rw-console__grid {

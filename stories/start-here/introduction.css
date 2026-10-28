@@ -145,3 +145,19 @@
     flex-wrap: wrap;
   }
 }
+
+@media (width < 600px) {
+  .library-home__masthead,
+  .library-home__specimen-footer {
+    flex-wrap: wrap;
+  }
+  .library-home__wordmark {
+    white-space: nowrap;
+  }
+  .library-home__hero {
+    padding-block: 32px;
+  }
+  .library-home__specimen {
+    padding: 20px;
+  }
+}

@@ -76,3 +76,25 @@ its CSS imports, and `bun run check-dependency-map` to detect drift. The isolate
 frames use only their declared CSS; toolbar theme settings intentionally do not
 apply. Optional behavior modules and application responsibilities are documented
 per recipe.
+
+## Responsive visual checks
+
+Build and serve `storybook-static`, then run the explicit browser review tool:
+
+```sh
+bun scripts/check-storybook-layout.mjs http://127.0.0.1:6006
+```
+
+This uses a separately installed `agent-browser`; it is not a package or CI
+runtime dependency. The tool discovers stories from `index.json`, captures
+320/390/1366/1440px screenshots and checks page overflow, isolated recipe play
+checks, keyboard-accessible data scroll regions and open dialog actions. Review
+the screenshots as well as the measurements; geometry checks cannot judge design
+quality or replace a complete accessibility audit.
+
+Preview gutters and sample grids adapt to narrow canvases. Wide comparison and
+production tables retain their columns inside named, focusable scroll regions;
+illustrated navigation wraps. The Observatory remains a desktop composition and
+shows its documented unsupported-size message on phones. Nested UI scopes follow
+the toolbar unless the specimen explicitly declares its own theme. Isolated
+frames deliberately keep their own tokens and imports.

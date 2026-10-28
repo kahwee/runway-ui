@@ -4,7 +4,7 @@ body {
 .story-surface {
   box-sizing: border-box;
   min-block-size: 100dvh;
-  padding: 40px;
+  padding: clamp(16px, 4vw, 40px);
   background:
     radial-gradient(
         circle at 1px 1px,
@@ -66,4 +66,43 @@ body {
   overflow-wrap: anywhere;
   border: 1px solid var(--rw-line);
   border-radius: var(--rw-radius);
+}
+
+/* Preview layout belongs to Storybook; component recipes stay in styles/. */
+.story-surface .story-scroll {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  overflow-x: auto;
+}
+.story-surface .story-scroll:focus-visible {
+  outline: 3px solid var(--rw-focus);
+  outline-offset: 3px;
+}
+.story-surface .story-grid[data-columns="one"] {
+  grid-template-columns: minmax(0, 1fr);
+}
+.story-workspace-grid {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 24px;
+}
+.story-studio-console {
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+}
+@media (width < 700px) {
+  .story-surface .story-grid,
+  .story-workspace-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .story-workspace-grid > .rw-folio-tabs {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .story-workspace-grid > .rw-folio-tabs > .rw-folio-tab {
+    min-block-size: 44px;
+  }
 }

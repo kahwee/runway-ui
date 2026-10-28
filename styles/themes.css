@@ -21,7 +21,7 @@
     --rw-surface: #f7edd4;
     --rw-raised: #eee0bd;
     --rw-ink: #44341e;
-    --rw-muted: #77613f;
+    --rw-muted: #685333;
     --rw-line: #c9ad79;
     --rw-accent: #715430;
     --rw-on-accent: #fff3d7;
@@ -39,7 +39,7 @@
     --rw-surface: #fffdf8;
     --rw-raised: #f7f3ff;
     --rw-ink: #2b2250;
-    --rw-muted: #6f648f;
+    --rw-muted: #685d87;
     --rw-line: #d9d0f5;
     --rw-accent: #6a4cff;
     --rw-on-accent: #fffdf8;
@@ -78,20 +78,23 @@
     box-shadow: 0 2px 0 color-mix(in oklch, var(--rw-accent) 25%, var(--rw-line));
     color: var(--rw-accent);
   }
-  .rw-ui[data-theme="whimsy"] .rw-badge {
-    rotate: -2deg;
-    border-width: 1.5px;
-    background: color-mix(in oklch, #ffd23f 45%, var(--rw-surface));
-    color: var(--rw-ink);
-    border-color: color-mix(in oklch, #ffd23f 70%, var(--rw-ink));
-  }
-  .rw-ui[data-theme="whimsy"] .rw-badge[data-tone="warning"] {
-    background: color-mix(in oklch, #ff6b4a 22%, var(--rw-surface));
-    border-color: #ff6b4a;
-  }
-  .rw-ui[data-theme="whimsy"] .rw-badge[data-tone="danger"] {
-    background: color-mix(in oklch, var(--rw-danger) 18%, var(--rw-surface));
-    border-color: var(--rw-danger);
+  /* An outer theme must not recolor an explicitly themed inner specimen. */
+  @scope (.rw-ui[data-theme="whimsy"]) to (.rw-ui[data-theme]:not([data-theme="whimsy"])) {
+    .rw-badge {
+      rotate: -2deg;
+      border-width: 1.5px;
+      background: color-mix(in oklch, #ffd23f 45%, var(--rw-surface));
+      color: var(--rw-ink);
+      border-color: color-mix(in oklch, #ffd23f 70%, var(--rw-ink));
+    }
+    .rw-badge[data-tone="warning"] {
+      background: color-mix(in oklch, #ff6b4a 22%, var(--rw-surface));
+      border-color: #ff6b4a;
+    }
+    .rw-badge[data-tone="danger"] {
+      background: color-mix(in oklch, var(--rw-danger) 18%, var(--rw-surface));
+      border-color: var(--rw-danger);
+    }
   }
   .rw-ui[data-theme="whimsy"] .rw-meter__fill {
     background: linear-gradient(
@@ -131,7 +134,7 @@
     --rw-surface: #fff9e9;
     --rw-raised: #f5edd9;
     --rw-ink: #203f37;
-    --rw-muted: #66705d;
+    --rw-muted: #58614f;
     --rw-line: #d4c8a9;
     --rw-accent: #275547;
     --rw-on-accent: #fff8e2;

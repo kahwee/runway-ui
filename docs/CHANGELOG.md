@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Keep structured dialog actions visible while long bodies scroll, with wider
+  narrow-screen content and 44px close targets. Native dismissal and focus remain
+  unchanged.
+- Adapt Storybook sample layouts, navigation and data scroll regions to narrow
+  canvases; propagate toolbar themes into nested scopes. Improve small-text and
+  avatar contrast without changing accent colors or numeric content.
+- Add an explicit all-story browser layout check, including open-dialog states.
+
 - Add optional `runway-ui/react` with React 19/Base UI forms, generated types and a live Storybook example. Vanilla exports and native dialog contracts are unchanged.
 
 ## Unreleased

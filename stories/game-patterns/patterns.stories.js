@@ -165,7 +165,7 @@ export const ProductionLedger = {
       a.rows.some((r) => !Array.isArray(r) || r.length !== 4)
     )
       return '<p role="alert">Use four headers and four cells in each row.</p>';
-    return `<div class="rw-ledger" role="table" aria-label="${e(a.label)}" style="max-inline-size:${bounded(a.width, 480, 1100)}px">${a.showHeader ? `<div class="rw-ledger__row" data-heading role="row">${a.headers.map((h) => `<span role="columnheader">${e(h)}</span>`).join("")}</div>` : ""}${a.rows
+    return `<div class="story-scroll" role="region" aria-label="${e(a.label)}" tabindex="0"><div class="rw-ledger" role="table" aria-label="${e(a.label)}" style="max-inline-size:${bounded(a.width, 480, 1100)}px">${a.showHeader ? `<div class="rw-ledger__row" data-heading role="row">${a.headers.map((h) => `<span role="columnheader">${e(h)}</span>`).join("")}</div>` : ""}${a.rows
       .map(
         (r) =>
           `<div class="rw-ledger__row" role="row"><strong role="rowheader">${e(r[0])}</strong>${r
@@ -173,7 +173,7 @@ export const ProductionLedger = {
             .map((v) => `<span role="cell">${e(v)}</span>`)
             .join("")}</div>`,
       )
-      .join("")}</div>`;
+      .join("")}</div></div>`;
   },
 };
 for (const story of [ResourceHUD, EquipmentSlots, Objectives, Choice, ActionDock, ProductionLedger])
