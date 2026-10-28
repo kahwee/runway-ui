@@ -75,31 +75,11 @@ Update the visible label, aria-valuenow and CSS value together. Set `--rw-meter-
 
 The parent owns four shared columns; each row uses `grid-template-columns: subgrid`. Override the parent's tracks for your content. Use actual HTML tables when table semantics or complex headers are more important than the composed layout; this ARIA ledger has not received a screen-reader audit.
 
-## Simple chart
+## Charts
 
-```html
-<table class="rw-chart">
-  <caption>
-    Oxygen reserves · scale 0–300 units
-  </caption>
-  <thead>
-    <tr>
-      <th scope="col">Cycle</th>
-      <th scope="col" class="rw-chart__axis">Reserve</th>
-      <th scope="col">Units</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td><span class="rw-chart__plot" style="--rw-value:40%" aria-hidden="true"></span></td>
-      <td>120</td>
-    </tr>
-  </tbody>
-</table>
-```
-
-The host maps quantities to a declared scale; actual values remain readable HTML. For columns, stacked and diverging bars and six-point areas, see the dedicated [CSS charts guide](CHARTS.md) and [chart lab](charts.html). Use a plotting engine for dense histories, zoom, mixed axes or large time series.
+Use the React `Chart` / `ChartCard` components with TanStack marks and scales.
+Runway no longer implements CSS plot geometry. Keep a labelled exact-data table
+from the same observations; see [the chart guide](CHARTS.md) and [lab](charts.html).
 
 ## Native dialog
 

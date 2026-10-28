@@ -31,7 +31,7 @@
             >Build your first panel
             <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></a
           ><a href="./docs/charts.html"
-            >CSS chart lab
+            >TanStack chart lab
             <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></a
           ><a href="./docs/"
             >Documentation & options
@@ -360,8 +360,9 @@
             </article>
             <article class="rw-panel">
               <h3>Economy chart</h3>
+              <div id="landing-chart"></div>
               <p class="rw-muted">
-                CSS draws the bars; actual values stay in a readable HTML table.
+                TanStack draws the chart; exact values remain in the HTML table.
               </p>
               <table class="rw-chart">
                 <caption>
@@ -370,42 +371,20 @@
                 <thead>
                   <tr>
                     <th scope="col">Day</th>
-                    <th scope="col" class="rw-chart__axis">Revenue</th>
                     <th scope="col">USD</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">Mon</th>
-                    <td>
-                      <span
-                        class="rw-chart__plot"
-                        style="--rw-value: 42%"
-                        aria-hidden="true"
-                      ></span>
-                    </td>
                     <td>$4,200</td>
                   </tr>
                   <tr>
                     <th scope="row">Tue</th>
-                    <td>
-                      <span
-                        class="rw-chart__plot"
-                        style="--rw-value: 58%"
-                        aria-hidden="true"
-                      ></span>
-                    </td>
                     <td>$5,800</td>
                   </tr>
                   <tr>
                     <th scope="row">Wed</th>
-                    <td>
-                      <span
-                        class="rw-chart__plot"
-                        style="--rw-value: 76%"
-                        aria-hidden="true"
-                      ></span>
-                    </td>
                     <td>$7,600</td>
                   </tr>
                 </tbody>
@@ -519,5 +498,6 @@
       </form>
     </dialog>
     <script type="module" src="./workshop/workshop.ts"></script>
+    <script type="module" src="./examples/landing-chart.ts"></script>
   </body>
 </html>

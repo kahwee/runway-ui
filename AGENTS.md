@@ -14,6 +14,7 @@ Read [docs/MODULES.md](docs/MODULES.md) before moving modules or changing import
   live in the named owner (`button.ts`, `meter.ts`, `command-bar.ts`, etc.). Import
   owners directly inside the library; never import the facade from an owner.
   Keep closely related pieces together, such as `Dossier` and `DossierList`.
+- TanStack Charts is the sole plotting engine, including sparklines and example histories. Do not reintroduce CSS plot geometry or custom SVG chart renderers. Keep exact data/units available as semantic HTML.
 - React 19, Base UI and `@tanstack/charts` are required peers. Use Base UI primitive
   subpaths and TanStack Charts; preserve upstream refs, props, state-dependent
   classes and accessibility. Do not duplicate their interaction state machines.

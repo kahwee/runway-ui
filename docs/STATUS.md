@@ -6,7 +6,7 @@ The package metadata is version 1.0.0; see the [changelog](CHANGELOG.md) for wha
 
 - Framework-independent HTML/CSS for responsive management and simulation interfaces, with zero runtime dependencies.
 - Native fields, disclosures and dialogs; shared-track layouts, production ledgers and optional Play material.
-- Fixed-scale CSS charts, signed histories with explicit gaps, native event notes and exact-data tables.
+- TanStack charts, signed histories with explicit gaps, native event notes and exact-data tables.
 - Optional dialog policies, roving focus, standard-mapped controller input, fixed-height inventory virtualization, range outputs and windowed time series.
 - Modular source CSS, a committed self-contained bundle, typed ES modules, standalone examples and HTML Storybook.
 

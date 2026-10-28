@@ -80,9 +80,35 @@ async function compileSite(directory: string) {
     } else if (entry.name.endsWith(".html")) {
       const html = await Bun.file(path).text();
       await Bun.write(path, html.replace(/(<script\b[^>]*\bsrc=["'][^"']+)\.ts(["'])/g, "$1.js$2"));
-    } else if (entry.name.endsWith(".ts")) await rm(path);
+    } else if (/\.tsx?$/.test(entry.name)) await rm(path);
   }
 }
 for (const directory of ["behaviors", "workshop", "docs", "examples"])
   await compileDirectory(directory, `.site/${directory}`);
 await compileSite(".site");
+
+// React/TanStack are bundled once for native-module examples, never fetched from a CDN.
+const chartBundle = await Bun.build({
+  entrypoints: ["examples/charts/components.tsx"],
+  outdir: ".site/examples/charts",
+  target: "browser",
+  format: "esm",
+  minify: true,
+  define: { "process.env.NODE_ENV": JSON.stringify("production") },
+});
+if (!chartBundle.success) throw new AggregateError(chartBundle.logs, "Example chart bundle failed");
+// Retain full notices for all runtime dependencies reachable from the bundled peers.
+const visited = new Set<string>();
+const notices: string[] = [];
+async function licenses(name: string) {
+  if (visited.has(name) || name.startsWith("@types/")) return;
+  visited.add(name);
+  const folder = new URL(`../node_modules/${name}/`, import.meta.url);
+  const manifest = await Bun.file(new URL("package.json", folder)).json();
+  const notice = (await readdir(folder)).find((file) => /^licen[cs]e(?:\.|$)/i.test(file));
+  if (!notice) throw Error(`Missing chart dependency license: ${name}`);
+  notices.push(`${name}@${manifest.version}\n${await Bun.file(new URL(notice, folder)).text()}`);
+  for (const dependency of Object.keys(manifest.dependencies ?? {})) await licenses(dependency);
+}
+for (const name of ["react", "react-dom", "@tanstack/charts"]) await licenses(name);
+await Bun.write(".site/examples/charts/components.LICENSE.txt", notices.join("\n\n---\n\n"));

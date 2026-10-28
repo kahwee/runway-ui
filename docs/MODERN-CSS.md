@@ -13,7 +13,6 @@ Runway UI targets contemporary browser engines with native CSS nesting, subgrid,
 | `rw-objectives > li`         | Status and description columns | Existing two-child markup                                                    |
 | `rw-series-list > li`        | Label, plot, number columns    | Existing three-child chart markup                                            |
 | `rw-ledger > rw-ledger__row` | Production columns             | Existing ledger markup                                                       |
-| `rw-columns > li`            | Plot, value, category rows     | Existing column chart markup                                                 |
 
 These are real subgrids, not copies of the same track definition on each child. Card and field groups auto-place into the next group of shared rows. Keep the documented slots when a section is absent; an empty optional slot can be omitted when the remaining slot classes have explicit positions. Form fields use their first three direct children; do not wrap the control inside the label in this pattern. Native label associations remain intact. Do not put size containment on an individual row-subgrid card: it defeats content-based parent row sizing.
 
@@ -42,7 +41,7 @@ Internal row spacing uses `--rw-content-gap` (10px, compact 8px), independently 
 
 ## Signed instruments
 
-[History instruments](INSTRUMENTS.md) add signed zero-baseline CSS geometry, typed numeric attributes with absolute-value enhancement, reusable four-column impact subgrids and a tactile Play material. Host custom properties remain the numeric fallback.
+[History instruments](INSTRUMENTS.md) provide surfaces and impact subgrids. TanStack Charts owns all plot geometry; CSS only arranges and themes it.
 
 ## Observatory composition
 
@@ -55,7 +54,6 @@ The [Simulation Observatory](OBSERVATORY.md) adds native event popovers with imp
 - **Typed `@property --rw-value`** registers percentages for meter interpolation. Keep existing values as percentages; a parent may supply the value because it inherits.
 - **`::details-content` + `interpolate-size:allow-keywords`** animates native disclosure height without measurement JavaScript. Unsupported engines keep ordinary native details behavior; motion preferences disable the transition.
 - **`appearance:base-select` / `::picker(select)`** is the default picker wherever supported; `data-picker="native"` opts out and other engines keep the padded native select.
-- **Typed `attr()` and `shape()`** enhance numeric charts and CSS area paths; the existing custom-property and polygon paths stay functional where those newer APIs are absent.
 - **`@starting-style` and discrete `display`/`overlay` transitions** animate the native dialog's top-layer lifecycle.
 - **`:has()`** handles selected choices and field focus/validation without mirror state classes.
 
@@ -107,11 +105,11 @@ Every `select.rw-input` and `.rw-native select` uses `appearance: base-select` w
 `rw-segmented[data-variant="pace"]` gives native buttons stable, equally sized targets, optional `small` descriptions and a high-contrast selected face. Use `role="group"` and one `aria-pressed="true"`; application code owns state. Unlike a toolbar, it needs no custom arrow-key model. Warm and disabled states, keyboard focus, reduced motion and forced colors are supported. The original pill variant remains available.
 
 
-### Quiet history and line plots
+### Quiet history
 
-`renderHistory({ plot: "line" })` draws straight SVG segments through actual observations, with a subtle fill to zero. Null values break both line and fill; a single observation stays a point. The default remains `columns`. Native note buttons and the exact-values disclosure remain available for either plot. SVG is decorative: the semantic observation list and table retain the full dataset without SVG support. No animation or interpolation is applied. Forced colors use CanvasText strokes with no fill.
-
-The opt-in `styles/quiet.css` appearance removes instrument hardware decoration and defines `--rw-type-caption`, `--rw-type-body`, `--rw-type-heading`, and `--rw-type-value`. Hosts can override these type tokens without duplicating chart styles. Charts retain a zero-inclusive scale; a line does not imply observations between checkpoints.
+The opt-in `styles/quiet.css` appearance controls instrument decoration and type
+scales. It does not draw charts. Use TanStack for line/area/bar geometry, including
+missing-data gaps; exact observations remain in a table. See [charts](CHARTS.md).
 
 ## Dialog state and component sizing
 

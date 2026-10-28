@@ -22,11 +22,11 @@ guides, so visitors can explore the same material on phones and desktops.
 
 ## Fewer stories, useful controls
 
-Each visual playground exposes the values it actually renders. Descriptions, grouped control categories, explicit defaults and conditional fields make those options reviewable. For example, color appears only after enabling custom chart color; a cancel label appears only when a dialog has a cancel action.
+Each visual playground exposes the values it actually renders. Descriptions, grouped control categories, explicit defaults and conditional fields make those options reviewable. For example, a cancel label appears only when a dialog has a cancel action.
 
 | Playground                         | Important arguments                                                                                                                                                     |
 | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CSS charts                         | Plot type, sample/custom/zero/boundary data, labels, both series, maximum, units, height, width, grid, table state and custom color                                     |
+| TanStack charts                         | TanStack mark type, sample/zero/missing data, width and height; original values and exact tables remain visible                                     |
 | Dialog                             | Content, class-based size/tone/footer, native dismissal policy, safe focus target, action labels, close/cancel visibility, disabled confirmation and styling comparison |
 | Button                             | Content, variant, size, disabled, full width, pressed, busy and shortcut hint                                                                                           |
 | Input                              | Type, content, placeholder, disabled, readonly, required, validation text, width and native skin                                                                        |
@@ -99,7 +99,7 @@ consumers use ordinary HTML and CSS imports.
 ## Component dependency fixtures
 
 **Isolation / Components** adds fields, form controls, view navigation, section
-navigation and CSS charts to the existing control and panel fixtures. Native
+navigation and TanStack charts to the existing control and panel fixtures. Native
 editing, switch toggling, form values and link navigation are checked alongside
 computed styles and chart geometry. Checkbox masks explicitly require icons.
 

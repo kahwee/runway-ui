@@ -61,20 +61,7 @@
     font-size: 12px;
     line-height: 1.6;
   }
-  & .rw-history__axis {
-    font-size: var(--rw-type-caption);
-  }
-  & .rw-history .rw-columns {
-    background: repeating-linear-gradient(
-        to top,
-        color-mix(in oklch, var(--rw-line) 55%, transparent) 0 1px,
-        transparent 1px 50%
-      )
-      top / 100% var(--rw-chart-height) no-repeat;
-  }
-  & .rw-history .rw-category {
-    font-size: var(--rw-type-caption);
-  }
+
   & .rw-chart-data {
     margin-block-start: 20px;
     border: 0;

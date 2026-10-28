@@ -155,17 +155,10 @@ export async function checkIsolatedRecipe({ canvasElement }, key) {
     link.click();
     expect(view.location.hash === link.getAttribute("href"), "native fragment navigation failed");
   } else if (key === "charts") {
-    expect(style(".rw-columns").display === "grid", "column layout missing");
-    const marks = [...doc.querySelectorAll(".rw-column-mark")].map(
-      (mark) => mark.getBoundingClientRect().height,
-    );
     expect(
-      Math.abs(marks[0] - 30) < 1 && Math.abs(marks[1] - 90) < 1,
-      "numeric amounts do not match the declared scale",
+      doc.querySelectorAll(".rw-column-mark, .rw-chart__plot").length === 0,
+      "CSS plot geometry must not return",
     );
-    const axis = element(".rw-chart__axis").getBoundingClientRect().width - 16;
-    const bar = element(".rw-chart__plot").getBoundingClientRect().width;
-    expect(Math.abs(bar / axis - 0.25) < 0.02, "table bar percentage missing");
     expect(
       element("table caption").textContent.includes("units") &&
         doc.querySelectorAll("tbody th[scope='row']").length === 2,

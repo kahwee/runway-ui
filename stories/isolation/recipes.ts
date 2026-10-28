@@ -58,10 +58,10 @@ export const recipes = {
     note: "section-tabs.css supplies the container; controls.css supplies the button appearance and focus rules. Links need no script. For application-owned toggle buttons, update aria-pressed and displayed content together. Optional runway-ui/navigation provides roving focus, not routing.",
   },
   charts: {
-    title: "CSS columns and table bars",
+    title: "Chart data table",
     styles: [tokens, "styles/charts.css"],
-    markup: `<figure class="rw-figure" style="max-inline-size:650px;--rw-chart-max:100;--rw-chart-height:120px"><figcaption>Monthly output <small>Units; scale 0–100</small></figcaption><ol class="rw-columns"><li><span class="rw-column-track"><i class="rw-column-mark" style="--rw-amount:25"></i></span><strong>25</strong><span class="rw-category">Jan</span></li><li><span class="rw-column-track"><i class="rw-column-mark" style="--rw-amount:75"></i></span><strong>75</strong><span class="rw-category">Feb</span></li></ol></figure><table class="rw-chart" style="max-inline-size:650px;margin-block-start:24px"><caption>Exact output · units</caption><thead><tr><th scope="col">Month</th><th scope="col">Share of scale</th><th scope="col">Units</th></tr></thead><tbody><tr><th scope="row">Jan</th><td class="rw-chart__axis"><span class="rw-chart__plot" style="--rw-value:25%"></span></td><td>25</td></tr><tr><th scope="row">Feb</th><td class="rw-chart__axis"><span class="rw-chart__plot" style="--rw-value:75%"></span></td><td>75</td></tr></tbody></table>`,
-    note: "CSS draws marks without JavaScript, panels or icons. Column amounts are numbers on the declared positive maximum; table bars use percentage values. Labels and exact values remain readable HTML. The same entry contains stacked, diverging and area primitives; see CHARTS.md for their data contracts.",
+    markup: `<figure class="rw-figure"><figcaption>Exact output · units</figcaption><table class="rw-chart"><caption>Exact output · units</caption><thead><tr><th scope="col">Month</th><th scope="col">Units</th></tr></thead><tbody><tr><th scope="row">Jan</th><td>25</td></tr><tr><th scope="row">Feb</th><td>75</td></tr></tbody></table></figure>`,
+    note: "charts.css styles the figure and exact-data table only. Quantitative geometry belongs exclusively to TanStack Charts through the React Chart component.",
   },
   dialogs: {
     title: "Native dialog",

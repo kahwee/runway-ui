@@ -25,10 +25,11 @@ test("responsive history preserves all observations and their projected status",
       index > data.lastObserved ? "Projected" : "Observed",
     ]);
   }
-  assert.equal(tree.filter((node) => node.tagName === "li").length, data.values.length);
+  assert.ok(tree.some((node) => attr(node, "data-history-chart") !== undefined));
+  assert.ok(!tree.some((node) => attr(node, "class")?.includes("rw-column-mark")));
 });
 
-test("long cycle labels and three-digit readings get a named keyboard scroll region", () => {
+test("long cycle labels and three-digit readings remain in exact data", () => {
   const data = makeData({
     scenario: "custom",
     values: [0, 100, null, 40, 50, 60],
@@ -36,12 +37,8 @@ test("long cycle labels and three-digit readings get a named keyboard scroll reg
     forecastCount: 1,
   });
   const tree = nodes(parseFragment(historyMarkup(data, "history")));
-  const region = tree.find((node) => attr(node, "class") === "rw-history__viewport");
-  assert.equal(attr(region, "role"), "region");
-  assert.equal(attr(region, "tabindex"), "0");
-  assert.equal(attr(region, "aria-label"), "Scrollable output chart");
   assert.ok(tree.some((node) => node.tagName === "td" && text(node) === "Missing"));
-  assert.ok(tree.some((node) => node.tagName === "strong" && text(node).startsWith("100")));
+  assert.ok(tree.some((node) => node.tagName === "td" && text(node) === "100"));
 });
 
 test("chart labels remain text in both the plotted series and exact-data table", () => {
@@ -58,5 +55,5 @@ test("chart labels remain text in both the plotted series and exact-data table",
     false,
   );
   assert.ok(tree.some((node) => node.tagName === "th" && text(node) === label));
-  assert.ok(tree.some((node) => attr(node, "class") === "rw-category" && text(node) === label));
+  assert.ok(!tree.some((node) => attr(node, "class") === "rw-column-mark"));
 });

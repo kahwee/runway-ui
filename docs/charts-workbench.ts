@@ -1,78 +1,21 @@
-const $ = (s) => document.querySelector(s);
-const initial = $("#gallery").innerHTML;
-function update() {
-  document.body.dataset.theme = $("#chart-theme").value;
-  $("#gallery").innerHTML = initial;
-  const dataset = $("#chart-data").value;
-  document.querySelectorAll<HTMLElement>(".rw-figure").forEach((figure) => {
-    figure.style.setProperty("--rw-chart-height", `${$("#chart-height").value}px`);
-    figure.dataset.grid = $("#chart-grid").checked ? "on" : "off";
-  });
-  if (dataset !== "normal") {
-    document.querySelectorAll<HTMLElement>(".chart-card").forEach((card) => {
-      const kind = card.dataset.chart;
-      card.querySelectorAll<HTMLElement>("[data-value]").forEach((mark) => {
-        const value =
-          dataset === "zero"
-            ? 0
-            : kind === "stacked"
-              ? 50
-              : mark.hasAttribute("data-negative")
-                ? -100
-                : 100;
-        mark.dataset.value = String(value);
-        mark.style.setProperty("--rw-amount", String(value));
-      });
-      if (kind === "columns")
-        card.querySelectorAll<HTMLElement>(".rw-columns strong").forEach((e) => {
-          e.textContent = dataset === "zero" ? "0" : "100";
-        });
-      if (kind === "stacked")
-        card.querySelectorAll<HTMLElement>(".rw-series-list strong").forEach((e) => {
-          e.textContent = dataset === "zero" ? "0" : "100";
-        });
-      if (kind === "diverging")
-        card.querySelectorAll<HTMLElement>(".rw-series-list strong").forEach((e, i) => {
-          e.textContent = dataset === "zero" ? "0" : String([100, -100, -100, 100][i]);
-        });
-      card.querySelectorAll<HTMLElement>("tbody tr").forEach((row, i) => {
-        row.querySelectorAll<HTMLElement>("td").forEach((cell) => {
-          cell.textContent =
-            dataset === "zero"
-              ? "0"
-              : kind === "stacked"
-                ? "50"
-                : kind === "diverging"
-                  ? String([100, -100, -100, 100][i])
-                  : "100";
-        });
-      });
-      if (kind === "area")
-        for (let i = 0; i < 6; i++)
-          card
-            .querySelector<HTMLElement>(".rw-area")
-            .style.setProperty(`--rw-y${i}`, dataset === "zero" ? "100%" : "0%");
-    });
-  }
-  $("#chart-recipe").textContent =
-    `<link rel="stylesheet" href="@kahwee/runway-ui/dist/runway-ui.css">
-<section class="rw-ui">
-${document.querySelector('[data-chart="columns"] figure').outerHTML}
-</section>`;
-}
-$("#chart-options").addEventListener("change", update);
-$("#chart-options").addEventListener("submit", (e) => e.preventDefault());
-$("#chart-options").addEventListener("reset", () => requestAnimationFrame(update));
-$("#copy-chart").addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText($("#chart-recipe").textContent);
-    $("#copy-status").textContent = "Markup copied.";
-  } catch {
-    $("#copy-status").textContent = "Select and copy the markup below.";
-  }
+import { mountChartPlayground } from "../examples/charts/components.tsx";
+import type { PlotKind } from "../examples/charts/model.ts";
+
+const form = document.querySelector<HTMLFormElement>("#chart-options")!;
+const host = document.querySelector<HTMLElement>("#chart-playground")!;
+const kind = document.querySelector<HTMLSelectElement>("#chart-kind")!;
+const preset = document.querySelector<HTMLSelectElement>("#chart-data")!;
+const theme = document.querySelector<HTMLSelectElement>("#chart-theme")!;
+const options = () => ({
+  kind: kind.value as PlotKind,
+  preset: preset.value,
+  width: 900,
+  height: 240,
 });
-const attr = CSS.supports("width", "calc(attr(data-value type(<number>),0) * 1px)");
-const shape = CSS.supports("clip-path", "shape(from 0% 100%,line to 100% 0%,close)");
-$("#chart-support").textContent =
-  `This browser: typed attr() ${attr ? "active" : "fallback"} · shape() ${shape ? "active" : "polygon fallback"} · CSS computes every plot. Fixed scales keep dataset comparisons honest.`;
-update();
+const chart = mountChartPlayground(host, options());
+form.addEventListener("change", () => {
+  document.body.dataset.theme = theme.value;
+  chart.update(options());
+});
+form.addEventListener("submit", (event) => event.preventDefault());
+addEventListener("pagehide", () => chart.destroy(), { once: true });

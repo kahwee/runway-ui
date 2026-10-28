@@ -173,3 +173,10 @@ composes actual resource, inventory and TanStack chart components; no benchmark
 code enters the distributed React runtime. `scripts/bench-game-ui.ts` runs the
 production Storybook fixture with agent-browser, retains raw samples locally,
 and compares optional reference regression budgets. See [performance](PERFORMANCE.md).
+
+## Chart geometry
+
+TanStack Charts is the only plotting engine. `styles/charts/` owns figure/table
+layout, never quantitative marks. `examples/charts/` owns generic example data
+and one React renderer shared by standalone pages and chart stories. Build-site
+bundles it once for native-module examples; it is not a new package API.

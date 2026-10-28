@@ -1,4 +1,4 @@
-/* Original CSS plots. Numeric values and labels remain application-owned HTML. */
+/* Shared chart framing and exact-data tables. TanStack owns quantitative geometry. */
 @layer runway-ui.charts {
   .rw-chart {
     inline-size: 100%;
@@ -20,23 +20,7 @@
   .rw-chart td:last-child {
     text-align: end;
   }
-  .rw-chart__plot {
-    display: block;
-    block-size: 12px;
-    inline-size: clamp(0%, var(--rw-value, 0%), 100%);
-    background: var(--rw-chart-color, var(--rw-accent));
-    border-radius: 2px;
-  }
-  .rw-chart [data-series="expense"] {
-    --rw-chart-color: var(--rw-gold);
-  }
-  .rw-chart__axis {
-    inline-size: 60%;
-  }
   .rw-figure {
-    --rw-chart-height: 180px;
-    --rw-chart-max: 100;
-    --rw-chart-color: var(--rw-accent);
     container: rw-chart / inline-size;
     margin: 0;
     min-inline-size: 0;
@@ -54,12 +38,5 @@
   .rw-figure figcaption small {
     color: var(--rw-muted);
     font-weight: 400;
-  }
-  .rw-chart-scale {
-    display: flex;
-    justify-content: space-between;
-    color: var(--rw-muted);
-    font-size: 10px;
-    margin-block: 8px;
   }
 }

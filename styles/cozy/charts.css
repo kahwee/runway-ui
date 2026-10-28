@@ -1,4 +1,4 @@
-/* Palette for @tanstack/charts and native Runway charts: pastel marks, plum text. */
+/* Palette for @tanstack/charts (the only plotting engine): pastel marks, plum text. */
 @layer runway-ui.themes {
   .rw-ui:is([data-theme="cozy"], [data-theme="cozy-night"]) {
     --ts-chart-1: #e0607e;

@@ -12,9 +12,5 @@
       background: Canvas;
       color: CanvasText;
     }
-    .rw-history--range .rw-column-mark[data-negative] {
-      background: Highlight;
-      forced-color-adjust: none;
-    }
   }
 }

@@ -44,7 +44,7 @@
   .rw-trend[data-direction="down"] .rw-trend__change {
     color: color-mix(in oklch, var(--rw-gold) 50%, var(--rw-ink));
   }
-  .rw-trend .rw-spark {
+  .rw-trend [data-trend-chart] {
     margin-block-start: 4px;
   }
 }

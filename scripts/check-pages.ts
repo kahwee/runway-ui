@@ -150,6 +150,47 @@ try {
     await page.getByRole("status").filter({ hasText: "Decision cancelled" }).waitFor();
     await page.close();
   }
+  // Verify standalone consumers use the same bundled TanStack renderer, not CSS marks.
+  for (const width of widths.filter((value) => [320, 390, 1366].includes(value))) {
+    const chartPage = await browser.newPage({
+      viewport: { width, height: 844 },
+      reducedMotion: "reduce",
+    });
+    observe(chartPage);
+    await chartPage.goto(new URL("docs/charts.html", base).href, { waitUntil: "networkidle" });
+    await chartPage.locator("#chart-playground svg").waitFor();
+    await chartPage.locator("#chart-kind").selectOption("stacked");
+    await chartPage.locator("#chart-playground tbody tr").nth(11).waitFor();
+    assert.equal(
+      await chartPage.locator("#chart-playground tbody tr").count(),
+      12,
+      "Stack segment values remain in the exact table",
+    );
+    await chartPage.locator("#chart-kind").selectOption("line");
+    await chartPage.locator("#chart-data").selectOption("missing");
+    await chartPage.getByRole("cell", { name: "Missing", exact: true }).waitFor();
+    await scan(chartPage, `tanstack-lab-${width}`);
+    await chartPage.goto(new URL("examples/observatory.html", base).href, {
+      waitUntil: "networkidle",
+    });
+    await chartPage.locator("[data-history-chart] svg").waitFor();
+    assert.equal(
+      await chartPage.locator("[data-trend-chart] svg").count(),
+      6,
+      "Every small multiple uses TanStack",
+    );
+    await scan(chartPage, `tanstack-observatory-${width}`);
+    await chartPage.goto(new URL("examples/colony.html", base).href, { waitUntil: "networkidle" });
+    await chartPage.locator("#oxygen-chart svg").waitFor();
+    await chartPage.locator("#next-cycle").click();
+    assert.deepEqual(
+      await chartPage.locator("#history td").allTextContents(),
+      ["120", "126"],
+      "Colony exact history follows its actual action",
+    );
+    await scan(chartPage, `tanstack-colony-${width}`);
+    await chartPage.close();
+  }
   if (widths.includes(1440)) {
     const page = await browser.newPage({
       viewport: { width: 1440, height: 900 },

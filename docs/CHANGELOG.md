@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — TanStack-only charts (breaking CSS migration)
+
+- Remove CSS plot geometry, sparklines and retired custom history/window drawing. TanStack Charts is the sole plotting engine.
+- Migrate the chart lab, chart playground, Observatory, Colony and landing-page plots; preserve original units, missing/observed/projected data and exact tables.
+- Keep `charts.css` for figure/table styling and the existing React Chart API. Old CSS mark classes no longer render plots; see [migration](CHARTS.md#migration-from-css-plots). No package version or release tag is created here.
+
 - Add optional React `Progress`, using labelled native progress semantics and shared meter tokens.
 
 ## TypeScript source migration

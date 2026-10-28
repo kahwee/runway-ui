@@ -252,23 +252,16 @@ export const catalog = [
   },
   {
     id: "chart",
-    name: "CSS charts",
+    name: "TanStack charts",
     description:
-      "Columns, stacked and diverging bars, six-point areas and percentage-based horizontal table bars. Open the CSS chart lab for the full collection.",
+      "One plotting engine through React Chart and ChartCard. Runway styles the theme and exact-data table; TanStack owns marks, scales, axes and keyboard exploration.",
     options: [
-      ["--rw-value", "percentage", "Host maps the quantity to the scale declared in the caption."],
-      ["--rw-chart-max", "Positive number", "Shared maximum for numeric chart marks; default 100."],
-      [
-        "--rw-amount / data-value",
-        "Number",
-        "Numeric mark input, distinct from percentage-based --rw-value inputs.",
-      ],
-      ["--rw-chart-height", "CSS length", "Plot height; default 180px."],
-      ["--rw-chart-color", "CSS color", "Default: accent."],
-      ["data-series", "expense", "Optional row/element tone using the gold token."],
+      ["definition", "TanStack definition", "Memoized original observations, marks and scales."],
+      ["height", "number", "Plot height in CSS pixels."],
+      ["ariaLabel", "string", "Name the measurement and its unit."],
     ],
     snippet:
-      '<table class="rw-chart">\n  <caption>Oxygen · scale 0–300 units</caption>\n  <tbody><tr><th scope="row">Cycle 1</th>\n    <td><span class="rw-chart__plot" style="--rw-value:40%" aria-hidden="true"></span></td>\n    <td>120</td>\n  </tr></tbody>\n</table>',
+      '<ChartCard title="Recorded output"><Chart definition={definition} height={200} ariaLabel="Recorded output in units per day" /></ChartCard>',
   },
   {
     id: "slot",

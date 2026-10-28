@@ -13,7 +13,7 @@ export default {
     docs: {
       description: {
         component:
-          "A responsive reference composition: six CSS small multiples, observed/projected history, target line, native anchored event popover, shared-track resource ledger and an inspectable decision. No simulation rules, chart runtime, canvas or SVG chart. The workspace adapts to its canvas: six metric cards across on wide screens, fewer columns on narrow screens, and labeled resource cards on phones. The toolbar controls theme, density and depth. All fixtures are synthetic. Changes to args remount and reset the local pinned-plan state.",
+          "A responsive reference composition: six TanStack small multiples, observed/projected history, target line, native anchored event popover, shared-track resource ledger and an inspectable decision. TanStack Charts owns plot geometry; exact observations remain HTML. No simulation rules are included. The workspace adapts to its canvas: six metric cards across on wide screens, fewer columns on narrow screens, and labeled resource cards on phones. The toolbar controls theme, density and depth. All fixtures are synthetic. Changes to args remount and reset the local pinned-plan state.",
       },
     },
   },
@@ -34,7 +34,7 @@ export default {
       "Data",
     ),
     target: range(0, 200, 1, "Reference threshold, between zero and maximum.", "Data"),
-    plotHeight: range(140, 280, 10, "CSS plot block size; no JavaScript geometry."),
+    plotHeight: range(140, 280, 10, "TanStack chart height in CSS pixels."),
     values: {
       ...object(
         "6–18 finite nonnegative values, or null for missing. Do not put numeric strings in the array.",

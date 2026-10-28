@@ -81,7 +81,7 @@ bun run build-site
 python3 -m http.server 4320 --bind 127.0.0.1 --directory .site
 ```
 
-Open **`http://127.0.0.1:4320/docs/charts.html`** for the CSS chart lab, or `http://127.0.0.1:4320/docs/` for searchable component options. The root page is the component workshop. Other examples:
+Open **`http://127.0.0.1:4320/docs/charts.html`** for the TanStack chart lab, or `http://127.0.0.1:4320/docs/` for searchable component options. The root page is the component workshop. Other examples:
 - [Illustrated workspace navigation](examples/view-tabs.html): six generic destinations with original vector miniatures.
 - `examples/colony.html`: production, reserve history and a searchable 10,000-item synthetic inventory.
 - `examples/drop-in.html`: opt-in styling for existing native form controls.
@@ -95,10 +95,10 @@ The examples adapt from narrow phone canvases to desktop workspaces. Data, nativ
 | Foundations        | Theme tokens, cascade layers, surfaces, typography, focus and state colors                                                                             |
 | Primitives         | Buttons, panels, badges, inputs, disclosures, native dialog styling                                                                                    |
 | Game patterns      | Resource HUD, equipment slots, objectives, choices, action dock                                                                                        |
-| CSS charts         | Columns, stacked bars, diverging bars, six-point areas, percentage-based HTML-table bars; [API and scale rules](docs/CHARTS.md)                        |
+| TanStack charts         | TanStack columns, stacked/signed bars, lines, areas and horizontal bars; [API and scale rules](docs/CHARTS.md)                        |
 | Simulation         | Subgrid production ledger and container-aware panels                                                                                                   |
 | Themes             | Warm Studio, dark Orbital, Parchment, playful Whimsy Ledger and black Midnight; identical markup                                                                              |
-| Optional behaviors | Native dialog dismissal policy, roving keyboard focus, standard controller adapter, fixed-height virtual inventory, range outputs and windowed history |
+| Optional behaviors | Native dialog dismissal policy, roving keyboard focus, standard controller adapter and fixed-height virtual inventory |
 
 All component classes use `rw-`; the root `rw-ui` supplies inherited tokens without a global reset. Application styles can override the cascade layers. This is a CSS namespace, not Shadow DOM isolation.
 
@@ -124,7 +124,7 @@ Targets current desktop Chromium, Firefox and Safari with subgrid and container-
 ## Documentation
 
 - [Component markup](docs/COMPONENTS.md), [theming](docs/THEMING.md) and [native fields](docs/FIELDS.md)
-- [CSS charts](docs/CHARTS.md), [history instruments and windowed time series](docs/INSTRUMENTS.md)
+- [TanStack charts](docs/CHARTS.md), [history instrument surfaces](docs/INSTRUMENTS.md)
 - [Options and behavior API](docs/API.md), [compatibility contract](docs/STABILITY.md) and [changelog](docs/CHANGELOG.md)
 - [Keyboard, controller and inventory contracts](docs/INTERACTIONS.md)
 - [Status and current limitations](docs/STATUS.md)

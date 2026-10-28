@@ -73,7 +73,6 @@
     border-color: var(--rw-accent);
   }
   @media (forced-colors: active) {
-    .rw-chart__plot,
     .rw-meter__fill {
       background: Highlight;
     }

@@ -1,8 +1,7 @@
 import { useMemo } from "react";
-import { lineY } from "@tanstack/charts/line";
-import { scaleLinear } from "@tanstack/charts/scales/linear";
-import { tooltip } from "@tanstack/charts/tooltip";
-import { Chart, ChartCard, defineChart, Runway } from "../../react/index.ts";
+import { ChartCard, Runway } from "../../react/index.ts";
+import { ExamplePlot } from "../../examples/charts/components.tsx";
+export { recordedRuns } from "../../examples/charts/model.ts";
 
 export interface RecordedPoint {
   day: number;
@@ -11,20 +10,6 @@ export interface RecordedPoint {
 export interface RecordedHistoryProps {
   preset: "gaps" | "zero" | "signed" | "empty";
   width: number;
-}
-
-/** Example adapter: a missing observation ends a line; it is never a zero. */
-export function recordedRuns(points: readonly RecordedPoint[]) {
-  const runs: { day: number; value: number }[][] = [];
-  let run: { day: number; value: number }[] = [];
-  for (const point of points) {
-    if (point.value === null || !Number.isFinite(point.value)) {
-      if (run.length) runs.push(run);
-      run = [];
-    } else run.push({ day: point.day, value: point.value });
-  }
-  if (run.length) runs.push(run);
-  return runs;
 }
 
 const samples: Record<RecordedHistoryProps["preset"], readonly RecordedPoint[]> = {
@@ -50,31 +35,8 @@ const samples: Record<RecordedHistoryProps["preset"], readonly RecordedPoint[]> 
 /** Generic recorded-data recipe; no game simulation or persistence belongs here. */
 export function RecordedHistory({ preset, width }: RecordedHistoryProps) {
   const points = samples[preset];
-  const definition = useMemo(
-    () =>
-      defineChart({
-        marks: recordedRuns(points).map((run) =>
-          lineY(run, { x: "day", y: "value", points: true }),
-        ),
-        scales: {
-          x: {
-            scale: scaleLinear,
-            axis: {
-              label: "Recorded day",
-              ticks: { values: points.map((p) => p.day), format: (day: number) => `Day ${day}` },
-            },
-          },
-          y: { scale: scaleLinear, nice: true, grid: true, axis: { label: "Units per day" } },
-        },
-        focus: "group-x",
-        tooltip: {
-          use: tooltip,
-          items: [
-            { field: "day", label: "Recorded day" },
-            { field: "value", label: "Units per day" },
-          ],
-        },
-      }),
+  const plotPoints = useMemo(
+    () => points.map((p) => ({ ...p, label: `Day ${p.day}`, series: "Net output" })),
     [points],
   );
   return (
@@ -85,11 +47,7 @@ export function RecordedHistory({ preset, width }: RecordedHistoryProps) {
           caption="Synthetic observations · units per day. Missing means unrecorded, not zero. Use arrow keys on the chart; exact values follow."
         >
           {points.length ? (
-            <Chart
-              definition={definition}
-              height={200}
-              ariaLabel="Recorded net output in units per day. Exact observations follow."
-            />
+            <ExamplePlot points={plotPoints} title="Recorded net output" unit="units per day" />
           ) : (
             <p>No observations recorded.</p>
           )}

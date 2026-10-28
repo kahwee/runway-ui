@@ -1,3 +1,4 @@
+import { mountExamplePlot } from "./charts/components.tsx";
 import { createInventory } from "../behaviors/inventory.ts";
 import { bindGamepad, bindNavigation } from "../behaviors/navigation.ts";
 
@@ -11,6 +12,7 @@ let cycle = 1,
   history = [{ cycle, oxygen }],
   finished = false;
 const actions = bindNavigation($("#colony-actions"), { selector: "button", columns: 3 });
+let oxygenPlot: ReturnType<typeof mountExamplePlot> | undefined;
 function render(message?: string) {
   for (const [id, value] of Object.entries({ oxygen, food, power, output }))
     $(`#${id}`).textContent = value;
@@ -23,20 +25,25 @@ function render(message?: string) {
     ...history.slice(-6).map((point) => {
       const tr = document.createElement("tr"),
         th = document.createElement("th"),
-        td = document.createElement("td"),
-        bar = document.createElement("span"),
         value = document.createElement("td");
       th.scope = "row";
       th.textContent = String(point.cycle);
-      bar.className = "rw-chart__plot";
-      bar.style.setProperty("--rw-value", `${Math.min(100, point.oxygen / 3)}%`);
-      bar.setAttribute("aria-hidden", "true");
-      td.append(bar);
       value.textContent = String(point.oxygen);
-      tr.append(th, td, value);
+      tr.append(th, value);
       return tr;
     }),
   );
+  const plotOptions = {
+    title: "Oxygen reserves",
+    unit: "units",
+    minimum: 0,
+    maximum: 300,
+    points: history
+      .slice(-6)
+      .map((p) => ({ day: p.cycle, label: `Cycle ${p.cycle}`, value: p.oxygen, series: "Oxygen" })),
+  };
+  if (oxygenPlot) oxygenPlot.update(plotOptions);
+  else oxygenPlot = mountExamplePlot($("#oxygen-chart"), plotOptions);
   if (message) $("#outcome").textContent = message;
 }
 $("#next-cycle").addEventListener("click", () => {
@@ -125,3 +132,5 @@ $("#density").addEventListener("change", (event) => {
   $("#selection").textContent =
     `${event.target.selectedOptions[0].textContent} rows. Selection reset; keyboard navigation remains available.`;
 });
+
+addEventListener("pagehide", () => oxygenPlot?.destroy(), { once: true });
