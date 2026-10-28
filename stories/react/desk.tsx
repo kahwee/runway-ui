@@ -46,7 +46,10 @@ export function DeskExample({ title, startingCash, theme }: DeskExampleProps) {
           lineY(history, { x: "day", y: "cash", strokeWidth: 3 }),
         ],
         scales: {
-          x: { scale: scaleLinear, axis: { label: "Day" } },
+          x: {
+            scale: scaleLinear,
+            axis: { label: "Day", ticks: { format: (value: number) => String(Math.round(value)) } },
+          },
           y: { scale: scaleLinear, nice: true, grid: true, axis: { label: "Credits" } },
         },
         tooltip,
@@ -56,7 +59,7 @@ export function DeskExample({ title, startingCash, theme }: DeskExampleProps) {
   const nextDay = () =>
     setHistory((days) => {
       const last = days[days.length - 1];
-      const income = 900 + hired.length * 600;
+      const income = 1500 + hired.length * 900;
       return [...days, { day: last.day + 1, cash: last.cash + income - 400 }];
     });
   return (

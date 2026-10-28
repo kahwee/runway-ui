@@ -4,7 +4,7 @@ import "../index.css";
 import "../styles/native.css";
 import "./preview.css";
 export default {
-  initialGlobals: { theme: "studio", density: "comfortable", depth: "raised", skin: "classic" },
+  initialGlobals: { theme: "cozy", density: "comfortable", depth: "raised", skin: "classic" },
   globalTypes: {
     skin: {
       description: "Interface material",
@@ -15,6 +15,7 @@ export default {
       toolbar: {
         icon: "paintbrush",
         items: [
+          { value: "cozy", title: "Cozy / Sweet sim" },
           { value: "studio", title: "Studio / Light" },
           { value: "orbital", title: "Orbital / Dark" },
           { value: "midnight", title: "Midnight / Black" },
@@ -50,6 +51,7 @@ export default {
       storySort: {
         order: [
           "Start here",
+          "React",
           "Foundations",
           "Charts",
           "Game patterns",
