@@ -36,8 +36,11 @@ content +=
   "See [chart contracts](CHARTS.md), [field semantics](FIELDS.md), [interaction contracts](INTERACTIONS.md) and [source ownership](MODULES.md) for the complete APIs. These fixtures cover the listed component families; they are not exhaustive coverage of every component variant.\n";
 // Use the repository formatter so generation and lint agree on copyable HTML.
 const formatted = Bun.spawnSync(
-  [resolve(root, "node_modules/.bin/biome"), "format", "--stdin-file-path=docs/DEPENDENCIES.md"],
-  { cwd: root, stdin: new TextEncoder().encode(content) },
+  [process.execPath, "fmt", "--stdin-filepath=docs/DEPENDENCIES.md"],
+  {
+    cwd: root,
+    stdin: new TextEncoder().encode(content),
+  },
 );
 if (formatted.exitCode !== 0) throw new Error(new TextDecoder().decode(formatted.stderr));
 content = new TextDecoder().decode(formatted.stdout);

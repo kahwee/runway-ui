@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Behavior contracts · Runway UI</title>
-    <link rel="stylesheet" href="../dist/runway-ui.css">
+    <link rel="stylesheet" href="../dist/runway-ui.css" />
   </head>
   <body class="rw-ui">
     <main class="rw-panel">
@@ -12,18 +12,18 @@
       <p id="result" role="status">Running…</p>
     </main>
     <script type="module">
-    import { runBehaviorContracts } from "./browser-contracts.js";
+      import { runBehaviorContracts } from "./browser-contracts.js";
 
-    const result = document.querySelector("#result");
-    try {
-      const receipt = await runBehaviorContracts();
-      result.textContent = `${receipt.modules} modules passed · ${receipt.browser}`;
-      result.dataset.result = "passed";
-    } catch (error) {
-      result.textContent = String(error);
-      result.dataset.result = "failed";
-      throw error;
-    }
+      const result = document.querySelector("#result");
+      try {
+        const receipt = await runBehaviorContracts();
+        result.textContent = `${receipt.modules} modules passed · ${receipt.browser}`;
+        result.dataset.result = "passed";
+      } catch (error) {
+        result.textContent = String(error);
+        result.dataset.result = "failed";
+        throw error;
+      }
     </script>
   </body>
 </html>

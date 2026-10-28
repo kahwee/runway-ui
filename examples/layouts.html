@@ -1,61 +1,61 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Shared tracks · Runway UI</title>
-    <link rel="stylesheet" href="../dist/runway-ui.css">
+    <link rel="stylesheet" href="../dist/runway-ui.css" />
     <style>
-    body {
-      margin: 0;
-      background: var(--rw-bg);
-      font: 14px / 1.6 var(--rw-font);
-    }
-    main {
-      max-inline-size: 1180px;
-      margin-inline: auto;
-      padding: 36px;
-    }
-    h1 {
-      font: 750 40px / 1.1 var(--rw-display-font);
-      text-wrap: balance;
-      letter-spacing: -0.04em;
-      margin-block: 12px;
-    }
-    h2 {
-      font: 650 24px var(--rw-display-font);
-      margin-block: 28px 16px;
-    }
-    p {
-      margin-block: 0 14px;
-    }
-    .rw-form-grid {
-      --rw-form-columns: 3;
-    }
-    .rw-form-grid .rw-field {
-      padding-block: 8px;
-    }
-    .rw-stat-grid {
-      margin-block: 24px;
-    }
-    .rw-disclosure {
-      margin-block: 28px;
-    }
-    .unsupported {
-      display: none;
-    }
-    @media (width < 1100px), (height < 640px) {
+      body {
+        margin: 0;
+        background: var(--rw-bg);
+        font: 14px / 1.6 var(--rw-font);
+      }
       main {
-        display: none;
+        max-inline-size: 1180px;
+        margin-inline: auto;
+        padding: 36px;
+      }
+      h1 {
+        font: 750 40px / 1.1 var(--rw-display-font);
+        text-wrap: balance;
+        letter-spacing: -0.04em;
+        margin-block: 12px;
+      }
+      h2 {
+        font: 650 24px var(--rw-display-font);
+        margin-block: 28px 16px;
+      }
+      p {
+        margin-block: 0 14px;
+      }
+      .rw-form-grid {
+        --rw-form-columns: 3;
+      }
+      .rw-form-grid .rw-field {
+        padding-block: 8px;
+      }
+      .rw-stat-grid {
+        margin-block: 24px;
+      }
+      .rw-disclosure {
+        margin-block: 28px;
       }
       .unsupported {
-        display: block;
-        padding: 40px;
+        display: none;
       }
-    }
-    a {
-      color: var(--rw-accent);
-    }
+      @media (width < 1100px), (height < 640px) {
+        main {
+          display: none;
+        }
+        .unsupported {
+          display: block;
+          padding: 40px;
+        }
+      }
+      a {
+        color: var(--rw-accent);
+      }
     </style>
   </head>
   <body class="rw-ui">
@@ -65,8 +65,8 @@
     </section>
     <main class="rw-layout">
       <a href="../docs/"
-        ><span class="rw-icon" data-icon="arrow-left" aria-hidden="true"></span>
-        Runway UI documentation</a
+        ><span class="rw-icon" data-icon="arrow-left" aria-hidden="true"></span> Runway UI
+        documentation</a
       ><span class="rw-kicker"> SHARED TRACKS · ZERO LAYOUT JAVASCRIPT</span>
       <h1>Everything in its slightly peculiar place.</h1>
       <p class="rw-muted">
@@ -130,15 +130,15 @@
           <label for="department">Department</label
           ><select class="rw-input" id="department">
             <option>Research & improbable inventions</option>
-            <option>Operations & tea logistics</option>
-          </select><small>A comfortable arrow gutter comes included.</small>
+            <option>Operations & tea logistics</option></select
+          ><small>A comfortable arrow gutter comes included.</small>
         </div>
         <div class="rw-field">
           <label for="clipboard"
             >The person responsible for keeping the excellent clipboard somewhere sensible</label
           >
           <div class="rw-input-group">
-            <input class="rw-input" id="clipboard" value="The clipboard committee">
+            <input class="rw-input" id="clipboard" value="The clipboard committee" />
             <button type="button" class="rw-button">Choose person</button>
           </div>
           <small>Someone needs to take the minutes. The clipboard is very persuasive.</small>
@@ -147,8 +147,8 @@
           <label for="priority">Priority</label
           ><select class="rw-input" id="priority">
             <option>Proceed with cheerful caution</option>
-            <option>After tea</option>
-          </select><small>The controls begin at the same position, even when a label wraps.</small>
+            <option>After tea</option></select
+          ><small>The controls begin at the same position, even when a label wraps.</small>
         </div>
       </form>
       <h2>Dossiers share body and action columns.</h2>
@@ -195,7 +195,7 @@
           width="960"
           height="640"
           alt=""
-        >
+        />
       </section>
       <p><a href="studio.html">Explore paper surfaces, native selects and pace buttons →</a></p>
       <details class="rw-disclosure">
@@ -212,8 +212,8 @@
         Runway UI · MIT ·
         <a href="../storybook/?path=/story/foundations-subgrid-layouts--playground"
           >Explore the layout arguments
-          <span class="rw-icon" data-icon="arrow-right" aria-hidden="true"></span></a
-        >
+          <span class="rw-icon" data-icon="arrow-right" aria-hidden="true"></span
+        ></a>
       </footer>
     </main>
   </body>

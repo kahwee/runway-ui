@@ -1,102 +1,102 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>The clipboard club · Runway UI</title>
-    <link rel="stylesheet" href="../dist/runway-ui.css">
+    <link rel="stylesheet" href="../dist/runway-ui.css" />
     <style>
-    body {
-      margin: 0;
-      background: var(--rw-bg);
-      font-size: 15px;
-      line-height: 1.6;
-    }
-    .workshop {
-      max-width: 1160px;
-      margin: 50px auto;
-      padding: 0 32px;
-    }
-    h1 {
-      font: 750 46px / 1.1 var(--rw-display-font);
-      letter-spacing: -0.045em;
-      max-width: 700px;
-      margin: 14px 0;
-    }
-    header > p {
-      max-width: 700px;
-    }
-    .samples {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 24px;
-      margin: 30px 0;
-    }
-    .rw-panel {
-      container-type: inline-size;
-    }
-    .fields {
-      display: grid;
-      gap: 18px;
-    }
-    .fields > label {
-      display: grid;
-      gap: 7px;
-      font-weight: 600;
-    }
-    .fields small {
-      font-weight: 400;
-    }
-    .rw-panel__header {
-      margin-bottom: 22px;
-    }
-    .rw-panel__header small {
-      font-size: 28px;
-    }
-    .actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-    }
-    select,
-    input {
-      width: 100%;
-    }
-    .caption {
-      font-size: 12px;
-      color: var(--rw-muted);
-    }
-    .note {
-      border-inline-start: 4px solid var(--rw-gold);
-      padding-inline-start: 16px;
-      margin-block: 22px;
-    }
-    .rw-grid {
-      --rw-columns: 2;
-    }
-    @container (width < 400px) {
-      .rw-grid {
-        --rw-columns: 1;
+      body {
+        margin: 0;
+        background: var(--rw-bg);
+        font-size: 15px;
+        line-height: 1.6;
       }
-    }
-    .unsupported {
-      display: none;
-    }
-    @media (width < 1100px), (height < 640px) {
       .workshop {
-        display: none;
+        max-width: 1160px;
+        margin: 50px auto;
+        padding: 0 32px;
+      }
+      h1 {
+        font: 750 46px / 1.1 var(--rw-display-font);
+        letter-spacing: -0.045em;
+        max-width: 700px;
+        margin: 14px 0;
+      }
+      header > p {
+        max-width: 700px;
+      }
+      .samples {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 24px;
+        margin: 30px 0;
+      }
+      .rw-panel {
+        container-type: inline-size;
+      }
+      .fields {
+        display: grid;
+        gap: 18px;
+      }
+      .fields > label {
+        display: grid;
+        gap: 7px;
+        font-weight: 600;
+      }
+      .fields small {
+        font-weight: 400;
+      }
+      .rw-panel__header {
+        margin-bottom: 22px;
+      }
+      .rw-panel__header small {
+        font-size: 28px;
+      }
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+      select,
+      input {
+        width: 100%;
+      }
+      .caption {
+        font-size: 12px;
+        color: var(--rw-muted);
+      }
+      .note {
+        border-inline-start: 4px solid var(--rw-gold);
+        padding-inline-start: 16px;
+        margin-block: 22px;
+      }
+      .rw-grid {
+        --rw-columns: 2;
+      }
+      @container (width < 400px) {
+        .rw-grid {
+          --rw-columns: 1;
+        }
       }
       .unsupported {
-        display: block;
-        padding: 40px;
+        display: none;
       }
-    }
-    @media (forced-colors: active) {
-      .note {
-        border-color: CanvasText;
+      @media (width < 1100px), (height < 640px) {
+        .workshop {
+          display: none;
+        }
+        .unsupported {
+          display: block;
+          padding: 40px;
+        }
       }
-    }
+      @media (forced-colors: active) {
+        .note {
+          border-color: CanvasText;
+        }
+      }
     </style>
   </head>
   <body class="rw-ui">
@@ -106,8 +106,8 @@
     </section>
     <main class="workshop">
       <a href="../docs/" class="rw-muted"
-        ><span class="rw-icon" data-icon="arrow-left" aria-hidden="true"></span>
-        Runway UI documentation</a
+        ><span class="rw-icon" data-icon="arrow-left" aria-hidden="true"></span> Runway UI
+        documentation</a
       >
       <header>
         <span class="rw-kicker">THE CLIPBOARD CLUB · DEFAULT STUDIO STYLE</span>
@@ -118,7 +118,7 @@
         </p>
       </header>
       <div class="samples">
-        <form class="rw-panel" onsubmit="return false">
+        <form class="rw-panel" onsubmit="return false;">
           <div class="rw-panel__header">
             <h2 class="rw-panel__title">A well-organized adventure</h2>
             <span class="rw-badge">Mostly under control</span>
@@ -128,8 +128,8 @@
               >Who gets the good clipboard?<select class="rw-input" id="department">
                 <option>Research & improbable inventions</option>
                 <option>Operations & tea logistics</option>
-                <option>Accounts & biscuit procurement</option>
-              </select><small class="rw-muted"
+                <option>Accounts & biscuit procurement</option></select
+              ><small class="rw-muted"
                 >The arrow has a 16px inset and its own text gutter.</small
               ></label
             >
@@ -138,8 +138,7 @@
                 >Project name<input
                   class="rw-input"
                   id="name"
-                  value="The grand biscuit initiative"
-                ></label
+                  value="The grand biscuit initiative" /></label
               ><label for="priority"
                 >Native picker<select class="rw-input" id="priority">
                   <option>Proceed with cheerful caution</option>
@@ -165,8 +164,8 @@
           </p>
           <div class="actions">
             <button class="rw-button" data-variant="primary" type="submit">
-              Approve the biscuits
-            </button><button class="rw-button" type="reset" data-variant="secondary">
+              Approve the biscuits</button
+            ><button class="rw-button" type="reset" data-variant="secondary">
               Back to the drawing board
             </button>
           </div>
@@ -189,8 +188,8 @@
                 aria-describedby="invalid-hint"
               >
                 <option>Select a destination</option>
-                <option>The nearest good idea</option>
-              </select><small class="rw-muted" id="invalid-hint"
+                <option>The nearest good idea</option></select
+              ><small class="rw-muted" id="invalid-hint"
                 >Invalid state stays explicit, with room for the arrow.</small
               ></label
             ><label for="rtl" dir="rtl"
@@ -221,8 +220,8 @@
         Runway UI · MIT · zero runtime dependencies ·
         <a href="../storybook/?path=/story/foundations-controls--select"
           >Explore select arguments in Storybook
-          <span class="rw-icon" data-icon="arrow-right" aria-hidden="true"></span></a
-        >
+          <span class="rw-icon" data-icon="arrow-right" aria-hidden="true"></span
+        ></a>
       </footer>
     </main>
   </body>

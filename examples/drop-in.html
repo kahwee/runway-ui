@@ -1,55 +1,55 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Opt-in native form skin</title>
-    <link rel="stylesheet" href="../index.css">
-    <link rel="stylesheet" href="../styles/native.css">
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="../styles/native.css" />
     <style>
-    body {
-      margin: 0;
-      background: #e9e7df;
-      font: 14px / 1.6 system-ui;
-    }
-    main {
-      max-width: 1000px;
-      margin: 60px auto;
-      padding: 24px;
-    }
-    .examples {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-    }
-    .examples > section {
-      padding: 25px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-    }
-    form {
-      display: grid;
-      gap: 15px;
-    }
-    label {
-      display: grid;
-      gap: 5px;
-    }
-    section[data-theme] {
-      background: var(--rw-surface);
-    }
-    .notice {
-      display: none;
-    }
-    @media (width < 1100px), (height < 640px) {
+      body {
+        margin: 0;
+        background: #e9e7df;
+        font: 14px / 1.6 system-ui;
+      }
       main {
-        display: none;
+        max-width: 1000px;
+        margin: 60px auto;
+        padding: 24px;
+      }
+      .examples {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+      .examples > section {
+        padding: 25px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+      }
+      form {
+        display: grid;
+        gap: 15px;
+      }
+      label {
+        display: grid;
+        gap: 5px;
+      }
+      section[data-theme] {
+        background: var(--rw-surface);
       }
       .notice {
-        display: block;
-        padding: 50px;
+        display: none;
       }
-    }
+      @media (width < 1100px), (height < 640px) {
+        main {
+          display: none;
+        }
+        .notice {
+          display: block;
+          padding: 50px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -65,7 +65,7 @@
         <section>
           <h2>Host controls</h2>
           <form method="get">
-            <label>Colony name<input name="host-name" value="Waystation"></label
+            <label>Colony name<input name="host-name" value="Waystation" /></label
             ><label
               >Production<select name="host-output">
                 <option>Balanced</option>
@@ -78,7 +78,7 @@
         <section class="rw-ui rw-native" data-theme="orbital">
           <h2>Library skin</h2>
           <form method="get">
-            <label>Colony name<input name="name" value="Waystation"></label
+            <label>Colony name<input name="name" value="Waystation" /></label
             ><label
               >Production<select name="output">
                 <option>Balanced</option>
@@ -92,8 +92,8 @@
       <p>
         <a href="colony.html"
           >Open the simulation example
-          <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></a
-        >
+          <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span
+        ></a>
       </p>
     </main>
   </body>

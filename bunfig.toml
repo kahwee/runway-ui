@@ -1,3 +1,14 @@
 [install]
-# Preserve the existing exact-version release-age exceptions.
-minimumReleaseAgeExcludes = ["@biomejs/biome@2.6.2", "@biomejs/cli-android-arm64@2.6.2", "@biomejs/cli-android-x64@2.6.2", "@biomejs/cli-darwin-arm64@2.6.2", "@biomejs/cli-darwin-x64@2.6.2", "@biomejs/cli-linux-arm64-musl@2.6.2", "@biomejs/cli-linux-arm64@2.6.2", "@biomejs/cli-linux-x64-musl@2.6.2", "@biomejs/cli-linux-x64@2.6.2", "@biomejs/cli-win32-arm64@2.6.2", "@biomejs/cli-win32-x64@2.6.2", "vite@8.3.5"]
+# Preserve the existing Vite release-age exception; no formatter packages remain.
+minimumReleaseAgeExcludes = ["vite@8.3.5"]
+
+[fmt]
+printWidth = 100
+tabWidth = 2
+useTabs = false
+semi = true
+singleQuote = false
+trailingComma = "all"
+# Generated artifacts have their own build/check-generated verification.
+# Markdown and workflow files were outside the previous source formatter scope.
+ignorePatterns = ["dist/", "styles/icons.css", "behaviors/*.d.ts", "react/*.d.ts", "bun.lock", "**/*.md", "**/*.yml", "**/*.yaml", "**/*.toml"]

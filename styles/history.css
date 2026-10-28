@@ -106,8 +106,7 @@
     pointer-events: none;
     inset-inline: 0;
     inset-block-start: calc(
-      var(--rw-chart-height, 180px) *
-      (1 - var(--rw-target, 0) / var(--rw-chart-max, 100))
+      var(--rw-chart-height, 180px) * (1 - var(--rw-target, 0) / var(--rw-chart-max, 100))
     );
     border-block-start: 1px dashed var(--rw-gold);
     & > span {

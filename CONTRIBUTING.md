@@ -35,11 +35,21 @@ expected to fail before those generated changes are committed. See
 
 See [tooling and measurement limits](docs/TOOLING.md) for runtime compatibility and the migration checks.
 
-## Biome and Bun
+## Native Bun checks
 
-The `.bun-version` and `packageManager` fields pin Bun; install that version before running the frozen-lockfile setup above. Use `bun run check`, `bun run check-fix`, `bun run format` and `bun run lint`. Biome is a development dependency only. Generated CSS, generated icon data, Storybook output and the static site are excluded; rebuild them from formatted sources.
+The `.bun-version` and `packageManager` fields pin Bun 1.4.4. Install with
+`bun install --frozen-lockfile`. Use `bun lint` for module-boundary validation and
+native `bun fmt --check`, and `bun check` for those checks plus generated
+declaration verification and native behavior/consumer type checks. Bun does not
+provide a built-in general-purpose lint command: `lint` is this project's script.
+Use `bun fmt` or `bun run check-fix` to format authored source.
 
-The recommended rule preset remains enabled. The configuration allows intentional cascade specificity and essential `!important` visibility/motion guards. Narrow overrides preserve the existing ARIA table/grid demonstrations and the newer `selectedcontent` selector, which Biome does not yet recognize. List roles remain explicit where CSS marker removal otherwise affects list semantics. These exceptions do not replace browser or accessibility review. HTML formatting uses Biome's experimental full-document support.
+Internal type checks use `bun check --no-script` so they do not recursively call
+the project's `check` script. Declaration emission still uses the TypeScript
+compiler; Bun's native checker does not emit declaration files. Biome is not used.
+Generated CSS, icon data and declarations are verified by their owning builders,
+not reformatted in place. Structural/type/format checks do not replace browser
+or accessibility review.
 
 ## Repository layout
 

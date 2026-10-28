@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Runway UI — documentation & workbench</title>
-    <link rel="stylesheet" href="../dist/runway-ui.css">
-    <link rel="stylesheet" href="docs.css">
+    <link rel="stylesheet" href="../dist/runway-ui.css" />
+    <link rel="stylesheet" href="docs.css" />
   </head>
   <body class="rw-ui" data-theme="studio">
     <section class="unsupported">
@@ -23,7 +23,7 @@
           type="search"
           placeholder="Button, inventory, dialog…"
           aria-describedby="result-count"
-        ><small class="rw-muted" id="result-count" role="status"></small>
+        /><small class="rw-muted" id="result-count" role="status"></small>
         <nav aria-label="Documentation">
           <div class="nav-group">
             <h2>Start here</h2>
@@ -142,8 +142,8 @@
                     <option value="sm">Small</option>
                     <option value="lg">Large</option>
                   </select></label
-                ><label class="check"><input type="checkbox" id="disabled"> Disabled</label
-                ><label class="check"><input type="checkbox" id="block"> Full width</label>
+                ><label class="check"><input type="checkbox" id="disabled" /> Disabled</label
+                ><label class="check"><input type="checkbox" id="block" /> Full width</label>
               </fieldset>
               <fieldset>
                 <legend>Surface & policy</legend>
@@ -153,8 +153,7 @@
                     <option value="flat">Flat</option>
                   </select></label
                 ><label class="check"
-                  ><input type="checkbox" id="locked">
-                  Require an explicit dialog decision</label
+                  ><input type="checkbox" id="locked" /> Require an explicit dialog decision</label
                 >
               </fieldset>
               <button type="reset" class="rw-button" data-variant="secondary">
@@ -181,7 +180,7 @@
                     id="preview-name"
                     value="Northern survey"
                     aria-describedby="preview-hint"
-                  ><small id="preview-hint" class="rw-muted"
+                  /><small id="preview-hint" class="rw-muted"
                     >Input state is independent of action state.</small
                   >
                   <div class="rw-meter">
@@ -194,7 +193,7 @@
                       aria-valuemin="0"
                       aria-valuemax="100"
                     >
-                      <div class="rw-meter__fill" style="--rw-value:68%"></div>
+                      <div class="rw-meter__fill" style="--rw-value: 68%"></div>
                     </div>
                   </div>
                   <div>
@@ -215,8 +214,8 @@
                       data-variant="secondary"
                       id="open-dialog"
                     >
-                      Preview dialog
-                    </button><small class="rw-muted" id="policy-description"
+                      Preview dialog</button
+                    ><small class="rw-muted" id="policy-description"
                       >Escape and backdrop can dismiss.</small
                     >
                   </div>
@@ -283,8 +282,8 @@
             <p>
               <a href="THEMING.md"
                 >Complete token and precedence guide
-                <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></a
-              >
+                <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span
+              ></a>
             </p>
           </div>
         </section>
@@ -322,8 +321,8 @@
             <p>
               <a href="INTERACTIONS.md"
                 >Detailed behavior contracts
-                <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></a
-              >
+                <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span
+              ></a>
             </p>
           </div>
         </section>
@@ -346,18 +345,18 @@
             <p>
               <a href="STABILITY.md"
                 >Compatibility policy and remaining gates
-                <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></a
-              >
+                <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span
+              ></a>
               ·
               <a href="API.md"
                 >JavaScript API reference
-                <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></a
-              >
+                <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span
+              ></a>
               ·
               <a href="CHANGELOG.md"
                 >Local changes
-                <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></a
-              >
+                <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span
+              ></a>
             </p>
           </div>
         </section>
@@ -365,8 +364,8 @@
           Runway UI · MIT · local documentation workbench
           <a href="../"
             >Open composition workshop
-            <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></a
-          >
+            <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span
+          ></a>
         </footer>
       </main>
     </div>
@@ -374,7 +373,7 @@
       <span class="rw-kicker">NATIVE HTML DIALOG</span>
       <h2 id="policy-title">Commit to this expedition?</h2>
       <p id="dialog-description" class="rw-muted">You can dismiss this optional decision.</p>
-      <label><input type="checkbox" id="dialog-lock"> Require an explicit choice</label>
+      <label><input type="checkbox" id="dialog-lock" /> Require an explicit choice</label>
       <form method="dialog" class="rw-row">
         <button type="submit" class="rw-button" value="cancel">Cancel decision</button
         ><button type="submit" class="rw-button" data-variant="primary" value="confirm" autofocus>

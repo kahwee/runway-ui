@@ -7,7 +7,8 @@ including Storybook. The CSS and optional browser behaviors require no runtime
 package dependencies.
 
 ```sh
-bun run check
+bun lint
+bun check
 bun run check-boundaries
 bun run test-boundaries
 bun run test-dialog
@@ -27,8 +28,7 @@ scripts when adding tests. See [Bun's Node compatibility documentation](https://
 The lockfile migration preserves resolved dependency versions and integrity
 hashes for all 242 application dependencies; the 15 obsolete pnpm runtime/platform
 packages are omitted. Only esbuild retains lifecycle-script trust, matching the previous
-configuration. Existing exact-version release-age exceptions are carried into
-`bunfig.toml`; no new exceptions are introduced. Do not broaden dependency trust
+configuration. The existing Vite release-age exception remains in `bunfig.toml`; obsolete Biome exceptions are removed. No new exceptions are introduced. Do not broaden dependency trust
 to repair a failing install.
 
 Generated CSS, icons and declarations remain byte-identical across the migration.
@@ -47,3 +47,19 @@ These measurements cover development tooling, not browser rendering or game
 performance. The first process run was recorded separately; operating-system
 caches were not flushed, and no cold-network installation speed is claimed.
 Re-measure on the same machine and source revision before generalizing the result.
+
+## Native checks and formatting
+
+Bun 1.4.4 is the current stable pin. `bun lint` is a project script combining
+module-boundary validation with native `bun fmt --check`; Bun has no built-in
+general-purpose lint command. `bun check` invokes the project check script,
+including declaration verification and native type checks for the behavior and
+consumer projects. Internal type-check commands use `--no-script` to avoid
+recursing into the project script.
+
+`bun fmt` replaces Biome for authored source and emitted declaration formatting.
+TypeScript remains a development dependency because declaration emission is
+still performed by its compiler; Bun's native checker does not emit declarations.
+The package has no runtime dependencies. Generated CSS, icons and declarations
+are checked separately rather than reformatted in place. This formatter change
+is a one-time formatting migration, not a change to public behavior contracts.

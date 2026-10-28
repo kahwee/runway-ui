@@ -1,83 +1,83 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Little daily things · Runway UI</title>
-    <link rel="stylesheet" href="../dist/runway-ui.css">
+    <link rel="stylesheet" href="../dist/runway-ui.css" />
     <style>
-    body {
-      margin: 0;
-      background: var(--rw-bg);
-      font: 14px / 1.6 var(--rw-font);
-    }
-    main {
-      max-inline-size: 1160px;
-      margin-inline: auto;
-      padding: 48px;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-block-end: 40px;
-    }
-    a {
-      color: var(--rw-accent);
-    }
-    h1 {
-      font: 700 52px / 1.1 var(--rw-display-font);
-      letter-spacing: -0.04em;
-      margin-block: 12px 20px;
-    }
-    h2 {
-      font: 650 24px var(--rw-display-font);
-    }
-    .scene {
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 40px;
-      min-block-size: 230px;
-      align-items: center;
-      padding: 36px;
-    }
-    .scene > img {
-      inline-size: 210px;
-      block-size: 210px;
-      justify-self: center;
-    }
-    .scene p {
-      max-inline-size: 480px;
-      color: var(--rw-muted);
-    }
-    .navigation {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      margin-block: 28px;
-      padding: 12px 18px;
-    }
-    .navigation > small {
-      color: var(--rw-muted);
-      max-inline-size: 160px;
-    }
-    .rw-stat-grid {
-      --rw-stat-columns: 3;
-      margin-block: 24px;
-    }
-    .unsupported {
-      display: none;
-    }
-    @media (width < 1100px), (height < 640px) {
+      body {
+        margin: 0;
+        background: var(--rw-bg);
+        font: 14px / 1.6 var(--rw-font);
+      }
       main {
-        display: none;
+        max-inline-size: 1160px;
+        margin-inline: auto;
+        padding: 48px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-block-end: 40px;
+      }
+      a {
+        color: var(--rw-accent);
+      }
+      h1 {
+        font: 700 52px / 1.1 var(--rw-display-font);
+        letter-spacing: -0.04em;
+        margin-block: 12px 20px;
+      }
+      h2 {
+        font: 650 24px var(--rw-display-font);
+      }
+      .scene {
+        display: grid;
+        grid-template-columns: 1fr 280px;
+        gap: 40px;
+        min-block-size: 230px;
+        align-items: center;
+        padding: 36px;
+      }
+      .scene > img {
+        inline-size: 210px;
+        block-size: 210px;
+        justify-self: center;
+      }
+      .scene p {
+        max-inline-size: 480px;
+        color: var(--rw-muted);
+      }
+      .navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        margin-block: 28px;
+        padding: 12px 18px;
+      }
+      .navigation > small {
+        color: var(--rw-muted);
+        max-inline-size: 160px;
+      }
+      .rw-stat-grid {
+        --rw-stat-columns: 3;
+        margin-block: 24px;
       }
       .unsupported {
-        display: block;
-        padding: 40px;
+        display: none;
       }
-    }
+      @media (width < 1100px), (height < 640px) {
+        main {
+          display: none;
+        }
+        .unsupported {
+          display: block;
+          padding: 40px;
+        }
+      }
     </style>
   </head>
   <body class="rw-ui" data-skin="play">
@@ -101,7 +101,7 @@
           </p>
           <span class="rw-badge" id="view-status">Everything in its own time</span>
         </div>
-        <img id="view-art" src="assets/view-tabs/cottage.svg" alt="" width="210" height="210">
+        <img id="view-art" src="assets/view-tabs/cottage.svg" alt="" width="210" height="210" />
       </section>
       <div class="rw-panel navigation">
         <nav class="rw-view-tabs" aria-label="Daily places">
@@ -112,7 +112,7 @@
               width="48"
               height="48"
               alt=""
-            ><span>Home</span></a
+            /><span>Home</span></a
           ><a class="rw-view-tab" href="#garden" data-view="garden"
             ><img
               class="rw-view-tab__art"
@@ -120,7 +120,7 @@
               width="48"
               height="48"
               alt=""
-            ><span>Garden</span></a
+            /><span>Garden</span></a
           ><a class="rw-view-tab" href="#letters" data-view="letters"
             ><img
               class="rw-view-tab__art"
@@ -128,7 +128,7 @@
               width="48"
               height="48"
               alt=""
-            ><span>Letters</span></a
+            /><span>Letters</span></a
           ><a class="rw-view-tab" href="#pantry" data-view="pantry"
             ><img
               class="rw-view-tab__art"
@@ -136,7 +136,7 @@
               width="48"
               height="48"
               alt=""
-            ><span>Pantry</span></a
+            /><span>Pantry</span></a
           ><a class="rw-view-tab" href="#cloud" data-view="cloud"
             ><img
               class="rw-view-tab__art"
@@ -144,7 +144,7 @@
               width="48"
               height="48"
               alt=""
-            ><span>Weather</span></a
+            /><span>Weather</span></a
           ><a class="rw-view-tab" href="#picnic" data-view="picnic"
             ><img
               class="rw-view-tab__art"
@@ -152,10 +152,10 @@
               width="48"
               height="48"
               alt=""
-            ><span>Picnic</span></a
+            /><span>Picnic</span></a
           >
         </nav>
-        <small>Six little places.<br>One familiar home.</small>
+        <small>Six little places.<br />One familiar home.</small>
       </div>
       <details class="rw-disclosure">
         <summary>Use this navigation in your own interface</summary>

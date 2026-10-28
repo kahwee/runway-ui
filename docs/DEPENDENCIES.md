@@ -27,15 +27,9 @@ import "runway-ui/styles/controls.css";
 
 ```html
 <main class="rw-ui">
-  <div style="display:flex;gap:16px;align-items:center">
-    <button type="button" class="rw-button" aria-pressed="true">
-      Build <kbd class="rw-shortcut">B</kbd>
-    </button>
-    <button type="button" class="rw-button" aria-pressed="false">
-      Inspect <kbd class="rw-shortcut">I</kbd>
-    </button>
-    <button type="button" class="rw-button" disabled>Unavailable</button>
-  </div>
+<div style="display:flex;gap:16px;align-items:center"><button type="button" class="rw-button" aria-pressed="true">Build <kbd class="rw-shortcut">B</kbd></button>
+<button type="button" class="rw-button" aria-pressed="false">Inspect <kbd class="rw-shortcut">I</kbd></button>
+<button type="button" class="rw-button" disabled>Unavailable</button></div>
 </main>
 ```
 
@@ -52,20 +46,7 @@ import "runway-ui/styles/panels.css";
 
 ```html
 <main class="rw-ui">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
-    <section class="rw-panel">
-      <header class="rw-panel__header">
-        <h2 class="rw-panel__title">Raised panel</h2>
-        <span>Overview</span>
-      </header>
-      <p>Independent surface and header.</p>
-      <button type="button" class="rw-button">Control intentionally unstyled</button>
-    </section>
-    <section class="rw-panel" data-elevation="flat">
-      <h2 class="rw-panel__title">Flat panel</h2>
-      <p>No composition dependencies.</p>
-    </section>
-  </div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px"><section class="rw-panel"><header class="rw-panel__header"><h2 class="rw-panel__title">Raised panel</h2><span>Overview</span></header><p>Independent surface and header.</p><button type="button" class="rw-button">Control intentionally unstyled</button></section><section class="rw-panel" data-elevation="flat"><h2 class="rw-panel__title">Flat panel</h2><p>No composition dependencies.</p></section></div>
 </main>
 ```
 
@@ -84,15 +65,9 @@ import "runway-ui/styles/patterns/accessibility.css";
 
 ```html
 <main class="rw-ui">
-  <div class="rw-dock" role="group" aria-label="Workspace actions">
-    <button type="button" class="rw-button" aria-pressed="true">
-      Build <kbd class="rw-shortcut">B</kbd>
-    </button>
-    <button type="button" class="rw-button" aria-pressed="false">
-      Inspect <kbd class="rw-shortcut">I</kbd>
-    </button>
-    <button type="button" class="rw-button" disabled>Unavailable</button>
-  </div>
+<div class="rw-dock" role="group" aria-label="Workspace actions"><button type="button" class="rw-button" aria-pressed="true">Build <kbd class="rw-shortcut">B</kbd></button>
+<button type="button" class="rw-button" aria-pressed="false">Inspect <kbd class="rw-shortcut">I</kbd></button>
+<button type="button" class="rw-button" disabled>Unavailable</button></div>
 </main>
 ```
 
@@ -109,25 +84,12 @@ import "runway-ui/styles/fields.css";
 
 ```html
 <main class="rw-ui">
-  <div style="display:grid;gap:16px;max-inline-size:600px">
-    <label>Workspace name <input class="rw-input" id="workspace-name" value="Northwind"></label
-    ><label
-      >Region
-      <select class="rw-input" id="region">
-        <option>Coast</option>
-        <option>Highlands</option>
-      </select></label
-    ><label>Notes <textarea class="rw-input" rows="2">Ready to begin.</textarea></label
-    ><label
-      >Invalid code
-      <input class="rw-input" aria-invalid="true" aria-describedby="code-error" value="???"></label
-    ><small id="code-error">Use a valid workspace code.</small
-    ><label>Unavailable <input class="rw-input" disabled value="Locked"></label>
-  </div>
+<div style="display:grid;gap:16px;max-inline-size:600px"><label>Workspace name <input class="rw-input" id="workspace-name" value="Northwind"></label><label>Region <select class="rw-input" id="region"><option>Coast</option><option>Highlands</option></select></label><label>Notes <textarea class="rw-input" rows="2">Ready to begin.</textarea></label><label>Invalid code <input class="rw-input" aria-invalid="true" aria-describedby="code-error" value="???"></label><small id="code-error">Use a valid workspace code.</small><label>Unavailable <input class="rw-input" disabled value="Locked"></label></div>
 </main>
 ```
 
 Internal stylesheet imports (already loaded by the entries above):
+
 - [styles/fields/base.css](../styles/fields/base.css)
 - [styles/fields/select-picker.css](../styles/fields/select-picker.css)
 - [styles/fields/select-variants.css](../styles/fields/select-variants.css)
@@ -146,36 +108,12 @@ import "runway-ui/styles/forms.css";
 
 ```html
 <main class="rw-ui">
-  <form style="max-inline-size:650px">
-    <fieldset class="rw-fieldset">
-      <legend>Workspace preferences</legend>
-      <div class="rw-field">
-        <label for="team-name">Team name</label>
-        <input class="rw-input" id="team-name" name="team" required value="Northwind">
-      </div>
-      <label class="rw-toggle"
-        ><input type="checkbox" class="rw-switch" name="alerts" checked role="switch">Enable
-        alerts</label
-      ><label><input type="checkbox" class="rw-check" name="reports" checked> Weekly report</label
-      ><label
-        ><input type="radio" class="rw-check" name="pace" value="steady" checked>
-        Steady pace</label
-      ><label for="capacity">Capacity</label>
-      <input
-        class="rw-range"
-        id="capacity"
-        type="range"
-        min="0"
-        max="100"
-        value="50"
-        style="--rw-fill:50%"
-      >
-    </fieldset>
-  </form>
+<form style="max-inline-size:650px"><fieldset class="rw-fieldset"><legend>Workspace preferences</legend><div class="rw-field"><label for="team-name">Team name</label><input class="rw-input" id="team-name" name="team" required value="Northwind"></div><label class="rw-toggle"><input type="checkbox" class="rw-switch" name="alerts" checked role="switch">Enable alerts</label><label><input type="checkbox" class="rw-check" name="reports" checked> Weekly report</label><label><input type="radio" class="rw-check" name="pace" value="steady" checked> Steady pace</label><label for="capacity">Capacity</label><input class="rw-range" id="capacity" type="range" min="0" max="100" value="50" style="--rw-fill:50%"></fieldset></form>
 </main>
 ```
 
 Internal stylesheet imports (already loaded by the entries above):
+
 - [styles/fields/base.css](../styles/fields/base.css)
 - [styles/fields/select-picker.css](../styles/fields/select-picker.css)
 - [styles/fields/select-variants.css](../styles/fields/select-variants.css)
@@ -198,14 +136,7 @@ import "runway-ui/styles/patterns/view-tabs.css";
 
 ```html
 <main class="rw-ui">
-  <nav class="rw-view-tabs" aria-label="Workspace views">
-    <a class="rw-view-tab" href="#overview" aria-current="page"><span>Overview</span></a
-    ><a class="rw-view-tab" href="#people"><span>People</span></a
-    ><a class="rw-view-tab" href="#projects"><span>Projects</span></a>
-  </nav>
-  <p id="overview">Overview destination</p>
-  <p id="people">People destination</p>
-  <p id="projects">Projects destination</p>
+<nav class="rw-view-tabs" aria-label="Workspace views"><a class="rw-view-tab" href="#overview" aria-current="page"><span>Overview</span></a><a class="rw-view-tab" href="#people"><span>People</span></a><a class="rw-view-tab" href="#projects"><span>Projects</span></a></nav><p id="overview">Overview destination</p><p id="people">People destination</p><p id="projects">Projects destination</p>
 </main>
 ```
 
@@ -223,12 +154,7 @@ import "runway-ui/styles/patterns/section-tabs.css";
 
 ```html
 <main class="rw-ui">
-  <nav class="rw-section-tabs" aria-label="Workspace sections">
-    <a class="rw-button" href="#production">Production</a
-    ><a class="rw-button" href="#reserves">Reserves</a>
-  </nav>
-  <p id="production">Production destination</p>
-  <p id="reserves">Reserves destination</p>
+<nav class="rw-section-tabs" aria-label="Workspace sections"><a class="rw-button" href="#production">Production</a><a class="rw-button" href="#reserves">Reserves</a></nav><p id="production">Production destination</p><p id="reserves">Reserves destination</p>
 </main>
 ```
 
@@ -245,46 +171,7 @@ import "runway-ui/styles/charts.css";
 
 ```html
 <main class="rw-ui">
-  <figure
-    class="rw-figure"
-    style="max-inline-size:650px;--rw-chart-max:100;--rw-chart-height:120px"
-  >
-    <figcaption>Monthly output <small>Units; scale 0–100</small></figcaption>
-    <ol class="rw-columns">
-      <li>
-        <span class="rw-column-track"><i class="rw-column-mark" style="--rw-amount:25"></i></span
-        ><strong>25</strong><span class="rw-category">Jan</span>
-      </li>
-      <li>
-        <span class="rw-column-track"><i class="rw-column-mark" style="--rw-amount:75"></i></span
-        ><strong>75</strong><span class="rw-category">Feb</span>
-      </li>
-    </ol>
-  </figure>
-  <table class="rw-chart" style="max-inline-size:650px;margin-block-start:24px">
-    <caption>
-      Exact output · units
-    </caption>
-    <thead>
-      <tr>
-        <th scope="col">Month</th>
-        <th scope="col">Share of scale</th>
-        <th scope="col">Units</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">Jan</th>
-        <td class="rw-chart__axis"><span class="rw-chart__plot" style="--rw-value:25%"></span></td>
-        <td>25</td>
-      </tr>
-      <tr>
-        <th scope="row">Feb</th>
-        <td class="rw-chart__axis"><span class="rw-chart__plot" style="--rw-value:75%"></span></td>
-        <td>75</td>
-      </tr>
-    </tbody>
-  </table>
+<figure class="rw-figure" style="max-inline-size:650px;--rw-chart-max:100;--rw-chart-height:120px"><figcaption>Monthly output <small>Units; scale 0–100</small></figcaption><ol class="rw-columns"><li><span class="rw-column-track"><i class="rw-column-mark" style="--rw-amount:25"></i></span><strong>25</strong><span class="rw-category">Jan</span></li><li><span class="rw-column-track"><i class="rw-column-mark" style="--rw-amount:75"></i></span><strong>75</strong><span class="rw-category">Feb</span></li></ol></figure><table class="rw-chart" style="max-inline-size:650px;margin-block-start:24px"><caption>Exact output · units</caption><thead><tr><th scope="col">Month</th><th scope="col">Share of scale</th><th scope="col">Units</th></tr></thead><tbody><tr><th scope="row">Jan</th><td class="rw-chart__axis"><span class="rw-chart__plot" style="--rw-value:25%"></span></td><td>25</td></tr><tr><th scope="row">Feb</th><td class="rw-chart__axis"><span class="rw-chart__plot" style="--rw-value:75%"></span></td><td>75</td></tr></tbody></table>
 </main>
 ```
 
@@ -302,17 +189,7 @@ import "runway-ui/styles/dialog.css";
 
 ```html
 <main class="rw-ui">
-  <button class="rw-button" commandfor="isolated-dialog" command="show-modal">Open decision</button>
-  <dialog class="rw-dialog" id="isolated-dialog" aria-labelledby="decision-title">
-    <header class="rw-dialog__header">
-      <h2 class="rw-dialog__title" id="decision-title">Ready to begin?</h2>
-    </header>
-    <div class="rw-dialog__body"><p>Review the expedition before continuing.</p></div>
-    <form method="dialog" class="rw-dialog__footer">
-      <button class="rw-button" value="cancel" autofocus>Cancel</button
-      ><button class="rw-button" value="confirm">Confirm</button>
-    </form>
-  </dialog>
+<button class="rw-button" commandfor="isolated-dialog" command="show-modal">Open decision</button><dialog class="rw-dialog" id="isolated-dialog" aria-labelledby="decision-title"><header class="rw-dialog__header"><h2 class="rw-dialog__title" id="decision-title">Ready to begin?</h2></header><div class="rw-dialog__body"><p>Review the expedition before continuing.</p></div><form method="dialog" class="rw-dialog__footer"><button class="rw-button" value="cancel" autofocus>Cancel</button><button class="rw-button" value="confirm">Confirm</button></form></dialog>
 </main>
 ```
 
@@ -331,14 +208,7 @@ import "runway-ui/styles/disclosure.css";
 
 ```html
 <main class="rw-ui">
-  <details class="rw-disclosure">
-    <summary>Expedition details</summary>
-    <div>
-      <p>Three crew members and one supply crate.</p>
-      <a href="#supplies">Review supplies</a>
-    </div>
-  </details>
-  <p id="supplies">Supplies are ready.</p>
+<details class="rw-disclosure"><summary>Expedition details</summary><div><p>Three crew members and one supply crate.</p><a href="#supplies">Review supplies</a></div></details><p id="supplies">Supplies are ready.</p>
 </main>
 ```
 
@@ -356,10 +226,7 @@ import "runway-ui/styles/patterns/resource.css";
 
 ```html
 <main class="rw-ui">
-  <div class="rw-resource">
-    <span class="rw-resource__icon rw-icon" data-icon="package" aria-hidden="true"></span>
-    <div><strong>2,840</strong><small>Supplies available</small></div>
-  </div>
+<div class="rw-resource"><span class="rw-resource__icon rw-icon" data-icon="package" aria-hidden="true"></span><div><strong>2,840</strong><small>Supplies available</small></div></div>
 </main>
 ```
 
@@ -378,15 +245,7 @@ import "runway-ui/styles/patterns/accessibility.css";
 
 ```html
 <main class="rw-ui">
-  <div class="rw-slots" role="group" aria-label="Equipment">
-    <button type="button" class="rw-slot" aria-pressed="true">
-      <strong>Compass</strong><small>Selected</small>
-    </button><button type="button" class="rw-slot" aria-pressed="false">
-      <strong>Lantern</strong><small>Available</small>
-    </button><button type="button" class="rw-slot" disabled>
-      <strong>Supply pack</strong><small>Unavailable</small>
-    </button>
-  </div>
+<div class="rw-slots" role="group" aria-label="Equipment"><button type="button" class="rw-slot" aria-pressed="true"><strong>Compass</strong><small>Selected</small></button><button type="button" class="rw-slot" aria-pressed="false"><strong>Lantern</strong><small>Available</small></button><button type="button" class="rw-slot" disabled><strong>Supply pack</strong><small>Unavailable</small></button></div>
 </main>
 ```
 

@@ -52,19 +52,19 @@
     --rw-button-border: color-mix(in oklch, var(--rw-danger) 30%, var(--rw-line));
   }
   :where(
-    .rw-button,
-    .rw-native button,
-    .rw-native input[type="submit"],
-    .rw-native input[type="button"]
-  ):hover:not(:disabled) {
+      .rw-button,
+      .rw-native button,
+      .rw-native input[type="submit"],
+      .rw-native input[type="button"]
+    ):hover:not(:disabled) {
     translate: 0 -2px;
   }
   :where(
-    .rw-button,
-    .rw-native button,
-    .rw-native input[type="submit"],
-    .rw-native input[type="button"]
-  ):active:not(:disabled) {
+      .rw-button,
+      .rw-native button,
+      .rw-native input[type="submit"],
+      .rw-native input[type="button"]
+    ):active:not(:disabled) {
     translate: 0 var(--rw-control-depth);
     box-shadow: inset 0 1px 3px color-mix(in oklch, var(--rw-ink) 15%, transparent);
   }

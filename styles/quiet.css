@@ -65,8 +65,7 @@
     font-size: var(--rw-type-caption);
   }
   & .rw-history .rw-columns {
-    background:
-      repeating-linear-gradient(
+    background: repeating-linear-gradient(
         to top,
         color-mix(in oklch, var(--rw-line) 55%, transparent) 0 1px,
         transparent 1px 50%

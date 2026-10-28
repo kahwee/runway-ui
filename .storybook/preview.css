@@ -7,11 +7,11 @@ body {
   padding: 40px;
   background:
     radial-gradient(
-      circle at 1px 1px,
-      color-mix(in oklch, var(--rw-accent) 14%, transparent) 1.5px,
-      transparent 0
-    )
-    0 0 / 22px 22px,
+        circle at 1px 1px,
+        color-mix(in oklch, var(--rw-accent) 14%, transparent) 1.5px,
+        transparent 0
+      )
+      0 0 / 22px 22px,
     var(--rw-bg);
   color: var(--rw-ink);
   font: 14px / 1.6 var(--rw-font);
