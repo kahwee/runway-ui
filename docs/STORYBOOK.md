@@ -2,6 +2,25 @@
 
 [Open the explorer](https://kahwee.github.io/runway-ui/storybook/). It uses Storybook 10's HTML renderer: ordinary HTML/CSS rather than framework component wrappers. Storybook and its manager are development tools, not library runtime dependencies.
 
+## Start with a small win
+
+The welcome canvas offers a three-step tour: build a first panel, explore the six
+themes, then read the implementation guides. Its empty Controls panel stays hidden;
+component playgrounds retain their controls. The manager uses the Studio palette
+and bundled Nunito font.
+
+Open the [Recipe book](../storybook/?path=/story/start-here-recipe-book--playground)
+for a mission card, resource HUD or native dialog. Change the recipe, heading and
+action label in Controls; inspect or copy the current HTML beside the live sample.
+Copy reports success or points to the selectable source when clipboard access is
+unavailable. Local actions explain their preview-only effects. The native dialog
+starts on the safe action, supports Escape and restores focus to its invoker.
+Each recipe links to its matching contract and the dependency guide. The
+Accessibility tab runs axe checks; it complements manual keyboard and visual review.
+
+The responsive workshop links directly to Storybook, first-panel recipes and the
+guides, so visitors can explore the same material on phones and desktops.
+
 ## Fewer stories, useful controls
 
 Each visual playground exposes the values it actually renders. Descriptions, grouped control categories, explicit defaults and conditional fields make those options reviewable. For example, color appears only after enabling custom chart color; a cancel label appears only when a dialog has a cancel action.
@@ -38,13 +57,28 @@ bun install --frozen-lockfile
 bun run storybook
 bun run build-site
 bun run check-docs
+bunx --no-install playwright install chromium
+bun run check-pages
 ```
 
 Story files are grouped by sidebar category under `stories/` (for example, `stories/foundations/` and `stories/game-patterns/`); shared argument metadata and escaping are in `stories/helpers.ts`. Keep default CSF exports as object literals with a statically readable title and tags. Storybook's indexer does not execute metadata factory calls. The helper supplies runtime argument descriptions and defaults inside that object.
 
 The Pages build writes only allowlisted public files to `.site/`, places Storybook under `/storybook/`, and renders Markdown guides to static HTML at build time. `main` pushes deploy through GitHub Actions. Generated output and local evidence are ignored.
 
-Desktop browser observations remain scoped evidence, not cross-browser or accessibility certification.
+`check-docs` validates local links, assets, anchors and Storybook entry routes
+throughout the published HTML. `check-pages` serves the exact `.site` artifact
+under `/runway-ui/` with real 404 responses. It checks phone and desktop layouts,
+WCAG-tagged axe scans, recipe actions and copy feedback, native dialog focus and
+Escape, manager navigation, live Controls, and failed assets/browser errors.
+Screenshots go to `.local/pages-check/`. Pages and pull-request workflows run it
+before publication. To check the live deployment, run:
+
+```sh
+bun run check-pages https://kahwee.github.io/runway-ui/
+```
+
+These Chromium observations remain scoped evidence, not cross-browser or
+accessibility certification.
 
 ## Isolated dependency checks
 

@@ -50,7 +50,12 @@ hand-edited; type and package-export tests check those outputs.
 ## Main and Pages
 
 Push only the reviewed, tested changes and verify the exact commit's Package
-and GitHub Pages workflows. A successful Pages deployment updates the workshop,
+and GitHub Pages workflows. Before publication, run `bun run build-site`,
+`bun run check-docs` and `bun run check-pages`. The browser gate serves the build
+under the real project prefix and checks the public entry points and recipes.
+After deployment, run `bun run check-pages https://kahwee.github.io/runway-ui/`
+to verify the live artifact. See [Storybook checks](STORYBOOK.md).
+A successful Pages deployment updates the workshop,
 docs and Storybook, not the npm registry. Verify the relevant live behavior and
 report the commit and workflow links without claiming package publication.
 

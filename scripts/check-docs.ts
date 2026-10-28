@@ -20,12 +20,14 @@ async function page(path) {
 }
 const failures = [];
 let checked = 0;
-for await (const name of new Bun.Glob("*.html").scan({
-  cwd: resolve(root, "docs"),
+const storyIndex = await Bun.file(resolve(root, "storybook/index.json")).json();
+for await (const name of new Bun.Glob("**/*.html").scan({
+  cwd: root,
   onlyFiles: true,
   dot: true,
 })) {
-  const source = resolve(root, "docs", name);
+  if (name.startsWith("storybook/")) continue;
+  const source = resolve(root, name);
   for (const link of (await page(source)).links) {
     if (/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(link)) continue;
     checked++;
@@ -36,6 +38,12 @@ for await (const name of new Bun.Glob("*.html").scan({
         throw new Error("outside generated site");
       if ((await stat(target)).isDirectory()) target = resolve(target, "index.html");
       await stat(target);
+      if (target === resolve(root, "storybook/index.html") && url.searchParams.has("path")) {
+        const route = url.searchParams.get("path");
+        const match = route.match(/^\/(story|docs)\/(.+)$/);
+        if (!match || !storyIndex.entries[match[2]])
+          throw new Error(`missing Storybook entry ${route}`);
+      }
       if (url.hash && target.endsWith(".html")) {
         const id = decodeURIComponent(url.hash.slice(1));
         if (!(await page(target)).ids.has(id)) throw new Error(`missing anchor ${id}`);
@@ -48,4 +56,4 @@ for await (const name of new Bun.Glob("*.html").scan({
 if (failures.length) {
   console.error(failures.join("\n"));
   process.exitCode = 1;
-} else console.log(`Documentation links passed: ${checked} local links and assets.`);
+} else console.log(`Publication links passed: ${checked} local links and assets.`);

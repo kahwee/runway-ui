@@ -17,6 +17,12 @@ full source tree, with strict public APIs and strict React stories.
   selection and review actions; the previous desktop-only gates are removed.
 - Keep long review content inside the dialog body and improve the optional React
   form surface, select-popup bounds and aligned Base UI selection indicators.
+- Add a guided Storybook welcome and interactive Recipe book with copyable HTML,
+  contract links, editable controls and native dialog keyboard behavior.
+- Link the first-panel recipes from the responsive workshop; align the explorer
+  with Studio and add the Accessibility panel.
+- Gate Pages publication on project-prefix browser, accessibility and interaction
+  checks; validate links and story routes across the entire published site.
 
 - Keep structured dialog actions visible while long bodies scroll, with wider
   narrow-screen content and 44px close targets. Native dismissal and focus remain

@@ -36,6 +36,14 @@ export const Welcome = {
         <a class="rw-panel" href="./?path=/story/game-patterns-systems--objectives" target="_top"><span class="rw-kicker">02 / Game patterns</span><h2>Give systems a home <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></h2><p>Resources, objectives and action docks. Modular pieces that work beautifully together.</p><span class="library-home__pills"><span>Inventory</span><span>Resources</span><span>Navigation</span></span></a>
         <a class="rw-panel" href="./?path=/story/charts-css-plots--columns" target="_top"><span class="rw-kicker">03 / Data & insights</span><h2>Make every number count <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></h2><p>Readable charts and instruments with real labels, explicit scales and exact-data tables.</p><span class="library-home__pills"><span>Charts</span><span>History</span><span>Instruments</span></span></a>
       </nav>
-      <footer class="library-home__footer"><span>One vocabulary. Five themes. Plenty of possibility.</span><span>Change theme, density and depth in the toolbar above.</span></footer>
+      <section class="library-home__guide" aria-labelledby="explorer-guide">
+        <header><p class="rw-kicker">From curiosity to your first screen</p><h2 id="explorer-guide">Take a little tour.</h2><p class="rw-muted">Everything here is real markup. Every example is yours to take apart.</p></header>
+        <ol class="library-home__steps">
+          <li><span aria-hidden="true">01</span><div><h3>Pick a recipe</h3><p>Start with a small, working panel. Copy its HTML and the stylesheet it needs.</p><a href="./?path=/story/start-here-recipe-book--playground" target="_top">Open the recipe book →</a></div></li>
+          <li><span aria-hidden="true">02</span><div><h3>Make it your world</h3><p>Change theme, material, density and depth in the toolbar. The markup stays the same.</p><a href="./?path=/story/start-here-theme-playground--playground" target="_top">Try the theme playground →</a></div></li>
+          <li><span aria-hidden="true">03</span><div><h3>Keep the good details</h3><p>Read the notes, inspect the Code panel, and check states and accessibility before you ship.</p><a href="../docs/README.html" target="_top">Find the right guide →</a></div></li>
+        </ol>
+      </section>
+      <footer class="library-home__footer"><span>One vocabulary. Six themes. Plenty of possibility.</span><span>Change theme, density and depth in the toolbar above.</span></footer>
     </main>`,
 };

@@ -45,12 +45,13 @@ export default {
       source: { type: "dynamic", language: "html", excludeDecorators: true },
     },
     controls: { expanded: true },
+    a11y: { test: "error" },
     options: {
       storySort: {
         order: [
           "Start here",
-          "Charts",
           "Foundations",
+          "Charts",
           "Game patterns",
           "Behaviors",
           "Compositions",

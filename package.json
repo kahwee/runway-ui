@@ -119,7 +119,8 @@
     "build-dependency-map": "bun scripts/build-dependency-map.ts",
     "check-dependency-map": "bun scripts/build-dependency-map.ts --check",
     "build-react-types": "bun scripts/build-react-types.ts",
-    "clean": "bun scripts/clean.ts"
+    "clean": "bun scripts/clean.ts",
+    "check-pages": "bun scripts/check-pages.ts"
   },
   "engines": {
     "node": "^22.18.0 || >=24.11.0",
@@ -131,13 +132,16 @@
     "@fontsource-variable/fredoka": "^5.3.0",
     "@fontsource-variable/nunito": "^5.3.0",
     "@phosphor-icons/core": "^2.1.1",
+    "@storybook/addon-a11y": "10.6.5",
     "@storybook/addon-docs": "10.6.5",
     "@storybook/html-vite": "10.6.5",
     "@types/bun": "1.4.4",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
+    "axe-core": "4.14.0",
     "marked": "18.1.2",
     "parse5": "^8.0.1",
+    "playwright": "1.64.1",
     "postcss": "^8.5.32",
     "react": "19.3.1",
     "react-dom": "19.3.1",

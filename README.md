@@ -14,6 +14,7 @@ Resource HUDs, production ledgers, economy charts, equipment grids, objectives a
 
 | Explore | What it demonstrates |
 | --- | --- |
+| [Recipe book](https://kahwee.github.io/runway-ui/storybook/?path=/story/start-here-recipe-book--playground) | Editable first components, copyable HTML and interaction contracts |
 | [Paper studio](https://kahwee.github.io/runway-ui/examples/studio.html) | Warm surfaces, illustrated season cover and native controls |
 | [Simulation Observatory](https://kahwee.github.io/runway-ui/examples/observatory.html) | Metrics, history, resource inspection and decisions |
 | [Colony](https://kahwee.github.io/runway-ui/examples/colony.html) | Production and a large virtual inventory |
