@@ -7,11 +7,16 @@ export function trendMarkup(metric, index) {
     previous = metric.values.at(-2);
   const comparable = current !== null && previous !== null;
   const delta = comparable ? current - previous : null;
+  const direction = delta > 0 ? "arrow-up" : delta < 0 ? "arrow-down" : "arrow-right";
   const change =
     delta === null
       ? "Comparison unavailable"
-      : `${delta > 0 ? '<span class="rw-icon" data-icon="arrow-up" aria-hidden="true"></span>' : delta < 0 ? '<span class="rw-icon" data-icon="arrow-down" aria-hidden="true"></span>' : '<span class="rw-icon" data-icon="arrow-right" aria-hidden="true"></span>'} ${number(Math.abs(delta))} ${delta > 0 ? "more" : delta < 0 ? "fewer" : "change"} than previous`;
-  return `<article class="rw-panel rw-trend" data-direction="${delta < 0 ? "down" : "up"}"><div class="rw-trend__label"><span>${e(metric.name)}</span><span class="rw-trend__index" aria-hidden="true">0${index + 1}</span></div><strong class="rw-trend__value">${number(current)} <small class="rw-trend__unit">${e(metric.unit)}</small></strong><small class="rw-trend__change">${e(change)}</small><ol class="rw-spark" aria-hidden="true" style="--rw-chart-max:${metric.max}">${metric.values.map((v) => `<li ${v === null ? "data-missing" : `data-value="${v}" style="--rw-amount:${v}"`}></li>`).join("")}</ol></article>`;
+      : `${number(Math.abs(delta))} ${delta > 0 ? "more" : delta < 0 ? "fewer" : "change"} than previous`;
+  const icon =
+    delta === null
+      ? ""
+      : `<span class="rw-icon" data-icon="${direction}" aria-hidden="true"></span> `;
+  return `<article class="rw-panel rw-trend" data-direction="${delta < 0 ? "down" : "up"}"><div class="rw-trend__label"><span>${e(metric.name)}</span><span class="rw-trend__index" aria-hidden="true">0${index + 1}</span></div><strong class="rw-trend__value">${number(current)} <small class="rw-trend__unit">${e(metric.unit)}</small></strong><small class="rw-trend__change">${icon}${e(change)}</small><ol class="rw-spark" aria-hidden="true" style="--rw-chart-max:${metric.max}">${metric.values.map((v) => `<li ${v === null ? "data-missing" : `data-value="${v}" style="--rw-amount:${v}"`}></li>`).join("")}</ol></article>`;
 }
 export function historyMarkup(data, id) {
   const { a, values, labels, lastObserved } = data;

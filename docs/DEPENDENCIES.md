@@ -290,4 +290,106 @@ import "runway-ui/styles/charts.css";
 
 No internal stylesheet imports.
 
+## Native dialog
+
+dialog.css owns the surface; controls.css styles the buttons. Native showModal(), close() and method="dialog" provide modality and results. Invoker commands require browser support; older hosts can call showModal() from their event handler. Optional runway-ui/dialog adds dismissal policy and requires explicit teardown.
+
+```js
+import "runway-ui/styles/tokens.css";
+import "runway-ui/styles/controls.css";
+import "runway-ui/styles/dialog.css";
+```
+
+```html
+<main class="rw-ui">
+  <button class="rw-button" commandfor="isolated-dialog" command="show-modal">Open decision</button>
+  <dialog class="rw-dialog" id="isolated-dialog" aria-labelledby="decision-title">
+    <header class="rw-dialog__header">
+      <h2 class="rw-dialog__title" id="decision-title">Ready to begin?</h2>
+    </header>
+    <div class="rw-dialog__body"><p>Review the expedition before continuing.</p></div>
+    <form method="dialog" class="rw-dialog__footer">
+      <button class="rw-button" value="cancel" autofocus>Cancel</button
+      ><button class="rw-button" value="confirm">Confirm</button>
+    </form>
+  </dialog>
+</main>
+```
+
+No internal stylesheet imports.
+
+## Native disclosure
+
+disclosure.css supplies the native details surface and motion; icons.css supplies its caret mask. controls.css supplies the shared summary focus ring. Opening and closing require no JavaScript.
+
+```js
+import "runway-ui/styles/tokens.css";
+import "runway-ui/styles/controls.css";
+import "runway-ui/styles/icons.css";
+import "runway-ui/styles/disclosure.css";
+```
+
+```html
+<main class="rw-ui">
+  <details class="rw-disclosure">
+    <summary>Expedition details</summary>
+    <div>
+      <p>Three crew members and one supply crate.</p>
+      <a href="#supplies">Review supplies</a>
+    </div>
+  </details>
+  <p id="supplies">Supplies are ready.</p>
+</main>
+```
+
+No internal stylesheet imports.
+
+## Resource display
+
+resource.css owns the value, label and spacing. Icons are optional; this fixture includes icons.css for the package mark. Values and updates belong to the host; no behavior module is required.
+
+```js
+import "runway-ui/styles/tokens.css";
+import "runway-ui/styles/icons.css";
+import "runway-ui/styles/patterns/resource.css";
+```
+
+```html
+<main class="rw-ui">
+  <div class="rw-resource">
+    <span class="rw-resource__icon rw-icon" data-icon="package" aria-hidden="true"></span>
+    <div><strong>2,840</strong><small>Supplies available</small></div>
+  </div>
+</main>
+```
+
+No internal stylesheet imports.
+
+## Inventory slots
+
+inventory.css supplies slots and selection appearance. controls.css supplies shared focus and disabled rules; accessibility.css supplies reduced-motion rules. Selection is application-owned. Optional runway-ui/inventory provides fixed-height virtual inventories, and runway-ui/navigation supplies roving focus; destroy their handles on unmount.
+
+```js
+import "runway-ui/styles/tokens.css";
+import "runway-ui/styles/controls.css";
+import "runway-ui/styles/patterns/inventory.css";
+import "runway-ui/styles/patterns/accessibility.css";
+```
+
+```html
+<main class="rw-ui">
+  <div class="rw-slots" role="group" aria-label="Equipment">
+    <button type="button" class="rw-slot" aria-pressed="true">
+      <strong>Compass</strong><small>Selected</small>
+    </button><button type="button" class="rw-slot" aria-pressed="false">
+      <strong>Lantern</strong><small>Available</small>
+    </button><button type="button" class="rw-slot" disabled>
+      <strong>Supply pack</strong><small>Unavailable</small>
+    </button>
+  </div>
+</main>
+```
+
+No internal stylesheet imports.
+
 See [chart contracts](CHARTS.md), [field semantics](FIELDS.md), [interaction contracts](INTERACTIONS.md) and [source ownership](MODULES.md) for the complete APIs. These fixtures cover the listed component families; they are not exhaustive coverage of every component variant.

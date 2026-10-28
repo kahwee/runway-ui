@@ -66,6 +66,10 @@ export async function checkIsolatedPanels({ canvasElement }) {
 
 export async function checkIsolatedRecipe({ canvasElement }, key) {
   const selectors = {
+    dialogs: ".rw-dialog",
+    disclosures: ".rw-disclosure",
+    resources: ".rw-resource",
+    inventory: ".rw-slots",
     fields: ".rw-input",
     forms: ".rw-fieldset",
     viewNavigation: ".rw-view-tabs",
@@ -156,6 +160,49 @@ export async function checkIsolatedRecipe({ canvasElement }, key) {
       element("table caption").textContent.includes("units") &&
         doc.querySelectorAll("tbody th[scope='row']").length === 2,
       "exact-data semantics missing",
+    );
+  }
+  if (key === "dialogs") {
+    const dialog = element("dialog");
+    const opener = element("button[commandfor]");
+    opener.focus();
+    dialog.showModal();
+    expect(dialog.matches(":modal"), "native modal did not open");
+    expect(style("dialog").paddingBlockStart === "32px", "dialog surface missing");
+    expect(dialog.contains(doc.activeElement), "modal did not receive focus");
+    element('button[value="confirm"]').click();
+    expect(!dialog.open && dialog.returnValue === "confirm", "native dialog result failed");
+    expect(doc.activeElement === opener, "dialog did not restore focus");
+  } else if (key === "disclosures") {
+    expect(style("summary").display === "flex", "summary recipe missing");
+    expect(style("summary", "::after").maskImage !== "none", "caret icon missing");
+    element("summary").click();
+    expect(element("details").open, "native disclosure did not open");
+    element("summary").click();
+    expect(!element("details").open, "native disclosure did not close");
+  } else if (key === "resources") {
+    expect(style(".rw-resource").display === "flex", "resource layout missing");
+    expect(style("strong").fontSize === "22px", "resource value styling missing");
+    expect(style(".rw-icon").maskImage !== "none", "resource icon missing");
+  } else if (key === "inventory") {
+    expect(style(".rw-slots").display === "grid", "slot grid missing");
+    expect(
+      style('.rw-slot[aria-pressed="true"]').backgroundColor !==
+        style('.rw-slot[aria-pressed="false"]').backgroundColor,
+      "selected slot styling missing",
+    );
+    expect(
+      element(":disabled").disabled && Number(style(":disabled").opacity) < 1,
+      "disabled slot styling missing",
+    );
+    element('.rw-slot[aria-pressed="false"]').focus();
+    expect(
+      doc.activeElement === element('.rw-slot[aria-pressed="false"]'),
+      "slot cannot receive focus",
+    );
+    expect(
+      view.getComputedStyle(doc.activeElement).outlineStyle === "solid",
+      "shared slot focus ring missing",
     );
   }
   frame.dataset.verified = "true";

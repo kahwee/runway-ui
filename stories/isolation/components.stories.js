@@ -32,3 +32,23 @@ export const Charts = {
   render: () => renderRecipe("charts"),
   play: (context) => checkIsolatedRecipe(context, "charts"),
 };
+
+export const Dialogs = {
+  render: () => renderRecipe("dialogs"),
+  play: (context) => checkIsolatedRecipe(context, "dialogs"),
+};
+
+export const Disclosures = {
+  render: () => renderRecipe("disclosures"),
+  play: (context) => checkIsolatedRecipe(context, "disclosures"),
+};
+
+export const Resources = {
+  render: () => renderRecipe("resources"),
+  play: (context) => checkIsolatedRecipe(context, "resources"),
+};
+
+export const Inventory = {
+  render: () => renderRecipe("inventory"),
+  play: (context) => checkIsolatedRecipe(context, "inventory"),
+};
