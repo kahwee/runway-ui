@@ -1,9 +1,12 @@
+/* Composition styling only; reusable recipes remain in styles/. */
 .theme-playground {
   inline-size: 100%;
+  container-type: inline-size;
 }
 .theme-playground .rw-panel {
   display: grid;
-  gap: 22px;
+  gap: 28px;
+  padding: clamp(24px, 5cqi, 40px);
 }
 .story-surface .theme-playground :is(h1, p) {
   margin: 0;
@@ -11,12 +14,52 @@
 }
 .theme-playground .rw-panel__header {
   flex-wrap: wrap;
+  gap: 12px;
+}
+.theme-playground__intro {
+  display: grid;
+  gap: 12px;
+}
+.story-surface .theme-playground h1 {
+  max-inline-size: 18ch;
+  font-size: clamp(28px, 5.8cqi, 38px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+  text-wrap: pretty;
+}
+.theme-playground__intro p {
+  max-inline-size: 48ch;
+  line-height: 1.7;
+}
+.theme-playground__preparation {
+  display: grid;
+  gap: 24px;
+  padding: 24px;
+  border: 1px solid var(--rw-line);
+  border-radius: var(--rw-radius);
+  background: color-mix(in oklch, var(--rw-soft) 35%, var(--rw-surface));
 }
 .theme-playground .rw-resource {
   border: 0;
-  padding-inline: 0;
+  padding: 0;
   min-inline-size: 0;
+  gap: 16px;
   overflow-wrap: anywhere;
+}
+.theme-playground .rw-resource strong {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+.theme-playground .rw-resource small {
+  font-size: 12px;
+  margin-block-start: 6px;
+}
+.theme-playground__resource-icon {
+  flex-shrink: 0;
+  color: var(--rw-accent);
+  font-size: 28px;
 }
 .theme-playground .rw-disclosure > div {
   padding: 0 16px 16px;
@@ -25,18 +68,63 @@
   display: grid;
   gap: 10px;
   color: var(--rw-muted);
+  font-size: 12px;
+}
+.theme-progress > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.theme-progress strong {
+  color: var(--rw-ink);
+  font-variant-numeric: tabular-nums;
 }
 .theme-progress progress {
+  appearance: none;
+  display: block;
   inline-size: 100%;
+  block-size: 6px;
+  border: 0;
+  border-radius: var(--rw-pill);
+  overflow: hidden;
+  background: var(--rw-line);
   accent-color: var(--rw-accent);
+}
+.theme-progress progress::-webkit-progress-bar {
+  background: var(--rw-line);
+}
+.theme-progress progress::-webkit-progress-value {
+  background: var(--rw-accent);
+  border-radius: var(--rw-pill);
+}
+.theme-progress progress::-moz-progress-bar {
+  background: var(--rw-accent);
+  border-radius: var(--rw-pill);
 }
 .theme-playground footer {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 16px;
   align-items: center;
+  padding-block-start: 24px;
+  border-block-start: 1px solid var(--rw-line);
+}
+.theme-playground footer .rw-button {
+  max-inline-size: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 .theme-playground [role="status"] {
+  flex: 1 1 160px;
   color: var(--rw-muted);
   font-size: 12px;
+}
+.theme-playground [role="status"]:empty {
+  display: none;
+}
+@media (forced-colors: active) {
+  .theme-progress progress {
+    appearance: auto;
+  }
 }

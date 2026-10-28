@@ -46,7 +46,33 @@ export const Playground = {
     const root = document.createElement("main");
     root.className = "theme-playground";
     root.style.maxInlineSize = `${bounded(a.width, 320, 960, 640)}px`;
-    root.innerHTML = `<section class="rw-panel" data-elevation="${e(a.elevation)}"><header class="rw-panel__header"><p class="rw-kicker">Expedition planning</p><span class="rw-badge" data-tone="${e(a.tone)}">${e(a.status)}</span></header><h1 class="rw-panel__title">${e(a.title)}</h1><p class="rw-muted">${e(a.description)}</p><div class="rw-resource"><span class="rw-icon" data-icon="package" aria-hidden="true"></span><div><strong>${e(a.resourceValue)}</strong><small>${e(a.resourceLabel)}</small></div></div><label class="theme-progress">Preparation · ${bounded(a.progress, 0, 100, 64)}%<progress max="100" value="${bounded(a.progress, 0, 100, 64)}"></progress></label>${a.showDetails ? '<details class="rw-disclosure"><summary>What happens next?</summary><div><p>Confirmation records the plan in this preview. Your application owns the next step.</p></div></details>' : ""}<footer><button type="button" class="rw-button" data-variant="primary"${a.disabled ? " disabled" : ""}>${e(a.actionLabel)}</button><span role="status" aria-live="polite"></span></footer></section>`;
+    const progress = bounded(a.progress, 0, 100, 64);
+    root.innerHTML = `
+      <section class="rw-panel" data-elevation="${e(a.elevation)}">
+        <header class="rw-panel__header">
+          <p class="rw-kicker">Expedition planning</p>
+          <span class="rw-badge" data-tone="${e(a.tone)}">${e(a.status)}</span>
+        </header>
+        <div class="theme-playground__intro">
+          <h1 class="rw-panel__title">${e(a.title)}</h1>
+          <p class="rw-muted">${e(a.description)}</p>
+        </div>
+        <div class="theme-playground__preparation">
+          <div class="rw-resource">
+            <span class="rw-icon theme-playground__resource-icon" data-icon="package" aria-hidden="true"></span>
+            <div><strong>${e(a.resourceValue)}</strong><small>${e(a.resourceLabel)}</small></div>
+          </div>
+          <label class="theme-progress">
+            <span>Preparation <strong>${progress}%</strong></span>
+            <progress max="100" value="${progress}"></progress>
+          </label>
+        </div>
+        ${a.showDetails ? '<details class="rw-disclosure"><summary>What happens next?</summary><div><p>Review your supplies, confirm the plan, and prepare for departure. Confirmation in this preview stays local.</p></div></details>' : ""}
+        <footer>
+          <span role="status" aria-live="polite"></span>
+          <button type="button" class="rw-button" data-variant="primary"${a.disabled ? " disabled" : ""}>${e(a.actionLabel)}<span class="rw-icon" data-icon="arrow-right" aria-hidden="true"></span></button>
+        </footer>
+      </section>`;
     root.querySelector("button").addEventListener("click", () => {
       root.querySelector('[role="status"]').textContent = "Plan confirmed in this preview.";
     });
