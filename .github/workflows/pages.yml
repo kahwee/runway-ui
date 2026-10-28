@@ -13,17 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version-file: .bun-version
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run build
+      - run: bun install --frozen-lockfile
+      - run: bun run build
       - run: git diff --exit-code -- dist/
-      - run: pnpm run build-storybook
-      - run: node scripts/build-site.mjs
-      - run: pnpm check-docs
+      - run: bun run build-storybook
+      - run: bun scripts/build-site.mjs
+      - run: bun run check-docs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

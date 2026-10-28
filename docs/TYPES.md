@@ -8,10 +8,10 @@ new bundling requirement for consumers.
 ## Build and verification
 
 ```sh
-pnpm build-types
-pnpm check-types
-pnpm test-behaviors
-pnpm build
+bun run build-types
+bun run check-types
+bun run test-behaviors
+bun run build
 ```
 
 `build-types` compiles every behavior with `allowJs`, `checkJs` and `strict`, using
@@ -71,5 +71,5 @@ and [dialog requirements](DIALOG.md).
 For native browser verification, serve the repository root and open
 `tests/browser-contracts.html`. It exercises all nine modules with real DOM controls
 and reports pass/fail. This fixture is local development tooling, excluded from the
-public documentation site and package; the CI behavior job runs Node contracts,
+public documentation site and package; the CI behavior job runs the existing `node:test` contracts under Bun,
 not this browser fixture. Check it at both supported desktop review sizes.

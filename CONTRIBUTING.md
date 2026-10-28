@@ -1,7 +1,7 @@
 # Contributing
 
 Small, focused improvements are welcome. Include the component, expected behavior and an example that demonstrates the change. Keep runtime dependencies at zero and avoid adding a framework requirement.
-- Edit `styles/` and optional `behaviors/`; regenerate `dist/runway-ui.css` with `pnpm run build`.
+- Edit `styles/` and optional `behaviors/`; regenerate `dist/runway-ui.css` with `bun run build`.
 - Give interactive controls accessible names, visible focus and native HTML semantics where possible.
 - Keep `rw-` classes stable, theme through tokens and include teardown for browser behaviors.
 - Check desktop examples at 1440 × 900 and 1366 × 768 for relevant visual changes. Do not hide features to fit a phone layout.
@@ -13,29 +13,31 @@ Contributions are provided under the project's MIT license. There is no separate
 ## Local validation
 
 ```sh
-pnpm install --frozen-lockfile
-pnpm check
-pnpm check-boundaries
-pnpm test-boundaries
-pnpm test-dialog
-pnpm run build
-pnpm run build-site
-pnpm check-docs
-pnpm pack --dry-run
+bun install --frozen-lockfile
+bun run check
+bun run check-boundaries
+bun run test-boundaries
+bun run test-dialog
+bun run build
+bun run build-site
+bun run check-docs
+bun pm pack --dry-run
 ```
 
 `build-site` builds Storybook and the allowlisted static documentation; it does not deploy. Keep generated CSS in sync, check local documentation links, and inspect changed examples at both desktop sizes. Publishing packages, creating releases and changing hosting require an explicit request.
 
 Document new public patterns in the component guides, shared-track example and argument-driven Storybook where applicable. Add capability and degradation notes to [MODERN-CSS.md](docs/MODERN-CSS.md) for picker, chart, disclosure or dialog enhancements. Preserve existing exports and percentage units unless documenting an intentional breaking migration in the changelog. Historical migration notes stay in the changelog; current recipes use `rw-` throughout.
 
-After committing intended source and generated CSS changes, run `pnpm check-generated`.
+After committing intended source and generated CSS changes, run `bun run check-generated`.
 It rebuilds both the icon CSS and bundle and compares them to `HEAD`, so it is
 expected to fail before those generated changes are committed. See
 [source ownership and CI](docs/MODULES.md) and the [audit record](docs/AUDIT.md).
 
-## Biome and pnpm
+See [tooling and measurement limits](docs/TOOLING.md) for runtime compatibility and the migration checks.
 
-The `packageManager` field pins pnpm; install that version before running the frozen-lockfile setup above. Use `pnpm check`, `pnpm check-fix`, `pnpm format` and `pnpm lint`. Biome is a development dependency only. Generated CSS, generated icon data, Storybook output and the static site are excluded; rebuild them from formatted sources.
+## Biome and Bun
+
+The `.bun-version` and `packageManager` fields pin Bun; install that version before running the frozen-lockfile setup above. Use `bun run check`, `bun run check-fix`, `bun run format` and `bun run lint`. Biome is a development dependency only. Generated CSS, generated icon data, Storybook output and the static site are excluded; rebuild them from formatted sources.
 
 The recommended rule preset remains enabled. The configuration allows intentional cascade specificity and essential `!important` visibility/motion guards. Narrow overrides preserve the existing ARIA table/grid demonstrations and the newer `selectedcontent` selector, which Biome does not yet recognize. List roles remain explicit where CSS marker removal otherwise affects list semantics. These exceptions do not replace browser or accessibility review. HTML formatting uses Biome's experimental full-document support.
 
@@ -50,4 +52,4 @@ The recommended rule preset remains enabled. The configuration allows intentiona
 
 ## Behavior types
 
-Author public types in the owning JavaScript JSDoc, then run `pnpm build-types`, `pnpm check-types` and `pnpm test-behaviors`. Declarations are generated, formatted and committed. Add positive and expected-error consumer examples when changing public contracts. `pnpm check-generated` checks declarations as well as CSS after commit. See [type generation](docs/TYPES.md).
+Author public types in the owning JavaScript JSDoc, then run `bun run build-types`, `bun run check-types` and `bun run test-behaviors`. Declarations are generated, formatted and committed. Add positive and expected-error consumer examples when changing public contracts. `bun run check-generated` checks declarations as well as CSS after commit. See [type generation](docs/TYPES.md).

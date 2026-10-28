@@ -11,7 +11,7 @@
 - Desktop examples target 1100 × 640 minimum. Check relevant UI changes at 1440 × 900 and 1366 × 768. Narrow screens show an unsupported notice.
 - Keep all public material generic. Do not include private projects, personal naming discussions, local machine paths or consumer-specific adapters.
 - MIT is the only license for original code, styles, documentation and examples. Keep LICENSE in redistributions and package archives. Do not add attribution-in-UI requirements.
-- Build the self-contained CSS with pnpm run build. Do not publish npm packages, create releases or change hosting unless requested.
+- Build the self-contained CSS with bun run build. Do not publish npm packages, create releases or change hosting unless requested.
 
 ## CSS direction
 
@@ -27,8 +27,8 @@
 
 ## Tooling
 
-- Use the pinned pnpm version and `pnpm-lock.yaml`; do not add npm or Yarn lockfiles.
-- Validate imports with `pnpm check-boundaries`, checker fixtures with `pnpm test-boundaries`, and dialog policy with `pnpm test-dialog`. Rebuild CSS before committing; run `pnpm check-generated` after committing, since it compares against `HEAD`.
-- Behavior declarations are generated from strict JSDoc in `behaviors/*.js`; never edit `.d.ts` by hand. Run `pnpm build-types`, `pnpm check-types` and `pnpm test-behaviors` for behavior changes. See [docs/TYPES.md](docs/TYPES.md).
-- Run `pnpm check` before committing. Use `pnpm check-fix` for safe lint fixes and formatting; review any behavior changes before applying unsafe fixes.
+- Use the pinned Bun version and `bun.lock`; do not add competing npm, pnpm or Yarn lockfiles.
+- Validate imports with `bun run check-boundaries`, checker fixtures with `bun run test-boundaries`, and dialog policy with `bun run test-dialog`. Rebuild CSS before committing; run `bun run check-generated` after committing, since it compares against `HEAD`.
+- Behavior declarations are generated from strict JSDoc in `behaviors/*.js`; never edit `.d.ts` by hand. Run `bun run build-types`, `bun run check-types` and `bun run test-behaviors` for behavior changes. See [docs/TYPES.md](docs/TYPES.md).
+- Run `bun run check` before committing. Use `bun run check-fix` for safe lint fixes and formatting; review any behavior changes before applying unsafe fixes.
 - Biome covers authored JavaScript, TypeScript declarations, JSON, CSS and HTML. Keep generated bundles, generated icons, dependency trees and build output outside its scope.

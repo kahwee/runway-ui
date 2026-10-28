@@ -36,7 +36,7 @@ Download this repository and link the self-contained bundle:
 Or install directly from GitHub:
 
 ```sh
-pnpm add github:kahwee/runway-ui
+bun add github:kahwee/runway-ui
 ```
 
 ```js
@@ -45,7 +45,7 @@ import "runway-ui/bundle.css";
 import { bindDialog } from "runway-ui/dialog";
 ```
 
-This project is available on GitHub; **it has not been published to the npm registry**. GitHub installation is shown intentionally. The committed CSS bundle is ready to use without a build step. Node 22.18+ (or 24.11+) is needed only for development and rebuilding.
+This project is available on GitHub; **it has not been published to the npm registry**. GitHub installation is shown intentionally. The committed CSS bundle is ready to use without a build step. Development uses Bun 1.4.4. Node 22.18+ (or 24.11+) remains available for third-party tools such as Storybook; consumers need neither runtime for the CSS bundle.
 
 ## Explore locally
 
@@ -106,13 +106,13 @@ Targets current desktop Chromium, Firefox and Safari with subgrid and container-
 ## Development
 
 ```sh
-pnpm install --frozen-lockfile
-pnpm check
-pnpm check-boundaries
-pnpm test-boundaries
-pnpm test-dialog
-pnpm run build
-pnpm pack --dry-run
+bun install --frozen-lockfile
+bun run check
+bun run check-boundaries
+bun run test-boundaries
+bun run test-dialog
+bun run build
+bun pm pack --dry-run
 ```
 
 The library has no third-party runtime dependencies or remote font/asset requests. Development installation downloads tooling and icon/font inputs; Storybook bundles its local font dependencies. The CSS bundle is generated from `index.css` and `styles/`; edit source modules and rebuild the bundle. Type declarations accompany every optional behavior.
@@ -121,7 +121,7 @@ Early-stage API: improvements should keep markup predictable, effects modest and
 
 ## Documentation development and hosting
 
-See the [Storybook guide](docs/STORYBOOK.md). Run `pnpm install --frozen-lockfile`, then `pnpm run storybook` for the HTML component explorer. `pnpm run build-site` creates the public allowlisted `.site/` folder with Storybook under `/storybook/`. GitHub Actions deploys it to GitHub Pages on pushes to `main`. npm package publication is separate.
+See the [Storybook guide](docs/STORYBOOK.md). Run `bun install --frozen-lockfile`, then `bun run storybook` for the HTML component explorer. `bun run build-site` creates the public allowlisted `.site/` folder with Storybook under `/storybook/`. GitHub Actions deploys it to GitHub Pages on pushes to `main`. npm package publication is separate.
 
 Native dialog stories use HTML invoker commands (`commandfor`, `command="show-modal"`) and `form method="dialog"`. The optional dialog helper adds dynamic dismissal policy on browsers with native `requestClose()` and `closedBy`; it is not a polyfill. Native disclosures and form controls need no event handlers.
 

@@ -33,7 +33,7 @@ for (const [index, path] of outputs.entries()) {
 }
 if (failed) {
   console.error(
-    "Run pnpm build, then commit generated declarations, styles/icons.css and dist/runway-ui.css with your source changes.",
+    "Run bun run build, then commit generated declarations, styles/icons.css and dist/runway-ui.css with your source changes.",
   );
   process.exitCode = 1;
 } else {
