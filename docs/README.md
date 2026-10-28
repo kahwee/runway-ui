@@ -20,6 +20,7 @@ New to Runway UI? Follow **Install → Components → Compose**. Use Storybook w
 | Charts and numeric scales                      | [Charts](CHARTS.md)                   | [Chart lab](charts.html)                                                               |
 | Signed histories and event notes               | [History instruments](INSTRUMENTS.md) | [History playground](../storybook/?path=/story/charts-history-instruments--playground) |
 | Keyboard navigation, inventories and lifecycle | [Interactions](INTERACTIONS.md)       | [Inventory example](../examples/colony.html)                                           |
+- [Component dependency map](DEPENDENCIES.md): exact isolated CSS imports and copyable minimal markup.
 
 ## 3. Compose an interface
 

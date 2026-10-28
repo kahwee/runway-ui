@@ -62,3 +62,17 @@ has a play check that inspects computed styles inside its frame and fails when
 required control, shortcut or dock styles are missing. Successful checks mark the
 frame with `data-verified="true"`. The iframe helper is documentation tooling only;
 consumers use ordinary HTML and CSS imports.
+
+## Component dependency fixtures
+
+**Isolation / Components** adds fields, form controls, view navigation, section
+navigation and CSS charts to the existing control and panel fixtures. Native
+editing, switch toggling, form values and link navigation are checked alongside
+computed styles and chart geometry. Checkbox masks explicitly require icons.
+
+The [dependency map](DEPENDENCIES.md) is generated from the same recipe definitions
+used by the stories. Run `bun run build-dependency-map` after changing a recipe or
+its CSS imports, and `bun run check-dependency-map` to detect drift. The isolated
+frames use only their declared CSS; toolbar theme settings intentionally do not
+apply. Optional behavior modules and application responsibilities are documented
+per recipe.
