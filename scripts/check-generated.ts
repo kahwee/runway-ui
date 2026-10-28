@@ -33,5 +33,5 @@ if (failed) {
   );
   process.exitCode = 1;
 } else {
-  console.log("Committed generated CSS and declarations match their sources.");
+  console.log("Committed generated CSS matches its sources.");
 }

@@ -41,6 +41,10 @@ passed. This is loading correctness evidence, not a frame-rate benchmark.
 
 ## Generated type contracts and behavior review
 
+Historical review below: the subsequent TypeScript migration replaced JSDoc with
+authored TypeScript and moved generated declarations into `dist/`. Current checks
+and packaging are documented in [TYPES.md](TYPES.md).
+
 Reviewed all nine runtime behaviors and replaced parallel handwritten declarations
 with strictly checked JSDoc and generated, formatted `.d.ts` output. Generation
 compiles source copies without old declarations. Public exports retain their names;

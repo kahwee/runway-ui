@@ -53,7 +53,7 @@ or accessibility review.
 
 ## Repository layout
 
-- `styles/` and `behaviors/` contain the public library; `index.css` is its entry point and `dist/` holds generated CSS.
+- `styles/` and `behaviors/` contain the public library; `index.css` is its entry point and `dist/` holds generated CSS, runtime modules and declarations.
 - `workshop/` contains assets for the root `index.html` demo.
 - `stories/` groups Storybook stories by their sidebar category: `start-here/`, `foundations/`, `charts/`, `game-patterns/`, `behaviors/` and `compositions/`. Shared helpers stay at the top level. Use kebab-case filenames and preserve story titles and export names so existing story links keep working.
 - `examples/` contains standalone compositions and their supporting assets.
@@ -62,7 +62,7 @@ or accessibility review.
 
 ## Behavior types
 
-Author public types in the owning JavaScript JSDoc, then run `bun run build-types`, `bun run check-types` and `bun run test-behaviors`. Declarations are generated, formatted and committed. Add positive and expected-error consumer examples when changing public contracts. `bun run check-generated` checks declarations as well as CSS after commit. See [type generation](docs/TYPES.md).
+Author public types in the owning TypeScript module, then run `bun run build-types`, `bun run check-types` and `bun run test-behaviors`. Declarations are generated under ignored `dist/behaviors` and `dist/react` and included in built packages. Add positive and expected-error consumer examples when changing public contracts. `bun run check-generated` checks committed CSS after commit; type and package-export tests verify generated declarations. See [type generation](docs/TYPES.md).
 
 ## A useful first contribution
 

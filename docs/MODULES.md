@@ -21,9 +21,8 @@ not change specificity or layer precedence. These are the only implementations;
 there are no duplicate compatibility styles.
 
 `styles/dialog.css` owns the dialog surface, backdrop, motion and modifiers in
-the `runway-ui.dialog` layer. Its helper and declarations remain in `behaviors/`.
-Other styles already have dedicated feature files. Keep behaviors and their type
-declarations together in `behaviors/`, and examples in the corresponding
+the `runway-ui.dialog` layer. Its TypeScript helper remains in `behaviors/`; declarations compile to `dist/behaviors/`.
+Other styles already have dedicated feature files. Keep behavior implementations and their public types together in `behaviors/`, and examples in the corresponding
 Storybook feature. A new variant of an existing component belongs with that
 component, without changes to `index.css` or the package exports.
 
@@ -67,7 +66,7 @@ whether GitHub requires those checks before a merge.
 
 Optional loading behavior belongs in `behaviors/resource.ts`, stylesheet downloads in `behaviors/styles.ts`, and action dispatch in `behaviors/actions.ts`. Hosts own feature indexes, relative URL resolution and event listeners. See [loading and reuse](LOADING.md).
 
-Behavior types are authored as JSDoc in the owning JavaScript module. Generate declarations with `bun run build-types`; verify source and consumer fixtures with `bun run check-types`. Do not edit `.d.ts` output. See [type ownership and the behavior map](TYPES.md).
+Behavior types are authored in the owning TypeScript module. Generate declarations with `bun run build-types`; verify source and consumer fixtures with `bun run check-types`. Do not edit `.d.ts` output. See [type ownership and the behavior map](TYPES.md).
 
 ## Storybook composition ownership
 
@@ -116,7 +115,7 @@ Use **Isolation / Panels** in Storybook to verify the independent panel entry.
 
 ## Optional React boundary
 
-`react/` owns the optional React 19 / Base UI entry and generated declarations. It
+`react/` owns the optional React 19 / Base UI source; declarations compile to `dist/react/`. It
 may import React and Base UI primitive subpaths; vanilla runtime modules may not
 import it. `stories/react/` owns example layout and React root teardown. See
 [React usage](REACT.md). Do not duplicate upstream component state machines.

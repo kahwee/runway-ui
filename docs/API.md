@@ -51,4 +51,4 @@ Use native `.rw-range` inputs and associated `output[for]` elements. Without the
 
 Feature loading: `runway-ui/resource` exports `createLazyResource` and `resourceUrl`; `runway-ui/styles` exports `loadStylesheet`; `runway-ui/actions` exports `createActionRouter` and `createLazyActionRouter`. See [loading contracts](LOADING.md).
 
-Declarations are generated from strictly checked JSDoc in each behavior. See [type generation and consumer contracts](TYPES.md); public object type names remain available as generated aliases.
+Declarations are generated from strict TypeScript in each behavior. See [type generation and consumer contracts](TYPES.md); public object type names remain available as generated aliases.
