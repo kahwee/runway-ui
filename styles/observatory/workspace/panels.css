@@ -9,6 +9,16 @@
     grid-column: span 4;
     min-inline-size: 0;
   }
+  .rw-history__viewport {
+    min-inline-size: 0;
+  }
+  .rw-history__viewport:focus-visible {
+    outline: 3px solid var(--rw-focus);
+    outline-offset: 3px;
+  }
+  .rw-observatory__chart-hint {
+    display: none;
+  }
   .rw-observatory__panel-heading {
     display: flex;
     align-items: start;

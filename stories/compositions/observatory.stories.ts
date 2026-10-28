@@ -7,23 +7,13 @@ export default {
   title: "Compositions/Simulation Observatory",
   tags: ["autodocs"],
   args: defaults,
-  globals: { viewport: { value: "observatoryDesk", isRotated: false } },
   parameters: {
     layout: "fullscreen",
-    viewport: {
-      options: {
-        observatoryDesk: {
-          name: "Observatory · 1366 × 900",
-          styles: { width: "1366px", height: "900px" },
-          type: "desktop",
-        },
-      },
-    },
     controls: { expanded: true },
     docs: {
       description: {
         component:
-          "A generic desktop reference composition: six CSS small multiples, observed/projected history, target line, native anchored event popover, shared-track resource ledger and an inspectable decision. No simulation rules, chart runtime, canvas or SVG chart. The manager uses a fixed 1366 × 900 desktop viewport so the Controls panel cannot trigger the unsupported-screen notice. Use zoom or open Canvas in a new tab for the full workspace. The toolbar controls theme, density and depth. All fixtures are synthetic. Changes to args remount and reset the local pinned-plan state.",
+          "A responsive reference composition: six CSS small multiples, observed/projected history, target line, native anchored event popover, shared-track resource ledger and an inspectable decision. No simulation rules, chart runtime, canvas or SVG chart. The workspace adapts to its canvas: six metric cards across on wide screens, fewer columns on narrow screens, and labeled resource cards on phones. The toolbar controls theme, density and depth. All fixtures are synthetic. Changes to args remount and reset the local pinned-plan state.",
       },
     },
   },

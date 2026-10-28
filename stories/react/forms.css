@@ -4,6 +4,12 @@
   max-inline-size: 420px;
   padding: 20px;
   margin: auto;
+  box-sizing: border-box;
+  min-inline-size: 0;
+  border: 1px solid var(--rw-line);
+  border-radius: var(--rw-radius);
+  background: var(--rw-surface);
+  box-shadow: var(--rw-shadow);
 }
 .react-checkbox-label {
   display: flex;
@@ -28,12 +34,23 @@
 .react-select-popup {
   padding: 8px;
   min-inline-size: var(--anchor-width);
+  max-inline-size: min(var(--available-width), calc(100vi - 24px));
+  box-sizing: border-box;
   max-block-size: var(--available-height);
   overflow-y: auto;
 }
 .react-select-option {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  border-radius: 5px;
+  cursor: default;
   min-block-size: 44px;
   padding: 10px;
+}
+.react-select-option > :last-child {
+  grid-column: 2;
 }
 .react-select-option[data-highlighted] {
   background: var(--rw-soft);
@@ -43,6 +60,9 @@
 @media (forced-colors: active) {
   .react-checkbox {
     border-color: ButtonText;
+  }
+  .react-select-option > :last-child {
+    grid-column: 2;
   }
   .react-select-option[data-highlighted] {
     outline-color: Highlight;

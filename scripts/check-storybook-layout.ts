@@ -78,6 +78,21 @@ try {
       results.push({ id, width, height, ...result });
       await browser("screenshot", resolve(directory, `${width}-${id}.png`), "--full");
       assert.equal(result.rendered, true, `${id}: missing story`);
+      if (id.includes("simulation-observatory")) {
+        const { result: workspaceVisible } = await browser(
+          "eval",
+          `(() => {
+          const workspace = document.querySelector('.rw-observatory__workspace');
+          return !!workspace && workspace.getBoundingClientRect().height > 0;
+        })()`,
+        );
+        assert.equal(workspaceVisible, true, `${id}: responsive workspace is hidden`);
+        assert.equal(
+          result.unsupported,
+          false,
+          `${id}: a desktop-only gate replaced the workspace`,
+        );
+      }
       assert.deepEqual(result.errors, [], `${id}: Storybook render error`);
       assert.ok(
         result.pageWidth <= width + 1,
@@ -146,40 +161,35 @@ try {
   console.log(
     "16 open-dialog checks passed: actions visible, safe focus, Escape guards and return focus.",
   );
-  let themedBadges;
-  for (const outerTheme of ["whimsy", "orbital"]) {
-    const url = new URL("iframe.html", origin);
-    url.searchParams.set("id", "start-here-theme-playground--playground");
-    url.searchParams.set("viewMode", "story");
-    url.searchParams.set("globals", `theme:${outerTheme}`);
-    await browser("open", url.href);
-    await browser("wait", ".theme-playground");
-    const { result } = await browser(
-      "eval",
-      `
-      (() => {
-      const playground = document.querySelector('.theme-playground');
-      const badge = playground.querySelector('.rw-badge');
-      const specimens = ['studio', 'orbital', 'parchment', 'whimsy', 'ledger'].map(theme => {
-        const tile = document.createElement('section');
-        tile.className = 'rw-ui';
-        tile.dataset.theme = theme;
-        tile.append(badge.cloneNode(true));
-        playground.append(tile);
-        return tile;
-      });
-      return specimens.map(tile => {
-        const style = getComputedStyle(tile.querySelector('.rw-badge'));
-        return { theme: tile.dataset.theme, color: style.color,
-          background: style.backgroundColor, rotate: style.rotate };
-      });
-      })()`,
-    );
-    assert.equal(result.length, 5, "All five nested theme specimens must render");
-    if (themedBadges)
-      assert.deepEqual(result, themedBadges, "An outer theme recolored inner badges");
-    themedBadges = result;
-  }
+  const themeStory = stories.find((story) => story.id.includes("theme-playground"));
+  assert.ok(themeStory, "The theme playground must remain discoverable");
+  const themeUrl = new URL("iframe.html", origin);
+  themeUrl.searchParams.set("id", themeStory.id);
+  themeUrl.searchParams.set("viewMode", "story");
+  await browser("open", themeUrl.href);
+  await browser("wait", ".story-surface");
+  const { result: badgesStable } = await browser(
+    "eval",
+    `(() => {
+    // Controlled CSS fixture: verify nested scopes without depending on a gallery story.
+    const outer = document.createElement('div');
+    outer.className = 'rw-ui';
+    outer.dataset.theme = 'whimsy';
+    for (const theme of ['studio','orbital','parchment','whimsy','ledger']) {
+      const inner = document.createElement('div');
+      inner.className = 'rw-ui'; inner.dataset.theme = theme;
+      inner.innerHTML = '<span class="rw-badge">Status</span>'; outer.append(inner);
+    }
+    document.querySelector('.story-surface').append(outer);
+    const read = () => [...outer.querySelectorAll('.rw-badge')].map(e => {
+      const style = getComputedStyle(e);
+      return [style.color, style.backgroundColor, style.rotate];
+    });
+    const before = read(); outer.dataset.theme = 'orbital'; const after = read();
+    outer.remove(); return JSON.stringify(before) === JSON.stringify(after);
+  })()`,
+  );
+  assert.equal(badgesStable, true, "An outer theme recolored an explicit inner theme");
   console.log("Nested theme badges retain their own colors across outer theme changes.");
 } finally {
   await writeFile(resolve(directory, "measurements.json"), `${JSON.stringify(results, null, 2)}\n`);

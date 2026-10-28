@@ -73,7 +73,7 @@ Open **`http://127.0.0.1:4320/docs/charts.html`** for the CSS chart lab, or `htt
 - `examples/colony.html`: production, reserve history and a searchable 10,000-item synthetic inventory.
 - `examples/drop-in.html`: opt-in styling for existing native form controls.
 
-The examples target desktop windows at least 1100 × 640. The CSS library itself does not impose a viewport gate.
+The examples adapt from narrow phone canvases to desktop workspaces. Data, native controls and actions remain available at 320px and larger; the CSS library imposes no viewport gate.
 
 ## What's included
 

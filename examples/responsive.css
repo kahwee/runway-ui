@@ -1,0 +1,57 @@
+/* Host layouts for standalone examples. Library component recipes stay in styles/. */
+@media (width < 1000px) {
+  .example-page {
+    padding: 0;
+  }
+  .example-page main,
+  .example-page .workshop {
+    box-sizing: border-box;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    margin: 24px auto;
+    padding: 0 16px;
+  }
+  .example-page :is(.board, .samples, .examples, .scene, .example-fields) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .example-page
+    :is(header, .navigation, .rw-paper-console, .rw-command-bar, .rw-row, .rw-panel__header) {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .example-page .scene {
+    padding: 20px;
+  }
+  .example-page .scene > img {
+    max-inline-size: 100%;
+  }
+  .example-page .rw-command-bar__metrics {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .example-page .rw-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .example-page .rw-ledger {
+    grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+    column-gap: 8px;
+  }
+  .example-page .rw-ledger__row > * {
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+  .example-page .rw-paper-nav {
+    flex-wrap: wrap;
+  }
+  .example-page :is(.rw-panel, .rw-sheet, .examples > section) {
+    min-inline-size: 0;
+  }
+  .example-page :is(input, select, textarea) {
+    box-sizing: border-box;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+  }
+  .example-page h1 {
+    overflow-wrap: anywhere;
+  }
+}

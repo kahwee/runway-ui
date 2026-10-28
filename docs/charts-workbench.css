@@ -50,3 +50,16 @@
 input[type="checkbox"] {
   accent-color: var(--rw-accent);
 }
+
+@media (width < 900px) {
+  .chart-toolbar {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .chart-toolbar button {
+    margin-inline-start: 0;
+  }
+  .chart-gallery {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -36,7 +36,7 @@
     inline-size: 100%;
     padding: 2px;
     border: 0;
-    color: var(--rw-accent);
+    color: color-mix(in oklch, var(--rw-accent) 80%, var(--rw-ink));
     background: none;
     text-align: start;
     font: 650 12px / 1.4 var(--rw-font);
@@ -71,7 +71,11 @@
     color: var(--rw-accent);
   }
   .rw-resource-ledger__net[data-negative] {
-    color: var(--rw-gold);
+    color: color-mix(in oklch, var(--rw-gold) 50%, var(--rw-ink));
+  }
+  .rw-resource-ledger__mobile-label,
+  .rw-resource-inspect-link {
+    display: none;
   }
   .rw-ledger-frame {
     min-inline-size: 0;

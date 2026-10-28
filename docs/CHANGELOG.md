@@ -12,6 +12,12 @@ full source tree, with strict public APIs and strict React stories.
 
 ## Unreleased
 
+- Make the Observatory, workshop, documentation workbench and standalone examples
+  responsive. Phone resource cards retain all accessible column headers, values,
+  selection and review actions; the previous desktop-only gates are removed.
+- Keep long review content inside the dialog body and improve the optional React
+  form surface, select-popup bounds and aligned Base UI selection indicators.
+
 - Keep structured dialog actions visible while long bodies scroll, with wider
   narrow-screen content and 44px close targets. Native dismissal and focus remain
   unchanged.

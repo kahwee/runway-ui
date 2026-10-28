@@ -80,30 +80,16 @@
           --rw-columns: 1;
         }
       }
-      .unsupported {
-        display: none;
-      }
-      @media (width < 1100px), (height < 640px) {
-        .workshop {
-          display: none;
-        }
-        .unsupported {
-          display: block;
-          padding: 40px;
-        }
-      }
+
       @media (forced-colors: active) {
         .note {
           border-color: CanvasText;
         }
       }
     </style>
+    <link rel="stylesheet" href="responsive.css" />
   </head>
-  <body class="rw-ui">
-    <section class="unsupported">
-      <h1>Desktop, please.</h1>
-      <p>This workshop needs a window at least 1100 × 640.</p>
-    </section>
+  <body class="example-page rw-ui">
     <main class="workshop">
       <a href="../docs/" class="rw-muted"
         ><span class="rw-icon" data-icon="arrow-left" aria-hidden="true"></span> Runway UI

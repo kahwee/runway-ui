@@ -1,6 +1,6 @@
 # Simulation Observatory
 
-A generic desktop reference screen for understanding a changing system. [Open the Observatory](../examples/observatory.html) or [explore its Storybook arguments](../storybook/?path=/story/compositions-simulation-observatory--playground).
+A responsive reference screen for understanding a changing system. [Open the Observatory](../examples/observatory.html) or [explore its Storybook arguments](../storybook/?path=/story/compositions-simulation-observatory--playground).
 
 It brings together six small-multiple trend cards, an annotated observed/projected history, a target, a resource ledger, a selected-resource inspector and an explicit decision review. All figures are synthetic. There is no real simulation, backend, persistent save or external API.
 
@@ -45,7 +45,7 @@ The history is a column chart: it does not interpolate, smooth or imply continuo
 ## Modern native behavior
 
 - **Subgrid:** metric cards share label/value/comparison/spark rows; ledger header and resource rows share columns; history uses the existing shared-row column primitive.
-- **Named container queries and `cqi`:** adjust panel balance and spacing inside a desktop workspace. Minimum viewport is 1100 × 640, with at least 960px of composition space (open Storybook Canvas in a new tab when the manager leaves less room). Smaller screens show a desktop-required notice.
+- **Named container queries and `cqi`:** adapt to the available canvas. Wide workspaces retain six metric columns and paired panels; tablet layouts use three metric columns and stacked panels; phones use two metric columns and labeled resource cards. The ledger retains all four accessible columns and every value.
 - **Popover API + CSS anchor positioning:** event notes enter the browser top layer. Their native `popovertarget` invoker supplies the implicit anchor; `position-area`, named `@position-try` options and `position-try-fallbacks` place/flip the note without a positioning script. Without anchor positioning it opens centered. The event note is also available in the native exact-data disclosure. The composition targets browsers with the Popover API; it supplies no popover polyfill.
 - **Declarative dialog commands:** the review button uses `commandfor` and `command="show-modal"`. Where that DOM capability is absent, the optional example controller calls native `showModal()`. Close actions are ordinary `form method="dialog"` buttons. Browser focus, Escape and inertness remain native. The preview is dismissible; applications with mandatory decisions must apply their own cancellation policy.
 - **Scroll-driven animation:** an opt-in `scroll-timeline` drives the ledger's progress cue through a named `timeline-scope`. No scroll event listener. Unsupported engines retain the ordinary scrollable ledger without the cue. Reduced motion removes the progress animation, leaving a subdued static cue.
@@ -57,12 +57,12 @@ Forced colors retain solid observed marks, outlined/dashed projected marks and t
 
 The Playground exposes heading/copy, six scenario choices, unit, maximum, target, plot height, custom data and labels, forecast count, event visibility/location/text, grid, exact-table state, row count, selection, long labels, scroll cue, available credits, upfront and recurring costs, expected effect, disabled decision and whimsy. Theme/density/depth remain global toolbar settings.
 
-Storybook fixes this composition’s viewport at 1366 × 900 so an open Controls panel does not reduce its CSS viewport below the desktop minimum. Use preview zoom or open Canvas in a new tab to inspect the whole workspace. The standalone page keeps its normal unsupported-screen notice.
+Storybook uses the actual canvas width, including when Controls is open. Resize the preview or open Canvas in a new tab to check the same data and actions at phone, tablet and desktop sizes. The standalone page uses the same responsive composition.
 
 Three companion fixtures exercise shortage with insufficient budget, missing readings with long labels, and full/zero/missing boundary values with an event at the chart edge. Control changes remount the composition and dispose its previous controller. They reset selected-resource and pinned-plan feedback. The pin action acknowledges a preview choice only: no purchase, resource deduction or forecast change occurs.
 
 ## Quality scope
 
-Read the current [status](STATUS.md) for observed browser/build results. These are not cross-browser or assistive-technology certification. The narrow-screen notice is intentional; there is no squeezed mobile gameplay view.
+Read the current [status](STATUS.md) for observed browser/build results. These are not cross-browser or assistive-technology certification. Mobile selection, inspector links, exact-data disclosures and decision reviews use the same data and controller as desktop. These remain demonstration interactions, not a persistent game.
 
 Primary browser references: [CSS anchor positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning/Using), [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API/Using), [scroll-driven animations](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations), [button commands](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#command).

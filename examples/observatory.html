@@ -9,7 +9,7 @@
       body {
         margin: 0;
         background: var(--rw-bg);
-        padding: 28px;
+        padding: clamp(16px, 3vw, 28px);
         font-family: var(--rw-font);
       }
       .example-nav {
@@ -19,6 +19,7 @@
         justify-content: space-between;
         font-size: 11px;
         gap: 20px;
+        flex-wrap: wrap;
       }
       .example-nav a {
         color: var(--rw-accent);

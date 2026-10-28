@@ -24,10 +24,6 @@
       text-underline-offset: 3px;
     }
   }
-  .rw-observatory__unsupported {
-    display: none;
-    padding: 40px;
-  }
   .rw-observatory__workspace {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));

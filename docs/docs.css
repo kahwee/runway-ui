@@ -285,19 +285,59 @@ footer {
   margin-top: 20px;
   font-size: 12px;
 }
-.unsupported {
-  display: none;
-  padding: 50px;
-}
 [hidden] {
   display: none !important;
 }
-@media (width < 1100px), (height < 640px) {
+@media (width < 1000px) {
   .docs-shell {
-    display: none;
+    grid-template-columns: minmax(0, 1fr);
   }
-  .unsupported {
-    display: block;
+  .sidebar {
+    position: static;
+    height: auto;
+    padding: 20px;
+    border-inline-end: 0;
+    border-block-end: 1px solid var(--rw-line);
+  }
+  .sidebar nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-block-size: 240px;
+    overflow: auto;
+    overscroll-behavior: contain;
+    padding-block: 12px;
+    border-block: 1px solid var(--rw-line);
+  }
+  .sidebar-bottom {
+    margin-top: 0;
+  }
+  main {
+    min-inline-size: 0;
+    padding: 28px 16px;
+  }
+  .workbench {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .controls > *,
+  .preview-column,
+  .reference-card {
+    min-inline-size: 0;
+  }
+  .page-heading,
+  .reference-card .rw-row,
+  footer {
+    flex-wrap: wrap;
+  }
+  .reference-table {
+    table-layout: fixed;
+  }
+  .reference-table :is(th, td) {
+    overflow-wrap: anywhere;
+  }
+  .nav-group > a {
+    min-block-size: 44px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

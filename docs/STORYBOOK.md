@@ -23,7 +23,7 @@ Chart data is validated before rendering. Values, labels, CSS inputs and exact-d
 
 ## Simulation Observatory
 
-The [Observatory playground](../storybook/?path=/story/compositions-simulation-observatory--playground) exposes 26 arguments with grouped descriptions and conditional custom data/event editors. Three companion fixtures exercise shortage, missing values and scale boundaries. This is a composed quality reference: inspect selection, native event popovers, scroll progress and the decision dialog alongside the charts. These stories use a fixed 1366 × 900 desktop viewport so the Controls panel cannot shrink the preview into its unsupported-screen notice. Use the toolbar for themes, density, depth and zoom; open Canvas in a new tab for the full workspace. Argument changes dispose and remount its optional demo controller.
+The [Observatory playground](../storybook/?path=/story/compositions-simulation-observatory--playground) exposes 26 arguments with grouped descriptions and conditional custom data/event editors. Three companion fixtures exercise shortage, missing values and scale boundaries. This is a composed quality reference: inspect selection, native event popovers, scroll progress and the decision dialog alongside the charts. These stories adapt to the actual canvas width, including an open Controls panel. Use the toolbar for themes, density, depth and zoom; open Canvas in a new tab for the full workspace. Argument changes dispose and remount its optional demo controller.
 
 ## Native HTML and class-based CSS
 
@@ -94,8 +94,7 @@ quality or replace a complete accessibility audit.
 
 Preview gutters and sample grids adapt to narrow canvases. Wide comparison and
 production tables retain their columns inside named, focusable scroll regions;
-illustrated navigation wraps. The Observatory remains a desktop composition and
-shows its documented unsupported-size message on phones. Nested UI scopes follow
+illustrated navigation wraps. The Observatory keeps its charts, resource selection and review actions available on phones. Nested UI scopes follow
 the toolbar unless the specimen explicitly declares its own theme. Isolated
 frames deliberately keep their own tokens and imports.
 ## Story quality
@@ -111,3 +110,8 @@ The default preview uses Studio and classic material. This avoids imposing the
 Play skin on every theme. Light and dark appearances are explicit theme choices,
 not automatic OS color-scheme overrides. Paper studio intentionally retains its
 paper palette; isolated fixtures intentionally use their declared base tokens.
+
+The public examples have a companion browser check. Serve the built `.site/` and
+run `bun scripts/check-responsive-examples.ts http://127.0.0.1:6011`. It checks
+phone, tablet and desktop page bounds, confirms that the content remains available,
+and exercises mobile resource selection and the preview-only review flow.

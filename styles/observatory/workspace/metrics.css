@@ -42,7 +42,7 @@
     font-size: 10px;
   }
   .rw-trend[data-direction="down"] .rw-trend__change {
-    color: var(--rw-gold);
+    color: color-mix(in oklch, var(--rw-gold) 50%, var(--rw-ink));
   }
   .rw-trend .rw-spark {
     margin-block-start: 4px;

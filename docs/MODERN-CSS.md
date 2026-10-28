@@ -1,6 +1,6 @@
 # Modern CSS is the baseline
 
-Runway UI targets contemporary desktop engines with native CSS nesting, subgrid, cascade layers, container size queries, logical properties and perceptual color mixing. There is no legacy float layout, clearfix, preprocessor mixin or JavaScript equal-height workaround. Basic grid, flex and block layout remain useful for their normal jobs.
+Runway UI targets contemporary browser engines with native CSS nesting, subgrid, cascade layers, container size queries, logical properties and perceptual color mixing. There is no legacy float layout, clearfix, preprocessor mixin or JavaScript equal-height workaround. Basic grid, flex and block layout remain useful for their normal jobs.
 
 ## Shared parent tracks
 
@@ -36,7 +36,7 @@ These are real subgrids, not copies of the same track definition on each child. 
 </div>
 ```
 
-Use `rw-layout` for a named inline-size container. Preferred columns come from `--rw-form-columns` (2), `--rw-card-columns` (3) and `--rw-stat-columns` (4). Below 720px of container space, cards/stat tiles are capped at two columns; below 460px, cards/forms/stats are capped at one. A preferred one-column layout stays one column at every width. These adapt a component inside a desktop panel, independently of the browser viewport. Fluid titles use `cqi`, `clamp()` and `text-wrap:balance`; descriptions use `text-wrap:pretty`.
+Use `rw-layout` for a named inline-size container. Preferred columns come from `--rw-form-columns` (2), `--rw-card-columns` (3) and `--rw-stat-columns` (4). Below 720px of container space, cards/stat tiles are capped at two columns; below 460px, cards/forms/stats are capped at one. A preferred one-column layout stays one column at every width. These adapt a component inside an allocated panel, independently of the browser viewport. Fluid titles use `cqi`, `clamp()` and `text-wrap:balance`; descriptions use `text-wrap:pretty`.
 
 Internal row spacing uses `--rw-content-gap` (10px, compact 8px), independently of the 14px/10px group gap `--rw-space`. A chart figure containing a direct `rw-series-list` shares intrinsic label, plot and value columns through two levels of subgrid. Its adjacent scale occupies the actual plot column; no label-width offsets are needed. Long labels and values wrap within bounded tracks. Keep the scale immediately after the list.
 
