@@ -1,0 +1,18 @@
+@layer runway-ui.patterns {
+  @media (prefers-reduced-motion: reduce) {
+    .rw-dock .rw-button,
+    .rw-dock .rw-shortcut {
+      transition: none;
+      animation: none !important;
+    }
+    .rw-dock .rw-button:is(:hover, :active):not(:disabled) {
+      scale: none;
+    }
+    .rw-slot {
+      transition: none;
+    }
+    .rw-slot:hover:not(:disabled) {
+      translate: none;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+@layer runway-ui.patterns {
+  .rw-section-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-block: 4px 12px;
+    margin-block-end: 20px;
+    border-block-end: 1px solid var(--rw-line);
+    background: var(--rw-bg, var(--rw-surface));
+    min-inline-size: 0;
+    &[data-sticky] {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 2;
+    }
+    & > .rw-button {
+      font-size: 12px;
+    }
+  }
+}

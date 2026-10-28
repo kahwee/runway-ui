@@ -1,0 +1,35 @@
+@layer runway-ui.patterns {
+  .rw-choice {
+    text-align: start;
+    inline-size: 100%;
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    padding: var(--rw-choice-padding);
+    border: 1px solid var(--rw-line);
+    border-radius: var(--rw-radius);
+    background: var(--rw-raised);
+    color: var(--rw-ink);
+    font: inherit;
+    cursor: pointer;
+  }
+  .rw-choice > :first-child {
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+  .rw-choice > :last-child {
+    min-inline-size: 0;
+    text-align: end;
+    overflow-wrap: anywhere;
+    font-variant-numeric: tabular-nums;
+  }
+  .rw-choice strong,
+  .rw-choice small {
+    display: block;
+  }
+  .rw-choice small {
+    color: var(--rw-muted);
+    margin-block-start: 5px;
+    font-size: 11px;
+  }
+}

@@ -1,0 +1,25 @@
+@layer runway-ui.patterns {
+  .rw-resource {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 18px;
+    border-inline-end: 1px solid var(--rw-line);
+    font-variant-numeric: tabular-nums;
+  }
+  .rw-resource strong {
+    display: block;
+    font-size: 22px;
+    letter-spacing: -0.04em;
+  }
+  .rw-resource small {
+    display: block;
+    margin-block-start: 4px;
+    color: var(--rw-muted);
+    font-size: 11px;
+  }
+  .rw-resource__icon {
+    font-size: 25px;
+    color: var(--rw-accent);
+  }
+}

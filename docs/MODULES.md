@@ -5,12 +5,13 @@ feature adapters belong in consumers.
 
 The public CSS entry points compose component files in a fixed order:
 
-| Entry point              | Implementation directory | Ownership                                                                   |
-| ------------------------ | ------------------------ | --------------------------------------------------------------------------- |
-| `styles/fields.css`      | `styles/fields/`         | Base inputs, select picker, select variants, accessibility                  |
-| `styles/forms.css`       | `styles/forms/`          | Switch, checkbox/radio, range, fields, choices, accessibility               |
-| `styles/social.css`      | `styles/social/`         | Segmented control, avatar, person chip, leaderboard, accessibility, pace    |
-| `styles/observatory.css` | `styles/observatory/`    | Workspace, resource ledger, context popover, decisions, responsive behavior |
+| Entry point              | Implementation directory | Ownership                                                                                      |
+| ------------------------ | ------------------------ | ---------------------------------------------------------------------------------------------- |
+| `styles/patterns.css`    | `styles/patterns/`       | Resources, inventory slots, choices, objectives, dock, view tabs, section tabs, reduced motion |
+| `styles/fields.css`      | `styles/fields/`         | Base inputs, select picker, select variants, accessibility                                     |
+| `styles/forms.css`       | `styles/forms/`          | Switch, checkbox/radio, range, fields, choices, accessibility                                  |
+| `styles/social.css`      | `styles/social/`         | Segmented control, avatar, person chip, leaderboard, accessibility, pace                       |
+| `styles/observatory.css` | `styles/observatory/`    | Workspace, resource ledger, context popover, decisions, responsive behavior                    |
 
 Edit the component that owns the selector. The entry points contain imports only;
 change them when adding a component or deliberately changing cascade order.
@@ -67,3 +68,16 @@ whether GitHub requires those checks before a merge.
 Optional loading behavior belongs in `behaviors/resource.js`, stylesheet downloads in `behaviors/styles.js`, and action dispatch in `behaviors/actions.js`. Hosts own feature indexes, relative URL resolution and event listeners. See [loading and reuse](LOADING.md).
 
 Behavior types are authored as JSDoc in the owning JavaScript module. Generate declarations with `pnpm build-types`; verify source and consumer fixtures with `pnpm check-types`. Do not edit `.d.ts` output. See [type ownership and the behavior map](TYPES.md).
+
+## Storybook composition ownership
+
+The welcome showcase lives in `stories/start-here/`. Its layout stylesheet is
+imported by that story only; it assembles the real panel, button, badge, resource
+and objective classes rather than duplicating their visual recipes. Keep
+documentation layouts here and reusable component styles in `styles/`.
+
+`styles/patterns.css` remains the compatible aggregate entry. Its component
+imports retain the `runway-ui.patterns` layer and original cascade order;
+`accessibility.css` owns shared dock and inventory motion preferences. Import
+the aggregate for the complete patterns set, or choose component files through
+`runway-ui/styles/patterns/*.css` alongside the base tokens and primitives.

@@ -1760,6 +1760,9 @@
     font-size: 25px;
     color: var(--rw-accent);
   }
+}
+
+@layer runway-ui.patterns {
   .rw-slots {
     display: grid;
     grid-template-columns: repeat(var(--rw-columns, 4), minmax(0, 1fr));
@@ -1805,6 +1808,9 @@
     font-size: 8px;
     color: var(--rw-gold);
   }
+}
+
+@layer runway-ui.patterns {
   .rw-choice {
     text-align: start;
     inline-size: 100%;
@@ -1838,6 +1844,9 @@
     margin-block-start: 5px;
     font-size: 11px;
   }
+}
+
+@layer runway-ui.patterns {
   .rw-objectives {
     list-style: none;
     padding: 0;
@@ -1859,6 +1868,9 @@
   .rw-objectives li[data-complete="true"] span:last-child {
     text-decoration: line-through;
   }
+}
+
+@layer runway-ui.patterns {
   .rw-dock {
     display: flex;
     flex-wrap: wrap;
@@ -1944,6 +1956,9 @@
     font: 700 10px / 1.4 var(--rw-font);
     opacity: 0.85;
   }
+}
+
+@layer runway-ui.patterns {
   @media (prefers-reduced-motion: reduce) {
     .rw-dock .rw-button,
     .rw-dock .rw-shortcut {
@@ -1962,7 +1977,6 @@
   }
 }
 
-/* Illustrated workspace navigation. Native links/buttons, application-owned routing. */
 @layer runway-ui.patterns {
   .rw-view-tabs {
     display: flex;
@@ -2145,7 +2159,6 @@
   }
 }
 
-/* Section switcher. A sticky row of toggle buttons for sibling views in one workspace. */
 @layer runway-ui.patterns {
   .rw-section-tabs {
     display: flex;
@@ -2166,6 +2179,7 @@
     }
   }
 }
+
 
 /* Social composition. Keep component order stable. */
 @layer runway-ui.patterns {

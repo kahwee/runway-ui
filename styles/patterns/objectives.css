@@ -1,0 +1,23 @@
+@layer runway-ui.patterns {
+  .rw-objectives {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 14px 12px;
+  }
+  .rw-objectives li {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    align-items: baseline;
+    font-size: 12px;
+  }
+  .rw-objectives li[data-complete="true"] {
+    color: var(--rw-muted);
+  }
+  .rw-objectives li[data-complete="true"] span:last-child {
+    text-decoration: line-through;
+  }
+}

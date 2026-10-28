@@ -1,0 +1,47 @@
+@layer runway-ui.patterns {
+  .rw-slots {
+    display: grid;
+    grid-template-columns: repeat(var(--rw-columns, 4), minmax(0, 1fr));
+    gap: 9px;
+  }
+  .rw-slot {
+    position: relative;
+    transition:
+      translate 0.22s var(--rw-spring, ease),
+      box-shadow 0.14s;
+    min-block-size: 83px;
+    border: 1px solid var(--rw-line);
+    border-radius: var(--rw-radius);
+    background: var(--rw-raised);
+    color: var(--rw-ink);
+    padding: 12px 6px;
+    cursor: pointer;
+    font: inherit;
+  }
+  .rw-slot__icon {
+    display: block;
+    font-size: 25px;
+    margin-block-end: 7px;
+  }
+  .rw-slot small {
+    display: block;
+    font-size: 10px;
+  }
+  .rw-slot:hover:not(:disabled) {
+    translate: 0 -3px;
+    box-shadow: 0 4px 0 var(--rw-line);
+  }
+  .rw-slot[aria-pressed="true"] {
+    border-color: var(--rw-accent);
+    box-shadow: inset 0 0 0 1px var(--rw-accent);
+    background: var(--rw-soft);
+  }
+  .rw-slot[data-rarity="rare"]::after {
+    content: "Rare";
+    position: absolute;
+    inset-block-start: 3px;
+    inset-inline-end: 5px;
+    font-size: 8px;
+    color: var(--rw-gold);
+  }
+}

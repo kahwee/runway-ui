@@ -1,5 +1,41 @@
+import "./introduction.css";
+
 export default { title: "Start here/Runway UI" };
 export const Welcome = {
-  render: () =>
-    `<div class="story-width"><p class="rw-kicker">Runway UI / HTML & CSS</p><h1>Interfaces for systems worth playing.</h1><p>Inspect original HTML components for management and simulation games. Change theme and density from the toolbar; use Controls where available. Every visual component works with CSS alone.</p><div class="rw-grid"><section class="rw-panel"><h2>CSS charts</h2><p>Columns, stacks, diverging bars and area plots. Real labels, exact-data tables and explicit scales.</p></section><section class="rw-panel"><h2>Native interaction</h2><p>Forms, disclosures, progress and dialog invoker commands use browser behavior. Navigation and virtualization are optional JavaScript.</p></section><section class="rw-panel"><h2>Bring your world</h2><p>CSS variables, cascade layers, subgrid and container queries compose without a game engine or framework.</p></section></div><p style="margin-block-start:24px"><a href="../docs/charts.html" target="_top">Chart lab <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></a> · <a href="../docs/" target="_top">API workbench <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></a> · <a href="../" target="_top">Full composition <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></a></p><p>MIT licensed. Pre-1.0; see the compatibility contract before adoption. The library has zero runtime dependencies. Storybook is documentation tooling only.</p></div>`,
+  render: () => `
+    <main class="library-home">
+      <header class="library-home__masthead">
+        <span class="library-home__wordmark"><span class="rw-icon" data-icon="cube" aria-hidden="true"></span> Runway UI</span>
+        <span class="rw-badge">HTML + CSS · MIT licensed</span>
+      </header>
+      <section class="library-home__hero" aria-labelledby="library-title">
+        <div>
+          <p class="rw-kicker">A little character. A whole system.</p>
+          <h1 id="library-title">Build worlds.<br>Make them feel <em>alive.</em></h1>
+          <p class="library-home__intro">Tactile controls, thoughtful details, and room for your world. A framework-independent UI library for management and simulation games.</p>
+          <nav class="story-samples" aria-label="Explore the library">
+            <a class="rw-button" data-variant="primary" href="./?path=/story/foundations-controls--button" target="_top">Explore components <span aria-hidden="true">→</span></a>
+            <a class="rw-button" data-variant="secondary" href="./?path=/story/compositions-desk-workspace--playground" target="_top">See a workspace</a>
+          </nav>
+          <p class="library-home__note">Zero runtime dependencies. Your markup. Your theme.</p>
+        </div>
+        <section class="rw-panel library-home__specimen" aria-labelledby="specimen-title">
+          <header class="rw-panel__header"><p class="rw-kicker">Your next adventure</p><span class="rw-badge">Ready</span></header>
+          <h2 id="specimen-title">A world taking shape.</h2>
+          <p class="rw-muted">Small pieces. Endless possibilities.</p>
+          <div class="library-home__resources">
+            <div class="rw-resource"><span class="rw-resource__icon" aria-hidden="true">◈</span><div><strong>2,840</strong><small>Credits in reserve</small></div></div>
+            <div class="rw-resource"><span class="rw-resource__icon rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span><div><strong>+18%</strong><small>Production growth</small></div></div>
+          </div>
+          <ul class="rw-objectives"><li data-complete="true"><span aria-label="Complete">✓</span><span>Establish your outpost</span></li><li><span aria-hidden="true">○</span><span>Prepare the next expedition</span></li></ul>
+          <div class="library-home__specimen-footer"><span class="rw-muted">Everything you need to begin.</span><a class="rw-button" data-variant="primary" href="./?path=/story/game-patterns-systems--objectives" target="_top">Discover <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></a></div>
+        </section>
+      </section>
+      <nav class="library-home__catalog" aria-label="Component collections">
+        <a class="rw-panel" href="./?path=/story/foundations-controls--button" target="_top"><span class="rw-kicker">01 / Foundations</span><h2>Start with the details <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></h2><p>Buttons, fields, surfaces and native dialogs. Familiar interactions with a little personality.</p><span class="library-home__pills"><span>Controls</span><span>Forms</span><span>Tokens</span></span></a>
+        <a class="rw-panel" href="./?path=/story/game-patterns-systems--objectives" target="_top"><span class="rw-kicker">02 / Game patterns</span><h2>Give systems a home <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></h2><p>Resources, objectives and action docks. Modular pieces that work beautifully together.</p><span class="library-home__pills"><span>Inventory</span><span>Resources</span><span>Navigation</span></span></a>
+        <a class="rw-panel" href="./?path=/story/charts-css-plots--columns" target="_top"><span class="rw-kicker">03 / Data & insights</span><h2>Make every number count <span class="rw-icon" data-icon="arrow-up-right" aria-hidden="true"></span></h2><p>Readable charts and instruments with real labels, explicit scales and exact-data tables.</p><span class="library-home__pills"><span>Charts</span><span>History</span><span>Instruments</span></span></a>
+      </nav>
+      <footer class="library-home__footer"><span>One vocabulary. Five themes. Plenty of possibility.</span><span>Change theme, density and depth in the toolbar above.</span></footer>
+    </main>`,
 };
