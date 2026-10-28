@@ -4,6 +4,7 @@ import dialogs from "../../styles/dialog.css?inline";
 import disclosures from "../../styles/disclosure.css?inline";
 import fields from "../../styles/fields.css?inline";
 import forms from "../../styles/forms.css?inline";
+import inputHints from "../../styles/input.css?inline";
 import icons from "../../styles/icons.css?inline";
 import panels from "../../styles/panels.css?inline";
 import accessibility from "../../styles/patterns/accessibility.css?inline";
@@ -23,6 +24,7 @@ const entries = {
   "styles/patterns/inventory.css": inventory,
 
   "styles/tokens.css": tokens,
+  "styles/input.css": inputHints,
   "styles/controls.css": controls,
   "styles/panels.css": panels,
   "styles/fields.css": fields,

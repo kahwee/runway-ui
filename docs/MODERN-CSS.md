@@ -145,3 +145,12 @@ The optional React `Progress` uses native `<progress>` semantics with the shared
 Firefox progress pseudo-elements; unsupported styling retains native semantics.
 Omitting `value` preserves native indeterminate rendering. Forced colors restores
 native appearance; progress updates introduce no custom animation.
+
+## Input scopes and mobile console
+
+Input hints use ordinary semantic list/kbd markup and wrapping flex layout.
+Keyboard shortcuts need React, and controller navigation is optional: unsupported
+or policy-restricted Gamepad APIs leave keyboard/pointer input available. Native
+Tab and dialog modality remain native. Cozy console status text wraps at narrow
+widths instead of being hidden; sticky positioning and safe-area insets enhance
+placement without removing text or actions. See [game input](GAME-INPUT.md).

@@ -1,4 +1,4 @@
-import { checkIsolatedControls } from "../isolated-frame.ts";
+import { checkIsolatedControls, checkIsolatedRecipe } from "../isolated-frame.ts";
 import { renderRecipe } from "./entries.ts";
 
 export default {
@@ -20,4 +20,9 @@ export const StandaloneControls = {
 export const DockComposition = {
   render: () => renderRecipe("dock"),
   play: checkIsolatedControls,
+};
+
+export const InputHints = {
+  render: () => renderRecipe("inputHints"),
+  play: (context) => checkIsolatedRecipe(context, "inputHints"),
 };

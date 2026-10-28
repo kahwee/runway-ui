@@ -1,0 +1,53 @@
+{
+  "description": "Local regression limits: 50% or 4ms headroom above the reference run. Not a universal frame-rate guarantee.",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "environment": {
+    "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "devicePixelRatio": 1,
+    "logicalProcessors": 8,
+    "reducedMotion": false,
+    "visibility": "visible"
+  },
+  "scenarios": [
+    {
+      "name": "reference",
+      "resources": 30,
+      "slots": 120,
+      "charts": 1,
+      "duration": 5000,
+      "rate": 10
+    },
+    {
+      "name": "busy",
+      "resources": 300,
+      "slots": 1000,
+      "charts": 4,
+      "duration": 5000,
+      "rate": 10
+    }
+  ],
+  "limits": {
+    "reference": {
+      "frameP95Ms": 25.1,
+      "updateP95Ms": 6.3,
+      "inputP95Ms": 5.6
+    },
+    "busy": {
+      "frameP95Ms": 50.2,
+      "updateP95Ms": 34.4,
+      "inputP95Ms": 30.4
+    }
+  },
+  "reference": {
+    "revision": "aa2023e2c9a79989ca142e948ee9698430c90fbd",
+    "dirty": true,
+    "timestamp": "2026-10-28T06:32:48.575Z"
+  },
+  "minimumTicks": {
+    "reference": 44,
+    "busy": 44
+  }
+}

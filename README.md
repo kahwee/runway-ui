@@ -20,7 +20,7 @@ Resource HUDs, desk workspaces, meters, inventories, native dialogs and charts, 
 | [Colony](https://kahwee.github.io/runway-ui/examples/colony.html) | Production and a large virtual inventory |
 | [Isolated components](https://kahwee.github.io/runway-ui/storybook/?path=/story/isolation-components--fields) | Minimal imports verified without the full stylesheet |
 | [Dependency recipes](docs/DEPENDENCIES.md) | Copyable markup and exact CSS requirements |
-| [Optional React](docs/REACT.md) | React 19 integration using Base UI |
+| [React components](docs/REACT.md) | React 19 integration using Base UI |
 
 ## Find your way
 
@@ -77,7 +77,8 @@ The committed bundle works without React or a build step:
 ## Explore locally
 
 ```sh
-python3 -m http.server 4320 --bind 127.0.0.1
+bun run build-site
+python3 -m http.server 4320 --bind 127.0.0.1 --directory .site
 ```
 
 Open **`http://127.0.0.1:4320/docs/charts.html`** for the CSS chart lab, or `http://127.0.0.1:4320/docs/` for searchable component options. The root page is the component workshop. Other examples:
@@ -150,7 +151,7 @@ Early-stage API: improvements should keep markup predictable, effects modest and
 
 See the [Storybook guide](docs/STORYBOOK.md). Run `bun install --frozen-lockfile`, then `bun run storybook` for the HTML component explorer. `bun run build-site` creates the public allowlisted `.site/` folder with Storybook under `/storybook/`. GitHub Actions deploys it to GitHub Pages on pushes to `main`. npm package publication is separate.
 
-Native dialog stories use HTML invoker commands (`commandfor`, `command="show-modal"`) and `form method="dialog"`. The optional dialog helper adds dynamic dismissal policy on browsers with native `requestClose()` and `closedBy`; it is not a polyfill. Native disclosures and form controls need no event handlers.
+Native dialog stories use HTML invoker commands (`commandfor`, `command="show-modal"`) and `form method="dialog"`. The optional dialog helper adds dynamic dismissal policy with local fallbacks when `requestClose()` or `closedBy` is unavailable; native `showModal()` and `close()` remain required. Native disclosures and form controls need no event handlers.
 
 Dialog styling is opt-in with `rw-dialog`, structured `rw-dialog__header`, `__body` and `__footer` classes, plus compact/wide/danger modifiers. See the [dialog class guide](docs/DIALOG.md) and [dialog playground](https://kahwee.github.io/runway-ui/storybook/?path=/story/foundations-dialog--playground).
 

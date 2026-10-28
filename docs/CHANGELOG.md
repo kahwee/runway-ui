@@ -99,6 +99,17 @@ First stable release under `@kahwee/runway-ui`, rolling up the 0.6.0 betas.
 
 ## Unreleased
 
+- Fix React dialog backdrop dismissal when newer native close-request APIs are
+  absent. Preserve cancellation vetoes, return values, primary-pointer guards
+  and native focus/inertness; reset cancelled gestures and remove listeners.
+- Keep cozy console status content visible and wrapping on narrow screens.
+- Add React `InputScope`, `InputHints` and `InputBinding` for local remappable
+  shortcuts, opt-in directional navigation and standard-gamepad input. Native
+  editing, Tab, nested scopes and modal decisions retain their own contracts.
+- Add a production Storybook busy-screen benchmark, raw local measurements and
+  opt-in reference regression budgets. Remove obsolete history API guidance and
+  update legacy setup/migration recipes without removing still-used exports.
+
 - Give React components named source owners behind the same export-only public
   facade. Preserve all runtime exports, props, Base UI identity and CSS classes.
 - Split chart, instrument and feedback styles into ordered component owners,

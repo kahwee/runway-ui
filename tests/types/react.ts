@@ -67,3 +67,23 @@ createElement(Inventory<{ id: string; label: string; cost: number }>, inventory)
 createElement(Range, { label: "Allocation", onValueChange: (value: string) => value });
 // @ts-expect-error Named tones remain a closed public contract.
 createElement(Meter, { label: "Energy", value: 72, tone: "unknown" });
+
+import { InputScope, InputHints, type InputBinding } from "@kahwee/runway-ui/react";
+const bindings: InputBinding[] = [
+  { id: "next", label: "Next cycle", key: "n", onActivate: () => {} },
+];
+createElement(InputScope, {
+  ref: createRef<HTMLDivElement>(),
+  bindings,
+  gamepad: true,
+  columns: 3,
+});
+createElement(InputHints, { bindings });
+const invalidBinding: InputBinding = {
+  id: "next",
+  label: "Next",
+  key: "n",
+  // @ts-expect-error Application callbacks do not receive synthetic key or gamepad events.
+  onActivate: (event: KeyboardEvent) => event.preventDefault(),
+};
+void invalidBinding;

@@ -2,7 +2,17 @@
 
 The CSS entry has no JavaScript side effects. Import each behavior explicitly, retain its returned handle and call `destroy()` on unmount. All interactions operate on the supplied root; there are no document-wide key listeners.
 
-## Roving focus
+## React game input
+
+Use `InputScope` and `InputHints` for new interfaces. Bindings are application-owned
+and can be remapped by replacing the array. Only the focused scope handles input;
+there are no document-wide shortcut listeners. See [the React input guide](GAME-INPUT.md).
+
+The following native helpers are deprecated compatibility APIs, retained because
+the workshop, documentation and colony example still use them. They receive no
+new features; public exports are not removed in a minor update.
+
+## Legacy roving focus
 
 ```js
 import { bindNavigation } from "@kahwee/runway-ui/navigation";
@@ -18,7 +28,7 @@ const navigation = bindNavigation(document.querySelector("[role=toolbar]"), {
 
 Hidden or disabled native buttons are skipped. The helper owns tabindex while mounted and restores the original attributes on destroy. It does not implement ARIA tablist/tab-panel selection, spatial collision navigation or automatic selection-follows-focus. Supply semantic labels and keep selection state (`aria-pressed`) in the application. Column movement uses enabled-item order, appropriate for compact toolbars; use the virtual grid for indexed inventory cells.
 
-## Controller
+## Legacy controller
 
 ```js
 import { bindGamepad } from "@kahwee/runway-ui/navigation";

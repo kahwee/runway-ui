@@ -2,6 +2,7 @@
 @import url("./fields.css");
 @import url("./forms.css");
 @import url("./panels.css");
+@import url("./input.css");
 
 @layer runway-ui.primitives {
   :where(.rw-ui)

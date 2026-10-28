@@ -29,10 +29,11 @@ All modules ship TypeScript declarations and have no runtime dependencies. Use t
 
 Use the React `Range` component from `@kahwee/runway-ui/react`; it mirrors the value into an `<output>` and sets `--rw-fill`.
 
-### History
+### Retired history renderers
 
-
-`mountHistoryWindow(root, options)` adds a full-series overview and native paging controls. Supply matching `values`/`labels`, a finite valid scale and integer window sizes from 1–366. It returns `state`, `setWindow(start, size?)` and `destroy()`. Indexes are zero-based and `state.end` is exclusive. Keep starts and sizes valid in programmatic calls; this is not an input-sanitization boundary. Only the visible window has an exact-data table; the host retains the full dataset.
+`renderHistory` and `mountHistoryWindow` are no longer shipped. Use React `Chart`
+and `ChartCard` with TanStack Charts. Existing history/instrument CSS remains
+available for compatible markup; it does not provide a JavaScript renderer.
 
 ## Stylesheet entries
 

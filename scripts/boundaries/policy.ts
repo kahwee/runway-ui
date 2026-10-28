@@ -2,7 +2,7 @@
 export const vanillaRuntime = (file: string) =>
   file === "index.css" || /^(behaviors|styles)\//.test(file);
 export const foundationStyle = (file: string) =>
-  /^styles\/(?:tokens|primitives|controls|panels|native|fields|forms)(?:\.css|\/)/.test(file);
+  /^styles\/(?:tokens|primitives|controls|panels|input|native|fields|forms)(?:\.css|\/)/.test(file);
 export const allowedReactPeer = (value: string) =>
   value === "react" ||
   value.startsWith("react/") ||

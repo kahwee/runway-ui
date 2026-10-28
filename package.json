@@ -94,7 +94,8 @@
     "check-dependency-map": "bun scripts/build-dependency-map.ts --check",
     "build-react-types": "bun scripts/build-react-types.ts",
     "clean": "bun scripts/clean.ts",
-    "check-pages": "bun scripts/check-pages.ts"
+    "check-pages": "bun scripts/check-pages.ts",
+    "bench-game-ui": "bun scripts/bench-game-ui.ts"
   },
   "engines": {
     "node": "^22.18.0 || >=24.11.0",

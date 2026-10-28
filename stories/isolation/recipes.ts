@@ -10,6 +10,12 @@ export const recipes = {
     markup: `<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">${buttons}</div>`,
     note: "Native buttons need no behavior module. Shortcut hints do not bind keys; toggle state is application-owned.",
   },
+  inputHints: {
+    title: "Standalone input hints",
+    styles: [tokens, "styles/controls.css", "styles/input.css"],
+    markup: `<ul class="rw-input-hints" aria-label="Keyboard shortcuts"><li><kbd class="rw-shortcut">N</kbd><span>Next cycle</span></li><li><kbd class="rw-shortcut">Ctrl+Shift+R</kbd><span>Review the available research choices</span></li></ul>`,
+    note: "The input stylesheet arranges visible list/kbd hints; controls.css supplies the shared keycap. Bindings belong to React InputScope and application state. CSS alone does not register shortcuts.",
+  },
   panels: {
     title: "Standalone panels",
     styles: [tokens, "styles/panels.css"],
@@ -37,7 +43,7 @@ export const recipes = {
     title: "Form controls and layout",
     styles: [tokens, "styles/icons.css", "styles/fields.css", "styles/forms.css"],
     markup: `<form style="max-inline-size:650px"><fieldset class="rw-fieldset"><legend>Workspace preferences</legend><div class="rw-field"><label for="team-name">Team name</label><input class="rw-input" id="team-name" name="team" required value="Northwind"></div><label class="rw-toggle"><input type="checkbox" class="rw-switch" name="alerts" checked role="switch">Enable alerts</label><label><input type="checkbox" class="rw-check" name="reports" checked> Weekly report</label><label><input type="radio" class="rw-check" name="pace" value="steady" checked> Steady pace</label><label for="capacity">Capacity</label><input class="rw-range" id="capacity" type="range" min="0" max="100" value="50" style="--rw-fill:50%"></fieldset></form>`,
-    note: "icons.css supplies checkbox check and minus masks. fields.css styles text inputs; forms.css supplies wrappers, switches, checks, radios, ranges and choice cards. Add controls.css for styled submit buttons. Optional runway-ui/forms binds range output and fill updates; retain its handle and destroy it on unmount. This fixture uses a fixed fill value and native inputs only.",
+    note: "icons.css supplies checkbox check and minus masks. fields.css styles text inputs; forms.css supplies wrappers, switches, checks, radios, ranges and choice cards. Add controls.css for styled submit buttons. React Range supplies live output and fill updates. The retired forms behavior is not shipped. This fixture uses a fixed fill value and native inputs only.",
   },
   viewNavigation: {
     title: "View navigation",

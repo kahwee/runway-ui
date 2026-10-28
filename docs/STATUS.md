@@ -33,3 +33,12 @@ The [ten-pass audit](AUDIT.md) records subsequent documentation and tooling chec
 - Examples are synthetic references with no simulation backend or persistent game state. Their layouts now adapt to phone, tablet and desktop widths without a desktop-only gate; hosts still own their data and actions.
 
 Read [modern CSS](MODERN-CSS.md) for capability-specific degradation and [compatibility](STABILITY.md) for API policy.
+
+## Scoped game input and busy-screen reference
+
+The unreleased input scope has focused Chromium checks at 320px, 390px, 768px,
+1366 × 768 and 1440 × 900 for remapping, native editing/Tab, nested scopes and
+modal decisions. A native-modal fixture simulates missing newer dismissal APIs;
+it does not establish support in another browser engine. Controller checks use
+simulated standard pad snapshots, not physical hardware. See [game input](GAME-INPUT.md)
+and [performance methodology and limits](PERFORMANCE.md).

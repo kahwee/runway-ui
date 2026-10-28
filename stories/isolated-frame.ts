@@ -67,6 +67,7 @@ export async function checkIsolatedPanels({ canvasElement }) {
 export async function checkIsolatedRecipe({ canvasElement }, key) {
   const selectors = {
     dialogs: ".rw-dialog",
+    inputHints: ".rw-input-hints",
     disclosures: ".rw-disclosure",
     resources: ".rw-resource",
     inventory: ".rw-slots",
@@ -86,7 +87,15 @@ export async function checkIsolatedRecipe({ canvasElement }, key) {
     if (!condition) throw new Error(`${key}: ${message}`);
   };
   expect(doc.styleSheets.length === 1 && !doc.querySelector("link"), "unexpected external styles");
-  if (key === "fields") {
+  if (key === "inputHints") {
+    expect(style(".rw-input-hints").display === "flex", "hint layout missing");
+    expect(style(".rw-input-hints").flexWrap === "wrap", "hints must wrap");
+    expect(
+      ["grid", "inline-grid"].includes(style(".rw-shortcut").display),
+      "keycap dependency missing",
+    );
+    expect(doc.querySelectorAll("li kbd").length === 2, "visible semantic key hints missing");
+  } else if (key === "fields") {
     expect(style(".rw-input").paddingBlockStart === "10px", "field recipe missing");
     expect(
       style('[aria-invalid="true"]').borderTopColor !== style("#workspace-name").borderTopColor,

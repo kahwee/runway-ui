@@ -1,0 +1,15 @@
+.react-input-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-block-end: 16px;
+  & > .rw-button {
+    min-inline-size: 0;
+    padding-inline: 8px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+.react-form-example .rw-input-scope > :is(.rw-button, .rw-field, .rw-input-scope) {
+  margin-block: 12px;
+}

@@ -35,6 +35,24 @@ import "@kahwee/runway-ui/styles/controls.css";
 
 No internal stylesheet imports.
 
+## Standalone input hints
+
+The input stylesheet arranges visible list/kbd hints; controls.css supplies the shared keycap. Bindings belong to React InputScope and application state. CSS alone does not register shortcuts.
+
+```js
+import "@kahwee/runway-ui/styles/tokens.css";
+import "@kahwee/runway-ui/styles/controls.css";
+import "@kahwee/runway-ui/styles/input.css";
+```
+
+```html
+<main class="rw-ui">
+<ul class="rw-input-hints" aria-label="Keyboard shortcuts"><li><kbd class="rw-shortcut">N</kbd><span>Next cycle</span></li><li><kbd class="rw-shortcut">Ctrl+Shift+R</kbd><span>Review the available research choices</span></li></ul>
+</main>
+```
+
+No internal stylesheet imports.
+
 ## Standalone panels
 
 Panels do not style child controls. Add controls.css or fields.css when those components are used.
@@ -97,7 +115,7 @@ Internal stylesheet imports (already loaded by the entries above):
 
 ## Form controls and layout
 
-icons.css supplies checkbox check and minus masks. fields.css styles text inputs; forms.css supplies wrappers, switches, checks, radios, ranges and choice cards. Add controls.css for styled submit buttons. Optional runway-ui/forms binds range output and fill updates; retain its handle and destroy it on unmount. This fixture uses a fixed fill value and native inputs only.
+icons.css supplies checkbox check and minus masks. fields.css styles text inputs; forms.css supplies wrappers, switches, checks, radios, ranges and choice cards. Add controls.css for styled submit buttons. React Range supplies live output and fill updates. The retired forms behavior is not shipped. This fixture uses a fixed fill value and native inputs only.
 
 ```js
 import "@kahwee/runway-ui/styles/tokens.css";

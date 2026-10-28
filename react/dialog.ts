@@ -2,6 +2,7 @@
 
 import { createElement, useEffect, useRef, type ComponentProps } from "react";
 import { cx } from "./classes.ts";
+import { attachDialogPolicy } from "./dialog-policy.ts";
 
 export type DialogProps = Omit<ComponentProps<"dialog">, "open" | "onClose"> & {
   open: boolean;
@@ -29,43 +30,7 @@ export function Dialog({
   useEffect(() => {
     const dialog = ref.current;
     if (!dialog) return;
-    const nativeLightDismiss = Reflect.has(dialog, "closedBy");
-    const cancel = (event: Event) => {
-      if (!policy.current.canDismiss()) event.preventDefault();
-    };
-    const close = () => policy.current.onClose(dialog.returnValue);
-    let pressed: number | null = null;
-    const outside = (event: PointerEvent) => {
-      if (event.target !== dialog) return false;
-      const rect = dialog.getBoundingClientRect();
-      return (
-        event.clientX < rect.left ||
-        event.clientX > rect.right ||
-        event.clientY < rect.top ||
-        event.clientY > rect.bottom
-      );
-    };
-    const down = (event: PointerEvent) => {
-      pressed = event.button === 0 && outside(event) ? event.pointerId : null;
-    };
-    const up = (event: PointerEvent) => {
-      const same = pressed === event.pointerId;
-      pressed = null;
-      if (same && event.button === 0 && outside(event) && policy.current.canDismiss())
-        dialog.requestClose?.();
-    };
-    dialog.addEventListener("cancel", cancel);
-    dialog.addEventListener("close", close);
-    if (!nativeLightDismiss) {
-      dialog.addEventListener("pointerdown", down);
-      dialog.addEventListener("pointerup", up);
-    }
-    return () => {
-      dialog.removeEventListener("cancel", cancel);
-      dialog.removeEventListener("close", close);
-      dialog.removeEventListener("pointerdown", down);
-      dialog.removeEventListener("pointerup", up);
-    };
+    return attachDialogPolicy(dialog, () => policy.current);
   }, []);
 
   // Reapply the dismissal policy on every render so a changed `canDismiss` takes effect.

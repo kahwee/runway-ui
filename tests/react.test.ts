@@ -88,7 +88,11 @@ test("a Button-only consumer drops unrelated component and peer implementations"
     "Unused primitive implementations are removed",
   );
   assert.ok(
-    !modules.some((id) => /\/react\/(meter|animated-number|confetti|toast|chart)\.ts$/.test(id)),
+    !modules.some((id) =>
+      /\/react\/(meter|animated-number|confetti|toast|chart|input-scope|input-hints|gamepad-input)\.ts$/.test(
+        id,
+      ),
+    ),
     "Unrelated Runway components are removed",
   );
 });

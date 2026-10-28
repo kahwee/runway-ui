@@ -13,5 +13,5 @@
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "types": ["react", "react-dom", "vite/client"]
   },
-  "include": ["stories/react/**/*.tsx"]
+  "include": ["stories/**/*.tsx"]
 }

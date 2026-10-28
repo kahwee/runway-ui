@@ -86,6 +86,14 @@ so the formatted value does not become part of the slider's accessible name.
 Try **React / Interactions** for presets, keyboard navigation, disabled slots and
 inventory changes.
 
+## Game input
+
+Use `InputScope`, application-owned `InputBinding[]`, and `InputHints` for local,
+remappable shortcuts. Opt in with `gamepad` for standard-controller navigation;
+mark directional targets with `data-rw-focus-item`. Native Tab, editing widgets,
+nested scopes and modal focus retain their contracts. See [game input](GAME-INPUT.md)
+for props, mappings, limitations and a complete example.
+
 ## Motion and feedback
 
 `AnimatedNumber` tweens to its new value and bumps; `Resource` and `CommandBar` use it for numeric

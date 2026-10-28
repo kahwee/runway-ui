@@ -94,3 +94,24 @@ test("meter presentation and accessible values share finite, bounded units", () 
     assert.doesNotMatch(html, /NaN|Infinity/);
   }
 });
+
+test("input scopes and remappable hints render server-side with semantic labels and current keys", async () => {
+  const { InputScope, InputHints } = await import("../react/index.ts");
+  const binding = { id: "next", label: "Next <cycle>", key: "x", ctrlKey: true, onActivate() {} };
+  const html = render(
+    h(
+      InputScope,
+      { "aria-label": "Commands", bindings: [binding], gamepad: true },
+      h(InputHints, { bindings: [binding] }),
+    ),
+  );
+  assert.match(html, /role="group" aria-label="Commands"/);
+  assert.match(html, /data-rw-input-scope=""/);
+  assert.match(html, /<kbd class="rw-shortcut">Ctrl\+x<\/kbd>/);
+  assert.match(html, /Next &lt;cycle&gt;/);
+  assert.doesNotMatch(
+    html,
+    /data-rw-focus-item|tabindex=/,
+    "The scope must not rewrite native Tab order",
+  );
+});

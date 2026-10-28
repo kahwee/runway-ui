@@ -46,3 +46,6 @@ New to Runway UI? Follow **Install → Components → Compose**. Use Storybook w
 Source Markdown guides live alongside the interactive documentation. The site build renders them as HTML and rewrites their guide links. Existing guide filenames remain stable so external links continue working.
 
 - [Generated types and behavior ownership](TYPES.md): source of truth, consumer contracts and module map.
+
+For scoped keyboard/controller input, see [Game input](GAME-INPUT.md).
+For reproducible busy-screen measurements, see [Performance](PERFORMANCE.md).

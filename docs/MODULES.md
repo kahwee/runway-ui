@@ -134,7 +134,9 @@ modules. Do not duplicate upstream component state machines.
 | `dossier.ts` | Dossier and its aligned list; these share one component contract |
 | `animated-number.ts`, `confetti.ts`, `reduced-motion.ts` | Value animation, celebrations and shared motion preference |
 | `toast.ts` | Base UI toast provider, stack and hook |
-| `dialog.ts`, `inventory.ts`, `range.ts` | Native modal policy, roving slot focus and slider state |
+| `dialog.ts`, `dialog-policy.ts` | Native modal component and local cancellation/backdrop compatibility |
+| `inventory.ts`, `range.ts` | Roving slot focus and native slider state |
+| `input-scope.ts`, `input-navigation.ts`, `input-bindings.ts`, `input-hints.ts`, `gamepad-input.ts` | Local remappable bindings, opt-in directional/controller input and visible hints |
 | `chart.ts` | TanStack Charts exports and chart card |
 | `classes.ts` | Plain and state-dependent class composition |
 
@@ -163,3 +165,11 @@ Nested source owners retain their relative paths in generated output.
 and `styles/icons.css` remain committed assets. A rebuild must not ship deleted
 features merely because their old generated files exist locally. See
 [build ownership](TOOLING.md#build-ownership-and-cleanup).
+
+## Performance fixtures
+
+`stories/performance/` owns synthetic workload rendering and measurement. It
+composes actual resource, inventory and TanStack chart components; no benchmark
+code enters the distributed React runtime. `scripts/bench-game-ui.ts` runs the
+production Storybook fixture with agent-browser, retains raw samples locally,
+and compares optional reference regression budgets. See [performance](PERFORMANCE.md).

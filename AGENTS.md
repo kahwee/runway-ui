@@ -23,6 +23,10 @@ Read [docs/MODULES.md](docs/MODULES.md) before moving modules or changing import
   charts, instruments, feedback, forms, fields, patterns and themed compositions.
   An aggregate must contain imports only. Foundation styles must not import
   composition styles. Keep CSS independent of JavaScript.
+- Game input is opt-in and local to the focused scope. Preserve native editing,
+  Tab, nested-scope ownership and native modal decisions. Stop controller polling
+  on lost focus, hidden documents, opt-out and unmount; test synthetic mappings
+  without claiming physical-device validation. See [docs/GAME-INPUT.md](docs/GAME-INPUT.md).
 - Stories and examples compose real library components. Reusable recipes belong
   in `react/` or `styles/`; demo content and application state belong in examples.
 - Tooling policy lives in `scripts/boundaries/`; generated-file synchronization
@@ -80,6 +84,9 @@ Biome. All authored modules are TypeScript/TSX. Format with `bun fmt` (or
   Never hand-edit generated `.js`, `.d.ts`, `styles/icons.css` or
   `dist/runway-ui.css`. Each generator removes only its own retired file types;
   failed compilation must preserve the last successful output.
+- Use the production busy-screen fixture and `bun run bench-game-ui` for runtime
+  performance comparisons. Keep raw timing/environment data local and use
+  documented reference budgets; do not claim speedups from structural checks.
 - For stylesheet or story changes, build Storybook with `bun run build-storybook`
   and inspect affected desktop and responsive states. `bun run build-site`,
   `bun run check-docs` and `bun run check-pages` validate publication artifacts.

@@ -12,7 +12,7 @@ standalone stylesheet, and existing `rw-` class names are unchanged.
 | `renderHistory` and `mountHistoryWindow` | `Chart` with `defineChart` from `@tanstack/charts` |
 | `createLazyResource`, `loadStylesheet` | `React.lazy` and dynamic `import()` |
 | `createActionRouter` | React event handlers |
-| `bindNavigation`, `bindGamepad` | Roving focus is built into `Inventory`; gamepad input is not ported |
+| `bindNavigation`, `bindGamepad` | `InputScope` for local shortcuts and opt-in gamepads; `InputHints` for visible remappable bindings. `Inventory` retains its own roving focus. |
 | Hand-written `rw-` markup | `Panel`, `Badge`, `Meter`, `CommandBar`, `FolioTabs`, `Sheet`, `Dossier`, `ControlConsole` |
 
 ## Status
