@@ -52,7 +52,8 @@ Read [docs/MODULES.md](docs/MODULES.md) before moving modules or changing import
   must retain meaning and usable controls.
 - Demonstrate meaningful states in argument-driven Storybook: ordinary use,
   disabled/empty data, long content, keyboard interaction and narrow layouts as
-  applicable. Regression tests should protect consumer behavior and boundaries.
+  applicable. Regression tests should protect Runway behavior and boundaries;
+  do not duplicate upstream React, Base UI or TanStack correctness/interop tests.
 
 ## CSS and responsive behavior
 

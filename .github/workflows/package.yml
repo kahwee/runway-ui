@@ -86,7 +86,7 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run build-site
       - run: bun run check-docs
-      - name: Install browser for publication checks
-        run: bunx --no-install playwright install --with-deps chromium
       - name: Check published pages below the project prefix
+        env:
+          PLAYWRIGHT_CHROMIUM_CHANNEL: chrome
         run: bun run check-pages

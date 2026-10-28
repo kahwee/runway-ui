@@ -77,12 +77,16 @@ versions or retry publication. An existing registry version stops the job.
 Before requesting a version tag, update the version and lockfile consistently,
 record migration notes in the changelog, and merge the tested source to main.
 Tag publication remains a deliberate release action, not incidental cleanup.
-The validation job runs the checks above plus the real Pages browser gate,
-creates one archive and installs it into an isolated consumer with the tested
-React/Base UI/TanStack peers. It checks runtime imports, declarations, CSS and a
-server-rendered React component. Only that archive passes to the publishing job;
+Package validation runs source/type/behavior checks and verifies the archive's
+manifest, license, CSS and exported files. Five independent browser matrix jobs
+cover 320, 390, 768, 1366 and 1440px using Chrome already installed on GitHub's
+Ubuntu runner. The 1440px shard also checks the Storybook manager/Controls flow.
+All six jobs start independently, and publication waits for every one to succeed.
+They do not reinstall peer libraries into a throwaway consumer or retest upstream
+React/Base UI/TanStack interoperability. Only the verified archive passes to the publishing job;
 its checksum is verified before publishing. Registry version, archive integrity
-and the intended dist-tag are checked afterward.
+and the intended dist-tag are checked afterward. Readback starts immediately and
+waits only when registry data is not ready; it never repeats the upload.
 
 The package already exists; no bootstrap publication is needed. Registry
 verification on 2026-10-28 found `latest` at `0.7.0` and `next` at
@@ -102,3 +106,22 @@ and validates before packing without lifecycle scripts; publication also skips
 scripts so the tested bytes stay unchanged. Generated runtime JavaScript and
 public declarations must be present in the archive. Source archive consumers
 must install and run `bun run build` before using runtime exports.
+
+## Validation timing
+
+The supplied v1.2.0 validation job took about 1m 47s: browser installation consumed
+37s and serial viewport checks consumed 39s. The release pipeline now separates
+package checks from five parallel viewport jobs and uses the runner's existing
+Chrome through `PLAYWRIGHT_CHROMIUM_CHANNEL=chrome`. Browser download and system
+package installation are removed from the critical path. Pages and PR browser
+checks use the same installed channel.
+
+`RUNWAY_CHECK_WIDTH` selects one supported width for a shard; unset, `check-pages`
+retains all five widths. The Storybook manager checks run with the 1440px shard,
+so splitting the jobs preserves the combined coverage. Record actual workflow
+job timings after pushing; do not treat a proposed time reduction as measured.
+
+The publish command itself took 5s in the supplied run. Its later 164s registry
+readback was a separate propagation wait after the upload had succeeded. A faster
+validation path does not make an unpropagated registry response valid. Package
+version, integrity and dist-tag checks remain mandatory.

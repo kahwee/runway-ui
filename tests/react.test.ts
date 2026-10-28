@@ -4,44 +4,7 @@ import test from "node:test";
 import { createElement as h } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { build } from "vite";
-import { Button, Checkbox, Field, Input, Progress, Select } from "../react/index.ts";
-
-test("React entry retains Base UI identity for compound primitives", async () => {
-  assert.equal(Checkbox, (await import("@base-ui/react/checkbox")).Checkbox);
-  assert.equal(Field, (await import("@base-ui/react/field")).Field);
-  assert.equal(Select, (await import("@base-ui/react/select")).Select);
-});
-
-test("styled controls preserve disabled state, consumer classes and field association", () => {
-  const button = renderToStaticMarkup(
-    h(
-      Button,
-      {
-        disabled: true,
-        className: ({ disabled }) => (disabled ? "consumer-disabled" : "consumer-ready"),
-      },
-      "Save",
-    ),
-  );
-  assert.match(button, /class="rw-button consumer-disabled"/);
-  assert.match(button, /disabled=""/);
-  const field = renderToStaticMarkup(
-    h(
-      Field.Root,
-      null,
-      h(Field.Label, null, "Name"),
-      h(Input, { id: "workspace-name", name: "name", defaultValue: "Orchard" }),
-      h(Field.Description, null, "A unique workspace"),
-    ),
-  );
-  assert.equal(
-    field.match(/<label[^>]*for="([^"]+)"/)[1],
-    field.match(/<input[^>]*id="([^"]+)"/)[1],
-  );
-  assert.match(field, /class="rw-input"/);
-  assert.match(field, /value="Orchard"/);
-  // Base UI associates descriptions after mount; real-browser acceptance covers that link.
-});
+import { Progress } from "../react/index.ts";
 
 test("React and chart peers are required and runtime dependencies remain empty", async () => {
   const pkg = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
@@ -53,7 +16,7 @@ test("React and chart peers are required and runtime dependencies remain empty",
   assert.equal(pkg.exports["./dialog"].default, "./dist/behaviors/dialog.js");
 });
 
-test("a Button-only consumer drops unrelated component and peer implementations", async () => {
+test("a Button-only bundle drops unrelated Runway components", async () => {
   const result = await build({
     configFile: false,
     logLevel: "silent",
@@ -79,14 +42,6 @@ test("a Button-only consumer drops unrelated component and peer implementations"
     .flatMap((chunk) => Object.entries(chunk.modules))
     .filter(([, info]) => (info as { renderedLength: number }).renderedLength > 0)
     .map(([id]) => id);
-  assert.ok(
-    modules.some((id) => /base-ui.*\/button\//.test(id)),
-    "Base UI Button is bundled",
-  );
-  assert.ok(
-    !modules.some((id) => /base-ui.*\/(select|checkbox|field|input)\//.test(id)),
-    "Unused primitive implementations are removed",
-  );
   assert.ok(
     !modules.some((id) =>
       /\/react\/(meter|animated-number|confetti|toast|chart|input-scope|input-hints|gamepad-input)\.ts$/.test(

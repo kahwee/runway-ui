@@ -5,6 +5,13 @@ import { chromium, type Page } from "playwright";
 
 // Exercise the exact publication artifact below a project prefix, with real 404s.
 // A supplied URL runs the same check against the public deployment.
+const allWidths = [320, 390, 768, 1366, 1440];
+const requestedWidth = process.env.RUNWAY_CHECK_WIDTH;
+const widths = requestedWidth === undefined ? allWidths : [Number(requestedWidth)];
+assert.ok(
+  widths.every((width) => allWidths.includes(width)),
+  "RUNWAY_CHECK_WIDTH must be 320, 390, 768, 1366 or 1440",
+);
 const root = resolve(".site");
 const prefix = "/runway-ui/";
 const evidence = resolve(".local/pages-check");
@@ -35,11 +42,13 @@ const base = new URL(process.argv[2] || `http://127.0.0.1:${server.port}${prefix
 if (!base.pathname.endsWith("/")) base.pathname += "/";
 const failures: string[] = [];
 const errors: string[] = [];
+const channel = process.env.PLAYWRIGHT_CHROMIUM_CHANNEL;
 const browser = await chromium.launch({
+  channel,
   executablePath:
     process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE ||
     process.env.AGENT_BROWSER_EXECUTABLE_PATH ||
-    ((await Bun.file("/usr/bin/chromium").exists()) ? "/usr/bin/chromium" : undefined),
+    (!channel && (await Bun.file("/usr/bin/chromium").exists()) ? "/usr/bin/chromium" : undefined),
 });
 let scans = 0;
 function observe(page: Page) {
@@ -80,7 +89,8 @@ try {
   }
   const index = await (await fetch(new URL("storybook/index.json", base))).json();
   assert.ok(index.entries["start-here-recipe-book--playground"], "Recipe book is indexed");
-  for (const width of [320, 390, 768, 1366, 1440]) {
+  console.log(`Browser ${browser.version()}; widths ${widths.join(", ")}px`);
+  for (const width of widths) {
     const page = await browser.newPage({
       viewport: { width, height: width === 1366 ? 768 : 900 },
       reducedMotion: "reduce",
@@ -140,39 +150,44 @@ try {
     await page.getByRole("status").filter({ hasText: "Decision cancelled" }).waitFor();
     await page.close();
   }
-  const page = await browser.newPage({
-    viewport: { width: 1440, height: 900 },
-    reducedMotion: "reduce",
-  });
-  observe(page);
-  await page.goto(new URL("storybook/?path=/story/start-here-runway-ui--welcome", base).href, {
-    waitUntil: "networkidle",
-  });
-  await page
-    .frameLocator("#storybook-preview-iframe")
-    .getByRole("heading", { name: "Take a little tour." })
-    .waitFor();
-  assert.equal(
-    await page.getByText("This story has no controls", { exact: true }).count(),
-    0,
-    "Welcome has no empty Controls panel",
-  );
-  await page.screenshot({ path: resolve(evidence, "storybook-welcome.png"), fullPage: true });
-  await page.goto(new URL("storybook/?path=/story/start-here-recipe-book--playground", base).href, {
-    waitUntil: "networkidle",
-  });
-  await page
-    .frameLocator("#storybook-preview-iframe")
-    .getByRole("heading", { name: "Make it yours" })
-    .waitFor();
-  await page.getByRole("tab", { name: /^Controls/ }).waitFor();
-  await page.locator("#control-recipe").selectOption("Resource HUD");
-  await page
-    .frameLocator("#storybook-preview-iframe")
-    .getByRole("heading", { name: "Resource HUD", exact: true })
-    .waitFor();
-  await page.screenshot({ path: resolve(evidence, "storybook-controls.png"), fullPage: true });
-  await page.close();
+  if (widths.includes(1440)) {
+    const page = await browser.newPage({
+      viewport: { width: 1440, height: 900 },
+      reducedMotion: "reduce",
+    });
+    observe(page);
+    await page.goto(new URL("storybook/?path=/story/start-here-runway-ui--welcome", base).href, {
+      waitUntil: "networkidle",
+    });
+    await page
+      .frameLocator("#storybook-preview-iframe")
+      .getByRole("heading", { name: "Take a little tour." })
+      .waitFor();
+    assert.equal(
+      await page.getByText("This story has no controls", { exact: true }).count(),
+      0,
+      "Welcome has no empty Controls panel",
+    );
+    await page.screenshot({ path: resolve(evidence, "storybook-welcome.png"), fullPage: true });
+    await page.goto(
+      new URL("storybook/?path=/story/start-here-recipe-book--playground", base).href,
+      {
+        waitUntil: "networkidle",
+      },
+    );
+    await page
+      .frameLocator("#storybook-preview-iframe")
+      .getByRole("heading", { name: "Make it yours" })
+      .waitFor();
+    await page.getByRole("tab", { name: /^Controls/ }).waitFor();
+    await page.locator("#control-recipe").selectOption("Resource HUD");
+    await page
+      .frameLocator("#storybook-preview-iframe")
+      .getByRole("heading", { name: "Resource HUD", exact: true })
+      .waitFor();
+    await page.screenshot({ path: resolve(evidence, "storybook-controls.png"), fullPage: true });
+    await page.close();
+  }
   assert.deepEqual(errors, [], "Published pages have no uncaught browser errors");
   assert.deepEqual(
     [...new Set(failures)],
@@ -180,7 +195,7 @@ try {
     "Published pages load every requested asset under the project prefix",
   );
   console.log(
-    `Pages browser checks passed: ${scans} accessibility/viewport scans, manager navigation, live Controls, copy feedback, modal focus/Escape, and zero failed local assets. ${base.href}`,
+    `Pages browser checks passed: ${scans} accessibility/viewport scans, ${widths.includes(1440) ? "manager navigation and live Controls, " : ""}copy feedback, modal focus/Escape, and zero failed local assets. ${base.href}`,
   );
 } finally {
   await browser.close();

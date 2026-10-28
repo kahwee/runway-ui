@@ -55,7 +55,7 @@ function harness(replies: any[]) {
   };
 }
 
-test("registry cooldown retries eventual 404s without another upload", async () => {
+test("registry readback retries eventual 404s without another upload", async () => {
   const fixture = harness([
     { status: 404 },
     { status: 200, body: published },
@@ -121,4 +121,14 @@ test("auth, permanent HTTP, network and malformed responses are not propagation 
     await assert.rejects(verifyRegistry(fixture.options), /Do not republish/);
     assert.equal(fixture.calls.length, 1);
   }
+});
+
+test("an already propagated publication verifies immediately without a cooldown", async () => {
+  const fixture = harness([
+    { status: 200, body: published },
+    { status: 200, body: index },
+  ]);
+  fixture.options.sleep = async () => assert.fail("No delay is needed when registry data is ready");
+  await verifyRegistry(fixture.options);
+  assert.equal(fixture.calls.length, 2);
 });

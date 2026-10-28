@@ -58,7 +58,19 @@ test("publication is tag-only, no environment, and OIDC belongs only to publishi
   assert.deepEqual(workflow.jobs.publish.permissions, { contents: "read", "id-token": "write" });
   assert.equal(workflow.jobs.publish.environment, undefined);
   assert.match(workflow.jobs.publish.if, /refs\/tags\/v/);
-  assert.equal(workflow.jobs.publish.needs, "validate");
+  assert.deepEqual(workflow.jobs.publish.needs, ["validate", "browser"]);
+  assert.equal(
+    workflow.jobs.browser.needs,
+    undefined,
+    "Browser and package checks start independently",
+  );
+  assert.deepEqual(workflow.jobs.browser.strategy.matrix.width, [320, 390, 768, 1366, 1440]);
+  assert.equal(workflow.jobs.browser.env.PLAYWRIGHT_CHROMIUM_CHANNEL, "chrome");
+  const validation = workflow.jobs.validate.steps.map((step: any) => step.run ?? "").join("\n");
+  assert.doesNotMatch(validation, /build-site|check-pages|playwright install/);
+  const browser = workflow.jobs.browser.steps.map((step: any) => step.run ?? "").join("\n");
+  assert.match(browser, /bun run check-pages/);
+  assert.doesNotMatch(browser, /playwright install/);
   for (const job of Object.values(workflow.jobs) as any[])
     for (const step of job.steps) if (step.uses) assert.match(step.uses, /@[a-f0-9]{40}$/);
   const commands = workflow.jobs.publish.steps.map((s: any) => s.run ?? "").join("\n");

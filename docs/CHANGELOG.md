@@ -106,6 +106,15 @@ First stable release under `@kahwee/runway-ui`, rolling up the 0.6.0 betas.
 
 ## Unreleased
 
+- Run package validation and five viewport browser checks in parallel for npm
+  releases. Use the GitHub runner's installed Chrome instead of downloading
+  browsers/system packages. Preserve tag/OIDC restrictions, archive checksums
+  and the combined viewport/manager coverage before publishing.
+- Remove upstream identity/peer-render smoke tests and the temporary peer-install
+  consumer from archive validation. Keep Runway behavior, exports, bundling and
+  class-composition checks. Registry verification no longer waits before its
+  first readback attempt.
+
 - Fix React dialog backdrop dismissal when newer native close-request APIs are
   absent. Preserve cancellation vetoes, return values, primary-pointer guards
   and native focus/inertness; reset cancelled gestures and remove listeners.
