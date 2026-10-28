@@ -113,3 +113,10 @@ must never import a composition to finish its appearance. Studio appearances
 remain scoped to `rw-paper-*`; observatory placement rules remain scoped to
 `rw-observatory*`. Neither redefines an unscoped button, field or panel recipe.
 Use **Isolation / Panels** in Storybook to verify the independent panel entry.
+
+## Optional React boundary
+
+`react/` owns the optional React 19 / Base UI entry and generated declarations. It
+may import React and Base UI primitive subpaths; vanilla runtime modules may not
+import it. `stories/react/` owns example layout and React root teardown. See
+[React usage](REACT.md). Do not duplicate upstream component state machines.

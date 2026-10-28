@@ -59,6 +59,10 @@
     "./actions": {
       "types": "./behaviors/actions.d.ts",
       "default": "./behaviors/actions.js"
+    },
+    "./react": {
+      "types": "./react/index.d.ts",
+      "default": "./react/index.js"
     }
   },
   "files": [
@@ -70,7 +74,8 @@
     "README.md",
     "docs",
     "examples",
-    "scripts"
+    "scripts",
+    "react"
   ],
   "style": "index.css",
   "license": "MIT",
@@ -94,7 +99,7 @@
     "inventory"
   ],
   "scripts": {
-    "build": "bun run build-types && bun scripts/build.mjs",
+    "build": "bun run build-types && bun run build-react-types && bun scripts/build.mjs",
     "prepack": "bun run build",
     "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build --disable-telemetry",
@@ -110,9 +115,10 @@
     "test-boundaries": "bun test ./tests/boundaries.test.mjs",
     "test-behaviors": "bun test ./tests/*.test.mjs",
     "build-types": "bun scripts/build-types.mjs",
-    "check-types": "bun scripts/build-types.mjs --check && tsc -p tsconfig.consumer.json",
+    "check-types": "bun scripts/build-types.mjs --check && bun scripts/build-react-types.mjs --check && tsc -p tsconfig.consumer.json",
     "build-dependency-map": "bun scripts/build-dependency-map.mjs",
-    "check-dependency-map": "bun scripts/build-dependency-map.mjs --check"
+    "check-dependency-map": "bun scripts/build-dependency-map.mjs --check",
+    "build-react-types": "bun scripts/build-react-types.mjs"
   },
   "engines": {
     "node": "^22.18.0 || >=24.11.0",
@@ -131,10 +137,31 @@
     "postcss": "^8.5.31",
     "storybook": "10.6.3",
     "typescript": "7.0.2",
-    "vite": "8.3.5"
+    "vite": "8.3.5",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@base-ui/react": "1.9.0"
   },
   "packageManager": "bun@1.4.4",
   "trustedDependencies": [
     "esbuild"
-  ]
+  ],
+  "peerDependencies": {
+    "@base-ui/react": "^1.9.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@base-ui/react": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  }
 }

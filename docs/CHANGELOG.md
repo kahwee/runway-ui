@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Add optional `runway-ui/react` with React 19/Base UI forms, generated types and a live Storybook example. Vanilla exports and native dialog contracts are unchanged.
+
+## Unreleased
+
 - Add Bold icons for playback, fullscreen, guides, camera controls, stores and
   workplace equipment. All masks are embedded; consumers need no separate SVG files.
 

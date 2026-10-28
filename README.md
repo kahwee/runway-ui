@@ -2,7 +2,7 @@
 
 **Modern HTML/CSS interfaces for management and simulation games.**
 
-Resource HUDs, production ledgers, economy charts, equipment grids, objectives and native dialogs. Framework-independent, themeable, and zero runtime dependencies. Optional ES modules add keyboard navigation, controller input and virtual inventories.
+Resource HUDs, production ledgers, economy charts, equipment grids, objectives and native dialogs. The vanilla core is framework-independent, themeable, and has zero runtime dependencies. An [optional React 19 entry](docs/REACT.md) composes Base UI primitives. Optional ES modules add keyboard navigation, controller input and virtual inventories.
 
 **MIT licensed. Free for personal and commercial projects, including closed-source games.** Keep the license notice in redistributed copies. No attribution in your interface is required. See [LICENSE](LICENSE).
 
