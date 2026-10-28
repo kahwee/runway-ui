@@ -17,7 +17,7 @@ full source tree, with strict public APIs and strict React stories.
 - **Package renamed to `@kahwee/runway-ui`**, version `0.6.0-beta.0`, public access and the
   `next` dist-tag. Update specifiers from `runway-ui/...` to `@kahwee/runway-ui/...`. The package now
   ships `index.css`, `styles`, `dist`, `docs`, `README.md` and `LICENSE` only; sources,
-  examples and scripts stay in the repository. Not yet published to npm.
+  examples and scripts stay in the repository. Published to npm as `@kahwee/runway-ui@0.6.0-beta.0` (`next`).
 - Add the [React guide](REACT.md) component reference and the [migration guide](MIGRATION.md).
 
 - **Breaking direction: React is now required.** `react`, `react-dom`, `@base-ui/react`
