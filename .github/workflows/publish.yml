@@ -92,18 +92,66 @@ jobs:
           assert.equal(response.status, 404, 'Version already exists or registry could not verify availability');
           JS
           npm publish package.tgz --ignore-scripts --access public --provenance --tag "$RELEASE_DIST_TAG" --registry https://registry.npmjs.org/
-          npm view "@kahwee/runway-ui@$RELEASE_VERSION" version dist.integrity --json --registry https://registry.npmjs.org/
+      - name: Verify registry propagation after successful publication
+        env:
+          RELEASE_VERSION: ${{ needs.validate.outputs.version }}
+          RELEASE_DIST_TAG: ${{ needs.validate.outputs.dist-tag }}
+        run: |
+          set -euo pipefail
+          cd .release
           node --input-type=module <<'JS'
-          import assert from 'node:assert/strict';
           import {createHash} from 'node:crypto';
           import {readFile} from 'node:fs/promises';
-          const root = 'https://registry.npmjs.org/@kahwee%2Frunway-ui';
-          const response = await fetch(`${root}/${encodeURIComponent(process.env.RELEASE_VERSION)}`);
-          assert.equal(response.status, 200);
-          const published = await response.json();
-          assert.equal(published.version, process.env.RELEASE_VERSION);
-          assert.equal(published.dist.integrity, 'sha512-' + createHash('sha512').update(await readFile('package.tgz')).digest('base64'));
-          const packageResponse = await fetch(root);
-          assert.equal(packageResponse.status, 200);
-          assert.equal((await packageResponse.json())['dist-tags'][process.env.RELEASE_DIST_TAG], process.env.RELEASE_VERSION);
+          // BEGIN registry verifier (exercised directly by release-readback.test.ts)
+          async function verifyRegistry({version, tag, integrity, fetcher = fetch,
+            sleep = ms => new Promise(resolve => setTimeout(resolve, ms)),
+            now = Date.now, log = console.log, timeoutMs = 180000, intervalMs = 5000}) {
+            const root = 'https://registry.npmjs.org/@kahwee%2Frunway-ui';
+            const deadline = now() + timeoutMs;
+            const completed = 'Publication already succeeded. Do not republish; inspect registry readback.';
+            const timedOut = () => new Error(`Registry verification timed out after ${timeoutMs / 1000}s. ${completed}`);
+            async function read(url) {
+              const remaining = deadline - now();
+              if (remaining <= 0) throw timedOut();
+              let response;
+              try {
+                response = await fetcher(url, {cache: 'no-store',
+                  signal: AbortSignal.timeout(Math.min(10000, remaining))});
+              } catch (cause) {
+                throw new Error(`Registry read failed. ${completed}`, {cause});
+              }
+              if (response.status === 404) return null;
+              if (response.status !== 200) throw new Error(`Registry HTTP ${response.status}. ${completed}`);
+              try { return await response.json(); }
+              catch (cause) { throw new Error(`Invalid registry JSON. ${completed}`, {cause}); }
+            }
+            log('Publication succeeded; waiting for registry version, integrity and dist-tag propagation.');
+            // npm may acknowledge the upload before its public read endpoints update.
+            await sleep(Math.min(intervalMs, timeoutMs));
+            for (;;) {
+              const published = await read(`${root}/${encodeURIComponent(version)}`);
+              if (published !== null) {
+                if (published.version !== version) throw new Error(`Registry version mismatch. ${completed}`);
+                if (published.dist?.integrity !== integrity) throw new Error(`Registry archive integrity mismatch. ${completed}`);
+                const index = await read(root);
+                if (index !== null) {
+                  if (!index.versions || !index['dist-tags']) throw new Error(`Invalid registry package metadata. ${completed}`);
+                  if (index['dist-tags'][tag] === version) {
+                    log(`Verified @kahwee/runway-ui@${version}, archive integrity and ${tag}.`);
+                    return;
+                  }
+                  // An old package index can lag the individual version endpoint.
+                  // Once it lists this version, a different tag is a real mismatch.
+                  if (index.versions[version]) throw new Error(`Registry dist-tag mismatch for ${tag}. ${completed}`);
+                }
+              }
+              const remaining = deadline - now();
+              if (remaining <= 0) throw timedOut();
+              log('Registry is still processing this publication; retrying readback only.');
+              await sleep(Math.min(intervalMs, remaining));
+            }
+          }
+          // END registry verifier
+          await verifyRegistry({version: process.env.RELEASE_VERSION, tag: process.env.RELEASE_DIST_TAG,
+            integrity: 'sha512-' + createHash('sha512').update(await readFile('package.tgz')).digest('base64')});
           JS
