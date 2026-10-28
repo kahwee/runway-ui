@@ -61,7 +61,7 @@ export function Briefing() {
 
 The component list, props and chart usage are in the [React guide](docs/REACT.md). Coming from the vanilla modules? See [migration](docs/MIGRATION.md). Themes (`cozy`, `ledger`, `orbital`, `parchment`, `whimsy`, `midnight`) are in [theming](docs/THEMING.md).
 
-**Release status:** `@kahwee/runway-ui@1.0.0` is the current release on npm and follows semantic versioning (see [stability](docs/STABILITY.md)). The remaining vanilla modules (`dialog`, `navigation`, `inventory`) are deprecated and will be removed in a future major release. You can also install from GitHub with `bun add github:kahwee/runway-ui`. Development uses Bun 1.4.4; Node 22.18+ remains available for Storybook.
+**Release status:** `@kahwee/runway-ui@1.0.0` is the current release on npm and follows semantic versioning (see [stability](docs/STABILITY.md)). The remaining vanilla modules (`dialog`, `navigation`, `inventory`) are deprecated and will be removed in a future major release. You can also install from GitHub with `bun add github:kahwee/runway-ui`. Development uses Bun 1.4.4; Node 24.11+ remains available for Storybook; CI uses Node 24.22.1.
 
 ### CSS only
 

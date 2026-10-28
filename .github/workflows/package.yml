@@ -20,7 +20,7 @@ jobs:
           bun-version-file: .bun-version
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 22
+          node-version: 24.22.1
       - run: bun install --frozen-lockfile
       - run: bun run check
   boundaries:
@@ -34,7 +34,7 @@ jobs:
           bun-version-file: .bun-version
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 22
+          node-version: 24.22.1
       - run: bun install --frozen-lockfile
       - run: bun run check-boundaries
       - run: bun run test-boundaries
@@ -50,7 +50,7 @@ jobs:
           bun-version-file: .bun-version
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 22
+          node-version: 24.22.1
       - run: bun install --frozen-lockfile
       - run: bun run check-types
       - run: bun run test-behaviors
@@ -65,7 +65,7 @@ jobs:
           bun-version-file: .bun-version
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 22
+          node-version: 24.22.1
       - run: bun install --frozen-lockfile
       - name: Verify committed generated CSS
         run: bun run check-generated
@@ -82,7 +82,7 @@ jobs:
           bun-version-file: .bun-version
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 22
+          node-version: 24.22.1
       - run: bun install --frozen-lockfile
       - run: bun run build-site
       - run: bun run check-docs
