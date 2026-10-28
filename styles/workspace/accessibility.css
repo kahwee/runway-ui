@@ -1,0 +1,20 @@
+@layer runway-ui.patterns {
+  @media (forced-colors: active) {
+    .rw-command-bar,
+    .rw-sheet,
+    .rw-dossier,
+    .rw-control-console,
+    .rw-folio-tabs > .rw-folio-tab {
+      color: CanvasText;
+      background: Canvas;
+      border-color: CanvasText;
+      box-shadow: none;
+    }
+    .rw-command-bar .rw-command-stat > :is(span, small) {
+      color: CanvasText;
+    }
+    .rw-folio-tabs > .rw-folio-tab[aria-current="page"] {
+      border-inline-start-color: Highlight;
+    }
+  }
+}

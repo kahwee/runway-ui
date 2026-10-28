@@ -10,7 +10,7 @@ export function isolatedFrame({ title, styles, markup }) {
 }
 
 /** Called by Storybook's play phase, including after navigating from a fully styled story. */
-export async function checkIsolatedControls({ canvasElement }) {
+async function readyFrame(canvasElement, selector) {
   const frame = canvasElement.querySelector("iframe");
   await new Promise((resolve, reject) => {
     const timeout = setTimeout(() => reject(new Error("Isolated document did not load")), 5000);
@@ -18,9 +18,14 @@ export async function checkIsolatedControls({ canvasElement }) {
       clearTimeout(timeout);
       resolve();
     };
-    if (frame.contentDocument?.querySelector(".rw-button")) ready();
+    if (frame.contentDocument?.querySelector(selector)) ready();
     else frame.addEventListener("load", ready, { once: true });
   });
+  return frame;
+}
+
+export async function checkIsolatedControls({ canvasElement }) {
+  const frame = await readyFrame(canvasElement, ".rw-button");
   const doc = frame.contentDocument;
   const view = frame.contentWindow;
   const style = (selector) => view.getComputedStyle(doc.querySelector(selector));
@@ -37,5 +42,24 @@ export async function checkIsolatedControls({ canvasElement }) {
     throw new Error("Pressed button must have a distinct background without patterns CSS");
   if (doc.querySelector(".rw-dock") && style(".rw-dock").display !== "flex")
     throw new Error("Dock CSS missing");
+  frame.dataset.verified = "true";
+}
+
+export async function checkIsolatedPanels({ canvasElement }) {
+  const frame = await readyFrame(canvasElement, ".rw-panel");
+  const doc = frame.contentDocument;
+  const style = (selector) => frame.contentWindow.getComputedStyle(doc.querySelector(selector));
+  if (doc.styleSheets.length !== 1 || doc.querySelector("link"))
+    throw new Error("Panel example must use only its declared inline styles");
+  if (
+    style(".rw-panel").paddingBlockStart !== "22px" ||
+    style(".rw-panel").boxSizing !== "border-box"
+  )
+    throw new Error("Standalone panel recipe missing");
+  if (style(".rw-panel__header").display !== "flex") throw new Error("Panel header layout missing");
+  if (style('[data-elevation="flat"]').boxShadow !== "none")
+    throw new Error("Flat panel must have no shadow");
+  if (style("button").display === "inline-flex")
+    throw new Error("Unrelated controls leaked into panel example");
   frame.dataset.verified = "true";
 }

@@ -1,0 +1,84 @@
+@layer runway-ui.observatory {
+  .rw-observatory__history,
+  .rw-observatory__resources {
+    grid-column: span 8;
+    min-inline-size: 0;
+  }
+  .rw-observatory__briefing,
+  .rw-observatory__inspector {
+    grid-column: span 4;
+    min-inline-size: 0;
+  }
+  .rw-observatory__panel-heading {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 14px;
+    margin-block-end: 14px;
+  }
+  .rw-observatory__panel-heading h2 {
+    font: 700 20px / 1.25 var(--rw-display-font);
+    letter-spacing: -0.03em;
+    margin-block: 4px;
+  }
+  .rw-observatory__panel-heading p {
+    color: var(--rw-muted);
+    font-size: 11px;
+  }
+  .rw-observatory__note {
+    margin-block-start: 14px !important;
+    color: var(--rw-muted);
+    font-size: 11px;
+  }
+  .rw-observatory__briefing {
+    background: linear-gradient(
+      145deg,
+      var(--rw-surface),
+      color-mix(in oklch, var(--rw-gold) 8%, var(--rw-surface))
+    );
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .rw-observatory__briefing h2 {
+    font: 700 23px / 1.2 var(--rw-display-font);
+    letter-spacing: -0.03em;
+  }
+  .rw-observatory__briefing p {
+    color: var(--rw-muted);
+  }
+  .rw-observatory__briefing > .rw-observatory__note {
+    margin-block-start: auto !important;
+    border-block-start: 1px solid var(--rw-line);
+    padding-block-start: 14px;
+  }
+  .rw-observatory__fact {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding-block: 10px;
+    border-block-end: 1px solid var(--rw-line);
+    font-variant-numeric: tabular-nums;
+  }
+  .rw-observatory__fact dt {
+    color: var(--rw-muted);
+  }
+  .rw-observatory__fact dd {
+    text-align: end;
+    font-weight: 650;
+  }
+  .rw-observatory__inspector h3 {
+    font: 700 22px / 1.2 var(--rw-display-font);
+    margin-block: 6px 12px;
+  }
+  .rw-observatory__inspector .rw-button {
+    margin-block-start: 18px;
+    inline-size: 100%;
+  }
+  .rw-observatory__status {
+    min-block-size: 2.8em;
+    margin-block-start: 12px !important;
+    color: var(--rw-muted);
+    font-size: 11px;
+  }
+}

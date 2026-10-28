@@ -221,3 +221,31 @@ test("inline HTML modules participate in dependency checks", async (t) => {
     [],
   );
 });
+
+test("primitive implementation styles cannot import compositions", async (t) => {
+  for (const target of [
+    "workspace.css",
+    "studio/season-cover.css",
+    "observatory/workspace.css",
+    "patterns/dock.css",
+  ]) {
+    const diagnostics = await problems(t, {
+      "styles/primitives.css": '@import "./fields/base.css";',
+      "styles/fields/base.css": `@import "../${target}";`,
+      [`styles/${target}`]: ".rw-composition { display: grid; }",
+    });
+    contains(diagnostics, /Primitive cannot depend on a composition/);
+  }
+});
+
+test("compositions can assemble independent panel and control primitives", async (t) => {
+  assert.deepEqual(
+    await problems(t, {
+      "styles/tokens.css": ".rw-ui { --rw-space: 14px; }",
+      "styles/panels.css": '@import "./tokens.css";',
+      "styles/controls.css": '@import "./tokens.css";',
+      "styles/workspace.css": '@import "./panels.css"; @import "./controls.css";',
+    }),
+    [],
+  );
+});

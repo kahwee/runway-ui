@@ -1,0 +1,48 @@
+@layer runway-ui.patterns {
+  .rw-command-bar {
+    --rw-command-bg: #183b34;
+    --rw-command-ink: #fff8df;
+    --rw-command-muted: #d6ceb0;
+    display: flex;
+    align-items: center;
+    gap: var(--rw-space);
+    min-inline-size: 0;
+    padding: 16px 22px;
+    color: var(--rw-command-ink);
+    background: var(--rw-command-bg);
+    border: 1px solid var(--rw-gold);
+    border-radius: var(--rw-radius);
+    box-shadow:
+      inset 0 0 0 3px var(--rw-command-bg),
+      inset 0 0 0 4px #ffffff14;
+    & .rw-command-bar__identity {
+      min-inline-size: 0;
+      margin-inline-end: auto;
+    }
+    & .rw-command-bar__metrics {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    & .rw-command-stat {
+      display: grid;
+      gap: 5px;
+      padding-inline-start: 20px;
+      border-inline-start: 1px solid #ffffff30;
+      font-variant-numeric: tabular-nums;
+      & > span {
+        color: var(--rw-command-muted);
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      & > strong {
+        font-size: 22px;
+        line-height: 1.1;
+      }
+      & > small {
+        color: var(--rw-command-muted);
+      }
+    }
+  }
+}

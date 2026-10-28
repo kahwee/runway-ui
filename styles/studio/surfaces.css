@@ -1,0 +1,46 @@
+@layer runway-ui.patterns {
+  .rw-paper-panel {
+    background: #fcf7e9;
+    border: 1px solid #c6b99a;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px #40372318;
+    backdrop-filter: none;
+  }
+  .rw-paper-panel[data-accent] {
+    border-block-start: 3px solid #a88449;
+  }
+  .rw-paper-panel .rw-kicker {
+    color: #76613d;
+    font-size: 9px;
+  }
+  .rw-paper-panel p,
+  .rw-paper-panel .rw-paper-panel__meta,
+  .rw-paper-panel > small {
+    color: #5e6554;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .rw-paper-panel > strong {
+    color: #294536;
+  }
+  .rw-paper-console {
+    background: #fcf7e9;
+    border: 1px solid #b9ad8f;
+    border-radius: 7px;
+    box-shadow:
+      0 3px 0 #8b7050,
+      0 6px 16px #40372318;
+  }
+  .rw-paper-sheet {
+    background: #faf5e7;
+    --rw-sheet-accent: #8a7040;
+  }
+  .rw-paper-sheet .rw-paper-sheet__header {
+    padding-block: 14px;
+    border-block-end: 1px solid #c8b999;
+    background: #faf5e7;
+  }
+  .rw-paper-sheet .rw-paper-sheet__header h1 {
+    font-size: 27px;
+  }
+}

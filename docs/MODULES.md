@@ -89,3 +89,27 @@ when controls are used outside a dock. `styles/patterns/dock.css` owns only the
 dock surface, button arrangement and dock-specific animations. Its animation
 preferences remain in `styles/patterns/accessibility.css`. Neither shared control
 recipe requires importing game patterns.
+
+## Primitives and compositions
+
+Primitives own reusable recipes: `controls.css` owns buttons and shortcuts,
+`fields.css` / `forms.css` own native form controls, and `panels.css` owns the
+panel surface, header, title and elevation. `primitives.css` remains the compatible
+aggregate. A standalone panel can import `runway-ui/styles/tokens.css` and
+`runway-ui/styles/panels.css` without loading buttons, fields or game patterns.
+The boundary checker rejects imports from these foundational modules into
+composition styles, including imports from their implementation directories.
+
+Composition entry points retain their names, layers and import order:
+
+| Entry                              | Component ownership                                                                                                                          |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `styles/workspace.css`             | `workspace/command-bar.css`, `folio-tabs.css`, `sheet.css`, `dossier.css`, `control-console.css`, `accessibility.css`                        |
+| `styles/studio.css`                | Paper command bar, navigation, surfaces, season cover, leaderboard, viewport responsiveness, accessibility and container layout in `studio/` |
+| `styles/observatory/workspace.css` | Shell and identity, metric tiles, panel placement and content, footer in `observatory/workspace/`                                            |
+
+Compositions may arrange or apply scoped appearances to primitives; a primitive
+must never import a composition to finish its appearance. Studio appearances
+remain scoped to `rw-paper-*`; observatory placement rules remain scoped to
+`rw-observatory*`. Neither redefines an unscoped button, field or panel recipe.
+Use **Isolation / Panels** in Storybook to verify the independent panel entry.

@@ -1,0 +1,26 @@
+@layer runway-ui.patterns {
+  .rw-paper-sheet .rw-leaderboard caption {
+    text-align: left;
+    font-size: 24px;
+    color: #294536;
+  }
+  .rw-paper-sheet .rw-leaderboard caption span {
+    display: block;
+    font: 10px / 2 var(--rw-font);
+    letter-spacing: 0.1em;
+    color: #76613d;
+  }
+  .rw-paper-sheet .rw-leaderboard tbody tr[data-you] {
+    background: #e5ecdd;
+    box-shadow: inset 3px 0 #3c634b;
+  }
+  .rw-paper-sheet .rw-leaderboard td,
+  .rw-paper-sheet .rw-leaderboard tbody th {
+    padding-block: 15px;
+  }
+  .rw-paper-sheet .rw-paper-sheet__note {
+    color: #655e4d;
+    line-height: 1.7;
+    margin-block: 18px 28px;
+  }
+}

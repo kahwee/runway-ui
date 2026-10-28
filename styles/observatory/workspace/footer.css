@@ -1,0 +1,16 @@
+@layer runway-ui.observatory {
+  .rw-observatory__footer {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--rw-muted);
+    font-size: 10px;
+    border-block-start: 1px solid var(--rw-line);
+    padding-block: 14px;
+  }
+  .rw-observatory__footer p {
+    max-inline-size: 78ch;
+  }
+}

@@ -1,0 +1,108 @@
+@layer runway-ui.observatory {
+  .rw-observatory {
+    --rw-observatory-gap: 18px;
+    display: block;
+    max-inline-size: 1520px;
+    margin-inline: auto;
+    color: var(--rw-ink);
+    font: 13px / 1.55 var(--rw-font);
+    container: rw-observatory / inline-size;
+    & :where(h1, h2, h3, p, figure, dl, dd) {
+      margin: 0;
+    }
+    & :where(button, input, select) {
+      font-family: inherit;
+    }
+    & :where(h1, h2, h3) {
+      text-wrap: balance;
+    }
+    & :where(p) {
+      text-wrap: pretty;
+    }
+    & :where(a) {
+      color: var(--rw-accent);
+      text-underline-offset: 3px;
+    }
+  }
+  .rw-observatory__unsupported {
+    display: none;
+    padding: 40px;
+  }
+  .rw-observatory__workspace {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--rw-observatory-gap);
+  }
+  .rw-observatory__header {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding-block: 4px 8px;
+  }
+  .rw-observatory__identity {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-inline-size: 0;
+  }
+  .rw-observatory__header h1 {
+    font: 750 clamp(25px, 2.5cqi, 38px) / 1.12 var(--rw-display-font);
+    letter-spacing: -0.045em;
+    margin-block: 4px 8px;
+  }
+  .rw-observatory__header p {
+    color: var(--rw-muted);
+    max-inline-size: 62ch;
+  }
+  .rw-observatory__seal {
+    flex: none;
+    display: grid;
+    place-items: center;
+    position: relative;
+    inline-size: 66px;
+    block-size: 66px;
+    border: 1px solid var(--rw-line);
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      var(--rw-surface) 40%,
+      var(--rw-soft) 41% 57%,
+      var(--rw-surface) 58%
+    );
+    box-shadow:
+      inset 0 2px var(--rw-highlight),
+      0 3px 0 var(--rw-line);
+    rotate: -8deg;
+  }
+  .rw-observatory__seal::before {
+    content: "";
+    inline-size: 10px;
+    block-size: 40px;
+    background: linear-gradient(var(--rw-accent) 50%, var(--rw-gold) 50%);
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    rotate: 35deg;
+  }
+  .rw-observatory__seal::after {
+    content: "N";
+    position: absolute;
+    inset-block-start: 3px;
+    font: 700 8px var(--rw-font);
+    color: var(--rw-muted);
+  }
+  .rw-observatory__stamp {
+    flex: none;
+    padding: 10px 14px;
+    border: 1px dashed var(--rw-line);
+    border-radius: 8px;
+    color: var(--rw-muted);
+    font-size: 10px;
+    text-align: end;
+  }
+  .rw-observatory__stamp strong {
+    display: block;
+    color: var(--rw-accent);
+    font-size: 12px;
+  }
+}

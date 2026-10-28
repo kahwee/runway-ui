@@ -16,6 +16,9 @@ const sourceDirectories = [
 ];
 const sourceExtensions = new Set([".js", ".mjs", ".ts", ".css", ".html"]);
 const runtime = (path) => path === "index.css" || /^(behaviors|styles)\//.test(path);
+// Foundations may compose foundations, but never workspace or game patterns.
+const foundationStyle = (path) =>
+  /^styles\/(?:tokens|primitives|controls|panels|native|fields|forms)(?:\.css|\/)/.test(path);
 const external = (path) => !path.startsWith(".") && !path.startsWith("/");
 const literal = (node) => {
   if (["StringLiteral", "NumericLiteral"].includes(node?.type)) return String(node.value);
@@ -227,6 +230,12 @@ export async function checkBoundaries(root) {
         ? destination.startsWith("behaviors/")
         : destination.startsWith("styles/");
       if (!allowed) report(file, `Library boundary violation: ${file} → ${destination}`, line);
+      if (
+        foundationStyle(file) &&
+        destination.startsWith("styles/") &&
+        !foundationStyle(destination)
+      )
+        report(file, `Primitive cannot depend on a composition: ${file} → ${destination}`, line);
     }
     try {
       await access(resolve(root, destination));

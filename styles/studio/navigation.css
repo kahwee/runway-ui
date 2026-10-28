@@ -1,0 +1,25 @@
+@layer runway-ui.patterns {
+  .rw-paper-nav {
+    padding: 4px;
+    gap: 2px;
+    background: #fcf7e9;
+    border: 1px solid #b9ad8f;
+    border-radius: 7px;
+    box-shadow:
+      0 3px 0 #8b7050,
+      0 6px 14px #40372318;
+  }
+  .rw-paper-nav .rw-folio-tab {
+    border-radius: 4px;
+    min-inline-size: 100px;
+    color: #405044;
+  }
+  .rw-paper-nav .rw-folio-tab[aria-current="page"] {
+    background: #2d4d3e;
+    color: #fff7df;
+    box-shadow: inset 0 -2px #bd995b;
+  }
+  .rw-paper-nav .rw-folio-tab:hover:not([aria-current="page"]) {
+    background: #ede4cf;
+  }
+}

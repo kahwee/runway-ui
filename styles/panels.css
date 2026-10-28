@@ -1,0 +1,29 @@
+/* Standalone panel recipe; requires tokens.css only. */
+@layer runway-ui.primitives {
+  .rw-panel {
+    box-sizing: border-box;
+    background: linear-gradient(
+      155deg,
+      var(--rw-surface),
+      color-mix(in oklch, var(--rw-surface) 94%, var(--rw-soft))
+    );
+    border: 1px solid var(--rw-line);
+    border-radius: var(--rw-radius);
+    box-shadow: var(--rw-shadow);
+    padding: var(--rw-panel-padding);
+  }
+  .rw-panel__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--rw-space);
+  }
+  .rw-panel__title {
+    margin: 0;
+    font: 650 22px / 1.25 var(--rw-display-font, var(--rw-font));
+    letter-spacing: -0.03em;
+  }
+  .rw-panel[data-elevation="flat"] {
+    box-shadow: none;
+  }
+}

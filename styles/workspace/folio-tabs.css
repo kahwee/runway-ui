@@ -1,0 +1,45 @@
+@layer runway-ui.patterns {
+  .rw-folio-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-inline-size: 0;
+    padding: 0;
+    & > .rw-folio-tab {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-block-size: 80px;
+      padding: 10px 14px;
+      border: 1px solid var(--rw-line);
+      border-radius: 5px 12px 12px 5px;
+      background: var(--rw-raised);
+      color: var(--rw-ink);
+      box-shadow: 0 3px 0 color-mix(in oklch, var(--rw-ink) 20%, transparent);
+      font: 600 14px / 1.2 var(--rw-font);
+      text-decoration: none;
+      cursor: pointer;
+      & > img {
+        inline-size: 36px;
+        block-size: 36px;
+        object-fit: contain;
+      }
+      &:is([aria-current="page"], [aria-selected="true"]) {
+        border-inline-start: 5px solid var(--rw-tab-accent, var(--rw-accent));
+        background: var(--rw-surface);
+        color: var(--rw-accent);
+        font-weight: 750;
+      }
+      &:hover {
+        background: var(--rw-surface);
+      }
+      &:focus-visible {
+        outline: 3px solid var(--rw-focus);
+        outline-offset: 3px;
+      }
+    }
+  }
+}

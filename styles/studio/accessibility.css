@@ -1,0 +1,21 @@
+@layer runway-ui.patterns {
+  @media (forced-colors: active) {
+    .rw-paper-command,
+    .rw-paper-nav,
+    .rw-paper-panel[data-accent],
+    .rw-paper-panel,
+    .rw-paper-console,
+    .rw-season-cover {
+      background: Canvas;
+      color: CanvasText;
+      border-color: CanvasText;
+    }
+    .rw-paper-command .rw-command-bar__identity > button,
+    .rw-paper-command .rw-command-bar__identity > small,
+    .rw-paper-command .rw-command-stat > strong,
+    .rw-paper-command .rw-command-stat > span,
+    .rw-paper-command .rw-command-stat > small {
+      color: CanvasText;
+    }
+  }
+}

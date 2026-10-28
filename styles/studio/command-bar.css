@@ -1,0 +1,54 @@
+@layer runway-ui.patterns {
+  /* Warm paper, walnut edges and forest ink echo the illustrated office. */
+  .rw-paper-command {
+    background: #fcf7e9;
+    color: #243f35;
+    border: 1px solid #b9ad8f;
+    border-block-end: 3px solid #8b7050;
+    border-radius: 7px;
+    box-shadow: 0 4px 14px #40372320;
+    backdrop-filter: none;
+  }
+  .rw-paper-command .rw-command-bar__identity {
+    max-width: 330px;
+  }
+  .rw-paper-command .rw-command-bar__identity > small {
+    color: #706344;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+  .rw-paper-command .rw-command-bar__identity > button {
+    color: #243f35;
+    font-size: 25px;
+  }
+  .rw-paper-command .rw-command-stat {
+    border-inline-start: 1px solid #d9cfb8;
+    gap: 2px;
+    padding-inline-start: 22px;
+  }
+  .rw-paper-command .rw-command-stat > span,
+  .rw-paper-command .rw-command-stat > small {
+    color: #655f4d;
+  }
+  .rw-paper-command .rw-command-stat > span {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+  .rw-paper-command .rw-command-stat > strong {
+    color: #243f35;
+    font-size: 23px;
+    font-variant-numeric: tabular-nums;
+  }
+  .rw-paper-command .rw-command-action {
+    background: #f1ead8;
+    border-color: #c7b999;
+    color: #304b3e;
+    border-radius: 5px;
+  }
+  .rw-paper-command .rw-command-action:hover {
+    background: #e4dbc4;
+  }
+  .rw-paper-command .rw-command-action img {
+    filter: none;
+  }
+}

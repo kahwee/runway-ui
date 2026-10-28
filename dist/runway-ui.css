@@ -1401,6 +1401,36 @@
 }
 
 
+/* Standalone panel recipe; requires tokens.css only. */
+@layer runway-ui.primitives {
+  .rw-panel {
+    box-sizing: border-box;
+    background: linear-gradient(
+      155deg,
+      var(--rw-surface),
+      color-mix(in oklch, var(--rw-surface) 94%, var(--rw-soft))
+    );
+    border: 1px solid var(--rw-line);
+    border-radius: var(--rw-radius);
+    box-shadow: var(--rw-shadow);
+    padding: var(--rw-panel-padding);
+  }
+  .rw-panel__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--rw-space);
+  }
+  .rw-panel__title {
+    margin: 0;
+    font: 650 22px / 1.25 var(--rw-display-font, var(--rw-font));
+    letter-spacing: -0.03em;
+  }
+  .rw-panel[data-elevation="flat"] {
+    box-shadow: none;
+  }
+}
+
 
 @layer runway-ui.primitives {
   :where(.rw-ui)
@@ -1416,18 +1446,6 @@
     ) {
     box-sizing: border-box;
   }
-  .rw-panel {
-    background: linear-gradient(
-      155deg,
-      var(--rw-surface),
-      color-mix(in oklch, var(--rw-surface) 94%, var(--rw-soft))
-    );
-    border: 1px solid var(--rw-line);
-    border-radius: var(--rw-radius);
-    box-shadow: var(--rw-shadow);
-    padding: var(--rw-panel-padding);
-  }
-  .rw-panel__header,
   .rw-row {
     display: flex;
     justify-content: space-between;
@@ -1442,11 +1460,6 @@
     display: grid;
     grid-template-columns: repeat(var(--rw-columns, 3), minmax(0, 1fr));
     gap: var(--rw-space);
-  }
-  .rw-panel__title {
-    margin: 0;
-    font: 650 22px / 1.25 var(--rw-display-font, var(--rw-font));
-    letter-spacing: -0.03em;
   }
   .rw-muted {
     color: var(--rw-muted);
@@ -1469,9 +1482,6 @@
     border-radius: 999px;
     background: var(--rw-soft);
     color: var(--rw-accent);
-  }
-  .rw-panel[data-elevation="flat"] {
-    box-shadow: none;
   }
   .rw-badge::before {
     content: "";
@@ -2694,7 +2704,7 @@
 }
 
 
-/* Composable desktop workspaces. The host owns viewport placement and imagery. */
+/* Composition entry: keep component order stable. */
 @layer runway-ui.patterns {
   .rw-command-bar {
     --rw-command-bg: #183b34;
@@ -2742,6 +2752,9 @@
       }
     }
   }
+}
+
+@layer runway-ui.patterns {
   .rw-folio-tabs {
     display: flex;
     flex-direction: column;
@@ -2785,6 +2798,9 @@
       }
     }
   }
+}
+
+@layer runway-ui.patterns {
   .rw-sheet {
     min-inline-size: 0;
     padding: var(--rw-panel-padding);
@@ -2794,6 +2810,9 @@
     color: var(--rw-ink);
     box-shadow: 0 5px 16px color-mix(in oklch, var(--rw-ink) 10%, transparent);
   }
+}
+
+@layer runway-ui.patterns {
   .rw-dossier-list {
     container-type: inline-size;
     display: grid;
@@ -2833,6 +2852,9 @@
       grid-column: 1 / -1;
     }
   }
+}
+
+@layer runway-ui.patterns {
   .rw-control-console {
     display: flex;
     flex-wrap: wrap;
@@ -2845,6 +2867,9 @@
     color: var(--rw-ink);
     box-shadow: 0 3px 0 color-mix(in oklch, var(--rw-ink) 25%, transparent);
   }
+}
+
+@layer runway-ui.patterns {
   @media (forced-colors: active) {
     .rw-command-bar,
     .rw-sheet,
@@ -2865,7 +2890,8 @@
   }
 }
 
-/* Opt-in paper workspace components. Host owns placement, content and imagery. */
+
+/* Composition entry: keep component order stable. */
 @layer runway-ui.patterns {
   /* Warm paper, walnut edges and forest ink echo the illustrated office. */
   .rw-paper-command {
@@ -2919,6 +2945,9 @@
   .rw-paper-command .rw-command-action img {
     filter: none;
   }
+}
+
+@layer runway-ui.patterns {
   .rw-paper-nav {
     padding: 4px;
     gap: 2px;
@@ -2942,6 +2971,9 @@
   .rw-paper-nav .rw-folio-tab:hover:not([aria-current="page"]) {
     background: #ede4cf;
   }
+}
+
+@layer runway-ui.patterns {
   .rw-paper-panel {
     background: #fcf7e9;
     border: 1px solid #c6b99a;
@@ -2986,6 +3018,9 @@
   .rw-paper-sheet .rw-paper-sheet__header h1 {
     font-size: 27px;
   }
+}
+
+@layer runway-ui.patterns {
   .rw-season-cover {
     display: grid;
     grid-template-columns: 1.15fr 1fr;
@@ -3049,6 +3084,9 @@
     font-size: 14px;
     color: #655e4d;
   }
+}
+
+@layer runway-ui.patterns {
   .rw-paper-sheet .rw-leaderboard caption {
     text-align: left;
     font-size: 24px;
@@ -3073,6 +3111,9 @@
     line-height: 1.7;
     margin-block: 18px 28px;
   }
+}
+
+@layer runway-ui.patterns {
   @media (width < 1280px) {
     .rw-paper-command .rw-command-bar__identity {
       max-width: 240px;
@@ -3090,6 +3131,9 @@
       gap: 18px;
     }
   }
+}
+
+@layer runway-ui.patterns {
   @media (forced-colors: active) {
     .rw-paper-command,
     .rw-paper-nav,
@@ -3110,6 +3154,7 @@
     }
   }
 }
+
 @layer runway-ui.patterns {
   .rw-season-cover {
     container-type: inline-size;
@@ -3144,6 +3189,7 @@
     }
   }
 }
+
 
 @layer runway-ui.simulation {
   /* Shared columns align every production row without duplicated track sizes. */
@@ -4203,6 +4249,7 @@
 }
 
 /* Observatory composition. Keep component order stable. */
+/* Composition entry: keep component order stable. */
 @layer runway-ui.observatory {
   .rw-observatory {
     --rw-observatory-gap: 18px;
@@ -4310,6 +4357,9 @@
     color: var(--rw-accent);
     font-size: 12px;
   }
+}
+
+@layer runway-ui.observatory {
   .rw-observatory__metrics {
     grid-column: 1 / -1;
     display: grid;
@@ -4358,6 +4408,9 @@
   .rw-trend .rw-spark {
     margin-block-start: 4px;
   }
+}
+
+@layer runway-ui.observatory {
   .rw-observatory__history,
   .rw-observatory__resources {
     grid-column: span 8;
@@ -4440,6 +4493,9 @@
     color: var(--rw-muted);
     font-size: 11px;
   }
+}
+
+@layer runway-ui.observatory {
   .rw-observatory__footer {
     grid-column: 1 / -1;
     display: flex;
@@ -4455,6 +4511,7 @@
     max-inline-size: 78ch;
   }
 }
+
 
 @layer runway-ui.observatory {
   /* Four columns shared by header, rows and their nested content. */

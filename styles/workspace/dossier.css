@@ -1,0 +1,41 @@
+@layer runway-ui.patterns {
+  .rw-dossier-list {
+    container-type: inline-size;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(180px, 0.65fr);
+    gap: 14px 20px;
+  }
+  .rw-dossier {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    gap: 16px 20px;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid var(--rw-line);
+    border-radius: 8px;
+    background: var(--rw-raised);
+    & .rw-dossier__body,
+    & .rw-dossier__actions {
+      min-inline-size: 0;
+      display: grid;
+      gap: 12px;
+    }
+    & .rw-dossier__heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    & h3,
+    & p {
+      margin: 0;
+    }
+  }
+  @container (inline-size < 540px) {
+    .rw-dossier > .rw-dossier__body,
+    .rw-dossier > .rw-dossier__actions {
+      grid-column: 1 / -1;
+    }
+  }
+}

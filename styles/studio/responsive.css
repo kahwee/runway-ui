@@ -1,0 +1,19 @@
+@layer runway-ui.patterns {
+  @media (width < 1280px) {
+    .rw-paper-command .rw-command-bar__identity {
+      max-width: 240px;
+    }
+    .rw-paper-command .rw-command-stat {
+      padding-inline-start: 14px;
+    }
+    .rw-paper-command .rw-command-stat > strong {
+      font-size: 20px;
+    }
+    .rw-season-cover__copy {
+      padding: 16px 22px;
+    }
+    .rw-season-facts {
+      gap: 18px;
+    }
+  }
+}

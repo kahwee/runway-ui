@@ -1,6 +1,7 @@
 @import url("./controls.css");
 @import url("./fields.css");
 @import url("./forms.css");
+@import url("./panels.css");
 
 @layer runway-ui.primitives {
   :where(.rw-ui)
@@ -16,18 +17,6 @@
     ) {
     box-sizing: border-box;
   }
-  .rw-panel {
-    background: linear-gradient(
-      155deg,
-      var(--rw-surface),
-      color-mix(in oklch, var(--rw-surface) 94%, var(--rw-soft))
-    );
-    border: 1px solid var(--rw-line);
-    border-radius: var(--rw-radius);
-    box-shadow: var(--rw-shadow);
-    padding: var(--rw-panel-padding);
-  }
-  .rw-panel__header,
   .rw-row {
     display: flex;
     justify-content: space-between;
@@ -42,11 +31,6 @@
     display: grid;
     grid-template-columns: repeat(var(--rw-columns, 3), minmax(0, 1fr));
     gap: var(--rw-space);
-  }
-  .rw-panel__title {
-    margin: 0;
-    font: 650 22px / 1.25 var(--rw-display-font, var(--rw-font));
-    letter-spacing: -0.03em;
   }
   .rw-muted {
     color: var(--rw-muted);
@@ -69,9 +53,6 @@
     border-radius: 999px;
     background: var(--rw-soft);
     color: var(--rw-accent);
-  }
-  .rw-panel[data-elevation="flat"] {
-    box-shadow: none;
   }
   .rw-badge::before {
     content: "";

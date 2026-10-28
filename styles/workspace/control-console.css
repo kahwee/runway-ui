@@ -1,0 +1,14 @@
+@layer runway-ui.patterns {
+  .rw-control-console {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    border: 1px solid var(--rw-line);
+    border-radius: 12px;
+    background: var(--rw-surface);
+    color: var(--rw-ink);
+    box-shadow: 0 3px 0 color-mix(in oklch, var(--rw-ink) 25%, transparent);
+  }
+}
