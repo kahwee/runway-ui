@@ -22,9 +22,7 @@ const committed = outputs.map((path) => {
     return null;
   }
 });
-execFileSync(process.execPath, ["scripts/build-react-types.mjs"], { cwd: root, stdio: "inherit" });
-execFileSync(process.execPath, ["scripts/build-types.mjs"], { cwd: root, stdio: "inherit" });
-execFileSync(process.execPath, ["scripts/build.mjs"], { cwd: root, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/run-build.mjs"], { cwd: root, stdio: "inherit" });
 let failed = false;
 for (const [index, path] of outputs.entries()) {
   const generated = await readFile(new URL(`../${path}`, import.meta.url));

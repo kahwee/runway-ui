@@ -99,7 +99,7 @@
     "inventory"
   ],
   "scripts": {
-    "build": "bun run build-types && bun run build-react-types && bun scripts/build.mjs",
+    "build": "bun scripts/run-build.mjs",
     "prepack": "bun run build",
     "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build --disable-telemetry",
@@ -118,7 +118,8 @@
     "check-types": "bun scripts/build-types.mjs --check && bun scripts/build-react-types.mjs --check && bun check --no-script -p tsconfig.behaviors.json && bun check --no-script -p tsconfig.react.json && bun check --no-script -p tsconfig.consumer.json",
     "build-dependency-map": "bun scripts/build-dependency-map.mjs",
     "check-dependency-map": "bun scripts/build-dependency-map.mjs --check",
-    "build-react-types": "bun scripts/build-react-types.mjs"
+    "build-react-types": "bun scripts/build-react-types.mjs",
+    "clean": "bun scripts/clean.mjs"
   },
   "engines": {
     "node": "^22.18.0 || >=24.11.0",

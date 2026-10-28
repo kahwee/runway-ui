@@ -63,3 +63,21 @@ still performed by its compiler; Bun's native checker does not emit declarations
 The package has no runtime dependencies. Generated CSS, icons and declarations
 are checked separately rather than reformatted in place. This formatter change
 is a one-time formatting migration, not a change to public behavior contracts.
+## Build ownership and cleanup
+
+`bun run build` uses one coordinator for the behavior declarations, optional React
+declarations and bundled CSS. These generators run concurrently because they own
+separate outputs. The coordinator waits for all three and fails if any fails;
+site assembly and packaging only proceed after a successful build.
+`bun run check-generated` uses that same coordinator before comparing with HEAD.
+
+React declarations compile into a unique temporary directory with emission on
+errors disabled. The directory is removed on success or failure. The generator
+resolves tools and paths relative to the repository, so it can be invoked from
+another working directory.
+
+Use `bun run clean` to remove `.site`, `storybook-static` and legacy `.types`
+output. It preserves committed CSS, icons, declarations and installed dependencies.
+Then `bun run build-site` recreates the package, Storybook and documentation site.
+Storybook runs after package generation so it never reads icons while they are
+being regenerated. No build-speed improvement is claimed without measurement.
