@@ -2,7 +2,7 @@
 
 Use Bun 1.4.4, pinned in `.bun-version` and `package.json`, with the committed
 `bun.lock`. Run `bun install --frozen-lockfile`; CI uses the same pin and frozen
-install. Node 22.18+ or 24.11+ remains available for third-party CLI programs,
+install. Node 24.11+ remains available for third-party CLI programs (CI uses 24.22.1),
 including Storybook. The CSS and optional browser behaviors require no runtime
 package dependencies.
 
