@@ -34,8 +34,9 @@ modular entry. `@kahwee/runway-ui/cozy.css` is the theme on its own. Try **React
 
 | Component | Renders | Key props |
 | --- | --- | --- |
-| `Runway` | Theme root `div.rw-ui` | `theme` (`cozy`, `ledger`, `orbital`, `parchment`, `whimsy`, `midnight`), `density` |
+| `Runway` | Theme root `div.rw-ui` | `theme` (`cozy`, `cozy-night`, `ledger`, `orbital`, `parchment`, `whimsy`, `midnight`), `density` |
 | `Panel` | `section.rw-panel` | `title`, `kicker`, `actions` |
+| `Icon` | Decorative Phosphor icon (`span.rw-icon`) | `name` (`coins`, `heart`, `users`, `lightning`, `rocket`, `sun`, ...), `weight`, `size` |
 | `Badge` | `span.rw-badge` | `tone` (`warning`, `danger`) |
 | `Meter` | `div[role=meter]` capsule | `label`, `value`, `max`, `tone` |
 | `Progress` | native `<progress>` | native props |
@@ -55,7 +56,7 @@ modular entry. `@kahwee/runway-ui/cozy.css` is the theme on its own. Try **React
 | `ToastProvider`, `useToasts` | Base UI Toast with a Runway-styled stack | `timeout`, `limit`; `push(message, tone)`, `dismiss(id)` |
 | `Chart`, `ChartCard`, `defineChart` | TanStack Charts adapter and card | `definition`, `height`, `ariaLabel` |
 
-`Meter` clamps `value` to `0..max` for both its fill and `aria-valuenow`. Invalid or
+`CommandBar` stats, `FolioTabs` items and `Meter` accept an `icon` (use `Icon`). `Meter` clamps `value` to `0..max` for both its fill and `aria-valuenow`. Invalid or
 nonpositive maxima use 100; nonfinite values use 0. `Dialog` keeps the browser
 in charge of focus and inertness. Pass `canDismiss={() => false}` to veto Escape and
 backdrop dismissal while a decision is required; the policy is reapplied on every render.

@@ -41,3 +41,13 @@ inside the root use `--ts-chart-1` to `--ts-chart-6`. Motion respects
 Cozy motion (`styles/cozy/motion.css`): siblings rise in one after another (using `sibling-index()` where
 supported, otherwise together), meters bounce and flash on change, and `data-attention` buttons
 pulse a ring. Generic number, toast and confetti styles live in `styles/feedback.css`.
+
+## Cozy night
+
+Set `data-theme="cozy-night"` (or `theme="cozy-night"` on `Runway`) for the same shapes, springs and
+motion under lamplight: plum paper, a warm glow from the top right, faint stars and brighter pastels.
+It reuses every cozy rule through `:is([data-theme="cozy"], [data-theme="cozy-night"])`; only tokens
+differ (`styles/cozy/night.css`). Cozy surfaces use `--rw-cozy-paper`, `--rw-cozy-gloss`,
+`--rw-cozy-shade`, `--rw-cozy-bar` and `--rw-cozy-on-pastel` instead of fixed colors, so a custom theme
+can restyle them. Corners use `corner-shape: squircle` where supported. Touch devices get 48px
+targets, hover lifts only on hover-capable devices, and a sticky thumb-reach action bar under 700px.

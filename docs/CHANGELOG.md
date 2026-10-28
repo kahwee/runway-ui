@@ -12,6 +12,15 @@ The deployed website retains its browser JavaScript URLs. Type checks cover the
 full source tree, with strict public APIs and strict React stories.
 
 
+## 1.1.0
+
+- Add the `cozy-night` theme and the `Icon` component. `CommandBar` stats, `FolioTabs` items and
+  `Meter` accept an `icon`. Cozy rules now use color tokens instead of fixed values.
+- Cozy motion and shape: real spring easing with CSS `linear()`, squircle corners, softer shadows, and
+  a mobile and touch layer (48px targets, hover only where supported, safe areas, scrolling tab row,
+  sticky action bar, full-width toasts). Add `haptic()` for vibration on touch devices.
+- Desk example: icons, a visible chart curve from day 1 and numeric credits that count up.
+
 ## 1.0.0
 
 First stable major release. The public React API (`Runway`, `Panel`, `Badge`, `Meter`, `Resource`,
