@@ -73,3 +73,15 @@ Use these instead of literal pixel values in components and apps, so themes and 
   min-block-size: var(--rw-tap-target);
 }
 ```
+
+## Using a theme inside an app with its own CSS
+
+Runway's themes and tokens are declared in cascade layers (`runway-ui.tokens`, `runway-ui.themes`).
+Unlayered CSS beats any layered rule regardless of specificity, so an app stylesheet that sets
+`--rw-radius`, `--rw-surface` or similar on `body` or `.rw-ui` overrides the theme. When adopting a
+theme in an existing app, find those overrides and either delete them or restate the theme's values
+in one unlayered skin file loaded last, using selectors that carry `[data-theme="..."]` so they also
+outrank lazily loaded feature stylesheets. Hard-coded brand colors can be migrated mechanically by
+converting them in OKLCH, which preserves lightness and therefore contrast, and keeping semantic
+colors (such as a vivid green for healthy states) unchanged.
+
