@@ -25,6 +25,8 @@ export type SelectMenuProps<Value extends string = string> = {
   className?: string;
   /** Theme for the portaled list, which renders outside the `Runway` root. */
   theme?: RunwayProps["theme"];
+  /** Where the list portals to. Pass the enclosing native `<dialog>` so it stays above a modal. */
+  container?: HTMLElement | null;
 };
 
 /** A themed Base UI Select: styled trigger, popup, items and check mark in one component. */
@@ -40,6 +42,7 @@ export function SelectMenu<Value extends string = string>({
   required,
   className,
   theme = "cozy",
+  container,
   "aria-label": label,
 }: SelectMenuProps<Value>) {
   return createElement(
@@ -70,7 +73,7 @@ export function SelectMenu<Value extends string = string>({
     ),
     createElement(
       Select.Portal,
-      null,
+      { container },
       createElement(
         Select.Positioner,
         { sideOffset: 6, alignItemWithTrigger: false, className: "rw-menu-positioner" },

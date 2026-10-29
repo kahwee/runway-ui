@@ -16,6 +16,8 @@ export type PopoverProps = {
   side?: "top" | "bottom" | "left" | "right";
   className?: string;
   theme?: RunwayProps["theme"];
+  /** Where the list portals to. Pass the enclosing native `<dialog>` so it stays above a modal. */
+  container?: HTMLElement | null;
 };
 
 /** A themed Base UI Popover for small, non-modal panels anchored to a button. */
@@ -29,6 +31,7 @@ export function Popover({
   side = "bottom",
   className,
   theme = "cozy",
+  container,
 }: PopoverProps) {
   return createElement(
     BasePopover.Root,
@@ -40,7 +43,7 @@ export function Popover({
     }),
     createElement(
       BasePopover.Portal,
-      null,
+      { container },
       createElement(
         BasePopover.Positioner,
         { side, sideOffset: 8, className: "rw-menu-positioner" },

@@ -19,6 +19,8 @@ export type ComboboxMenuProps<Value extends string = string> = {
   "aria-label"?: string;
   className?: string;
   theme?: RunwayProps["theme"];
+  /** Where the list portals to. Pass the enclosing native `<dialog>` so it stays above a modal. */
+  container?: HTMLElement | null;
 };
 
 /** A themed Base UI Combobox: type to filter a list of options, or open it with the chevron. */
@@ -34,6 +36,7 @@ export function ComboboxMenu<Value extends string = string>({
   disabled,
   className,
   theme = "cozy",
+  container,
   "aria-label": label,
 }: ComboboxMenuProps<Value>) {
   const byValue = new Map(options.map((o) => [o.value, o]));
@@ -65,7 +68,7 @@ export function ComboboxMenu<Value extends string = string>({
     ),
     createElement(
       Combobox.Portal,
-      null,
+      { container },
       createElement(
         Combobox.Positioner,
         { sideOffset: 6, className: "rw-menu-positioner" },
