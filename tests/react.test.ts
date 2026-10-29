@@ -109,3 +109,24 @@ test("component ownership refactors retain every supported React runtime export"
   for (const name of supported)
     assert.ok(Object.hasOwn(entry, name), `Missing public export: ${name}`);
 });
+
+test("menus render Base UI triggers with Runway classes and the chosen label", async () => {
+  const { SelectMenu, ComboboxMenu, Popover } = await import("../react/index.ts");
+  const options = [
+    { value: "a", label: "Alpha" },
+    { value: "b", label: "Beta" },
+  ];
+  const html = renderToStaticMarkup(
+    h(
+      "div",
+      null,
+      h(SelectMenu, { options, defaultValue: "b", "aria-label": "Letter" }),
+      h(ComboboxMenu, { options, "aria-label": "Search letters" }),
+      h(Popover, { trigger: "Help", children: "Body" }),
+    ),
+  );
+  assert.match(html, /rw-menu-trigger/);
+  assert.match(html, /Beta/);
+  assert.match(html, /rw-combobox-input/);
+  assert.match(html, /rw-button/);
+});

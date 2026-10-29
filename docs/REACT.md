@@ -170,3 +170,16 @@ clamping and progress semantics. No live region is added on frequent updates.
 
 The shared meter color/height tokens apply. Forced colors restore native progress
 appearance; indeterminate work retains the browser's native rendering.
+
+## Menus
+
+`SelectMenu`, `ComboboxMenu` and `Popover` wrap Base UI `Select`, `Combobox` and
+`Popover` with Runway styling. Pass `options` as `{ value, label, disabled? }`.
+The popup renders in a portal, so each takes a `theme` prop (default `cozy`) to
+match the surrounding `Runway` root.
+
+```tsx
+<SelectMenu aria-label="Stage" options={stages} value={stage} onValueChange={setStage} />
+<ComboboxMenu aria-label="Market" options={markets} onValueChange={setMarket} />
+<Popover trigger="Help" title="Stages">Each stage changes your starting cash.</Popover>
+```

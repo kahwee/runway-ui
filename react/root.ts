@@ -17,3 +17,8 @@ export function Runway({ theme = "cozy", density, className, ...props }: RunwayP
     "data-density": density,
   });
 }
+
+/** Theme attribute for portaled popups, which render outside the `Runway` root. */
+export function themeAttr(theme: RunwayProps["theme"] = "cozy"): object {
+  return { "data-theme": theme };
+}

@@ -6,6 +6,7 @@
 - Migrate the chart lab, chart playground, Observatory, Colony and landing-page plots; preserve original units, missing/observed/projected data and exact tables.
 - Keep `charts.css` for figure/table styling and the existing React Chart API. Old CSS mark classes no longer render plots; see [migration](CHARTS.md#migration-from-css-plots). No package version or release tag is created here.
 
+- Add themed Base UI menus: `SelectMenu`, `ComboboxMenu` and `Popover` share one trigger, list and item look (`styles/fields/menus.css`). Portaled lists render their own `rw-ui` theme root, so they match the surrounding theme. The raw `Select` export is unchanged.
 - Add optional React `Progress`, using labelled native progress semantics and shared meter tokens.
 
 ## TypeScript source migration

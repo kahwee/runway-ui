@@ -111,6 +111,7 @@ Internal stylesheet imports (already loaded by the entries above):
 - [styles/fields/base.css](../styles/fields/base.css)
 - [styles/fields/select-picker.css](../styles/fields/select-picker.css)
 - [styles/fields/select-variants.css](../styles/fields/select-variants.css)
+- [styles/fields/menus.css](../styles/fields/menus.css)
 - [styles/fields/accessibility.css](../styles/fields/accessibility.css)
 
 ## Form controls and layout
@@ -135,6 +136,7 @@ Internal stylesheet imports (already loaded by the entries above):
 - [styles/fields/base.css](../styles/fields/base.css)
 - [styles/fields/select-picker.css](../styles/fields/select-picker.css)
 - [styles/fields/select-variants.css](../styles/fields/select-variants.css)
+- [styles/fields/menus.css](../styles/fields/menus.css)
 - [styles/fields/accessibility.css](../styles/fields/accessibility.css)
 - [styles/forms/switch.css](../styles/forms/switch.css)
 - [styles/forms/check.css](../styles/forms/check.css)
