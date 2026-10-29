@@ -43,7 +43,7 @@ export function Popover({
     }),
     createElement(
       BasePopover.Portal,
-      { container },
+      { container: container ?? undefined },
       createElement(
         BasePopover.Positioner,
         { side, sideOffset: 8, className: "rw-menu-positioner" },

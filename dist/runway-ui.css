@@ -860,6 +860,7 @@
   .rw-menu,
   .rw-popover {
     box-sizing: border-box;
+    background-image: none;
     border: var(--rw-border-width) solid var(--rw-line);
     border-radius: var(--rw-radius-md);
     background: var(--rw-surface);

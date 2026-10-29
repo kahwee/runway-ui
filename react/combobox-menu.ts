@@ -68,7 +68,7 @@ export function ComboboxMenu<Value extends string = string>({
     ),
     createElement(
       Combobox.Portal,
-      { container },
+      { container: container ?? undefined },
       createElement(
         Combobox.Positioner,
         { sideOffset: 6, className: "rw-menu-positioner" },

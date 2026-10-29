@@ -73,7 +73,7 @@ export function SelectMenu<Value extends string = string>({
     ),
     createElement(
       Select.Portal,
-      { container },
+      { container: container ?? undefined },
       createElement(
         Select.Positioner,
         { sideOffset: 6, alignItemWithTrigger: false, className: "rw-menu-positioner" },
